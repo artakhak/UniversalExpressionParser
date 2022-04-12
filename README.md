@@ -1,5 +1,7 @@
 # UniversalExpressionParser
 
+# NOTE: CLICK ON https://github.com/artakhak/UniversalExpressionParser/blob/main/README.md to view the non-trimmed version of documentation.
+
 # Summary
 
 **UniversalExpressionParser** is a library for parsing expressions like the one demonstrated below into expression items for functions, literals, operators, etc.
