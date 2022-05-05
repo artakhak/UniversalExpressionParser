@@ -1,6 +1,7 @@
 # UniversalExpressionParser
 
-# NOTE: CLICK ON https://github.com/artakhak/UniversalExpressionParser/blob/main/README.md to view the non-trimmed version of documentation
+**NOTE: Unfortunately, github cuts off part of the README content on main page at this point because of file size limitation. Will try to find some workaround for this soon.
+However, one solution to view the README.md file in its entirety would be to copy the file at https://github.com/artakhak/UniversalExpressionParser/blob/main/README.md and view it using some MD viewer in Chrome or Edge browser.**
 
 <IncludedFilePlaceHolder>UniversalExpressionParser.Tests\Demos\DemoExpressions\README.md</IncludedFilePlaceHolder>
 
