@@ -8,7 +8,6 @@ using UniversalExpressionParser.ExpressionItems.Custom;
 
 namespace UniversalExpressionParser
 {
-    // Documented
     /// <inheritdoc />
     public abstract class ExpressionLanguageProviderBase : IExpressionLanguageProvider
     {

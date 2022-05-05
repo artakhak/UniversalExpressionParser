@@ -8,7 +8,6 @@ using UniversalExpressionParser.ExpressionItems;
 
 namespace UniversalExpressionParser
 {
-    // Documented.
     /// <inheritdoc />
     public class OperatorInfo: IOperatorInfo
     {

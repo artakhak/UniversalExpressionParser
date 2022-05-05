@@ -14,14 +14,11 @@ using UniversalExpressionParser.Parser;
 
 namespace UniversalExpressionParser
 {
-    // Documented
     /// <inheritdoc />
     public class ExpressionParser : IExpressionParser
     {
 
 #if DEBUG
-        internal delegate void TraceParsingDelegate(ParseExpressionItemContext context, EvaluateExpressionType evaluateExpressionType);
-
 #pragma warning disable 414
         /// <summary>
         /// Counter used for diagnostics purposes. Not visible in release mode.
@@ -127,13 +124,6 @@ namespace UniversalExpressionParser
                 ExpressionItemSettingsAmbientContext.Context = expressionItemSettingCurrent;
             }
         }
-
-#if DEBUG
-        /// <summary>
-        /// Set this property to trace parsing.
-        /// </summary>
-        internal TraceParsingDelegate TraceParsing { get; set; }
-#endif
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool GetIsRoundBraces([NotNull] ITextSymbolsParser textSymbolsParser)
@@ -907,35 +897,6 @@ namespace UniversalExpressionParser
 
                             continue;
                         }
-
-                        //// We know we could not evaluate valid operators. Lets see if current text can be parsed to some operator, when we assume 
-                        //// hasOperand1 is invalid (we tried valid value of hasOperand1 above).
-                        //// This way we can report ParseErrorItemCode.OperatorMisuse, rather than more generic ParseErrorItemCode.InvalidSymbol
-                        //// if we do not try this.
-                        //// For example if we example like this: "+=x", we will identify an error here, since (!hasOperand1) will be true, and we will try 
-                        //// binary operators as well.
-                        //// TODO: Try to improve this to call TryParseOperators(...) only once above (might overcomplicate the code)
-                        //parsedOperators = TryParseOperators(context, !hasOperand1);
-
-                        //if (parsedOperators != null && parsedOperators.Count > 0)
-                        //{
-                        //    if (keywordExpressionItems.Count > 0)
-                        //        AddInvalidKeywordUsageError(context, parseExpressionItemData, keywordExpressionItems);
-
-                        //    lastParsedOperatorsAreInvalid = true;
-                        //    parseExpressionItemData.OperatorsCannotBeEvaluated = true;
-
-                        //    context.AddParseErrorItem(new ParseErrorItem(
-                        //        parsedOperators[0][0].IndexInText, () => OperatorMisuseError,
-                        //        CodeParseErrorCodee.OperatorMisuse));
-
-                        //    foreach (var operatorCandidates in parsedOperators)
-                        //    {
-                        //        parseExpressionItemData.AllExpressionItems.Add(operatorCandidates[0]);
-                        //    }
-
-                        //    continue;
-                        //}
                     }
 
                     // Everything after this point is non-operator 

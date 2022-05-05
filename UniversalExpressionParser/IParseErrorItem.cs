@@ -6,7 +6,6 @@ using UniversalExpressionParser.ExpressionItems.Custom;
 
 namespace UniversalExpressionParser
 {
-    // Documented
     /// <summary>
     /// Stores data on single parse error item.
     /// </summary>

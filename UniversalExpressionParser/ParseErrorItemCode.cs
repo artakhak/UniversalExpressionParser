@@ -6,7 +6,6 @@ using UniversalExpressionParser.ExpressionItems.Custom;
 
 namespace UniversalExpressionParser
 {
-    // Documented.
     // TODO: The code docs should be fine, but go over them again later.
     /// <summary>
     /// Error codes.

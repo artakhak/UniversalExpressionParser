@@ -6,7 +6,6 @@ using System.Collections.Generic;
 
 namespace UniversalExpressionParser
 {
-    // Documented.
     /// <inheritdoc />
     public class ParseErrorData : IParseErrorData
     {

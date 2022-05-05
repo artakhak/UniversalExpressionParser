@@ -7,7 +7,6 @@ using UniversalExpressionParser.ExpressionItems.Custom;
 
 namespace UniversalExpressionParser
 {
-    //Documented.
     /// <inheritdoc />
     public class ParseErrorItem: IParseErrorItem
     {

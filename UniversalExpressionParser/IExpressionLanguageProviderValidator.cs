@@ -5,7 +5,6 @@ using JetBrains.Annotations;
 
 namespace UniversalExpressionParser
 {
-    // Documented
     /// <summary>
     /// A validator for <see cref="IExpressionLanguageProvider"/>.
     /// The default implementation <see cref="DefaultExpressionLanguageProviderValidator"/> can be used in most cases.

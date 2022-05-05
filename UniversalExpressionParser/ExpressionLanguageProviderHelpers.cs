@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
-// Copyright (c) UniversalExpressionParser Project. All rights reserved.
+﻿// Copyright (c) UniversalExpressionParser Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
+
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace UniversalExpressionParser
 {
-    // Documented.
     /// <summary>
     /// Helpers methods for <see cref="IExpressionLanguageProvider"/>.
     /// </summary>

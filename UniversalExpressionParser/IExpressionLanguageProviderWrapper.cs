@@ -7,7 +7,6 @@ using System.Collections.Generic;
 
 namespace UniversalExpressionParser
 {
-    // Documented
     /// <summary>
     /// A wrapper for <see cref="IExpressionLanguageProvider"/> which provides some additional functionality.
     /// </summary>

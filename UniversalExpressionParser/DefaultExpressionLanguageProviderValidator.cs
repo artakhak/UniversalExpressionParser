@@ -8,7 +8,6 @@ using System.Linq;
 
 namespace UniversalExpressionParser
 {
-    // Documented
     /// <summary>
     /// Default implementation for <see cref="IExpressionLanguageProviderValidator"/>.
     /// </summary>

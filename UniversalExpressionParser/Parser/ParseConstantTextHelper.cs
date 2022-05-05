@@ -39,8 +39,6 @@ namespace UniversalExpressionParser.Parser
                     {
                         var currentChar = textSymbolsParser.TextToParse[positionInText];
 
-                        //cSharpText.Append(currentChar)
-
                         if (currentChar == textEnclosingChar)
                         {
                             if (positionInText < textSymbolsParser.ParsedTextEnd - 1)

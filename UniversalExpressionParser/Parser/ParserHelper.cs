@@ -29,7 +29,5 @@ namespace UniversalExpressionParser.Parser
             prefixExpressionItem.RemovePrefixes();
             return prefixes;
         }
-
-        
     }
 }

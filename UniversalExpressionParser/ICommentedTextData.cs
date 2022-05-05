@@ -5,7 +5,6 @@ using UniversalExpressionParser.ExpressionItems;
 
 namespace UniversalExpressionParser
 {
-    // Documented
     /// <summary>
     /// Info on commented out code block.
     /// </summary>

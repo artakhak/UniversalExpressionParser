@@ -6,7 +6,6 @@ using JetBrains.Annotations;
 
 namespace UniversalExpressionParser
 {
-    // Documented
     /// <summary>
     /// A cache for <see cref="IExpressionLanguageProviderWrapper"/> instances.
     /// One instance per language name is cached.

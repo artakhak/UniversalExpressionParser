@@ -5,7 +5,6 @@ using JetBrains.Annotations;
 
 namespace UniversalExpressionParser
 {
-    // Documented.
     /// <summary>
     /// Provides options to use when parsing an expression using <see cref="IExpressionParser"/>.
     /// </summary>

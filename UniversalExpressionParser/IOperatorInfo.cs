@@ -7,7 +7,6 @@ using UniversalExpressionParser.ExpressionItems;
 
 namespace UniversalExpressionParser
 {
-    // Documented.
     /// <summary>
     /// Stores operator info. Is used in <see cref="IExpressionLanguageProvider.Operators"/> to provide operators that expressions can use.
     /// The following implementations can be used: <see cref="OperatorInfo"/>, <see cref="OperatorInfoWithAutoId"/>

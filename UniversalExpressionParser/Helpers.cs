@@ -11,7 +11,6 @@ using UniversalExpressionParser.ExpressionItems;
 
 namespace UniversalExpressionParser
 {
-    // Documented
     /// <summary>
     /// Helper methods.
     /// </summary>

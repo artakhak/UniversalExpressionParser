@@ -3,7 +3,6 @@
 
 namespace UniversalExpressionParser
 {
-    // Documented.
     /// <summary>
     /// Operator types.
     /// </summary>

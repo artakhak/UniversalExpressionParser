@@ -7,7 +7,6 @@ using System.Collections.Generic;
 
 namespace UniversalExpressionParser
 {
-    // Documented
     /// <inheritdoc />
     internal class ExpressionLanguageProviderWrapper : IExpressionLanguageProviderWrapper
     {
@@ -53,44 +52,6 @@ namespace UniversalExpressionParser
             foreach (var operatorInfo in ExpressionLanguageProvider.Operators)
                 _operatorIdToOperatorInfo[operatorInfo.Id] = operatorInfo;
         }
-
-        //public void Initialize()
-        //{
-        //    foreach (var keywordInfo in _expressionLanguageProvider.Keywords)
-        //        _keywordIdToKeywordInfo[keywordInfo.Id] = keywordInfo;
-
-        //    foreach (var operatorInfo in _expressionLanguageProvider.Operators)
-        //        _operatorIdToOperatorInfo[operatorInfo.Id] = operatorInfo;
-
-        //    //int currentMinPriority = int.MinValue;
-        //    //if (_expressionLanguageProvider.TypeOperator != null)
-        //    //{
-        //    //    TypeOperatorInfo = new OperatorInfo(_expressionLanguageProvider.TypeOperator, OperatorType.BinaryOperator, currentMinPriority++);
-        //    //    _operators.Add(TypeOperatorInfo);
-        //    //}
-
-        //    //if (_expressionLanguageProvider.LambdaExpressionOperator != null)
-        //    //{
-        //    //    LambdaExpressionOperatorInfo = new OperatorInfo(_expressionLanguageProvider.LambdaExpressionOperator, OperatorType.BinaryOperator, currentMinPriority);
-        //    //    _operators.Add(TypeOperatorInfo);
-        //    //}
-
-        //    //foreach (var operatorInfo in ExpressionLanguageProvider.Operators)
-        //    //{
-        //    //    if (operatorInfo.NameParts.Count == 0)
-        //    //        continue;
-
-        //    // var firstNamePart = operatorInfo.NameParts[0];
-
-        //    //if (!_operatorsThatStartWithName.TryGetValue(firstNamePart, out var operatorInfos))
-        //    //{
-        //    //    operatorInfos = new List<IOperatorInfo>(5);
-        //    //    _operatorsThatStartWithName[firstNamePart] = operatorInfos;
-        //    //}
-
-        //    // operatorInfos.Add(operatorInfo);
-        //    //}
-        //}
 
         /// <inheritdoc />
         public IExpressionLanguageProvider ExpressionLanguageProvider { get; }

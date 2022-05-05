@@ -4,20 +4,20 @@
 		<AllParseErrorItems ObjectId='2' Count='0' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.IParseErrorItem]'/>
 	</ParseErrorData>
 	<SortedCommentedTextData ObjectId='3' Count='0' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.ICommentedTextData]'/>
-	<RootExpressionItem Id='637873030678870884' IndexInText='0' ItemLength='7' Interface='UniversalExpressionParser.ExpressionItems.IRootExpressionItem'>
+	<RootExpressionItem Id='637873045698647700' IndexInText='0' ItemLength='7' Interface='UniversalExpressionParser.ExpressionItems.IRootExpressionItem'>
 		<RegularItems>
-			<IOperatorExpressionItem.Prefix Name='-' Priority='0' Id='637873030678933765' IndexInText='0' ItemLength='7' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
-				<IOperatorInfoExpressionItem OperatorType='PrefixUnaryOperator' Name='-' Priority='0' Id='637873030678871074' IndexInText='0' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
+			<IOperatorExpressionItem.Prefix Name='-' Priority='0' Id='637873045698891353' IndexInText='0' ItemLength='7' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
+				<IOperatorInfoExpressionItem OperatorType='PrefixUnaryOperator' Name='-' Priority='0' Id='637873045698754540' IndexInText='0' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
 					<OperatorNameParts>
-						<IOperatorNamePartExpressionItem Text='-' Id='637873030678871064' IndexInText='0' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
+						<IOperatorNamePartExpressionItem Text='-' Id='637873045698752449' IndexInText='0' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
 					</OperatorNameParts>
 				</IOperatorInfoExpressionItem>
-				<Operand1.INumericExpressionItem Value.NumericValue='0.5e-3' Id='637873030678933678' IndexInText='1' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionItem'>
+				<Operand1.INumericExpressionItem Value.NumericValue='0.5e-3' Id='637873045698863597' IndexInText='1' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionItem'>
 					<RegularItems>
-						<INumericExpressionValueItem NumericValue='0.5e-3' Id='637873030678933652' IndexInText='1' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionValueItem'/>
+						<INumericExpressionValueItem NumericValue='0.5e-3' Id='637873045698862983' IndexInText='1' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionValueItem'/>
 					</RegularItems>
 					<OtherProperties>
-						<Value NumericValue='0.5e-3' Id='637873030678933652' IndexInText='1' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionValueItem'/>
+						<Value NumericValue='0.5e-3' Id='637873045698862983' IndexInText='1' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionValueItem'/>
 						<SucceededNumericTypeDescriptor ObjectId='10' NumberTypeId='1581134225786' Interface='UniversalExpressionParser.NumericTypeDescriptor'>
 							<RegularExpressions ObjectId='11' Count='1' Interface='System.Collections.Generic.IReadOnlyList`1[System.String]'>
 								<System.String value='^(\d+\.\d+|\d+\.|\.\d+|\d+)(EXP|exp|E|e)[+|-]?(\d+\.\d+|\d+\.|\.\d+|\d+)' />
@@ -28,7 +28,7 @@
 			</IOperatorExpressionItem.Prefix>
 		</RegularItems>
 		<Children>
-			<IOperatorExpressionItem.Prefix Name='-' Priority='0' Id='637873030678933765' IndexInText='0' ItemLength='7' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'/>
+			<IOperatorExpressionItem.Prefix Name='-' Priority='0' Id='637873045698891353' IndexInText='0' ItemLength='7' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'/>
 		</Children>
 	</RootExpressionItem>
 </UniversalExpressionParser.IParseExpressionResult>

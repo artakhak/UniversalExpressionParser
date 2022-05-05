@@ -6,7 +6,6 @@ using JetBrains.Annotations;
 
 namespace UniversalExpressionParser
 {
-    // Documented.
     /// <summary>
     /// Expression language provider validation exception.
     /// </summary>

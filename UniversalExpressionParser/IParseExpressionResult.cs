@@ -9,7 +9,6 @@ using UniversalExpressionParser.ExpressionItems;
 
 namespace UniversalExpressionParser
 {
-    // Documented.
     /// <summary>
     /// Stores parsed expression data returned by methods in <see cref="IExpressionParser"/>.
     /// </summary>

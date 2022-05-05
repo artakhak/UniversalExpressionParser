@@ -8,7 +8,6 @@ using UniversalExpressionParser.ExpressionItems;
 
 namespace UniversalExpressionParser
 {
-    //Documented.
     /// <summary>
     /// Universal expression parser. Evaluates textual expressions of type: x+(y*3) == 3 OR MyFunc(z1, x1) == SomeOtherFunc(1.314E+1, Const1).
     /// </summary>

@@ -3,7 +3,6 @@
 
 namespace UniversalExpressionParser
 {
-    // Documented
     /// <inheritdoc />
     public class CommentedTextData: ICommentedTextData
     {

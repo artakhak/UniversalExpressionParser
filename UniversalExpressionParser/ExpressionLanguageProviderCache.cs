@@ -8,7 +8,6 @@ using System.Text;
 
 namespace UniversalExpressionParser
 {
-    // Documented
     /// <inheritdoc />
     public class ExpressionLanguageProviderCache: IExpressionLanguageProviderCache
     {

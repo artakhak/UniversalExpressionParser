@@ -9,7 +9,6 @@ using UniversalExpressionParser.ExpressionItems.Custom;
 
 namespace UniversalExpressionParser
 {
-    // Documented
     /// <summary>
     /// Defines the format of correct expressions that expression parser <see cref="IExpressionParser"/> will parse without errors.
     /// </summary>

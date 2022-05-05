@@ -7,6 +7,13 @@ namespace UniversalExpressionParser.ExpressionItems
     public class ExpressionItemSettings: IExpressionItemSettings
     {
         /// <summary>
+        /// Default constructor.
+        /// </summary>
+        public ExpressionItemSettings()
+        {
+        }
+        
+        /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="isAddExpressionItemValidationOn">Value from which the property <see cref="IsAddExpressionItemValidationOn"/> is initialized.</param>

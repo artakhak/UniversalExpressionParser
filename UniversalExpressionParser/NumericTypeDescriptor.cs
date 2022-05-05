@@ -7,7 +7,6 @@ using UniversalExpressionParser.ExpressionItems;
 
 namespace UniversalExpressionParser
 {
-    // Documented
     /// <summary>
     /// Numeric type descriptor. Provides rules for the parser to use when trying to parse an expression to an instance of <see cref="INumericExpressionItem"/>.
     /// </summary>

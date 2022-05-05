@@ -5,7 +5,6 @@ using JetBrains.Annotations;
 
 namespace UniversalExpressionParser
 {
-    // Documented
     /// <inheritdoc />
     public class LanguageKeywordInfo: ILanguageKeywordInfo
     {

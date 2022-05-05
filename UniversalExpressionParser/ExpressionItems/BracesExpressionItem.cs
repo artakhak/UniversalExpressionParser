@@ -7,7 +7,6 @@ using JetBrains.Annotations;
 
 namespace UniversalExpressionParser.ExpressionItems
 {
-
     /// <summary>
     /// Expression item for brackets. Example of expression that will be parsed to this type of expression is (y+z) in x*(y+z),
     /// or (#x) in !(#x), [x1, 1, y+3], Func1(x, 2), matrix1[0, i]

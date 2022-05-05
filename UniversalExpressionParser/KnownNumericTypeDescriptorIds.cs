@@ -3,7 +3,6 @@
 
 namespace UniversalExpressionParser
 {
-    // Documented
     /// <summary>
     /// List of types of numeric value types stored in property <see cref="NumericTypeDescriptor.NumberTypeId"/> in <see cref="ExpressionItems.INumericExpressionItem.SucceededNumericTypeDescriptor"/>.
     /// </summary>

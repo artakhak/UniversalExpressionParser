@@ -6,7 +6,6 @@ using UniversalExpressionParser.ExpressionItems;
 
 namespace UniversalExpressionParser
 {
-    // Documented
     /// <summary>
     /// Language specific keyword info. Examples of keywords are "public", "class", "namespace", "ref", "out", "_".
     /// Keywords are special names (e.g., var, public, class, where) that can be specified in property <see cref="IComplexExpressionItem.AppliedKeywords"/>,

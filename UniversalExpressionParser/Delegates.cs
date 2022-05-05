@@ -6,7 +6,6 @@ using TextParser;
 
 namespace UniversalExpressionParser
 {
-    // Documented.
     /// <summary>
     /// Returns true if the parsed character marks the end of expression.
     /// </summary>

@@ -3,7 +3,6 @@
 
 namespace UniversalExpressionParser
 {
-    // Documented.
     /// <summary>
     /// Event arguments for an event that <see cref="IParseErrorItem"/> was added when parsing an expression.
     /// </summary>
