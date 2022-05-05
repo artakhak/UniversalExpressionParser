@@ -1,0 +1,48 @@
+﻿2022-04-13 22:27:07,331 ERROR : Expression parse errors:
+
+Parse error details: Error code: 200, Error index: 38. Error message: [No separation between two symbols. Here are some invalid expressions that would result in this error, and expressions resulted from invalid expressions by small correction.
+Invalid expression: "F(x y)". Fixed valid expressions: "F(x + y)", "F(x, y)".
+Invalid expression: "{x=F1(x) F2(y)}". Fixed valid expressions: "{x=F1(x) + F2(y)}", "{x=F1(x); F2(y)}".]
+Error context:
+var x = y /*operator is missing here*/x;
+--------------------------------------↑
+
+{ // This code block is not closed
+    f1(x
+
+Parse error details: Error code: 406, Error index: 44. Error message: [Code block end marker '}' is missing for '{'.]
+Error context:
+var x = y /*operator is missing here*/x;
+----------------------------------------
+
+{ // This code block is not closed
+↑
+    f1(x, y, /
+
+Parse error details: Error code: 701, Error index: 92. Error message: [Valid expression is missing after comma.]
+Error context:
+
+{ // This code block is not closed
+----------------------------------
+    f1(x, y, /*function parameter is missing here*/)
+------------↑
+    {
+
+
+
+Parse error details: Error code: 503, Error index: 167. Error message: [Expected a postfix operator.]
+Error context:
+missing here*/)
+---------------
+    {
+-----
+
+        var z = ++x + y + /*' +' is not a postfix and operand is missing *
+------------------------↑
+
+Parse error details: Error code: 502, Error index: 236. Error message: [Expected a prefix operator.]
+Error context:
+ostfix and operand is missing */;
+---------------------------------
+        return + /*' +' is not a postfix and operand is missing *
+---------------↑

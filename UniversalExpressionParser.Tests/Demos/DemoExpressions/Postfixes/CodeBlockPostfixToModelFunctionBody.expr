@@ -1,0 +1,22 @@
+﻿// More complicated cases
+// In the example below the parser will apply operator ':' to 'f2(x1:int, x2:int)' and 'int'
+// and will add the code block after 'int' as a postfix to 'int'.
+// The evaluator that processes the parsed expression can do farther transformation so that the code block is assigned to
+// some new property in some wrapper for an expression for 'f2(x1:int, x2:int)', so that the code block belongs to the function, rather than
+// to the returned type 'int' of function f2.
+f2(x1:int, x2:int) : int 
+{
+	f3() : int
+	{
+	    var result = x1+x2;
+		println("result='"+result+"'");
+		return result;
+	}
+	
+	return f3();
+}
+
+var myFunc = f2(x1:int, x2:int) =>
+{
+    println(exp ^ (x1 + x2));
+}

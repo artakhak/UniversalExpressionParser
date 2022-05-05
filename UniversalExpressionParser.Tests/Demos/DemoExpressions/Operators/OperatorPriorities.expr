@@ -1,0 +1,5 @@
+﻿// The binary operator + has priority 30 and * has priority 20. Therefore, 
+// in expression below,  * is applied first and + is applied next.
+// The following expression is parsed to an expression equivalent to 
+// "=(var y, +(x1, *(f1(x2, +(x3, 1)), x4)))"
+var y = x1 + f1(x2,x3+1)*x4;

@@ -1,0 +1,5 @@
+﻿// The statements below do not make much sense.
+// They just demonstrate different ways the square and round braces can be used
+// in expressions.
+var x = ((x1, x2, x3), [x4, x5+1, x6], y);
+x += (x2, x4) + 2*[x3, x4];

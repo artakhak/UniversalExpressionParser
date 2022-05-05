@@ -1,0 +1,5 @@
+﻿::pragma x+y;
+::types[T1,T2] F1(x:T1, y:T2) where T1:int where T2:double whereend
+{
+	// This code block will be added as a postfix to expression item parsed from "F1(x:T1, y:T2)".
+}

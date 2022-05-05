@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UniversalExpressionParser.IParseExpressionResult ObjectId='0' PositionInTextOnCompletion='19' IndexInText='0' ItemLength='19'>
+	<ParseErrorData ObjectId='1' HasCriticalErrors='False' Interface='UniversalExpressionParser.IParseErrorData'>
+		<AllParseErrorItems ObjectId='2' Count='2' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.IParseErrorItem]'>
+			<UniversalExpressionParser.IParseErrorItem ObjectId='3' ErrorIndexInParsedText='13' ErrorMessage='Constant text closing character &#39;&#39;&#39; is missing.' ParseErrorItemCode='651' IsCriticalError='False'/>
+			<UniversalExpressionParser.IParseErrorItem ObjectId='4' ErrorIndexInParsedText='13'
+			  ErrorMessage='No separation between two symbols. Here are some invalid expressions that would result in this error, and correct expressions resulted from invalid expressions by small correction.
+Invalid expression: &quot;F(x y)&quot;. Fixed valid expressions: &quot;F(x + y)&quot;, &quot;F(x, y)&quot;.
+Invalid expression: &quot;{x=F1(x) F2(y)}&quot;. Fixed valid expressions: &quot;{x=F1(x) + F2(y)}&quot;, &quot;{x=F1(x); F2(y)}&quot;.'
+			  ParseErrorItemCode='200' IsCriticalError='False'/>
+		</AllParseErrorItems>
+	</ParseErrorData>
+	<SortedCommentedTextData ObjectId='5' Count='0' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.ICommentedTextData]'/>
+	<RootExpressionItem Id='637873030679159151' IndexInText='0' ItemLength='19' Interface='UniversalExpressionParser.ExpressionItems.IRootExpressionItem'>
+		<RegularItems>
+			<ISeriesOfExpressionItemsWithErrors Id='637873030679159568' IndexInText='0' ItemLength='19' Interface='UniversalExpressionParser.ExpressionItems.ISeriesOfExpressionItemsWithErrors'>
+				<RegularItems>
+					<IConstantTextExpressionItem TextValue.Text='&#39;t &#39;&#39;  &quot; + &#39;' TextValue.CSharpText='&#39;t &#39;&#39;  &quot; + &#39;' Id='637873030679159405' IndexInText='0' ItemLength='12' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextExpressionItem'>
+						<RegularItems>
+							<IConstantTextValueExpressionItem Text='&#39;t &#39;&#39;  &quot; + &#39;' CSharpText='t &#39;  &quot; + ' Id='637873030679159401' IndexInText='0' ItemLength='12' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextValueExpressionItem'/>
+						</RegularItems>
+						<OtherProperties>
+							<TextValue Text='&#39;t &#39;&#39;  &quot; + &#39;' CSharpText='t &#39;  &quot; + ' Id='637873030679159401' IndexInText='0' ItemLength='12' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextValueExpressionItem'/>
+						</OtherProperties>
+					</IConstantTextExpressionItem>
+					<IConstantTextExpressionItem TextValue.Text='&#39;;
+
+' TextValue.CSharpText='&#39;;
+
+' Id='637873030679159549' IndexInText='13' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextExpressionItem'>
+						<RegularItems>
+							<IConstantTextValueExpressionItem Text='&#39;;
+
+' CSharpText=';
+
+' Id='637873030679159546' IndexInText='13' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextValueExpressionItem'/>
+						</RegularItems>
+						<OtherProperties>
+							<TextValue Text='&#39;;
+
+' CSharpText=';
+
+' Id='637873030679159546' IndexInText='13' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextValueExpressionItem'/>
+						</OtherProperties>
+					</IConstantTextExpressionItem>
+				</RegularItems>
+			</ISeriesOfExpressionItemsWithErrors>
+		</RegularItems>
+		<Children>
+			<ISeriesOfExpressionItemsWithErrors Id='637873030679159568' IndexInText='0' ItemLength='19' Interface='UniversalExpressionParser.ExpressionItems.ISeriesOfExpressionItemsWithErrors'/>
+		</Children>
+	</RootExpressionItem>
+</UniversalExpressionParser.IParseExpressionResult>

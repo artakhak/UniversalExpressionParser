@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UniversalExpressionParser.IParseExpressionResult ObjectId='0' PositionInTextOnCompletion='8' IndexInText='0' ItemLength='8'>
+	<ParseErrorData ObjectId='1' HasCriticalErrors='False' Interface='UniversalExpressionParser.IParseErrorData'>
+		<AllParseErrorItems ObjectId='2' Count='0' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.IParseErrorItem]'/>
+	</ParseErrorData>
+	<SortedCommentedTextData ObjectId='3' Count='0' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.ICommentedTextData]'/>
+	<RootExpressionItem Id='637873030679081470' IndexInText='0' ItemLength='8' Interface='UniversalExpressionParser.ExpressionItems.IRootExpressionItem'>
+		<RegularItems>
+			<INumericExpressionItem Value.NumericValue='0.5e-3.4' Id='637873030679139141' IndexInText='0' ItemLength='8' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionItem'>
+				<RegularItems>
+					<INumericExpressionValueItem NumericValue='0.5e-3.4' Id='637873030679139106' IndexInText='0' ItemLength='8' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionValueItem'/>
+				</RegularItems>
+				<OtherProperties>
+					<Value NumericValue='0.5e-3.4' Id='637873030679139106' IndexInText='0' ItemLength='8' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionValueItem'/>
+					<SucceededNumericTypeDescriptor ObjectId='7' NumberTypeId='1581134225786' Interface='UniversalExpressionParser.NumericTypeDescriptor'>
+						<RegularExpressions ObjectId='8' Count='1' Interface='System.Collections.Generic.IReadOnlyList`1[System.String]'>
+							<System.String value='^(\d+\.\d+|\d+\.|\.\d+|\d+)(EXP|exp|E|e)[+|-]?(\d+\.\d+|\d+\.|\.\d+|\d+)' />
+						</RegularExpressions>
+					</SucceededNumericTypeDescriptor>
+				</OtherProperties>
+			</INumericExpressionItem>
+		</RegularItems>
+		<Children>
+			<INumericExpressionItem Value.NumericValue='0.5e-3.4' Id='637873030679139141' IndexInText='0' ItemLength='8' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionItem'/>
+		</Children>
+	</RootExpressionItem>
+</UniversalExpressionParser.IParseExpressionResult>

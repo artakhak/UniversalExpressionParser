@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UniversalExpressionParser.IParseExpressionResult ObjectId='0' PositionInTextOnCompletion='26' IndexInText='0' ItemLength='26'>
+	<ParseErrorData ObjectId='1' HasCriticalErrors='False' Interface='UniversalExpressionParser.IParseErrorData'>
+		<AllParseErrorItems ObjectId='2' Count='3' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.IParseErrorItem]'>
+			<UniversalExpressionParser.IParseErrorItem ObjectId='3' ErrorIndexInParsedText='21' ErrorMessage='Constant text closing character &#39;&#39;&#39; is missing.' ParseErrorItemCode='651' IsCriticalError='False'/>
+			<UniversalExpressionParser.IParseErrorItem ObjectId='4' ErrorIndexInParsedText='21'
+			  ErrorMessage='No separation between two symbols. Here are some invalid expressions that would result in this error, and correct expressions resulted from invalid expressions by small correction.
+Invalid expression: &quot;F(x y)&quot;. Fixed valid expressions: &quot;F(x + y)&quot;, &quot;F(x, y)&quot;.
+Invalid expression: &quot;{x=F1(x) F2(y)}&quot;. Fixed valid expressions: &quot;{x=F1(x) + F2(y)}&quot;, &quot;{x=F1(x); F2(y)}&quot;.'
+			  ParseErrorItemCode='200' IsCriticalError='False'/>
+			<UniversalExpressionParser.IParseErrorItem ObjectId='5' ErrorIndexInParsedText='7' ErrorMessage='Closing brace &#39;)&#39; is missing.' ParseErrorItemCode='404' IsCriticalError='False'/>
+		</AllParseErrorItems>
+	</ParseErrorData>
+	<SortedCommentedTextData ObjectId='6' Count='0' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.ICommentedTextData]'/>
+	<RootExpressionItem Id='637873030679189633' IndexInText='0' ItemLength='26' Interface='UniversalExpressionParser.ExpressionItems.IRootExpressionItem'>
+		<RegularItems>
+			<IBracesExpressionItem NameLiteral.LiteralName.Text='println' Id='637873030679189901' IndexInText='0' ItemLength='26' Interface='UniversalExpressionParser.ExpressionItems.IBracesExpressionItem'>
+				<RegularItems>
+					<ILiteralExpressionItem LiteralName.Text='println' Id='637873030679189858' IndexInText='0' ItemLength='7' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
+						<RegularItems>
+							<ILiteralNameExpressionItem Text='println' Id='637873030679189853' IndexInText='0' ItemLength='7' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+						</RegularItems>
+						<OtherProperties>
+							<LiteralName Text='println' Id='637873030679189853' IndexInText='0' ItemLength='7' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+						</OtherProperties>
+					</ILiteralExpressionItem>
+					<IOpeningBraceExpressionItem Text='(' Id='637873030679189904' IndexInText='7' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOpeningBraceExpressionItem'/>
+					<ISeriesOfExpressionItemsWithErrors Id='637873030679190122' IndexInText='8' ItemLength='18' Interface='UniversalExpressionParser.ExpressionItems.ISeriesOfExpressionItemsWithErrors'>
+						<RegularItems>
+							<IConstantTextExpressionItem TextValue.Text='&#39;t &#39;&#39;  &quot; + &#39;' TextValue.CSharpText='&#39;t &#39;&#39;  &quot; + &#39;' Id='637873030679190014' IndexInText='8' ItemLength='12' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextExpressionItem'>
+								<RegularItems>
+									<IConstantTextValueExpressionItem Text='&#39;t &#39;&#39;  &quot; + &#39;' CSharpText='t &#39;  &quot; + ' Id='637873030679190010' IndexInText='8' ItemLength='12' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextValueExpressionItem'/>
+								</RegularItems>
+								<OtherProperties>
+									<TextValue Text='&#39;t &#39;&#39;  &quot; + &#39;' CSharpText='t &#39;  &quot; + ' Id='637873030679190010' IndexInText='8' ItemLength='12' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextValueExpressionItem'/>
+								</OtherProperties>
+							</IConstantTextExpressionItem>
+							<IConstantTextExpressionItem TextValue.Text='&#39;);
+' TextValue.CSharpText='&#39;);
+' Id='637873030679190106' IndexInText='21' ItemLength='5' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextExpressionItem'>
+								<RegularItems>
+									<IConstantTextValueExpressionItem Text='&#39;);
+' CSharpText=');
+' Id='637873030679190104' IndexInText='21' ItemLength='5' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextValueExpressionItem'/>
+								</RegularItems>
+								<OtherProperties>
+									<TextValue Text='&#39;);
+' CSharpText=');
+' Id='637873030679190104' IndexInText='21' ItemLength='5' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextValueExpressionItem'/>
+								</OtherProperties>
+							</IConstantTextExpressionItem>
+						</RegularItems>
+					</ISeriesOfExpressionItemsWithErrors>
+				</RegularItems>
+				<Children>
+					<ISeriesOfExpressionItemsWithErrors Id='637873030679190122' IndexInText='8' ItemLength='18' Interface='UniversalExpressionParser.ExpressionItems.ISeriesOfExpressionItemsWithErrors'/>
+				</Children>
+				<OtherProperties>
+					<NameLiteral LiteralName.Text='println' Id='637873030679189858' IndexInText='0' ItemLength='7' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'/>
+					<OpeningBrace Text='(' Id='637873030679189904' IndexInText='7' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOpeningBraceExpressionItem'/>
+					<ClosingBrace value='null' interface='UniversalExpressionParser.ExpressionItems.IClosingBraceExpressionItem' />
+					<Parameters ObjectId='17' Count='1' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.ExpressionItems.IExpressionItemBase]'>
+						<UniversalExpressionParser.ExpressionItems.IExpressionItemBase Id='637873030679190122' IndexInText='8' ItemLength='18' Interface='UniversalExpressionParser.ExpressionItems.ISeriesOfExpressionItemsWithErrors'/>
+					</Parameters>
+				</OtherProperties>
+			</IBracesExpressionItem>
+		</RegularItems>
+		<Children>
+			<IBracesExpressionItem NameLiteral.LiteralName.Text='println' Id='637873030679189901' IndexInText='0' ItemLength='26' Interface='UniversalExpressionParser.ExpressionItems.IBracesExpressionItem'/>
+		</Children>
+	</RootExpressionItem>
+</UniversalExpressionParser.IParseExpressionResult>

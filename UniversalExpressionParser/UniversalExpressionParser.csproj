@@ -1,0 +1,157 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>1.0.1</Version>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <Authors>Artak Hakobyan</Authors>
+    <Company>OROptimizer</Company>
+    <Description>UniversalExpressionParser is a library for parsing functional expressions. 
+
+The parsed language format is specified in implementation of UniversalExpressionParser.IExpressionLanguageProvider. The library supports the following in parsed expression: functons, literals (variables), numeric values (parsed by specifying regular expressions), texts keywords, prefixes, postfixes, code blocks and code separators, (e.g., {var x = y+z++;++x;}), line and block comments, operators with priorities specified in UniversalExpressionParser.IExpressionLanguageProvider, custom expression parsers to handle non standard situations, etc.
+
+Also, the parser returns list of parse errors.
+
+See https://github.com/artakhak/UniversalExpressionParser for demos.
+
+The parser was tested by simulated tests that randomly generate thousands of parsed expressions and parse those expressions.
+
+NOTE: The source code and tests will be available at https://github.com/artakhak/UniversalExpressionParser soon. 
+
+Also, this version was thoroughly tested, however this is the betta version, since the code docs are not completed yet, and couple of minor changes might be done soon.</Description>
+    <Copyright>Copyright 2022 (c) OROptimizer. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://github.com/artakhak/UniversalExpressionParser</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/artakhak/UniversalExpressionParser</RepositoryUrl>
+    <PackageTags>Universal Expression Parser</PackageTags>
+    <PackageReleaseNotes>First non-beta version checkin. Made number of improvements (mostly class name changes) as I added code docs.</PackageReleaseNotes>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DefineConstants>$(DefineConstants)TRACE;</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DefineConstants>$(DefineConstants)TRACE;</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Delegates.cs" />
+    <Compile Include="ExpressionItems\Delegates.cs" />
+    <Compile Include="OperatorType.cs" />
+    <Compile Include="ParseErrorItem.cs" />
+    <Compile Include="ParseErrorItemCode.cs" />
+    <Compile Include="CommentedTextData.cs" />
+    <Compile Include="DefaultExpressionLanguageProviderValidator.cs" />
+    <Compile Include="ExpressionItems\BracesExpressionItem.cs" />
+    <Compile Include="ExpressionItems\CodeBlockExpressionItem.cs" />
+    <Compile Include="ExpressionItems\ComplexExpressionItemBase.cs" />
+    <Compile Include="ExpressionItems\ConstantTextExpressionItem.cs" />
+    <Compile Include="ExpressionItems\Custom\AggregateCustomExpressionItemParser.cs" />
+    <Compile Include="ExpressionItems\Custom\CustomExpressionItem.cs" />
+    <Compile Include="ExpressionItems\Custom\CustomExpressionItemCategory.cs" />
+    <Compile Include="ExpressionItems\Custom\CustomExpressionItemParserByKeywordId.cs" />
+    <Compile Include="ExpressionItems\Custom\ICustomExpressionItem.cs" />
+    <Compile Include="ExpressionItems\Custom\ICustomExpressionItemParser.cs" />
+    <Compile Include="ExpressionItems\Custom\ICustomExpressionItemParserByKeywordId.cs" />
+    <Compile Include="ExpressionItems\Custom\IKeywordBasedCustomExpressionItem.cs" />
+    <Compile Include="ExpressionItems\Custom\KeywordBasedCustomExpressionItem.cs" />
+    <Compile Include="ExpressionItems\ExpressionItemBase.cs" />
+    <Compile Include="ExpressionItems\ICanAddSeparatorCharacterExpressionItem.cs" />
+    <Compile Include="ExpressionItems\RootExpressionItem.cs" />
+    <Compile Include="ExpressionItems\ExpressionItemSeriesBase.cs" />
+    <Compile Include="ExpressionItems\ExpressionItemSettings.cs" />
+    <Compile Include="ExpressionItems\ExpressionItemSettingsAmbientContext.cs" />
+    <Compile Include="ExpressionItems\IBracesExpressionItem.cs" />
+    <Compile Include="ExpressionItems\ICanAddChildExpressionItem.cs" />
+    <Compile Include="ExpressionItems\IClosingBraceExpressionItem.cs" />
+    <Compile Include="ExpressionItems\ICodeBlockEndMarkerExpressionItem.cs" />
+    <Compile Include="ExpressionItems\ICodeBlockExpressionItem.cs" />
+    <Compile Include="ExpressionItems\ICodeBlockStartMarkerExpressionItem.cs" />
+    <Compile Include="ExpressionItems\ISeparatorCharacterExpressionItem.cs" />
+    <Compile Include="ExpressionItems\ICommaExpressionItem.cs" />
+    <Compile Include="ExpressionItems\IComplexExpressionItem.cs" />
+    <Compile Include="ExpressionItems\IConstantTextExpressionItem.cs" />
+    <Compile Include="ExpressionItems\IConstantTextValueExpressionItem.cs" />
+    <Compile Include="ExpressionItems\IExpressionItemBase.cs" />
+    <Compile Include="ExpressionItems\IRootExpressionItem.cs" />
+    <Compile Include="ExpressionItems\IExpressionItemSettings.cs" />
+    <Compile Include="ExpressionItems\IKeywordExpressionItem.cs" />
+    <Compile Include="ExpressionItems\ILiteralExpressionItem.cs" />
+    <Compile Include="ExpressionItems\ILiteralNameExpressionItem.cs" />
+    <Compile Include="ExpressionItems\ITextExpressionItem.cs" />
+    <Compile Include="ExpressionItems\INumericExpressionItem.cs" />
+    <Compile Include="ExpressionItems\INumericExpressionValueItem.cs" />
+    <Compile Include="ExpressionItems\IOpeningBraceNameExpressionItem.cs" />
+    <Compile Include="ExpressionItems\IOperatorExpressionItem.cs" />
+    <Compile Include="ExpressionItems\IOperatorInfoExpressionItem.cs" />
+    <Compile Include="ExpressionItems\IOperatorNamePartExpressionItem.cs" />
+    <Compile Include="ExpressionItems\ITextItem.cs" />
+    <Compile Include="ExpressionItems\KeywordExpressionItem.cs" />
+    <Compile Include="ExpressionItems\LiteralExpressionItem.cs" />
+    <Compile Include="ExpressionItems\OperatorExpressionItem.cs" />
+    <Compile Include="ExpressionItems\OperatorInfoExpressionItem.cs" />
+    <Compile Include="ExpressionItems\SeriesOfExpressionItemsWithErrors.cs" />
+    <Compile Include="ExpressionItems\ParseExpressionResult.cs" />
+    <Compile Include="ExpressionItems\NameExpressionItem.cs" />
+    <Compile Include="ExpressionLanguageProviderBase.cs" />
+    <Compile Include="ExpressionLanguageProviderCache.cs" />
+    <Compile Include="ExpressionLanguageProviderException.cs" />
+    <Compile Include="ExpressionLanguageProviderHelpers.cs" />
+    <Compile Include="ExpressionLanguageProviderWrapper.cs" />
+    <Compile Include="ExpressionParser.cs" />
+    <Compile Include="Helpers.cs" />
+    <Compile Include="IParseErrorItem.cs" />
+    <Compile Include="ICommentedTextData.cs" />
+    <Compile Include="IExpressionLanguageProvider.cs" />
+    <Compile Include="IExpressionLanguageProviderCache.cs" />
+    <Compile Include="IExpressionLanguageProviderValidator.cs" />
+    <Compile Include="IExpressionLanguageProviderWrapper.cs" />
+    <Compile Include="IExpressionParser.cs" />
+    <Compile Include="ILanguageKeywordInfo.cs" />
+    <Compile Include="IOperatorInfo.cs" />
+    <Compile Include="IParseErrorData.cs" />
+    <Compile Include="IParseExpressionItemContext.cs" />
+    <Compile Include="IParseExpressionOptions.cs" />
+    <Compile Include="IParseExpressionResult.cs" />
+    <Compile Include="KnownNumericTypeDescriptorIds.cs" />
+    <Compile Include="LanguageKeywordInfo.cs" />
+    <Compile Include="NumericTypeDescriptor.cs" />
+    <Compile Include="OperatorInfo.cs" />
+    <Compile Include="OperatorInfoWithAutoId.cs" />
+    <Compile Include="ParseErrorAddedEventArgs.cs" />
+    <Compile Include="ParseErrorData.cs" />
+    <Compile Include="ParseExpressionItemContext.cs" />
+    <Compile Include="Parser\ErrorsHelper.cs" />
+    <Compile Include="Parser\EvaluateExpressionType.cs" />
+    <Compile Include="Parser\ExpressionParserMessages.cs" />
+    <Compile Include="Parser\GenerateExpressionItemHelper.cs" />
+    <Compile Include="Parser\OperatorPositionData.cs" />
+    <Compile Include="Parser\OperatorTypeFlags.cs" />
+    <Compile Include="Parser\ParseConstantNumericValueHelper.cs" />
+    <Compile Include="Parser\ParseConstantTextHelper.cs" />
+    <Compile Include="Parser\ParseCustomExpressionHelper.cs" />
+    <Compile Include="Parser\ParseExpressionItemData.cs" />
+    <Compile Include="Parser\ParseKeywordsHelper.cs" />
+    <Compile Include="Parser\ParseOperatorsHelper.cs" />
+    <Compile Include="Parser\ParserHelper.cs" />
+    <Compile Include="Parser\WhitespaceOrCommentData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="UniversalExpressionParser.licenseheader" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2021.2.0" PrivateAssets="all" ExcludeAssets="runtime">
+      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="OROptimizer.Shared" Version="2.1.1" />
+    <PackageReference Include="TextParser" Version="1.0.0" />
+  </ItemGroup>
+</Project>

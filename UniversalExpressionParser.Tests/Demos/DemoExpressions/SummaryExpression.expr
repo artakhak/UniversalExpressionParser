@@ -1,0 +1,28 @@
+﻿var z = x1*y1+x2*y2;
+
+var matrixMultiplicationResult = [[x1_1, x1_2, x1_3], [x2_1, x2_2, x2_3]]*[[y1_1, x1_2], [y2_1, x2_2], [y3_1, x3_2]];
+
+println(matrixMultiplicationResult);
+
+[NotNull] [PublicName("Calculate")]
+public F1(x, y) : int => 
+{
+    
+    /*This demos multiline
+    comments that can be placed anywhere*/
+    ++y /*another multiline comment*/;
+    return 1.3EXP-2.7+ ++x+y*z; // Line comments.
+}
+
+public abstract class ::metadata{description: "Demo prefix"} ::types[T1, T2, T3] Animal
+   where T1: IType1 where T2: T1, IType2 whereend
+   where T3: IType3 whereend
+{    
+    public abstract Move() : void;    
+}
+
+public class Dog : (Animal)
+{
+    public override Move() : void => println("Jump");
+}
+

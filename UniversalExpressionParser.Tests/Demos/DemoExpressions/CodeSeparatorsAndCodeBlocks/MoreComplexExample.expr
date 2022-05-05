@@ -1,0 +1,46 @@
+﻿var y = x1 + 2.5 * x2;
+
+f1()
+{
+    // Code block used as function body (see examples in Postfixes folder)
+}
+
+var z = e ^ 2.3;
+{
+    var x = 5 * y;
+    println("x=" + x);
+
+    {
+        var y1 = 10 * x;
+        println(getExp(y1));
+    }
+
+    {
+        var y2 = 20 * x;
+        println(getExp(y2));
+    }
+
+    getExp(x) : double
+    {
+        // another code block used as function body (see examples in Postfixes folder)
+        return e^x;
+    }
+}
+
+f2()
+{
+    // Another code block used as function body (see examples in Postfixes folder)
+}
+
+{
+    // Another code block
+}
+
+public class Dog
+{
+    public Bark()
+    {
+        // Note, code separator ';' is not necessary, if the expression is followed by code block end marker '}'.
+        println("bark")
+    }
+}

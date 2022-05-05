@@ -1,0 +1,35 @@
+﻿// Keywords "public" and "class" will be added to list in property "AppliedKeywords" in class 
+// "UniversalExpressionParser.ExpressionItems.Custom.IComplexExpressionItem" for the parsed expression "Dog".
+public class Dog;
+
+// Keywords "public" and "static will be added to list in property "AppliedKeywords" in class 
+// "UniversalExpressionParser.ExpressionItems.Custom.IComplexExpressionItem" for the parsed expression "F1()".
+public static F1();
+
+// Keywords "public" and "static" will be added to list in property "AppliedKeywords" in class 
+// "UniversalExpressionParser.ExpressionItems.Custom.IComplexExpressionItem" for the parsed expression "F1()".
+public static F1() {return 1; }
+
+// Keyword "::codeMarker" will be added to list in property "AppliedKeywords" in class 
+// "UniversalExpressionParser.ExpressionItems.Custom.IComplexExpressionItem" for the parsed expression "(x1, x2)".
+::codeMarker (x1, x2);
+
+// Keyword "::codeMarker" will be added to list in property "AppliedKeywords" in class 
+// "UniversalExpressionParser.ExpressionItems.Custom.IComplexExpressionItem" for the parsed expression "m1[2, x1]".
+::codeMarker m1[2, x1];
+
+// Keyword "::codeMarker" will be added to list in property "AppliedKeywords" in class 
+// "UniversalExpressionParser.ExpressionItems.Custom.IComplexExpressionItem" for the parsed expression "[x1, x2]".
+::codeMarker[x1, x2];
+
+// Keyword "static" will be added to list in property "AppliedKeywords" in class 
+// "UniversalExpressionParser.ExpressionItems.Custom.IComplexExpressionItem" for the code block parsed expression "{}".
+static 
+{
+    var x;
+}
+
+// Keyword "::pragma" will be used by custom expression parser "UniversalExpressionParser.DemoExpressionLanguageProviders.CustomExpressions.PragmaCustomExpressionItemParser" to 
+// parse expressions "::pragma x2" and "::pragma x3" to custom expression items of type 
+// "UniversalExpressionParser.DemoExpressionLanguageProviders.CustomExpressions.PragmaCustomExpressionItem".
+var y = x1 +::pragma x2+3*::pragma x3 +y;

@@ -1,0 +1,4 @@
+﻿any text before code 
+block{
+f1(f2()+m1[], f2{++i;})
+}any text after code block including more code blocks that will not be parsed

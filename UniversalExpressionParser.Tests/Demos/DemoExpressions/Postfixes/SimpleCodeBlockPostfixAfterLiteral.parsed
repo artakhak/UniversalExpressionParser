@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UniversalExpressionParser.IParseExpressionResult ObjectId='0' PositionInTextOnCompletion='117' IndexInText='0' ItemLength='114'>
+	<ParseErrorData ObjectId='1' HasCriticalErrors='False' Interface='UniversalExpressionParser.IParseErrorData'>
+		<AllParseErrorItems ObjectId='2' Count='0' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.IParseErrorItem]'/>
+	</ParseErrorData>
+	<SortedCommentedTextData ObjectId='3' Count='1' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.ICommentedTextData]'>
+		<UniversalExpressionParser.ICommentedTextData ObjectId='4' IsLineComment='True' IndexInText='24' ItemLength='90'/>
+	</SortedCommentedTextData>
+	<RootExpressionItem Id='637873026843298398' IndexInText='0' ItemLength='117' Interface='UniversalExpressionParser.ExpressionItems.IRootExpressionItem'>
+		<RegularItems>
+			<ILiteralExpressionItem LiteralName.Text='Dog' Id='637873026843298770' IndexInText='0' ItemLength='117' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
+				<AppliedKeywords>
+					<IKeywordExpressionItem Id='637873026843298617' IndexInText='0' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.IKeywordExpressionItem'>
+						<LanguageKeywordInfo ObjectId='8' Id='637783669980406419' Keyword='public' Interface='UniversalExpressionParser.ILanguageKeywordInfo'/>
+					</IKeywordExpressionItem>
+					<IKeywordExpressionItem Id='637873026843298647' IndexInText='7' ItemLength='5' Interface='UniversalExpressionParser.ExpressionItems.IKeywordExpressionItem'>
+						<LanguageKeywordInfo ObjectId='10' Id='637783670388745402' Keyword='class' Interface='UniversalExpressionParser.ILanguageKeywordInfo'/>
+					</IKeywordExpressionItem>
+				</AppliedKeywords>
+				<RegularItems>
+					<ILiteralNameExpressionItem Text='Dog' Id='637873026843298765' IndexInText='13' ItemLength='3' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+				</RegularItems>
+				<Postfixes>
+					<ICodeBlockExpressionItem Id='637873026843298827' IndexInText='18' ItemLength='99' Interface='UniversalExpressionParser.ExpressionItems.ICodeBlockExpressionItem'>
+						<RegularItems>
+							<ICodeBlockStartMarkerExpressionItem Text='{' Id='637873026843298822' IndexInText='18' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.ICodeBlockStartMarkerExpressionItem'/>
+							<ICodeBlockEndMarkerExpressionItem Text='}' Id='637873026843298883' IndexInText='116' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.ICodeBlockEndMarkerExpressionItem'/>
+						</RegularItems>
+						<OtherProperties>
+							<CodeBlockStartMarker Text='{' Id='637873026843298822' IndexInText='18' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.ICodeBlockStartMarkerExpressionItem'/>
+							<CodeBlockEndMarker Text='}' Id='637873026843298883' IndexInText='116' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.ICodeBlockEndMarkerExpressionItem'/>
+						</OtherProperties>
+					</ICodeBlockExpressionItem>
+				</Postfixes>
+				<OtherProperties>
+					<LiteralName Text='Dog' Id='637873026843298765' IndexInText='13' ItemLength='3' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+				</OtherProperties>
+			</ILiteralExpressionItem>
+		</RegularItems>
+		<Children>
+			<ILiteralExpressionItem LiteralName.Text='Dog' Id='637873026843298770' IndexInText='0' ItemLength='117' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'/>
+		</Children>
+	</RootExpressionItem>
+</UniversalExpressionParser.IParseExpressionResult>

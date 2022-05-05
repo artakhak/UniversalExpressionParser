@@ -1,0 +1,4 @@
+﻿public class Dog
+{
+   // This code block will be added as a postfix to literal expression item parsed from "Dog"
+}

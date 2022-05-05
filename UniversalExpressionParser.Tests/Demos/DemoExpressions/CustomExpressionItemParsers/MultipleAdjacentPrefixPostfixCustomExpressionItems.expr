@@ -1,0 +1,19 @@
+﻿// The expression below ("::metadata {...}") is parsed to a prefix custom expression item and added to list of prefixes of regular
+// expression item parsed from F1(x:T1, y:T2, z:T3) 
+::metadata {description: "F1 demoes regular function expression item to which multiple prefix and postfix custom expression items are added."}
+
+// ::types[T1,T2] is also parsed to a prefix custom expression item and added to list of prefixes of regular
+// expression item parsed from F1(x:T1, y:T2, z:T3) 
+::types[T1,T2]
+F1(x:T1, y:T2, z:T3) 
+
+// The postfix custom expression item parsed from "where T1:int where T2:double whereend" is added to list of postfixes of regular expression 
+// parsed from "F1(x:T1, y:T2, z:T3)".
+where T1:int,class where T2:double whereend 
+
+// The postfix custom expression item parsed from "where T3 : T1 whereend " is also added to list of postfixes of regular expression 
+// parsed from "F1(x:T1, y:T2, z:T3)".
+where T3 : T1 whereend 
+{
+   // This code block will be added as a postfix to expression item parsed from "F1(x:T1, y:T2, z:T3)".
+}

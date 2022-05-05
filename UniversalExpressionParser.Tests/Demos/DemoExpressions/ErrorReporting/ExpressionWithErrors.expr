@@ -1,0 +1,10 @@
+﻿var x = y /*operator is missing here*/x;
+
+{ // This code block is not closed
+    f1(x, y, /*function parameter is missing here*/)
+    {
+
+        var z = ++x + y + /*' +' is not a postfix and operand is missing */;
+        return + /*' +' is not a postfix and operand is missing */ z + y;
+    }
+// Closing curly brace is missing here

@@ -1,0 +1,3 @@
+﻿// The expression below is similar to 
+// z = !((x1 IS NOT NULL) && (x2 IS NULL);
+z = !(x1 IS NOT NULL && x2 IS NULL);

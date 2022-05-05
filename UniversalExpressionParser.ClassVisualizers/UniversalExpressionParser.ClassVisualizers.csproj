@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageVersion>1.0.0</PackageVersion>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <Authors>Artak Hakobyan</Authors>
+    <Company>OROptimizer</Company>
+    <Product>UniversalExpressionParser.ClassVisualizers</Product>
+    <Description>
+			A library for visualizing classes and interfaces in an XML format.
+			The interfaces/classes in this library were designed to provide class visualization in test projects, and most
+			most probably improvements will be made in the future to the design of interfaces in this library.
+			Therefore, use this library at your own risk.
+		</Description>
+    <Copyright>Copyright 2022 (c) OROptimizer. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://github.com/artakhak/UniversalExpressionParser.ClassVisualizers</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/artakhak/UniversalExpressionParser.ClassVisualizers</RepositoryUrl>
+    <PackageTags>UniversalExpressionParser class visualizer</PackageTags>
+    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2021.2.0" PrivateAssets="all" ExcludeAssets="runtime">
+      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="ClassVisualizer" Version="1.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ExpressionItemBaseExtensions.cs" />
+    <Compile Include="ExpressionItemVisualizer.cs" />
+    <Compile Include="ExpressionItemVisualizerSettings.cs" />
+    <Compile Include="ExpressionItemVisualizerSettingsAmbientContext.cs" />
+    <Compile Include="IExpressionItemVisualizerSettings.cs" />
+    <Compile Include="KeywordExpressionItemVisualizer.cs" />
+    <Compile Include="NamedComplexExpressionItemVisualizer.cs" />
+    <Compile Include="OperatorExpressionItemVisualizer.cs" />
+    <Compile Include="OperatorInfoExpressionItemVisualizer.cs" />
+    <Compile Include="OperatorTypeExtensionMethods.cs" />
+    <Compile Include="ParseExpressionResultVisualizer.cs" />
+    <Compile Include="ValueVisualizerFactory.cs" />
+    <Compile Include="VisualizerConstants.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UniversalExpressionParser\UniversalExpressionParser.csproj" />
+  </ItemGroup>
+</Project>

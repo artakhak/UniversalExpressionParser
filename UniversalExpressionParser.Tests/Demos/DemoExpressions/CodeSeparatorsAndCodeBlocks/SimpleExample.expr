@@ -1,0 +1,9 @@
+﻿{
+    var x = y^2;
+    println(x);
+}
+
+{
+    fl(x1, x2);
+    println(x) // No need for ';' after the last expression
+}

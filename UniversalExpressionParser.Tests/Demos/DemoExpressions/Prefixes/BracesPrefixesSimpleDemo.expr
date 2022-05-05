@@ -1,0 +1,5 @@
+﻿[NotNull, ItemNotNull](Attribute("MarkedFunction")) F1(x, x2)
+{
+    // This code block will be added to expression item parsed from F1(x:T1, y:T2, z: T3) as a postfix.
+    retuens [x1, x2, x3];
+}

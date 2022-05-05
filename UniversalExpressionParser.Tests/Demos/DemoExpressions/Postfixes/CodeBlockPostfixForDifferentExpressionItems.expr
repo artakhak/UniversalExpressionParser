@@ -1,0 +1,33 @@
+﻿f1(x1) 
+{
+    // Code block added to postfixes list for braces expression "f1(x1)"
+    return x2*y1;
+}
+
+m1[x2]
+{
+    // Code block added to postfixes list for braces expression "m1[x2]"
+    x:2*3
+}
+
+(x3)
+{
+    // Code block added to postfixes list for braces expression "(x3)"
+    return x3*2;
+}
+
+[x4]
+{
+    // Code block added to postfixes list for braces expression "[x4]"
+    x4:2*3
+}
+
+class Dog
+{
+    // Code block added to postfixes list for literal expression "Dog"
+}
+
+::pragma x
+{
+    // Code block added to custom expression item IPragmaCustomExpressionItem parsed from "::pragma x"
+}

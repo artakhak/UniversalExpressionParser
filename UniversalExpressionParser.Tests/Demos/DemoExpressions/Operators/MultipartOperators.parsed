@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UniversalExpressionParser.IParseExpressionResult ObjectId='0' PositionInTextOnCompletion='120' IndexInText='0' ItemLength='120'>
+	<ParseErrorData ObjectId='1' HasCriticalErrors='False' Interface='UniversalExpressionParser.IParseErrorData'>
+		<AllParseErrorItems ObjectId='2' Count='0' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.IParseErrorItem]'/>
+	</ParseErrorData>
+	<SortedCommentedTextData ObjectId='3' Count='2' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.ICommentedTextData]'>
+		<UniversalExpressionParser.ICommentedTextData ObjectId='4' IsLineComment='True' IndexInText='0' ItemLength='38'/>
+		<UniversalExpressionParser.ICommentedTextData ObjectId='5' IsLineComment='True' IndexInText='40' ItemLength='42'/>
+	</SortedCommentedTextData>
+	<RootExpressionItem Id='637873026842086813' IndexInText='84' ItemLength='36' Interface='UniversalExpressionParser.ExpressionItems.IRootExpressionItem'>
+		<RegularItems>
+			<IOperatorExpressionItem.Binary Name='=' Priority='2000' Id='637873026842088700' IndexInText='84' ItemLength='35' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
+				<Operand1.ILiteralExpressionItem LiteralName.Text='z' Id='637873026842087675' IndexInText='84' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
+					<RegularItems>
+						<ILiteralNameExpressionItem Text='z' Id='637873026842087658' IndexInText='84' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+					</RegularItems>
+					<OtherProperties>
+						<LiteralName Text='z' Id='637873026842087658' IndexInText='84' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+					</OtherProperties>
+				</Operand1.ILiteralExpressionItem>
+				<IOperatorInfoExpressionItem OperatorType='BinaryOperator' Name='=' Priority='2000' Id='637873026842087803' IndexInText='86' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
+					<OperatorNameParts>
+						<IOperatorNamePartExpressionItem Text='=' Id='637873026842087792' IndexInText='86' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
+					</OperatorNameParts>
+				</IOperatorInfoExpressionItem>
+				<Operand2.IOperatorExpressionItem.Prefix Name='!' Priority='0' Id='637873026842088736' IndexInText='88' ItemLength='31' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
+					<IOperatorInfoExpressionItem OperatorType='PrefixUnaryOperator' Name='!' Priority='0' Id='637873026842087870' IndexInText='88' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
+						<OperatorNameParts>
+							<IOperatorNamePartExpressionItem Text='!' Id='637873026842087864' IndexInText='88' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
+						</OperatorNameParts>
+					</IOperatorInfoExpressionItem>
+					<Operand1.IBracesExpressionItem Id='637873026842087981' IndexInText='89' ItemLength='30' Interface='UniversalExpressionParser.ExpressionItems.IBracesExpressionItem'>
+						<RegularItems>
+							<IOpeningBraceExpressionItem Text='(' Id='637873026842087986' IndexInText='89' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOpeningBraceExpressionItem'/>
+							<IOperatorExpressionItem.Binary Name='&amp;&amp;' Priority='80' Id='637873026842088600' IndexInText='90' ItemLength='28' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
+								<Operand1.IOperatorExpressionItem.Postfix Name='IS NOT NULL' Priority='1' Id='637873026842088579' IndexInText='90' ItemLength='14' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
+									<Operand1.ILiteralExpressionItem LiteralName.Text='x1' Id='637873026842088111' IndexInText='90' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
+										<RegularItems>
+											<ILiteralNameExpressionItem Text='x1' Id='637873026842088105' IndexInText='90' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+										</RegularItems>
+										<OtherProperties>
+											<LiteralName Text='x1' Id='637873026842088105' IndexInText='90' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+										</OtherProperties>
+									</Operand1.ILiteralExpressionItem>
+									<IOperatorInfoExpressionItem OperatorType='PostfixUnaryOperator' Name='IS NOT NULL' Priority='1' Id='637873026842088167' IndexInText='93' ItemLength='11' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
+										<OperatorNameParts>
+											<IOperatorNamePartExpressionItem Text='IS' Id='637873026842088145' IndexInText='93' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
+											<IOperatorNamePartExpressionItem Text='NOT' Id='637873026842088155' IndexInText='96' ItemLength='3' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
+											<IOperatorNamePartExpressionItem Text='NULL' Id='637873026842088162' IndexInText='100' ItemLength='4' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
+										</OperatorNameParts>
+									</IOperatorInfoExpressionItem>
+								</Operand1.IOperatorExpressionItem.Postfix>
+								<IOperatorInfoExpressionItem OperatorType='BinaryOperator' Name='&amp;&amp;' Priority='80' Id='637873026842088244' IndexInText='105' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
+									<OperatorNameParts>
+										<IOperatorNamePartExpressionItem Text='&amp;&amp;' Id='637873026842088239' IndexInText='105' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
+									</OperatorNameParts>
+								</IOperatorInfoExpressionItem>
+								<Operand2.IOperatorExpressionItem.Postfix Name='IS NULL' Priority='1' Id='637873026842088609' IndexInText='108' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
+									<Operand1.ILiteralExpressionItem LiteralName.Text='x2' Id='637873026842088405' IndexInText='108' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
+										<RegularItems>
+											<ILiteralNameExpressionItem Text='x2' Id='637873026842088399' IndexInText='108' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+										</RegularItems>
+										<OtherProperties>
+											<LiteralName Text='x2' Id='637873026842088399' IndexInText='108' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+										</OtherProperties>
+									</Operand1.ILiteralExpressionItem>
+									<IOperatorInfoExpressionItem OperatorType='PostfixUnaryOperator' Name='IS NULL' Priority='1' Id='637873026842088470' IndexInText='111' ItemLength='7' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
+										<OperatorNameParts>
+											<IOperatorNamePartExpressionItem Text='IS' Id='637873026842088457' IndexInText='111' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
+											<IOperatorNamePartExpressionItem Text='NULL' Id='637873026842088466' IndexInText='114' ItemLength='4' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
+										</OperatorNameParts>
+									</IOperatorInfoExpressionItem>
+								</Operand2.IOperatorExpressionItem.Postfix>
+							</IOperatorExpressionItem.Binary>
+							<IClosingBraceExpressionItem Text=')' Id='637873026842088659' IndexInText='118' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IClosingBraceExpressionItem'/>
+						</RegularItems>
+						<Children>
+							<IOperatorExpressionItem.Binary Name='&amp;&amp;' Priority='80' Id='637873026842088600' IndexInText='90' ItemLength='28' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'/>
+						</Children>
+						<OtherProperties>
+							<OpeningBrace Text='(' Id='637873026842087986' IndexInText='89' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOpeningBraceExpressionItem'/>
+							<ClosingBrace Text=')' Id='637873026842088659' IndexInText='118' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IClosingBraceExpressionItem'/>
+							<NameLiteral value='null' interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem' />
+							<Parameters ObjectId='34' Count='1' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.ExpressionItems.IExpressionItemBase]'>
+								<UniversalExpressionParser.ExpressionItems.IExpressionItemBase Name='&amp;&amp;' Priority='80' Id='637873026842088600' IndexInText='90' ItemLength='28' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'/>
+							</Parameters>
+						</OtherProperties>
+					</Operand1.IBracesExpressionItem>
+				</Operand2.IOperatorExpressionItem.Prefix>
+			</IOperatorExpressionItem.Binary>
+			<ISeparatorCharacterExpressionItem Text=';' Id='637873026842088772' IndexInText='119' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.ISeparatorCharacterExpressionItem'/>
+		</RegularItems>
+		<Children>
+			<IOperatorExpressionItem.Binary Name='=' Priority='2000' Id='637873026842088700' IndexInText='84' ItemLength='35' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'/>
+		</Children>
+	</RootExpressionItem>
+</UniversalExpressionParser.IParseExpressionResult>

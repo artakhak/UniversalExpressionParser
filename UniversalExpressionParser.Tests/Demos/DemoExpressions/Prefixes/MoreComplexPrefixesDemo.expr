@@ -1,0 +1,23 @@
+﻿// [TestFixture] and [Attribute("IntegrationTest")] are added as prefixes to literal MyTests.
+[TestFixture]
+[Attribute("IntegrationTest")]
+// public and class are added as keywords to MyTests
+public class MyTests
+{
+    // Brace expression items [SetupMyTests], [Attribute("This is a demo of multiple prefixes")]
+    // and custom expression item starting with ::metadata and ending with } are added as prefixes to 
+    // expression SetupMyTests()
+    [TestSetup]
+    [Attribute("This is a demo of multiple prefixes")]
+    ::metadata {
+        Description: "Demo of custom expression item parsed to 
+                        UniversalExpressionParser.DemoExpressionLanguageProviders.CustomExpressions.IMetadataCustomExpressionItem
+                        used in prefixes list of expression parsed from 'SetupMyTests()'";
+        SomeMetadata: 1
+    }
+    // public and static are added as keywords to expression SetupMyTests().
+    public static SetupMyTests() : void
+    {
+        // Do some test setup here
+    }
+}

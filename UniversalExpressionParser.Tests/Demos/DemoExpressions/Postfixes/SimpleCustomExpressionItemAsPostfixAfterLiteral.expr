@@ -1,0 +1,8 @@
+﻿::types[T1,T2, T3] F1(x:T1, y:T2, z: T3)
+// The where below will be added as a postfix to expression item parsed from "F1(x:T1, y:T2, z: T3)
+where T1:int where T2:double whereend
+// The where below will be added as a postfix to expression item parsed from "F1(x:T1, y:T2, z: T3)
+where T3:T1  whereend
+{
+    // This code block will be added as a postfix to expression item parsed from "F1(x:T1, y:T2, z: T3).
+}

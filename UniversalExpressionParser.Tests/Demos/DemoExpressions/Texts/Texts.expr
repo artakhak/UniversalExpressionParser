@@ -1,0 +1,13 @@
+﻿// Example of texts using text markers ',", and ` in IExpressionLanguageProvider.ConstantTextStartEndMarkerCharacters property.
+// The text marker that starts the specific text expression can be used in text as well when it is 
+// typed twice (e.g., '', "", ``, etc).
+
+// Example of using all text markers together in operators
+x = "We can use this text expression marker "" if we type it twice. However, other text marker chars do not need to be typed twice such as ' and `."  
+    +'We can use this text expression marker '' if we type it twice. However, other text marker chars do not need to be typed twice such as " and `.'
+    +`We can use this text expression marker `` if we type it twice. However, other text marker chars do not need to be typed twice such as " and '.`;
+
+println("This is a text that spans
+ multiple 
+ lines.   
+" + x + ' Some other text.');

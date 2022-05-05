@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UniversalExpressionParser.IParseExpressionResult ObjectId='0' PositionInTextOnCompletion='879' IndexInText='0' ItemLength='879'>
+	<ParseErrorData ObjectId='1' HasCriticalErrors='False' Interface='UniversalExpressionParser.IParseErrorData'>
+		<AllParseErrorItems ObjectId='2' Count='0' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.IParseErrorItem]'/>
+	</ParseErrorData>
+	<SortedCommentedTextData ObjectId='3' Count='4' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.ICommentedTextData]'>
+		<UniversalExpressionParser.ICommentedTextData ObjectId='4' IsLineComment='True' IndexInText='0' ItemLength='127'/>
+		<UniversalExpressionParser.ICommentedTextData ObjectId='5' IsLineComment='True' IndexInText='129' ItemLength='99'/>
+		<UniversalExpressionParser.ICommentedTextData ObjectId='6' IsLineComment='True' IndexInText='230' ItemLength='39'/>
+		<UniversalExpressionParser.ICommentedTextData ObjectId='7' IsLineComment='True' IndexInText='273' ItemLength='58'/>
+	</SortedCommentedTextData>
+	<RootExpressionItem Id='637873026844058049' IndexInText='333' ItemLength='546' Interface='UniversalExpressionParser.ExpressionItems.IRootExpressionItem'>
+		<RegularItems>
+			<IOperatorExpressionItem.Binary Name='=' Priority='2000' Id='637873026844059126' IndexInText='333' ItemLength='452' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
+				<Operand1.ILiteralExpressionItem LiteralName.Text='x' Id='637873026844058377' IndexInText='333' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
+					<RegularItems>
+						<ILiteralNameExpressionItem Text='x' Id='637873026844058368' IndexInText='333' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+					</RegularItems>
+					<OtherProperties>
+						<LiteralName Text='x' Id='637873026844058368' IndexInText='333' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+					</OtherProperties>
+				</Operand1.ILiteralExpressionItem>
+				<IOperatorInfoExpressionItem OperatorType='BinaryOperator' Name='=' Priority='2000' Id='637873026844058469' IndexInText='335' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
+					<OperatorNameParts>
+						<IOperatorNamePartExpressionItem Text='=' Id='637873026844058460' IndexInText='335' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
+					</OperatorNameParts>
+				</IOperatorInfoExpressionItem>
+				<Operand2.IOperatorExpressionItem.Binary Name='+' Priority='30' Id='637873026844059160' IndexInText='337' ItemLength='448' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
+					<Operand1.IOperatorExpressionItem.Binary Name='+' Priority='30' Id='637873026844059150' IndexInText='337' ItemLength='297' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
+						<Operand1.IConstantTextExpressionItem TextValue.Text='&quot;We can use this text expression marker &quot;&quot; if we type it twice. However, other text marker chars do not need to be typed twice such as &#39; and `.&quot;'
+						  TextValue.CSharpText='&quot;We can use this text expression marker &quot;&quot; if we type it twice. However, other text marker chars do not need to be typed twice such as &#39; and `.&quot;' Id='637873026844058648' IndexInText='337' ItemLength='144'
+						  Interface='UniversalExpressionParser.ExpressionItems.IConstantTextExpressionItem'>
+							<RegularItems>
+								<IConstantTextValueExpressionItem Text='&quot;We can use this text expression marker &quot;&quot; if we type it twice. However, other text marker chars do not need to be typed twice such as &#39; and `.&quot;'
+								  CSharpText='We can use this text expression marker &quot; if we type it twice. However, other text marker chars do not need to be typed twice such as &#39; and `.' Id='637873026844058644' IndexInText='337' ItemLength='144' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextValueExpressionItem'/>
+							</RegularItems>
+							<OtherProperties>
+								<TextValue Text='&quot;We can use this text expression marker &quot;&quot; if we type it twice. However, other text marker chars do not need to be typed twice such as &#39; and `.&quot;'
+								  CSharpText='We can use this text expression marker &quot; if we type it twice. However, other text marker chars do not need to be typed twice such as &#39; and `.' Id='637873026844058644' IndexInText='337' ItemLength='144' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextValueExpressionItem'/>
+							</OtherProperties>
+						</Operand1.IConstantTextExpressionItem>
+						<IOperatorInfoExpressionItem OperatorType='BinaryOperator' Name='+' Priority='30' Id='637873026844058737' IndexInText='489' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
+							<OperatorNameParts>
+								<IOperatorNamePartExpressionItem Text='+' Id='637873026844058732' IndexInText='489' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
+							</OperatorNameParts>
+						</IOperatorInfoExpressionItem>
+						<Operand2.IConstantTextExpressionItem TextValue.Text='&#39;We can use this text expression marker &#39;&#39; if we type it twice. However, other text marker chars do not need to be typed twice such as &quot; and `.&#39;'
+						  TextValue.CSharpText='&#39;We can use this text expression marker &#39;&#39; if we type it twice. However, other text marker chars do not need to be typed twice such as &quot; and `.&#39;' Id='637873026844058880' IndexInText='490' ItemLength='144'
+						  Interface='UniversalExpressionParser.ExpressionItems.IConstantTextExpressionItem'>
+							<RegularItems>
+								<IConstantTextValueExpressionItem Text='&#39;We can use this text expression marker &#39;&#39; if we type it twice. However, other text marker chars do not need to be typed twice such as &quot; and `.&#39;'
+								  CSharpText='We can use this text expression marker &#39; if we type it twice. However, other text marker chars do not need to be typed twice such as &quot; and `.' Id='637873026844058876' IndexInText='490' ItemLength='144' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextValueExpressionItem'/>
+							</RegularItems>
+							<OtherProperties>
+								<TextValue Text='&#39;We can use this text expression marker &#39;&#39; if we type it twice. However, other text marker chars do not need to be typed twice such as &quot; and `.&#39;'
+								  CSharpText='We can use this text expression marker &#39; if we type it twice. However, other text marker chars do not need to be typed twice such as &quot; and `.' Id='637873026844058876' IndexInText='490' ItemLength='144' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextValueExpressionItem'/>
+							</OtherProperties>
+						</Operand2.IConstantTextExpressionItem>
+					</Operand1.IOperatorExpressionItem.Binary>
+					<IOperatorInfoExpressionItem OperatorType='BinaryOperator' Name='+' Priority='30' Id='637873026844058942' IndexInText='640' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
+						<OperatorNameParts>
+							<IOperatorNamePartExpressionItem Text='+' Id='637873026844058937' IndexInText='640' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
+						</OperatorNameParts>
+					</IOperatorInfoExpressionItem>
+					<Operand2.IConstantTextExpressionItem TextValue.Text='`We can use this text expression marker `` if we type it twice. However, other text marker chars do not need to be typed twice such as &quot; and &#39;.`'
+					  TextValue.CSharpText='`We can use this text expression marker `` if we type it twice. However, other text marker chars do not need to be typed twice such as &quot; and &#39;.`' Id='637873026844059082' IndexInText='641' ItemLength='144' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextExpressionItem'>
+						<RegularItems>
+							<IConstantTextValueExpressionItem Text='`We can use this text expression marker `` if we type it twice. However, other text marker chars do not need to be typed twice such as &quot; and &#39;.`'
+							  CSharpText='We can use this text expression marker ` if we type it twice. However, other text marker chars do not need to be typed twice such as &quot; and &#39;.' Id='637873026844059079' IndexInText='641' ItemLength='144' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextValueExpressionItem'/>
+						</RegularItems>
+						<OtherProperties>
+							<TextValue Text='`We can use this text expression marker `` if we type it twice. However, other text marker chars do not need to be typed twice such as &quot; and &#39;.`'
+							  CSharpText='We can use this text expression marker ` if we type it twice. However, other text marker chars do not need to be typed twice such as &quot; and &#39;.' Id='637873026844059079' IndexInText='641' ItemLength='144' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextValueExpressionItem'/>
+						</OtherProperties>
+					</Operand2.IConstantTextExpressionItem>
+				</Operand2.IOperatorExpressionItem.Binary>
+			</IOperatorExpressionItem.Binary>
+			<ISeparatorCharacterExpressionItem Text=';' Id='637873026844059222' IndexInText='785' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.ISeparatorCharacterExpressionItem'/>
+			<IBracesExpressionItem NameLiteral.LiteralName.Text='println' Id='637873026844059346' IndexInText='790' ItemLength='88' Interface='UniversalExpressionParser.ExpressionItems.IBracesExpressionItem'>
+				<RegularItems>
+					<ILiteralExpressionItem LiteralName.Text='println' Id='637873026844059309' IndexInText='790' ItemLength='7' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
+						<RegularItems>
+							<ILiteralNameExpressionItem Text='println' Id='637873026844059305' IndexInText='790' ItemLength='7' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+						</RegularItems>
+						<OtherProperties>
+							<LiteralName Text='println' Id='637873026844059305' IndexInText='790' ItemLength='7' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+						</OtherProperties>
+					</ILiteralExpressionItem>
+					<IOpeningBraceExpressionItem Text='(' Id='637873026844059349' IndexInText='797' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOpeningBraceExpressionItem'/>
+					<IOperatorExpressionItem.Binary Name='+' Priority='30' Id='637873026844059870' IndexInText='798' ItemLength='79' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
+						<Operand1.IOperatorExpressionItem.Binary Name='+' Priority='30' Id='637873026844059860' IndexInText='798' ItemLength='57' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
+							<Operand1.IConstantTextExpressionItem TextValue.Text='&quot;This is a text that spans
+ multiple 
+ lines.   
+&quot;' TextValue.CSharpText='&quot;This is a text that spans
+ multiple 
+ lines.   
+&quot;' Id='637873026844059445' IndexInText='798' ItemLength='53' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextExpressionItem'>
+								<RegularItems>
+									<IConstantTextValueExpressionItem Text='&quot;This is a text that spans
+ multiple 
+ lines.   
+&quot;' CSharpText='This is a text that spans
+ multiple 
+ lines.   
+' Id='637873026844059441' IndexInText='798' ItemLength='53' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextValueExpressionItem'/>
+								</RegularItems>
+								<OtherProperties>
+									<TextValue Text='&quot;This is a text that spans
+ multiple 
+ lines.   
+&quot;' CSharpText='This is a text that spans
+ multiple 
+ lines.   
+' Id='637873026844059441' IndexInText='798' ItemLength='53' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextValueExpressionItem'/>
+								</OtherProperties>
+							</Operand1.IConstantTextExpressionItem>
+							<IOperatorInfoExpressionItem OperatorType='BinaryOperator' Name='+' Priority='30' Id='637873026844059503' IndexInText='852' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
+								<OperatorNameParts>
+									<IOperatorNamePartExpressionItem Text='+' Id='637873026844059498' IndexInText='852' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
+								</OperatorNameParts>
+							</IOperatorInfoExpressionItem>
+							<Operand2.ILiteralExpressionItem LiteralName.Text='x' Id='637873026844059633' IndexInText='854' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
+								<RegularItems>
+									<ILiteralNameExpressionItem Text='x' Id='637873026844059630' IndexInText='854' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+								</RegularItems>
+								<OtherProperties>
+									<LiteralName Text='x' Id='637873026844059630' IndexInText='854' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+								</OtherProperties>
+							</Operand2.ILiteralExpressionItem>
+						</Operand1.IOperatorExpressionItem.Binary>
+						<IOperatorInfoExpressionItem OperatorType='BinaryOperator' Name='+' Priority='30' Id='637873026844059691' IndexInText='856' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
+							<OperatorNameParts>
+								<IOperatorNamePartExpressionItem Text='+' Id='637873026844059684' IndexInText='856' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
+							</OperatorNameParts>
+						</IOperatorInfoExpressionItem>
+						<Operand2.IConstantTextExpressionItem TextValue.Text='&#39; Some other text.&#39;' TextValue.CSharpText='&#39; Some other text.&#39;' Id='637873026844059822' IndexInText='858' ItemLength='19' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextExpressionItem'>
+							<RegularItems>
+								<IConstantTextValueExpressionItem Text='&#39; Some other text.&#39;' CSharpText=' Some other text.' Id='637873026844059819' IndexInText='858' ItemLength='19' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextValueExpressionItem'/>
+							</RegularItems>
+							<OtherProperties>
+								<TextValue Text='&#39; Some other text.&#39;' CSharpText=' Some other text.' Id='637873026844059819' IndexInText='858' ItemLength='19' Interface='UniversalExpressionParser.ExpressionItems.IConstantTextValueExpressionItem'/>
+							</OtherProperties>
+						</Operand2.IConstantTextExpressionItem>
+					</IOperatorExpressionItem.Binary>
+					<IClosingBraceExpressionItem Text=')' Id='637873026844059897' IndexInText='877' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IClosingBraceExpressionItem'/>
+				</RegularItems>
+				<Children>
+					<IOperatorExpressionItem.Binary Name='+' Priority='30' Id='637873026844059870' IndexInText='798' ItemLength='79' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'/>
+				</Children>
+				<OtherProperties>
+					<NameLiteral LiteralName.Text='println' Id='637873026844059309' IndexInText='790' ItemLength='7' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'/>
+					<OpeningBrace Text='(' Id='637873026844059349' IndexInText='797' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOpeningBraceExpressionItem'/>
+					<ClosingBrace Text=')' Id='637873026844059897' IndexInText='877' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IClosingBraceExpressionItem'/>
+					<Parameters ObjectId='44' Count='1' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.ExpressionItems.IExpressionItemBase]'>
+						<UniversalExpressionParser.ExpressionItems.IExpressionItemBase Name='+' Priority='30' Id='637873026844059870' IndexInText='798' ItemLength='79' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'/>
+					</Parameters>
+				</OtherProperties>
+			</IBracesExpressionItem>
+			<ISeparatorCharacterExpressionItem Text=';' Id='637873026844059932' IndexInText='878' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.ISeparatorCharacterExpressionItem'/>
+		</RegularItems>
+		<Children>
+			<IOperatorExpressionItem.Binary Name='=' Priority='2000' Id='637873026844059126' IndexInText='333' ItemLength='452' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'/>
+			<IBracesExpressionItem NameLiteral.LiteralName.Text='println' Id='637873026844059346' IndexInText='790' ItemLength='88' Interface='UniversalExpressionParser.ExpressionItems.IBracesExpressionItem'/>
+		</Children>
+	</RootExpressionItem>
+</UniversalExpressionParser.IParseExpressionResult>

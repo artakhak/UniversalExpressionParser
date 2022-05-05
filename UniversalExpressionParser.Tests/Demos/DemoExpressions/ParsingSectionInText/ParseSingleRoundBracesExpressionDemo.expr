@@ -1,0 +1,12 @@
+﻿CREATE TABLE COMPANY(
+	ID INT PRIMARY KEY     NOT NULL,
+	MAX_SALARY     REAL,
+	/* The parser will only parse expression 
+	(SALARY > 0 AND SALARY > MAX_SALARY/2 AND f1(SALARY)<f2(MAX_SALARY)) and will stop right after the 
+	closing round brace ')' of in this expression. */
+	AVG_SALARY     REAL    
+			CHECK(SALARY > 0 AND 
+				  SALARY > MAX_SALARY/2 AND 
+				  f1(SALARY) < f2(MAX_SALARY)),	
+	ADDRESS        CHAR(50)
+);

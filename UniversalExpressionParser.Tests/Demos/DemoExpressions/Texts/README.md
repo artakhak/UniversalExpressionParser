@@ -1,0 +1,22 @@
+﻿# Texts
+
+The interface **UniversalExpressionParser.IExpressionLanguageProvider** has a property **IReadOnlyList&lt;char&gt; ConstantTextStartEndMarkerCharacters { get; }** that are used by **Universal Expression Parser** to parse expression items that start or end with some character in **ConstantTextStartEndMarkerCharacters** to parse the expression item to **UniversalExpressionParser.ExpressionItems.IConstantTextExpressionItem**.
+
+- The default implementation **UniversalExpressionParser.ExpressionLanguageProviderBase** of **UniversalExpressionParser.IExpressionLanguageProvider** has the following characters in property **UniversalExpressionParser.IExpressionLanguageProvider.ConstantTextStartEndMarkerCharacters** and the examples below will use these text marker characters.
+
+- If an expression starts with some character listed in property **UniversalExpressionParser.IExpressionLanguageProvider.ConstantTextStartEndMarkerCharacters**, then the text expression should end with the same character. In other words, if text starts with character **'** it should end with **'**. Similarly, if text starts with character **"** it should end with **"**.
+
+- The text in expression parsed to **UniversalExpressionParser.ExpressionItems.IConstantTextExpressionItem** can contain any of the text marker characters in **UniversalExpressionParser.IExpressionLanguageProvider.ConstantTextStartEndMarkerCharacters**. if the text contains a text marker character that marks the start of the text expression, it should be typed twice as displayed in examples below:
+
+- Texts can span multiple lines (see the example below).
+
+```csharp
+<IncludedFilePlaceHolder>Texts.expr</IncludedFilePlaceHolder>
+```
+
+<details> <summary>Click to expand the parsed expression</summary>
+
+```XML
+<IncludedFilePlaceHolder>Texts.parsed</IncludedFilePlaceHolder>
+```
+</details>

@@ -1,0 +1,1 @@
+Start the console application in project UniversalExpressionParserReadMeGenerator to re-generate the file README.md from template file README-TEMPLATE.md

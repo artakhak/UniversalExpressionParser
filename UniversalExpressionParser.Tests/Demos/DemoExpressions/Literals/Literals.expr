@@ -1,0 +1,12 @@
+﻿// In example below _x, f$, x1, x2, m1, and x3, Dog, Color, string, println, and Dog.Color are literals.
+var _x = f$(x1, x2) + m1[1, x3];
+
+public class Dog
+{
+    public Color : string => "brown";
+}
+
+// println is a literal and it is part of "println(Dog.Color)" braces expression item. In this example, 
+// println will be parsed to an expression item UniversalExpressionParser.ExpressionItems.INamedComplexExpressionItem
+// and will be the value of property NamedExpressionItem in UniversalExpressionParser.ExpressionItems.IBracesExpressionItem
+println(Dog.Color);

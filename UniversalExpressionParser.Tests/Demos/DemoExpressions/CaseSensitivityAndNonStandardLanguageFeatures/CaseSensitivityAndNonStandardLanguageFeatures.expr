@@ -1,0 +1,39 @@
+﻿rem This line commented out code with verbose line comment marker 'rem'
+rem*this is a demo of verbose code block comment markers*rem
+
+rem#No space is required between line comment marker and the comment, if the first 
+rem character is a special character (such as operator, opening, closing round or squer braces, comma etc.)
+
+BEGIN
+    println(x); println(x+y)
+    rem* this is an example of code block
+    with verbose code block start and end markers 'BEGIN' and 'END'.
+    *rem
+END
+
+Rem Line comment marker can be used with any capitalization
+
+REm* Multi-line comment start/end markers can be used with
+any capitalization *ReM
+
+rem keywords public and class can be used with any capitalization.
+PUBLIC Class DOG 
+BEGIN Rem Code block start marker 'BEGIN' can be used with any capitalization
+    PUBLIc static F1(); rem keywords (e.g., 'PUBLIC') can be used with any capitalization
+end
+
+REm keyword 'var' can be used with any capitalization.
+VaR x=::PRagma y;
+
+PRintLN("X IS NOT NULL=" + X Is noT Null && ::pRAGMA y is NULL);
+
+f1(x1, y1)
+BEGin Rem Code block start marker 'BEGIN'can be used with any capitalization.
+   Rem Line comment marker 'rem' can be used with any capitalization
+   rem Line comment marker 'rem' can be used with any capitalization
+
+   REm* Multi line comment start/end markers can be used with
+   any capitalization *rEM
+
+   RETurN X1+Y1; rem unary prefix operator 'return' (and any other) operator  can be used with any capitalization.
+enD rem Code block end marker 'END' can be used  with any capitalization.

@@ -1,0 +1,41 @@
+﻿// Prefixes added to a literal "x".
+[NotNull] [Attribute("Marker")] x;
+
+// Prefixes added to named round braces. [NotNull] [Attribute("Marker")] will be added 
+// to prefixes in braces expression item parsed from "f1(x1)"
+[NotNull] [Attribute("Marker")] f1(x1);
+
+// Prefixes added to unnamed round braces. [NotNull] [Attribute("Marker")] will be added 
+// to prefixes in braces expression item parsed from "(x1)"
+[NotNull] [Attribute("Marker")] (x1);
+
+// Prefixes added to named square braces. [NotNull] [Attribute("Marker")] will be added 
+// to prefixes in named braces expression item parsed from "m1[x1]"
+[NotNull] [Attribute("Marker")] m1[x1];
+
+// Prefixes added to unnamed square braces. [NotNull] [Attribute("Marker")] will be added 
+// to prefixes in braces expression item parsed from "[x1]".
+[NotNull] [Attribute("Marker")] [x1];
+
+// Prefixes added to code block. 
+// Custom prefix expression item "::types[T1,T2]" will be added to list of prefixes in code block expression item
+// parsed from "{var i = 12;}".
+// Note, if we replace "::types[T1,T2]" to unnamed braces, then the unnamed braces will be used as a postfix for 
+// code block.
+::types[T1,T2] {var i = 12;};
+
+// Prefixes added to custom expression item parsed from "::pragma x". 
+// [Attribute("Marker")] will be added to list of prefixes in custom expression item
+// parsed from "::pragma x".
+[Attribute("Marker")] ::pragma x;
+
+// Prefixes added text expression item. 
+// [Attribute("Marker")] will be added to list of prefixes in text expression item
+// parsed from "Some text".
+[Attribute("Marker")] "Some text";
+
+// Prefixes added to numeric value item. 
+// [Attribute("Marker")] will be added to list of prefixes in numeric value expression item
+// parsed from "0.5e-3.4".
+[Attribute("Marker")] 0.5e-3.4;
+

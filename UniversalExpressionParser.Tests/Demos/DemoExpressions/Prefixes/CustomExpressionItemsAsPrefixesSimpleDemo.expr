@@ -1,0 +1,4 @@
+﻿::types[T1,T2] ::types[T3] F1(x:T1, y:T2, z: T3)
+{
+    // This code block will be added to expression item parsed from F1(x:T1, y:T2, z: T3) as a postfix.
+}

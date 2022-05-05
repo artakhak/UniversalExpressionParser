@@ -1,0 +1,10 @@
+﻿// By default exponent notation can be used.
+println(-0.5e-3+.2exp3.4+3.E2.7+2.1EXP.3);
+println(.5e15*x);
+
+// Numeric values can have no limitations on the number of digits. The value is stored as text in
+// UniversalExpressionParser.ExpressionItems.INumericExpressionItem.
+// The text can be validated farther and converted to numeric values by the expression evaluator that
+// uses the parser.
+var x = 2.3*x+123456789123456789123456789123456789; 
+

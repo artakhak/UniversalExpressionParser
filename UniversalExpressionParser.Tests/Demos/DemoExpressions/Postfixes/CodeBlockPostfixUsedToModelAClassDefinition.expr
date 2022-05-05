@@ -1,0 +1,12 @@
+﻿// In the example below the parser will apply operator ':' to literal 'Dog' (with keywords public and class) and 
+// braces '(Anymal, IDog)' and will add the code block after '(Anymal, IDog)' as a postfix to '(Anymal, IDog)'.
+// The evaluator that processes the parsed expression can do farther transformation so that the code block is assigned to
+// some new property in some wrapper for an expression for 'Dog', so that the code block belongs to the 'Dog' class, rather than
+// to the braces for public classes in '(Anymal, IDog)'.
+public class Dog : (Anymal, IDog)
+{
+    public Bark() : void
+    {
+        println("Bark.");
+    }
+}

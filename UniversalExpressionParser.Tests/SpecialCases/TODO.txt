@@ -1,0 +1,4 @@
+﻿// Things to fix and include in tests
+
+// Make sure the following are tested by simulation
+x1+++x2 // should parse to x1++ +x2 (cae when there is only one potfix, then binary)

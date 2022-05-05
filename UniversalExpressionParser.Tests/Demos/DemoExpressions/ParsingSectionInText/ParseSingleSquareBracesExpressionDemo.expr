@@ -1,0 +1,4 @@
+﻿any text before braces[f1()+m1[], f2
+{
+	++i;
+}]any text after braces including more braces expressions that will not be parsed
