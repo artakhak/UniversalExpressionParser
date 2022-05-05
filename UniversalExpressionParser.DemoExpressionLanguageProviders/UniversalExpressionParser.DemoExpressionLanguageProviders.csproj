@@ -8,10 +8,11 @@
 		<PackageReference Include="JetBrains.Annotations" Version="2021.2.0" PrivateAssets="all" ExcludeAssets="runtime">
 		  <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="UniversalExpressionParser" Version="1.0.0" />
 	</ItemGroup>
 
-	<ItemGroup>
+	<!--<ItemGroup>
 	  <ProjectReference Include="..\UniversalExpressionParser\UniversalExpressionParser.csproj" />
-	</ItemGroup>
+	</ItemGroup>-->
 
 </Project>

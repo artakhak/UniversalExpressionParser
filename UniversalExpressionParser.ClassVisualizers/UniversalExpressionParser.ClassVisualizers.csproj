@@ -26,6 +26,7 @@
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="ClassVisualizer" Version="1.0.1" />
+    <PackageReference Include="UniversalExpressionParser" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExpressionItemBaseExtensions.cs" />
@@ -42,7 +43,7 @@
     <Compile Include="ValueVisualizerFactory.cs" />
     <Compile Include="VisualizerConstants.cs" />
   </ItemGroup>
-  <ItemGroup>
+  <!--<ItemGroup>
     <ProjectReference Include="..\UniversalExpressionParser\UniversalExpressionParser.csproj" />
-  </ItemGroup>
+  </ItemGroup>-->
 </Project>

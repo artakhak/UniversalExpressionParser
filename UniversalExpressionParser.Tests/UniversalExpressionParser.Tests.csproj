@@ -190,12 +190,13 @@
     <PackageReference Include="Moq" Version="4.15.2" />
     <PackageReference Include="OROptimizer.Shared" Version="2.1.1" />
     <PackageReference Include="TestsSharedLibrary" Version="1.0.1" />
+    <PackageReference Include="TestsSharedLibraryForCodeParsers" Version="1.0.0" />
+    <PackageReference Include="UniversalExpressionParser" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\TestsSharedLibraryForCodeParsers\TestsSharedLibraryForCodeParsers.csproj" />
     <ProjectReference Include="..\UniversalExpressionParser.ClassVisualizers\UniversalExpressionParser.ClassVisualizers.csproj" />
     <ProjectReference Include="..\UniversalExpressionParser.DemoExpressionLanguageProviders\UniversalExpressionParser.DemoExpressionLanguageProviders.csproj" />
-    <ProjectReference Include="..\UniversalExpressionParser\UniversalExpressionParser.csproj" />
+    <!--<ProjectReference Include="..\UniversalExpressionParser\UniversalExpressionParser.csproj" />-->
   </ItemGroup>
   <ItemGroup>
     <None Update="UniversalExpressionParser.Tests.log4net.config">
