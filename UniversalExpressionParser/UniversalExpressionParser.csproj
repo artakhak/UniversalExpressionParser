@@ -88,7 +88,7 @@ However, one solution to view the README.md file in its entirety would be to cop
     <Compile Include="ExpressionItems\ITextExpressionItem.cs" />
     <Compile Include="ExpressionItems\INumericExpressionItem.cs" />
     <Compile Include="ExpressionItems\INumericExpressionValueItem.cs" />
-    <Compile Include="ExpressionItems\IOpeningBraceNameExpressionItem.cs" />
+    <Compile Include="ExpressionItems\IOpeningBraceExpressionItem.cs" />
     <Compile Include="ExpressionItems\IOperatorExpressionItem.cs" />
     <Compile Include="ExpressionItems\IOperatorInfoExpressionItem.cs" />
     <Compile Include="ExpressionItems\IOperatorNamePartExpressionItem.cs" />

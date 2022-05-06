@@ -22,18 +22,26 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{71DAD493-B3DE-4AEE-A778-D46F891F38A8}"
 	ProjectSection(SolutionItems) = preProject
 		..\ClassVisualizer\LICENSE.txt = ..\ClassVisualizer\LICENSE.txt
-		README-TEMPLATE.md = README-TEMPLATE.md
 		README.md = README.md
+		README.md.template = README.md.template
 		README_AUTO_GENERATION_INFO_README.txt = README_AUTO_GENERATION_INFO_README.txt
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversalExpressionParserReadMeGenerator", "UniversalExpressionParserReadMeGenerator\UniversalExpressionParserReadMeGenerator.csproj", "{D3E91EAA-2A34-4A02-BE18-CD4848E0EE59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversalExpressionParser.DocumentationGenerator", "UniversalExpressionParserReadMeGenerator\UniversalExpressionParser.DocumentationGenerator.csproj", "{D3E91EAA-2A34-4A02-BE18-CD4848E0EE59}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileInclude", "..\FileInclude\FileInclude\FileInclude.csproj", "{4E0C22FB-F788-457B-A4E7-C258F73EDB4B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassVisualizer", "..\ClassVisualizer\ClassVisualizer\ClassVisualizer.csproj", "{D115F9F0-1E5E-4251-888F-18B1F40AC19F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversalExpressionParser.ClassVisualizers", "UniversalExpressionParser.ClassVisualizers\UniversalExpressionParser.ClassVisualizers.csproj", "{7283420A-D0D6-4F8B-9C6A-1638517D685A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{DBCFCA35-D69C-4A39-87CC-1B8AD53D011A}"
+	ProjectSection(SolutionItems) = preProject
+		docs\conf.py = docs\conf.py
+		docs\make.bat = docs\make.bat
+		docs\Makefile = docs\Makefile
+		docs\README.md = docs\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

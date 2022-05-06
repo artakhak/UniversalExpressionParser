@@ -1,16 +1,89 @@
-﻿# Summary
+UniversalExpressionParser
+=========================
+
+.. contents::
+  :local:
+  :depth: 2
 
 **UniversalExpressionParser** is a library for parsing expressions like the one demonstrated below into expression items for functions, literals, operators, etc.
 
-```csharp
-<IncludedFilePlaceHolder>SummaryExpression.expr</IncludedFilePlaceHolder>
-```
+.. sourcecode:: csharp
+     :linenos:
+
+     var z = x1*y1+x2*y2;
+
+     var matrixMultiplicationResult = [[x1_1, x1_2, x1_3], [x2_1, x2_2, x2_3]]*[[y1_1, x1_2], [y2_1, x2_2], [y3_1, x3_2]];
+
+     println(matrixMultiplicationResult);
+
+     [NotNull] [PublicName("Calculate")]
+     public F1(x, y) : int => 
+     {
+         
+         /*This demos multiline
+         comments that can be placed anywhere*/
+         ++y /*another multiline comment*/;
+         return 1.3EXP-2.7+ ++x+y*z; // Line comments.
+     }
+
+     public abstract class ::metadata{description: "Demo prefix"} ::types[T1, T2, T3] Animal
+        where T1: IType1 where T2: T1, IType2 whereend
+        where T3: IType3 whereend
+     {    
+         public abstract Move() : void;    
+     }
+
+     public class Dog : (Animal)
+     {
+         public override Move() : void => println("Jump");
+     }
+
+
+
 
 - Below is the demo code used to parse this expression:
 
-```csharp
-<IncludedFilePlaceHolder>..\SummaryDemo.cs</IncludedFilePlaceHolder>
-```
+.. sourcecode:: csharp
+     :linenos:
+
+     using TextParser;
+     using UniversalExpressionParser.DemoExpressionLanguageProviders;
+
+     namespace UniversalExpressionParser.Tests.Demos
+     {
+         public class SummaryDemo
+         {
+             private readonly IExpressionParser _expressionParser;
+             private readonly IExpressionLanguageProvider _nonVerboseLanguageProvider = new NonVerboseCaseSensitiveExpressionLanguageProvider();
+             private readonly IExpressionLanguageProvider _verboseLanguageProvider = new VerboseCaseInsensitiveExpressionLanguageProvider();
+             private readonly IParseExpressionOptions _parseExpressionOptions = new ParseExpressionOptions();
+
+             public SummaryDemo()
+             {
+                 IExpressionLanguageProviderCache expressionLanguageProviderCache = 
+                     new ExpressionLanguageProviderCache(new DefaultExpressionLanguageProviderValidator());
+                 
+                 _expressionParser = new ExpressionParser(new TextSymbolsParserFactory(), expressionLanguageProviderCache);
+
+                 expressionLanguageProviderCache.RegisterExpressionLanguageProvider(_nonVerboseLanguageProvider);
+                 expressionLanguageProviderCache.RegisterExpressionLanguageProvider(_verboseLanguageProvider);
+             }
+          
+             public IParseExpressionResult ParseNonVerboseExpression(string expression)
+             {
+                 /*
+                 The same instance _expressionParser of UniversalExpressionParser.IExpressionParser can be used
+                 to parse multiple expressions using different instances of UniversalExpressionParser.IExpressionLanguageProvider
+                 Example:
+
+                 var parsedExpression1 = _expressionParser.ParseExpression(_nonVerboseLanguageProvider.LanguageName, "var x=2*y; f1() {++x;} f1();");
+                 var parsedExpression2 = _expressionParser.ParseExpression(_verboseLanguageProvider.LanguageName, "var x=2*y; f1() BEGIN ++x;END f1();");
+                 */
+                 return _expressionParser.ParseExpression(_nonVerboseLanguageProvider.LanguageName, expression, _parseExpressionOptions);
+             }
+         }
+     }
+
 
 - Expression is parsed to an instance of **UniversalExpressionParser.IParseExpressionResult** by calling the method  **IParseExpressionResult ParseExpression(string expressionLanguageProviderName, string expressionText, IParseExpressionOptions parseExpressionOptions)** in **UniversalExpressionParser.IExpressionParser**.
 
@@ -34,14 +107,7 @@
 
 - All expressions are currently parsed to one of the following expression items (or intances of other sub-interfaces of these interfaces) in namespaces **UniversalExpressionParser.ExpressionItems** and **UniversalExpressionParser.ExpressionItems.Custom**: **ILiteralExpressionItem**, **ILiteralNameExpressionItem**, **IConstantTextExpressionItem**, **IConstantTextValueExpressionItem**, **INumericExpressionItem**, **INumericExpressionValueItem**, **IBracesExpressionItem**, **IOpeningBraceExpressionItem**, **IClosingBraceExpressionItem**, **ICommaExpressionItem**, **ICodeBlockExpressionItem**, **ICustomExpressionItem**, **IKeywordExpressionItem**, **ICodeBlockStartMarkerExpressionItem**, **ICodeBlockEndMarkerExpressionItem**, **ISeparatorCharacterExpressionItem**, **IOperatorExpressionItem**, **IOperatorInfoExpressionItem**, **IKeywordExpressionItem**, **UniversalExpressionParser.ExpressionItems.Custom.ICustomExpressionItem**, **IRootExpressionItem**, **IComplexExpressionItem**, **ITextExpressionItem**, **IExpressionItemBase**. The state of this expression items can be analyzed when evaluating the parsed expression.
  
-- Below is the visualized instance of **UniversalExpressionParser.IParseExpressionResult**:
-
-<details> <summary>Click to expand the parsed expression</summary>
-
-```XML
-<IncludedFilePlaceHolder>SummaryExpression.parsed</IncludedFilePlaceHolder>
-```
-</details>
+`Click here to view visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/SummaryExpression.parsed/>`_
 
 - The format of valid expressions is defined by properties and methods in interface **UniversalExpressionParser.IExpressionLanguageProvider**. The expression language name **UniversalExpressionParser.IExpressionLanguageProvider.LanguageName** of some instance **UniversalExpressionParser.IExpressionLanguageProvider** is passed as a parameter to method **ParseExpression(...)** in **UniversalExpressionParser.IExpressionParser**, as demonstrated in example above. Most of the properties and methods of this interface are demonstrated in examples in sections below.
 
@@ -52,3 +118,15 @@
 - The demo expressions and tests used to parse the demo expressions in this documentation are in folder **Demos** in test project **UniversalExpressionParser.Tests**. This documentation uses implementations of **UniversalExpressionParser.IExpressionLanguageProvider** in project **UniversalExpressionParser.DemoExpressionLanguageProviders** in **git** repository.
 
 - The parsed expressions in this documentation (i.e., instances of **UniversalExpressionParser.ExpressionItems.IParseExpressionResult**) are visualized into xml texts, that contain values of most properties of the parsed expression. However, to make the files shorter, the visualized xml files do not include all the property values.
+
+.. toctree::
+   literals.rst
+   functions-and-braces.rst
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

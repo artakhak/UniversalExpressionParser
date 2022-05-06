@@ -1,0 +1,31 @@
+﻿====================
+Functions and Braces
+====================
+
+.. contents::
+   :local:
+   :depth: 2
+
+- Functions are round or square braces preceded with a literal (e.g., **F1(x)**, **F1(x) {}**, **m1[i,j]**, **m1[i,j]{}**). Functions are  parsed to expression items of type **UniversalExpressionParser.ExpressionItems.IBracesExpressionItem** with the value of property **ILiteralExpressionItem NameLiteral { get; }** equal to a literal that precedes the braces.
+- Braces are a pair of round or square braces ((e.g., **(x)**, **(x) {}**, **[i,j]**, **[i,j]{}**)). Braces are parsed to expression items of type **UniversalExpressionParser.ExpressionItems.IBracesExpressionItem** with the value of property **ILiteralExpressionItem NameLiteral { get; }** equal to null.
+
+Examples of functions
+=====================
+
+.. sourcecode::
+     :linenos:
+
+     <IncludedFilePlaceHolder>FunctionsWithRoundAndSquareBraces.expr</IncludedFilePlaceHolder>
+
+`Click here to view visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/FunctionsAndBraces/FunctionsWithRoundAndSquareBraces.parsed/>`_
+
+
+Examples of braces
+==================
+
+.. sourcecode::
+     :linenos:
+
+     <IncludedFilePlaceHolder>RoundAndSquareBraces.expr</IncludedFilePlaceHolder>
+
+`Click here to view visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/FunctionsAndBraces/RoundAndSquareBraces.parsed/>`_

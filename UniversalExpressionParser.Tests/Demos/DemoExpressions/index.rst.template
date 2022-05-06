@@ -1,16 +1,24 @@
-﻿# Summary
+﻿UniversalExpressionParser
+=========================
+
+.. contents::
+  :local:
+  :depth: 2
 
 **UniversalExpressionParser** is a library for parsing expressions like the one demonstrated below into expression items for functions, literals, operators, etc.
 
-```csharp
-<IncludedFilePlaceHolder>SummaryExpression.expr</IncludedFilePlaceHolder>
-```
+.. sourcecode:: csharp
+     :linenos:
+
+     <IncludedFilePlaceHolder>SummaryExpression.expr</IncludedFilePlaceHolder>
+
 
 - Below is the demo code used to parse this expression:
 
-```csharp
-<IncludedFilePlaceHolder>..\SummaryDemo.cs</IncludedFilePlaceHolder>
-```
+.. sourcecode:: csharp
+     :linenos:
+
+     <IncludedFilePlaceHolder>..\SummaryDemo.cs</IncludedFilePlaceHolder>
 
 - Expression is parsed to an instance of **UniversalExpressionParser.IParseExpressionResult** by calling the method  **IParseExpressionResult ParseExpression(string expressionLanguageProviderName, string expressionText, IParseExpressionOptions parseExpressionOptions)** in **UniversalExpressionParser.IExpressionParser**.
 
@@ -34,14 +42,7 @@
 
 - All expressions are currently parsed to one of the following expression items (or intances of other sub-interfaces of these interfaces) in namespaces **UniversalExpressionParser.ExpressionItems** and **UniversalExpressionParser.ExpressionItems.Custom**: **ILiteralExpressionItem**, **ILiteralNameExpressionItem**, **IConstantTextExpressionItem**, **IConstantTextValueExpressionItem**, **INumericExpressionItem**, **INumericExpressionValueItem**, **IBracesExpressionItem**, **IOpeningBraceExpressionItem**, **IClosingBraceExpressionItem**, **ICommaExpressionItem**, **ICodeBlockExpressionItem**, **ICustomExpressionItem**, **IKeywordExpressionItem**, **ICodeBlockStartMarkerExpressionItem**, **ICodeBlockEndMarkerExpressionItem**, **ISeparatorCharacterExpressionItem**, **IOperatorExpressionItem**, **IOperatorInfoExpressionItem**, **IKeywordExpressionItem**, **UniversalExpressionParser.ExpressionItems.Custom.ICustomExpressionItem**, **IRootExpressionItem**, **IComplexExpressionItem**, **ITextExpressionItem**, **IExpressionItemBase**. The state of this expression items can be analyzed when evaluating the parsed expression.
  
-- Below is the visualized instance of **UniversalExpressionParser.IParseExpressionResult**:
-
-<details> <summary>Click to expand the parsed expression</summary>
-
-```XML
-<IncludedFilePlaceHolder>SummaryExpression.parsed</IncludedFilePlaceHolder>
-```
-</details>
+`Click here to view visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/SummaryExpression.parsed/>`_
 
 - The format of valid expressions is defined by properties and methods in interface **UniversalExpressionParser.IExpressionLanguageProvider**. The expression language name **UniversalExpressionParser.IExpressionLanguageProvider.LanguageName** of some instance **UniversalExpressionParser.IExpressionLanguageProvider** is passed as a parameter to method **ParseExpression(...)** in **UniversalExpressionParser.IExpressionParser**, as demonstrated in example above. Most of the properties and methods of this interface are demonstrated in examples in sections below.
 
@@ -52,3 +53,15 @@
 - The demo expressions and tests used to parse the demo expressions in this documentation are in folder **Demos** in test project **UniversalExpressionParser.Tests**. This documentation uses implementations of **UniversalExpressionParser.IExpressionLanguageProvider** in project **UniversalExpressionParser.DemoExpressionLanguageProviders** in **git** repository.
 
 - The parsed expressions in this documentation (i.e., instances of **UniversalExpressionParser.ExpressionItems.IParseExpressionResult**) are visualized into xml texts, that contain values of most properties of the parsed expression. However, to make the files shorter, the visualized xml files do not include all the property values.
+
+.. toctree::
+   literals.rst
+   functions-and-braces.rst
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

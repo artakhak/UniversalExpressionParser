@@ -10,7 +10,7 @@ namespace UniversalExpressionParser.ExpressionItems
     /// <summary>
     /// Default implementation for <see cref="ICodeBlockExpressionItem"/>
     /// </summary>
-    public class CodeBlockExpressionItem: ExpressionItemSeriesBase, ICodeBlockExpressionItem, ICanAddSeparatorCharacterExpressionItem
+    public class CodeBlockExpressionItem: ExpressionItemSeriesBase, ICodeBlockExpressionItem
     {
         private ICodeBlockEndMarkerExpressionItem _codeBlockEndMarkerItem;
 

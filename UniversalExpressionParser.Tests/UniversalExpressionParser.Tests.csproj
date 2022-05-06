@@ -126,6 +126,9 @@
     <None Include="Demos\DemoExpressions\CustomExpressionItemParsers\SimpleCustomExpressionItems.expr" />
     <None Include="Demos\DemoExpressions\CustomExpressionItemParsers\SimpleCustomExpressionItems.parsed" />
     <None Include="Demos\DemoExpressions\ErrorReporting\README.md" />
+    <None Include="Demos\DemoExpressions\FunctionsAndBraces\functions-and-braces.rst.template" />
+    <None Include="Demos\DemoExpressions\index.rst.template" />
+    <None Include="Demos\DemoExpressions\Literals\literals.rst.template" />
     <None Include="Demos\DemoExpressions\ParsingSectionInText\ParseSingleCodeBlockExpressionDemo.expr" />
     <None Include="Demos\DemoExpressions\ParsingSectionInText\ParseSingleCodeBlockExpressionDemo.parsed" />
     <None Include="Demos\DemoExpressions\ParsingSectionInText\ParseSingleRoundBracesExpressionDemo.parsed" />

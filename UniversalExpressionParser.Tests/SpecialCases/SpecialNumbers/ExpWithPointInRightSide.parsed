@@ -4,14 +4,14 @@
 		<AllParseErrorItems ObjectId='2' Count='0' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.IParseErrorItem]'/>
 	</ParseErrorData>
 	<SortedCommentedTextData ObjectId='3' Count='0' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.ICommentedTextData]'/>
-	<RootExpressionItem Id='637873045699364898' IndexInText='0' ItemLength='8' Interface='UniversalExpressionParser.ExpressionItems.IRootExpressionItem'>
+	<RootExpressionItem Id='637873102584576260' IndexInText='0' ItemLength='8' Interface='UniversalExpressionParser.ExpressionItems.IRootExpressionItem'>
 		<RegularItems>
-			<INumericExpressionItem Value.NumericValue='0.5e-3.4' Id='637873045699420632' IndexInText='0' ItemLength='8' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionItem'>
+			<INumericExpressionItem Value.NumericValue='0.5e-3.4' Id='637873102584635029' IndexInText='0' ItemLength='8' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionItem'>
 				<RegularItems>
-					<INumericExpressionValueItem NumericValue='0.5e-3.4' Id='637873045699420570' IndexInText='0' ItemLength='8' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionValueItem'/>
+					<INumericExpressionValueItem NumericValue='0.5e-3.4' Id='637873102584635006' IndexInText='0' ItemLength='8' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionValueItem'/>
 				</RegularItems>
 				<OtherProperties>
-					<Value NumericValue='0.5e-3.4' Id='637873045699420570' IndexInText='0' ItemLength='8' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionValueItem'/>
+					<Value NumericValue='0.5e-3.4' Id='637873102584635006' IndexInText='0' ItemLength='8' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionValueItem'/>
 					<SucceededNumericTypeDescriptor ObjectId='7' NumberTypeId='1581134225786' Interface='UniversalExpressionParser.NumericTypeDescriptor'>
 						<RegularExpressions ObjectId='8' Count='1' Interface='System.Collections.Generic.IReadOnlyList`1[System.String]'>
 							<System.String value='^(\d+\.\d+|\d+\.|\.\d+|\d+)(EXP|exp|E|e)[+|-]?(\d+\.\d+|\d+\.|\.\d+|\d+)' />
@@ -21,7 +21,7 @@
 			</INumericExpressionItem>
 		</RegularItems>
 		<Children>
-			<INumericExpressionItem Value.NumericValue='0.5e-3.4' Id='637873045699420632' IndexInText='0' ItemLength='8' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionItem'/>
+			<INumericExpressionItem Value.NumericValue='0.5e-3.4' Id='637873102584635029' IndexInText='0' ItemLength='8' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionItem'/>
 		</Children>
 	</RootExpressionItem>
 </UniversalExpressionParser.IParseExpressionResult>

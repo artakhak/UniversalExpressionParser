@@ -869,13 +869,6 @@ namespace UniversalExpressionParser.Tests.SuccessfulParseTests
 
             try
             {
-                /*#region TEMP-DELETE
-
-                var randomSeedGenerator = new Random(1007);
-                var seeds = new int[] { 0, 65, 83, 7, 3, 78, 8, 86, 2, 0, 70, 17, 64, 11, 73, 16, 13, 53, 98, 2, 1, 1, 13, 10, 4, 7, 10, 3, 7, 3 };
-
-                #endregion*/
-
                 for (var simulationIterationIndex = iterationStart; simulationIterationIndex < iterationEnd; ++simulationIterationIndex)
                 {
                     try
@@ -906,7 +899,7 @@ namespace UniversalExpressionParser.Tests.SuccessfulParseTests
                                 TestSetup.SimulationRandomNumberGenerator.RandomNumberSeed ?? -1);
                         }
 
-                        GlobalsCoreAmbientContext.Context = new GlobalsCoreTest();
+                        GlobalsCoreAmbientContext.Context = new GlobalsCoreTest(new GlobalsCore());
 
                         Task CreateExpressionLanguageProviderCacheAsync()
                         {
@@ -960,12 +953,12 @@ namespace UniversalExpressionParser.Tests.SuccessfulParseTests
                                 //}
 
                             },
-                            () => GlobalsCoreAmbientContext.Context = new GlobalsCoreTest(),
+                            () => GlobalsCoreAmbientContext.Context = new GlobalsCoreTest(new GlobalsCore()),
                             actualRootExpression => lastIterationActualParseExpressionResult = actualRootExpression);
 
                         }
 
-                        GlobalsCoreAmbientContext.Context = new GlobalsCoreTest();
+                        GlobalsCoreAmbientContext.Context = new GlobalsCoreTest(new GlobalsCore());
                         await TestsHelper.ExecuteTaskWithCancellationAsync(RunOneSimulationAsync,
                             GetTaskTimeoutMilliseconds(10000), nameof(RunOneSimulationAsync)).ConfigureAwait(false);
 

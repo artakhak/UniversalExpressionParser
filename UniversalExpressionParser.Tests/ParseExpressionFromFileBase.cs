@@ -3,6 +3,7 @@ using JetBrains.Annotations;
 using NUnit.Framework;
 using OROptimizer.Diagnostics.Log;
 using System.IO;
+using OROptimizer;
 using TextParser;
 using UniversalExpressionParser.DemoExpressionLanguageProviders;
 using UniversalExpressionParser.ExpressionItems;
@@ -88,8 +89,19 @@ namespace UniversalExpressionParser.Tests
         {
             var saveVisualizedInterface = CreateInterfaceSaveVisualizedInterface();
 
-            saveVisualizedInterface.Save(parseExpression, typeof(IParseExpressionResult),
-                Path.Join(GetFileDirectory(folderRelativePath), $"{fileNameWithoutExtension}.parsed"));
+            var globalsCoreTestCurrent = GlobalsCoreAmbientContext.Context;
+
+            try
+            {
+                GlobalsCoreAmbientContext.Context = new GlobalsCoreTest(globalsCoreTestCurrent);
+                saveVisualizedInterface.Save(parseExpression, typeof(IParseExpressionResult),
+                    Path.Join(GetFileDirectory(folderRelativePath), $"{fileNameWithoutExtension}.parsed"));
+            }
+            finally
+            {
+                GlobalsCoreAmbientContext.Context = globalsCoreTestCurrent;
+            }
+
 
             if (parseExpression.ParseErrorData.AllParseErrorItems.Count > 0)
                 LogHelper.Context.Log.Error(parseExpression.GetErrorTextWithContextualInformation(parseExpression.IndexInText, parseExpression.PositionInTextOnCompletion));

@@ -277,7 +277,7 @@ namespace UniversalExpressionParser.Tests
 
             try
             {
-                GlobalsCoreAmbientContext.Context = new GlobalsCoreTest();
+                GlobalsCoreAmbientContext.Context = new GlobalsCoreTest(new GlobalsCore());
                 SaveVisualizedInterface.Save(parseExpressionResult, mainInterfaceType, savedFilePath);
             }
             finally
