@@ -8,4 +8,4 @@
 
 		The parser was tested by simulated tests that randomly generate thousands of parsed expressions and parse those expressions.
 
-		NOTE: The source code is available at https://github.com/artakhak/UniversalExpressionParser. The documentation with good demos of example expressions, code to parse the expressions and visualized parse results reference https://universalexpressionparser.readthedocs.io/en/latest/.
+		NOTE: The source code is available at https://github.com/artakhak/UniversalExpressionParser. The documentation with good demos of example expressions, code to parse the expressions and visualized parse results reference https://universalexpressionparser.readthedocs.io/en/latest/summary.html.

@@ -1,6 +1,6 @@
 # UniversalExpressionParser
 
-**NOTE: This is a short summary of UniversalExpressionParser. For more complete documentation reference https://universalexpressionparser.readthedocs.io/en/latest/.
+**NOTE: This is a short summary of UniversalExpressionParser. For more complete documentation reference https://universalexpressionparser.readthedocs.io/en/latest/summary.html.
 
 # Summary
 
