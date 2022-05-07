@@ -14,6 +14,13 @@ UniversalExpressionParser
    texts.rst
    code-separators-and-code-blocks.rst
    keywords.rst
+   prefixes.rst
+   postfixes.rst
+   custom-expression-item-parsers.rst
+   comments.rst
+   error-reporting.rst
+   parsing-section-in-text.rst
+   case-sensitivity-and-non-standard-language-features.rst
 
 Indices and tables
 ==================

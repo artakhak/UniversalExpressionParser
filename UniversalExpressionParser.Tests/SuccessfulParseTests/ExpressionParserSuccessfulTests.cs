@@ -220,9 +220,7 @@ namespace UniversalExpressionParser.Tests.SuccessfulParseTests
             }
         }
 
-        // [TestFixtureSetUp]
         [SetUp]
-        //[TestInitialize]
         public void TestInitialize()
         {
             _testDataWasSaved = false;
@@ -250,14 +248,7 @@ namespace UniversalExpressionParser.Tests.SuccessfulParseTests
             ExpressionItemVisualizerSettingsAmbientContext.Context = new ExpressionItemVisualizerSettings(true, false);
         }
 
-        //[Test]
-        //public void TestLogger()
-        //{
-        //    LogHelper.Context.Log.Info("TEST");
-        //}
-
         [TearDown]
-        //[TestCleanup]
         public void TestCleanup()
         {
             ExpressionItemVisualizerSettingsAmbientContext.SetDefaultContext();
@@ -324,8 +315,6 @@ namespace UniversalExpressionParser.Tests.SuccessfulParseTests
 
             return Task.CompletedTask;
         }
-
-
 
         /// <summary>
         /// Use this test to debug issues with operator templates only. 
@@ -637,9 +626,6 @@ namespace UniversalExpressionParser.Tests.SuccessfulParseTests
         /// This test should run after <see cref="TestSimulation_ParseExpressionAsync"/>, <see cref="TestSimulation_ParseBracesExpressionAsync"/>,
         /// and <see cref="TestSimulation_ParseCodeBlockExpressionAsync"/>
         /// so that the statistics are ready.
-        /// Currently this test fails since some statistics are not satisfied (statistics for braces or code blocks for too deep levels).
-        /// This is Ok for now. Will check at ome point to find out why some statistics are missing and either will decrease the depth for these statistcs,
-        /// or will make sure that code is generated for these depths too.
         /// </summary>
         [Test, Order(4)]
         public void ValidateSimulationTestStatistics()

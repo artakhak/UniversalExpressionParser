@@ -74,6 +74,9 @@ exclude_patterns = []
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+html_css_files = [
+    'css/custom.css',
+]
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -160,5 +163,5 @@ texinfo_documents = [
 
 # Added by Artak Hakobyan to allow hide/show sections
 # https://stackoverflow.com/questions/2454577/sphinx-restructuredtext-show-hide-code-snippets
-def setup(app):
-    app.add_css_file('custom.css')
+# def setup(app):
+#    app.add_css_file('custom.css')

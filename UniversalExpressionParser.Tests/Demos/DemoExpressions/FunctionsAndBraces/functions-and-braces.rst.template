@@ -17,8 +17,9 @@ Examples of functions
 
      <IncludedFilePlaceHolder>FunctionsWithRoundAndSquareBraces.expr</IncludedFilePlaceHolder>
 
-`Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/FunctionsAndBraces/FunctionsWithRoundAndSquareBraces.parsed/>`_
+.. raw:: html
 
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/FunctionsAndBraces/FunctionsWithRoundAndSquareBraces.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>
 
 Examples of braces
 ==================
@@ -28,4 +29,6 @@ Examples of braces
 
      <IncludedFilePlaceHolder>RoundAndSquareBraces.expr</IncludedFilePlaceHolder>
 
-`Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/FunctionsAndBraces/RoundAndSquareBraces.parsed/>`_
+.. raw:: html
+
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/FunctionsAndBraces/RoundAndSquareBraces.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>

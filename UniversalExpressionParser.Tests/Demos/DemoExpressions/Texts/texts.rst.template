@@ -20,5 +20,7 @@ The interface **UniversalExpressionParser.IExpressionLanguageProvider** has a pr
      :linenos:
      
      <IncludedFilePlaceHolder>Texts.expr</IncludedFilePlaceHolder>
-     
-`Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Texts/texts.parsed/>`_
+
+.. raw:: html
+
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Texts/Texts.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>

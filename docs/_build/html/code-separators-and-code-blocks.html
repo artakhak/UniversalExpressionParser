@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Code Separators and Code Blocks &#8212; UniversalExpressionParser 1.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Keywords" href="keywords.html" />
+    <link rel="prev" title="Texts" href="texts.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="keywords.html" title="Keywords"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="texts.html" title="Texts"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">UniversalExpressionParser 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Code Separators and Code Blocks</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="code-separators-and-code-blocks">
+<h1>Code Separators and Code Blocks<a class="headerlink" href="#code-separators-and-code-blocks" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#more-complex-examples-of-code-blocks-and-code-separators" id="id1">More complex examples of code blocks and code separators</a></p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>If the value of property <strong>char ExpressionSeparatorCharacter { get; }</strong> in <strong>UniversalExpressionParser.IExpressionLanguageProvider</strong> is not equal to character ‘0’, multiple expressions can be used in a single expression.</p></li>
+</ul>
+<p>For example if the value of property <strong>ExpressionSeparatorCharacter</strong> is ‘;’ the expression “var x=f1(y);println(x)” will be parsed to a list of two expression items for “x=f1(y)” and “println(x)”. Otherwise, the parser will report an error for this expression (see section on <strong>Error Reporting</strong> for more details on errors).</p>
+<ul class="simple">
+<li><p>If both values of properties <strong>char CodeBlockStartMarker { get; }</strong> and <strong>string CodeBlockEndMarker { get; }</strong> in <strong>UniversalExpressionParser.IExpressionLanguageProvider</strong> are not equal to character ‘0’, code block expressions can be used to combine multiple expressions into code block expression items of type <strong>UniversalExpressionParser.ExpressionItems.ICodeBlockExpressionItem</strong>.</p></li>
+<li><p>For example if the values of properties <strong>CodeBlockStartMarker</strong> and <strong>CodeBlockEndMarker</strong> are ‘{’ and ‘}’, the expression below will be parsed to two code block expressions of type <strong>UniversalExpressionParser.ExpressionItems.ICodeBlockExpressionItem</strong>. Otherwise, the parser will report errors.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="p">{</span>
+<span class="linenos">2</span>    <span class="n">var</span> <span class="n">x</span> <span class="o">=</span> <span class="n">y</span><span class="o">^</span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos">3</span>    <span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="linenos">4</span><span class="p">}</span>
+<span class="linenos">5</span>
+<span class="linenos">6</span><span class="p">{</span>
+<span class="linenos">7</span>    <span class="n">fl</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">);</span>
+<span class="linenos">8</span>    <span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">//</span> <span class="n">No</span> <span class="n">need</span> <span class="k">for</span> <span class="s1">&#39;;&#39;</span> <span class="n">after</span> <span class="n">the</span> <span class="n">last</span> <span class="n">expression</span>
+<span class="linenos">9</span><span class="p">}</span>
+</pre></div>
+</div>
+<a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/CodeSeparatorsAndCodeBlocks/SimpleExample.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a><section id="more-complex-examples-of-code-blocks-and-code-separators">
+<h2><a class="toc-backref" href="#id1">More complex examples of code blocks and code separators</a><a class="headerlink" href="#more-complex-examples-of-code-blocks-and-code-separators" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">var</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">+</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="n">x2</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">f1</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="o">//</span> <span class="n">Code</span> <span class="n">block</span> <span class="n">used</span> <span class="k">as</span> <span class="n">function</span> <span class="n">body</span> <span class="p">(</span><span class="n">see</span> <span class="n">examples</span> <span class="ow">in</span> <span class="n">Postfixes</span> <span class="n">folder</span><span class="p">)</span>
+<span class="linenos"> 6</span><span class="p">}</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="n">var</span> <span class="n">z</span> <span class="o">=</span> <span class="n">e</span> <span class="o">^</span> <span class="mf">2.3</span><span class="p">;</span>
+<span class="linenos"> 9</span><span class="p">{</span>
+<span class="linenos">10</span>    <span class="n">var</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">y</span><span class="p">;</span>
+<span class="linenos">11</span>    <span class="n">println</span><span class="p">(</span><span class="s2">&quot;x=&quot;</span> <span class="o">+</span> <span class="n">x</span><span class="p">);</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>    <span class="p">{</span>
+<span class="linenos">14</span>        <span class="n">var</span> <span class="n">y1</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span>
+<span class="linenos">15</span>        <span class="n">println</span><span class="p">(</span><span class="n">getExp</span><span class="p">(</span><span class="n">y1</span><span class="p">));</span>
+<span class="linenos">16</span>    <span class="p">}</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>    <span class="p">{</span>
+<span class="linenos">19</span>        <span class="n">var</span> <span class="n">y2</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span>
+<span class="linenos">20</span>        <span class="n">println</span><span class="p">(</span><span class="n">getExp</span><span class="p">(</span><span class="n">y2</span><span class="p">));</span>
+<span class="linenos">21</span>    <span class="p">}</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>    <span class="n">getExp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">:</span> <span class="n">double</span>
+<span class="linenos">24</span>    <span class="p">{</span>
+<span class="linenos">25</span>        <span class="o">//</span> <span class="n">another</span> <span class="n">code</span> <span class="n">block</span> <span class="n">used</span> <span class="k">as</span> <span class="n">function</span> <span class="n">body</span> <span class="p">(</span><span class="n">see</span> <span class="n">examples</span> <span class="ow">in</span> <span class="n">Postfixes</span> <span class="n">folder</span><span class="p">)</span>
+<span class="linenos">26</span>        <span class="k">return</span> <span class="n">e</span><span class="o">^</span><span class="n">x</span><span class="p">;</span>
+<span class="linenos">27</span>    <span class="p">}</span>
+<span class="linenos">28</span><span class="p">}</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span><span class="n">f2</span><span class="p">()</span>
+<span class="linenos">31</span><span class="p">{</span>
+<span class="linenos">32</span>    <span class="o">//</span> <span class="n">Another</span> <span class="n">code</span> <span class="n">block</span> <span class="n">used</span> <span class="k">as</span> <span class="n">function</span> <span class="n">body</span> <span class="p">(</span><span class="n">see</span> <span class="n">examples</span> <span class="ow">in</span> <span class="n">Postfixes</span> <span class="n">folder</span><span class="p">)</span>
+<span class="linenos">33</span><span class="p">}</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="p">{</span>
+<span class="linenos">36</span>    <span class="o">//</span> <span class="n">Another</span> <span class="n">code</span> <span class="n">block</span>
+<span class="linenos">37</span><span class="p">}</span>
+<span class="linenos">38</span>
+<span class="linenos">39</span><span class="n">public</span> <span class="k">class</span> <span class="nc">Dog</span>
+<span class="linenos">40</span><span class="p">{</span>
+<span class="linenos">41</span>    <span class="n">public</span> <span class="n">Bark</span><span class="p">()</span>
+<span class="linenos">42</span>    <span class="p">{</span>
+<span class="linenos">43</span>        <span class="o">//</span> <span class="n">Note</span><span class="p">,</span> <span class="n">code</span> <span class="n">separator</span> <span class="s1">&#39;;&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">necessary</span><span class="p">,</span> <span class="k">if</span> <span class="n">the</span> <span class="n">expression</span> <span class="ow">is</span> <span class="n">followed</span> <span class="n">by</span> <span class="n">code</span> <span class="n">block</span> <span class="n">end</span> <span class="n">marker</span> <span class="s1">&#39;}&#39;</span><span class="o">.</span>
+<span class="linenos">44</span>        <span class="n">println</span><span class="p">(</span><span class="s2">&quot;bark&quot;</span><span class="p">)</span>
+<span class="linenos">45</span>    <span class="p">}</span>
+<span class="linenos">46</span><span class="p">}</span>
+</pre></div>
+</div>
+<a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/CodeSeparatorsAndCodeBlocks/MoreComplexExample.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a></section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Code Separators and Code Blocks</a><ul>
+<li><a class="reference internal" href="#more-complex-examples-of-code-blocks-and-code-separators">More complex examples of code blocks and code separators</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="texts.html"
+                          title="previous chapter">Texts</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="keywords.html"
+                          title="next chapter">Keywords</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/code-separators-and-code-blocks.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="keywords.html" title="Keywords"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="texts.html" title="Texts"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">UniversalExpressionParser 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Code Separators and Code Blocks</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Artak Hakobyan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+  </body>
+</html>

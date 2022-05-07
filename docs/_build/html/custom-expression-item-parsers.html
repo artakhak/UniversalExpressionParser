@@ -1,0 +1,481 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Custom Expression Item Parsers &#8212; UniversalExpressionParser 1.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Comments" href="comments.html" />
+    <link rel="prev" title="Postfixes" href="postfixes.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="comments.html" title="Comments"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="postfixes.html" title="Postfixes"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">UniversalExpressionParser 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Custom Expression Item Parsers</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="custom-expression-item-parsers">
+<h1>Custom Expression Item Parsers<a class="headerlink" href="#custom-expression-item-parsers" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#implementing-custom-expression-parsers" id="id1">Implementing Custom Expression Parsers</a></p></li>
+</ul>
+</div>
+<p>Custom expression parsers allow to plugin into parsing process and provide special parsing of some portion of the parsed expression.</p>
+<p>The expression parser (i.e., <strong>UniversalExpressionParser.IExpressionParser</strong>) iteratively parses keywords (see the section above on keywords), before parsing any other symbols.</p>
+<dl class="simple">
+<dt>Then the expression parser loops through all the custom expression parsers of type <strong>UniversalExpressionParser.ExpressionItems.Custom.ICustomExpressionItemParser</strong> in property <strong>CustomExpressionItemParsers</strong> in interface <strong>UniversalExpressionParser.IExpressionLanguageProvider</strong> passed to the parser, and for each custom expression parser executes the method</dt><dd><p><strong>ICustomExpressionItem ICustomExpressionItemParser.TryParseCustomExpressionItem(IParseExpressionItemContext context, IReadOnlyList&amp;lt;IExpressionItemBase&amp;gt; parsedPrefixExpressionItems, IReadOnlyList&amp;lt;IKeywordExpressionItem&amp;gt; keywordExpressionItems)</strong>.</p>
+</dd>
+</dl>
+<p>If method call <strong>TryParseCustomExpressionItem(…)</strong> returns non-null value of type <strong>UniversalExpressionParser.ExpressionItems.Custom.ICustomExpressionItem</strong>, the parser uses the parsed custom expression item.</p>
+<p>Otherwise, if <strong>TryParseCustomExpressionItem(…)</strong> returns null, the parser tries to parse a non custom expression item at current position (i.e., operators, a literal, function, code block, etc.).</p>
+<dl class="simple">
+<dt>Interface <strong>ICustomExpressionItem</strong> has a property <strong>UniversalExpressionParser.ExpressionItems.Custom.CustomExpressionItemCategory</strong> which is used by the parser to determine if the parsed custom expression item should be used as</dt><dd><ul class="simple">
+<li><p>a prefix for subsequently parsed regular expression (i.e., literal, function, braces, etc.).</p></li>
+<li><p>should be treated as regular expression (which can be part of operators, function parameter, etc.).</p></li>
+<li><p>or should be used as a postfix for the previously parsed expression item.</p></li>
+</ul>
+</dd>
+</dl>
+<p>In the example below the parser parses “::pragma x” to a regular custom expression item of type <strong>UniversalExpressionParser.DemoExpressionLanguageProviders.CustomExpressions.PragmaCustomExpressionItem</strong> (i.e., the value of <strong>CustomExpressionItemCategory property</strong> in <strong>UniversalExpressionParser.ExpressionItems.Custom.ICustomExpressionItem</strong> is equal to <strong>UniversalExpressionParser.ExpressionItems.Custom.CustomExpressionItemCategory.Regular</strong>).
+As a result, the expression “::pragma x+y;” below is logically similar to “(::pragma x)+y;”</p>
+<p>In a similar manner the expression “::types[T1, T2]” is parsed to a prefix custom expression item of type <strong>UniversalExpressionParser.DemoExpressionLanguageProviders.CustomExpressions.GenericTypesCustomExpressionItem</strong> by custom expression item parser <strong>UniversalExpressionParser.DemoExpressionLanguageProviders.CustomExpressions.GenericTypesExpressionItemParser</strong>.</p>
+<p>The custom expression item parsed from “::types[T1, T2]” is added as a prefix to an expression item parsed from <strong>F1(x:T1, y:T2)</strong>.</p>
+<p>Also, the expression “where T1:int where T2:double whereend” is parsed to postfix custom expression item of type <strong>UniversalExpressionParser.DemoExpressionLanguageProviders.CustomExpressions.WhereCustomExpressionItem</strong> by custom expression parser <strong>UniversalExpressionParser.DemoExpressionLanguageProviders.CustomExpressions.WhereCustomExpressionItemParserForTests</strong>.</p>
+<p>The parser adds the parsed custom expression as a postfix to the preceding regular expression item parsed from text “F1(x:T1, y:T2)”.</p>
+<p>In this example, the code block after “whereend” (the expression “{…}”) is parsed as a postfix expression item of type <strong>UniversalExpressionParser.ExpressionItems.ICodeBlockExpressionItem</strong> and is added as a postfix to regular expression item parsed from “F1(x:T1, y:T2)” as well, since the parser adds all the prefixes/postfixes to regular expression item it finds after/before the prefixes/postfixes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="p">::</span><span class="n">pragma</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">;</span>
+<span class="linenos">2</span><span class="p">::</span><span class="n">types</span><span class="p">[</span><span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="p">]</span> <span class="n">F1</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">T1</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="n">T2</span><span class="p">)</span> <span class="n">where</span> <span class="n">T1</span><span class="p">:</span><span class="nb">int</span> <span class="n">where</span> <span class="n">T2</span><span class="p">:</span><span class="n">double</span> <span class="n">whereend</span>
+<span class="linenos">3</span><span class="p">{</span>
+<span class="linenos">4</span>   <span class="o">//</span> <span class="n">This</span> <span class="n">code</span> <span class="n">block</span> <span class="n">will</span> <span class="n">be</span> <span class="n">added</span> <span class="k">as</span> <span class="n">a</span> <span class="n">postfix</span> <span class="n">to</span> <span class="n">expression</span> <span class="n">item</span> <span class="n">parsed</span> <span class="kn">from</span> <span class="s2">&quot;F1(x:T1, y:T2)&quot;</span><span class="o">.</span>
+<span class="linenos">5</span><span class="p">}</span>
+</pre></div>
+</div>
+<a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/CustomExpressionItemParsers/SimpleCustomExpressionItems.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a><ul class="simple">
+<li><p>This is another example demonstrating that the parsed expression can have multiple prefix and postfix custom expressions items applied to the same regular expression item parsed from “F1(x:T1, y:T2, z:T3)”.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span> <span class="n">The</span> <span class="n">expression</span> <span class="n">below</span> <span class="p">(</span><span class="s2">&quot;::metadata {...}&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="n">parsed</span> <span class="n">to</span> <span class="n">a</span> <span class="n">prefix</span> <span class="n">custom</span> <span class="n">expression</span> <span class="n">item</span> <span class="ow">and</span> <span class="n">added</span> <span class="n">to</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">prefixes</span> <span class="n">of</span> <span class="n">regular</span>
+<span class="linenos"> 2</span><span class="o">//</span> <span class="n">expression</span> <span class="n">item</span> <span class="n">parsed</span> <span class="kn">from</span> <span class="nn">F1</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">T1</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="n">T2</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span><span class="n">T3</span><span class="p">)</span>
+<span class="linenos"> 3</span><span class="p">::</span><span class="n">metadata</span> <span class="p">{</span><span class="n">description</span><span class="p">:</span> <span class="s2">&quot;F1 demoes regular function expression item to which multiple prefix and postfix custom expression items are added.&quot;</span><span class="p">}</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="o">//</span> <span class="p">::</span><span class="n">types</span><span class="p">[</span><span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="p">]</span> <span class="ow">is</span> <span class="n">also</span> <span class="n">parsed</span> <span class="n">to</span> <span class="n">a</span> <span class="n">prefix</span> <span class="n">custom</span> <span class="n">expression</span> <span class="n">item</span> <span class="ow">and</span> <span class="n">added</span> <span class="n">to</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">prefixes</span> <span class="n">of</span> <span class="n">regular</span>
+<span class="linenos"> 6</span><span class="o">//</span> <span class="n">expression</span> <span class="n">item</span> <span class="n">parsed</span> <span class="kn">from</span> <span class="nn">F1</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">T1</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="n">T2</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span><span class="n">T3</span><span class="p">)</span>
+<span class="linenos"> 7</span><span class="p">::</span><span class="n">types</span><span class="p">[</span><span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="p">]</span>
+<span class="linenos"> 8</span><span class="n">F1</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">T1</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="n">T2</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span><span class="n">T3</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="o">//</span> <span class="n">The</span> <span class="n">postfix</span> <span class="n">custom</span> <span class="n">expression</span> <span class="n">item</span> <span class="n">parsed</span> <span class="kn">from</span> <span class="s2">&quot;where T1:int where T2:double whereend&quot;</span> <span class="ow">is</span> <span class="n">added</span> <span class="n">to</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">postfixes</span> <span class="n">of</span> <span class="n">regular</span> <span class="n">expression</span>
+<span class="linenos">11</span><span class="o">//</span> <span class="n">parsed</span> <span class="kn">from</span> <span class="s2">&quot;F1(x:T1, y:T2, z:T3)&quot;</span><span class="o">.</span>
+<span class="linenos">12</span><span class="n">where</span> <span class="n">T1</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="k">class</span> <span class="nc">where</span> <span class="n">T2</span><span class="p">:</span><span class="n">double</span> <span class="n">whereend</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="o">//</span> <span class="n">The</span> <span class="n">postfix</span> <span class="n">custom</span> <span class="n">expression</span> <span class="n">item</span> <span class="n">parsed</span> <span class="kn">from</span> <span class="s2">&quot;where T3 : T1 whereend &quot;</span> <span class="ow">is</span> <span class="n">also</span> <span class="n">added</span> <span class="n">to</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">postfixes</span> <span class="n">of</span> <span class="n">regular</span> <span class="n">expression</span>
+<span class="linenos">15</span><span class="o">//</span> <span class="n">parsed</span> <span class="kn">from</span> <span class="s2">&quot;F1(x:T1, y:T2, z:T3)&quot;</span><span class="o">.</span>
+<span class="linenos">16</span><span class="n">where</span> <span class="n">T3</span> <span class="p">:</span> <span class="n">T1</span> <span class="n">whereend</span>
+<span class="linenos">17</span><span class="p">{</span>
+<span class="linenos">18</span>   <span class="o">//</span> <span class="n">This</span> <span class="n">code</span> <span class="n">block</span> <span class="n">will</span> <span class="n">be</span> <span class="n">added</span> <span class="k">as</span> <span class="n">a</span> <span class="n">postfix</span> <span class="n">to</span> <span class="n">expression</span> <span class="n">item</span> <span class="n">parsed</span> <span class="kn">from</span> <span class="s2">&quot;F1(x:T1, y:T2, z:T3)&quot;</span><span class="o">.</span>
+<span class="linenos">19</span><span class="p">}</span>
+</pre></div>
+</div>
+<a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/CustomExpressionItemParsers/MultipleAdjacentPrefixPostfixCustomExpressionItems.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a><section id="implementing-custom-expression-parsers">
+<h2><a class="toc-backref" href="#id1">Implementing Custom Expression Parsers</a><a class="headerlink" href="#implementing-custom-expression-parsers" title="Permalink to this headline">¶</a></h2>
+<p>For examples of custom expression item parsers look at some examples in demo project <strong>UniversalExpressionParser.DemoExpressionLanguageProviders</strong>.</p>
+<p>The following demo implementations of <strong>UniversalExpressionParser.ExpressionItems.Custom.ICustomExpressionItemParserByKeywordId</strong> might be useful when implementing custom expression parses:</p>
+<ul class="simple">
+<li><p>UniversalExpressionParser.DemoExpressionLanguageProviders.CustomExpressions.WhereCustomExpressionItemParserBase</p></li>
+<li><p>UniversalExpressionParser.DemoExpressionLanguageProviders.CustomExpressions.PragmaCustomExpressionItemParser</p></li>
+<li><p>UniversalExpressionParser.DemoExpressionLanguageProviders.CustomExpressions.MetadataCustomExpressionItemParser</p></li>
+</ul>
+<p>Also, these custom expression parser implementations demonstrate how to use the helper class <strong>UniversalExpressionParser.IParseExpressionItemContext</strong> that is passed as a parameter to
+method <strong>DoParseCustomExpressionItem(IParseExpressionItemContext context,…)</strong> in <strong>UniversalExpressionParser.ExpressionItems.Custom.CustomExpressionItemParserByKeywordId</strong> to parse the text at current position, as well as how to report errors, if any.</p>
+<ul class="simple">
+<li><p>To add a new custom expression parser, one needs to implement an interface <strong>UniversalExpressionParser.ExpressionItems.Custom.ICustomExpressionItemParser</strong> and make sure the property <strong>CustomExpressionItemParsers</strong> in interface <strong>UniversalExpressionParser.IExpressionLanguageProvider</strong> includes an instance of the implemented parser class.</p></li>
+<li><p>In most cases the default implementation <strong>UniversalExpressionParser.ExpressionItems.Custom.AggregateCustomExpressionItemParser</strong> of <strong>UniversalExpressionParser.ExpressionItems.Custom.ICustomExpressionItemParser</strong> can be used to initialize the list of all custom expression parers that will be used by <strong>Universal Expression Parser</strong>.</p></li>
+</ul>
+<p><strong>UniversalExpressionParser.ExpressionItems.Custom.AggregateCustomExpressionItemParser</strong> has a dependency on <strong>IEnumerable&amp;lt;ICustomExpressionItemParserByKeywordId&amp;gt;</strong> (injected into constructor).</p>
+<ul class="simple">
+<li><p>Using a single instance of <strong>AggregateCustomExpressionItemParser</strong> in property <strong>CustomExpressionItemParsers</strong> in interface <strong>UniversalExpressionParser.IExpressionLanguageProvider</strong> instead of multiple custom expression parsers in this property improves the performance.</p></li>
+</ul>
+<p><strong>AggregateCustomExpressionItemParser</strong> keeps internally a mapping from keyword Id to all the instances of <strong>UniversalExpressionParser.ExpressionItems.Custom.ICustomExpressionItemParserByKeywordId</strong> injected in constructor. When the parser executes the method <strong>TryParseCustomExpressionItem(…,IReadOnlyList&lt;IKeywordExpressionItem&gt; parsedKeywordExpressionItems,…)</strong> in interface <strong>UniversalExpressionParser.ExpressionItems.Custom</strong>, the custom expression item parser of type <strong>AggregateCustomExpressionItemParser</strong> evaluates the last keyword in list in parameter <strong>parsedKeywordExpressionItems</strong> to retrieve all the parsers mapped to this keyword Id, to try to parse a custom expression item using only those custom expression item parsers.</p>
+<ul class="simple">
+<li><p>Below is some of the code from classes <strong>AggregateCustomExpressionItemParser</strong> and <strong>ICustomExpressionItemParserByKeywordId</strong>.</p></li>
+</ul>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">namespace</span><span class="w"> </span><span class="nn">UniversalExpressionParser.ExpressionItems.Custom</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">AggregateCustomExpressionItemParser</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ICustomExpressionItemParser</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="nf">AggregateCustomExpressionItemParser</span><span class="p">(</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="w">        </span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">ICustomExpressionItemParserByKeywordId</span><span class="p">&gt;</span><span class="w"> </span><span class="n">customExpressionItemParsers</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">        </span><span class="p">...</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">ICustomExpressionItem</span><span class="w"> </span><span class="nf">TryParseCustomExpressionItem</span><span class="p">(</span><span class="n">IParseExpressionItemContext</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">12</span><span class="w">            </span><span class="n">IReadOnlyList</span><span class="p">&lt;</span><span class="n">IExpressionItemBase</span><span class="p">&gt;</span><span class="w"> </span><span class="n">parsedPrefixExpressionItems</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">13</span><span class="w">            </span><span class="n">IReadOnlyList</span><span class="p">&lt;</span><span class="n">IKeywordExpressionItem</span><span class="p">&gt;</span><span class="w"> </span><span class="n">parsedKeywordExpressionItems</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">15</span><span class="w">        </span><span class="p">...</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">17</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="k">public</span><span class="w"> </span><span class="k">interface</span><span class="w"> </span><span class="n">ICustomExpressionItemParserByKeywordId</span><span class="w"></span>
+<span class="linenos">20</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">ParsedKeywordId</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="w">    </span><span class="n">ICustomExpressionItem</span><span class="w"> </span><span class="nf">TryParseCustomExpressionItem</span><span class="p">(</span><span class="n">IParseExpressionItemContext</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">24</span><span class="w">            </span><span class="n">IReadOnlyList</span><span class="p">&lt;</span><span class="n">IExpressionItemBase</span><span class="p">&gt;</span><span class="w"> </span><span class="n">parsedPrefixExpressionItems</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">25</span><span class="w">            </span><span class="n">IReadOnlyList</span><span class="p">&lt;</span><span class="n">IKeywordExpressionItem</span><span class="p">&gt;</span><span class="w"> </span><span class="n">parsedKeywordExpressionItemsWithoutLastKeyword</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">            </span><span class="n">IKeywordExpressionItem</span><span class="w"> </span><span class="n">lastKeywordExpressionItem</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">27</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Here is the code from demo custom expression item parser <strong>UniversalExpressionParser.DemoExpressionLanguageProviders.CustomExpressions.PragmaCustomExpressionItemParser</strong></p></li>
+</ul>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">using</span><span class="w"> </span><span class="nn">System.Collections.Generic</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="k">using</span><span class="w"> </span><span class="nn">UniversalExpressionParser.ExpressionItems</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="k">using</span><span class="w"> </span><span class="nn">UniversalExpressionParser.ExpressionItems.Custom</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">namespace</span><span class="w"> </span><span class="nn">UniversalExpressionParser.DemoExpressionLanguageProviders.CustomExpressions</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="c1">///  Example: ::pragma x</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos">10</span><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">PragmaCustomExpressionItemParser</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">CustomExpressionItemParserByKeywordId</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">12</span><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="nf">PragmaCustomExpressionItemParser</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">base</span><span class="p">(</span><span class="n">KeywordIds</span><span class="p">.</span><span class="n">Pragma</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">13</span><span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="w">        </span><span class="c1">/// &lt;inheritdoc /&gt;</span>
+<span class="linenos">17</span><span class="w">        </span><span class="k">protected</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="n">ICustomExpressionItem</span><span class="w"> </span><span class="nf">DoParseCustomExpressionItem</span><span class="p">(</span><span class="n">IParseExpressionItemContext</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">IReadOnlyList</span><span class="p">&lt;</span><span class="n">IExpressionItemBase</span><span class="p">&gt;</span><span class="w"> </span><span class="n">parsedPrefixExpressionItems</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">18</span><span class="w">                                                                           </span><span class="n">IReadOnlyList</span><span class="p">&lt;</span><span class="n">IKeywordExpressionItem</span><span class="p">&gt;</span><span class="w"> </span><span class="n">parsedKeywordExpressionItemsWithoutLastKeyword</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">19</span><span class="w">                                                                           </span><span class="n">IKeywordExpressionItem</span><span class="w"> </span><span class="n">pragmaKeywordExpressionItem</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">20</span><span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">            </span><span class="kt">var</span><span class="w"> </span><span class="n">pragmaKeywordInfo</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">pragmaKeywordExpressionItem</span><span class="p">.</span><span class="n">LanguageKeywordInfo</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="w">            </span><span class="kt">var</span><span class="w"> </span><span class="n">textSymbolsParser</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="n">TextSymbolsParser</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(!</span><span class="n">context</span><span class="p">.</span><span class="n">SkipSpacesAndComments</span><span class="p">()</span><span class="w"> </span><span class="p">||</span><span class="w"> </span><span class="p">!</span><span class="n">context</span><span class="p">.</span><span class="n">TryParseSymbol</span><span class="p">(</span><span class="k">out</span><span class="w"> </span><span class="kt">var</span><span class="w"> </span><span class="n">literalExpressionItem</span><span class="p">))</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(!</span><span class="n">context</span><span class="p">.</span><span class="n">ParseErrorData</span><span class="p">.</span><span class="n">HasCriticalErrors</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">28</span><span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">29</span><span class="w">                    </span><span class="c1">// Example: print(&quot;Is in debug mode=&quot; + ::pragma IsDebugMode)</span>
+<span class="linenos">30</span><span class="w">                    </span><span class="n">context</span><span class="p">.</span><span class="n">AddParseErrorItem</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ParseErrorItem</span><span class="p">(</span><span class="n">textSymbolsParser</span><span class="p">.</span><span class="n">PositionInText</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">31</span><span class="w">                        </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">$&quot;Pragma keyword &#39;{pragmaKeywordInfo.Keyword}&#39; should be followed with pragma symbol. Example: println(\&quot;Is in debug mode = \&quot; + {pragmaKeywordInfo.Keyword} IsDebug);&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">32</span><span class="w">                        </span><span class="n">CustomExpressionParseErrorCodes</span><span class="p">.</span><span class="n">PragmaKeywordShouldBeFollowedByValidSymbol</span><span class="p">));</span><span class="w"></span>
+<span class="linenos">33</span><span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="k">null</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">36</span><span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">37</span>
+<span class="linenos">38</span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nf">PragmaCustomExpressionItem</span><span class="p">(</span><span class="n">parsedPrefixExpressionItems</span><span class="p">,</span><span class="w"> </span><span class="n">parsedKeywordExpressionItemsWithoutLastKeyword</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">39</span><span class="w">                </span><span class="n">pragmaKeywordExpressionItem</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">40</span><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="nf">NameExpressionItem</span><span class="p">(</span><span class="n">literalExpressionItem</span><span class="p">,</span><span class="w"> </span><span class="n">textSymbolsParser</span><span class="p">.</span><span class="n">PositionInText</span><span class="w"> </span><span class="p">-</span><span class="w"> </span><span class="n">literalExpressionItem</span><span class="p">.</span><span class="n">Length</span><span class="p">));</span><span class="w"></span>
+<span class="linenos">41</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">42</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">43</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Below is the interface <strong>IParseExpressionItemContext</strong> that shows the helper methods and properties, as well as extension methods that can be used when parsing custom expressions.</p></li>
+</ul>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c1">// Copyright (c) UniversalExpressionParser Project. All rights reserved.</span>
+<span class="linenos">  2</span><span class="c1">// Licensed under the MIT License. See LICENSE in the solution root for license information.</span>
+<span class="linenos">  3</span>
+<span class="linenos">  4</span><span class="k">using</span><span class="w"> </span><span class="nn">JetBrains.Annotations</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">  5</span><span class="k">using</span><span class="w"> </span><span class="nn">TextParser</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">  6</span><span class="k">using</span><span class="w"> </span><span class="nn">UniversalExpressionParser.ExpressionItems</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">  7</span>
+<span class="linenos">  8</span><span class="k">namespace</span><span class="w"> </span><span class="nn">UniversalExpressionParser</span><span class="w"></span>
+<span class="linenos">  9</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 10</span><span class="w">    </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos"> 11</span><span class="w">    </span><span class="c1">/// Parser context data.</span>
+<span class="linenos"> 12</span><span class="w">    </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos"> 13</span><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">interface</span><span class="w"> </span><span class="n">IParseExpressionItemContext</span><span class="w"></span>
+<span class="linenos"> 14</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 15</span><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos"> 16</span><span class="w">        </span><span class="c1">/// Event that is raised when new error is added by parser.</span>
+<span class="linenos"> 17</span><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos"> 18</span><span class="w">        </span><span class="k">event</span><span class="w"> </span><span class="n">ParseErrorAddedDelegate</span><span class="w"> </span><span class="n">ParseErrorAddedEvent</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 19</span>
+<span class="linenos"> 20</span><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos"> 21</span><span class="w">        </span><span class="c1">/// An instance of &lt;see cref=&quot;IExpressionLanguageProviderWrapper&quot;/&gt; currently used by parser.</span>
+<span class="linenos"> 22</span><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos"> 23</span><span class="w">        </span><span class="na">[NotNull]</span><span class="w"></span>
+<span class="linenos"> 24</span><span class="w">        </span><span class="n">IExpressionLanguageProviderWrapper</span><span class="w"> </span><span class="n">ExpressionLanguageProviderWrapper</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 25</span>
+<span class="linenos"> 26</span><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos"> 27</span><span class="w">        </span><span class="c1">/// Pare expression result.</span>
+<span class="linenos"> 28</span><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos"> 29</span><span class="w">        </span><span class="na">[NotNull]</span><span class="w"></span>
+<span class="linenos"> 30</span><span class="w">        </span><span class="n">IParseExpressionResult</span><span class="w"> </span><span class="n">ParseExpressionResult</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 31</span>
+<span class="linenos"> 32</span><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos"> 33</span><span class="w">        </span><span class="c1">/// Error data. Use &lt;see cref=&quot;ParseExpressionItemContext.AddParseErrorItem&quot;/&gt; to add errors.</span>
+<span class="linenos"> 34</span><span class="w">        </span><span class="c1">/// Default implementation of &lt;see cref=&quot;IParseErrorItem&quot;/&gt; is &lt;see cref=&quot;ParseErrorItem&quot;/&gt;.</span>
+<span class="linenos"> 35</span><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos"> 36</span><span class="w">        </span><span class="na">[NotNull]</span><span class="w"></span>
+<span class="linenos"> 37</span><span class="w">        </span><span class="n">IParseErrorData</span><span class="w"> </span><span class="n">ParseErrorData</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 38</span>
+<span class="linenos"> 39</span><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos"> 40</span><span class="w">        </span><span class="c1">/// Text symbols parser that can be used to parse the symbols at current position.</span>
+<span class="linenos"> 41</span><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos"> 42</span><span class="w">        </span><span class="na">[NotNull]</span><span class="w"></span>
+<span class="linenos"> 43</span><span class="w">        </span><span class="n">ITextSymbolsParser</span><span class="w"> </span><span class="n">TextSymbolsParser</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 44</span>
+<span class="linenos"> 45</span><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos"> 46</span><span class="w">        </span><span class="c1">/// Returns true, if parsing was completed before reaching end of text due to some condition met, and not due to critical error encountered.</span>
+<span class="linenos"> 47</span><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos"> 48</span><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">IsEarlyParseStopEncountered</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 49</span>
+<span class="linenos"> 50</span><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos"> 51</span><span class="w">        </span><span class="c1">/// Tries to parse braces if the text at current position starts with either &#39;(&#39; or &#39;[&#39;.</span>
+<span class="linenos"> 52</span><span class="w">        </span><span class="c1">/// If parsing is successful, the position after parsing will be after &#39;)&#39; or &#39;]&#39;</span>
+<span class="linenos"> 53</span><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos"> 54</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;literalExpressionItem&quot;&gt;If the parameter is not null, the braces expression item will have a</span>
+<span class="linenos"> 55</span><span class="w">        </span><span class="c1">/// value &lt;see cref=&quot;IBracesExpressionItem.NameLiteral&quot;/&gt; equal to &lt;paramref name=&quot;literalExpressionItem&quot;/&gt;.</span>
+<span class="linenos"> 56</span><span class="w">        </span><span class="c1">/// &lt;/param&gt;</span>
+<span class="linenos"> 57</span><span class="w">        </span><span class="c1">/// &lt;exception cref=&quot;ParseTextException&quot;&gt;Throws this exception if the text at current position &lt;see cref=&quot;ITextSymbolsParserState.PositionInText&quot;/&gt; in</span>
+<span class="linenos"> 58</span><span class="w">        </span><span class="c1">/// of property &lt;see cref=&quot;TextSymbolsParser&quot;/&gt; is not &#39;(&#39; or &#39;[&#39;</span>
+<span class="linenos"> 59</span><span class="w">        </span><span class="c1">/// &lt;/exception&gt;</span>
+<span class="linenos"> 60</span><span class="w">        </span><span class="na">[NotNull]</span><span class="w"></span>
+<span class="linenos"> 61</span><span class="w">        </span><span class="n">IBracesExpressionItem</span><span class="w"> </span><span class="nf">ParseBracesExpression</span><span class="p">([</span><span class="n">CanBeNull</span><span class="p">]</span><span class="w"> </span><span class="n">ILiteralExpressionItem</span><span class="w"> </span><span class="n">literalExpressionItem</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 62</span>
+<span class="linenos"> 63</span><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos"> 64</span><span class="w">        </span><span class="c1">/// Tries to parse an expression at current position to &lt;see cref=&quot;ICodeBlockExpressionItem&quot;/&gt;, if text at current position starts with</span>
+<span class="linenos"> 65</span><span class="w">        </span><span class="c1">/// &lt;see cref=&quot;IExpressionLanguageProvider.CodeBlockStartMarker&quot;/&gt;.</span>
+<span class="linenos"> 66</span><span class="w">        </span><span class="c1">/// If parsing is successful, the position after parsing will be after the code block end marker &lt;see cref=&quot;IExpressionLanguageProvider.CodeBlockEndMarker&quot;/&gt;</span>
+<span class="linenos"> 67</span><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos"> 68</span><span class="w">        </span><span class="c1">/// &lt;exception cref=&quot;ParseTextException&quot;&gt;Throws this exception if the text at current position at current position &lt;see cref=&quot;ITextSymbolsParserState.PositionInText&quot;/&gt; in</span>
+<span class="linenos"> 69</span><span class="w">        </span><span class="c1">/// of property &lt;see cref=&quot;TextSymbolsParser&quot;/&gt; is not block start marker &lt;see cref=&quot;IExpressionLanguageProvider.CodeBlockStartMarker&quot;/&gt;.</span>
+<span class="linenos"> 70</span><span class="w">        </span><span class="c1">/// &lt;/exception&gt;</span>
+<span class="linenos"> 71</span><span class="w">        </span><span class="na">[NotNull]</span><span class="w"></span>
+<span class="linenos"> 72</span><span class="w">        </span><span class="n">ICodeBlockExpressionItem</span><span class="w"> </span><span class="nf">ParseCodeBlockExpression</span><span class="p">();</span><span class="w"></span>
+<span class="linenos"> 73</span>
+<span class="linenos"> 74</span><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos"> 75</span><span class="w">        </span><span class="c1">/// Skips comments and spaces. Comments will be added to &lt;see cref=&quot;IParseExpressionResult.SortedCommentedTextData&quot;/&gt;.</span>
+<span class="linenos"> 76</span><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos"> 77</span><span class="w">        </span><span class="c1">/// &lt;returns&gt;Returns true, if text end is not reached (i.e. the value of &lt;see cref=&quot;ITextSymbolsParserState.PositionInText&quot;/&gt; of &lt;see cref=&quot;TextSymbolsParser&quot;/&gt; is not past the</span>
+<span class="linenos"> 78</span><span class="w">        </span><span class="c1">/// parsed text end). Returns false otherwise.&lt;/returns&gt;</span>
+<span class="linenos"> 79</span><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nf">SkipSpacesAndComments</span><span class="p">();</span><span class="w"></span>
+<span class="linenos"> 80</span>
+<span class="linenos"> 81</span><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos"> 82</span><span class="w">        </span><span class="c1">/// Tries to parse a symbol at current position. For example if parsed text is &quot;var var1=8;&quot;, and the value</span>
+<span class="linenos"> 83</span><span class="w">        </span><span class="c1">/// of &lt;see cref=&quot;ITextSymbolsParserState.PositionInText&quot;/&gt; of &lt;see cref=&quot;TextSymbolsParser&quot;/&gt; is 4 (index of &quot;var1&quot;), then</span>
+<span class="linenos"> 84</span><span class="w">        </span><span class="c1">/// this method will return true, and the value of &lt;paramref name=&quot;parsedLiteral&quot;/&gt; will be set to &quot;var1&quot;.</span>
+<span class="linenos"> 85</span><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos"> 86</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;parsedLiteral&quot;&gt;Parsed symbol. The value is null, if the returned value is false. Otherwise the value is not null.&lt;/param&gt;</span>
+<span class="linenos"> 87</span><span class="w">        </span><span class="c1">/// &lt;returns&gt;Returns true if valid literal was parsed. Returns false otherwise.&lt;/returns&gt;</span>
+<span class="linenos"> 88</span><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nf">TryParseSymbol</span><span class="p">(</span><span class="k">out</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">parsedLiteral</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 89</span>
+<span class="linenos"> 90</span><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos"> 91</span><span class="w">        </span><span class="c1">/// Adds an error data.</span>
+<span class="linenos"> 92</span><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos"> 93</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;parseErrorItem&quot;&gt;Code item error data.&lt;/param&gt;</span>
+<span class="linenos"> 94</span><span class="w">        </span><span class="k">void</span><span class="w"> </span><span class="nf">AddParseErrorItem</span><span class="p">([</span><span class="n">NotNull</span><span class="p">]</span><span class="w"> </span><span class="n">IParseErrorItem</span><span class="w"> </span><span class="n">parseErrorItem</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 95</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span><span class="w">    </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos"> 98</span><span class="w">    </span><span class="c1">/// Extension methods for &lt;see cref=&quot;IParseExpressionItemContext&quot;/&gt;</span>
+<span class="linenos"> 99</span><span class="w">    </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos">100</span><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">ParseExpressionItemContextExtensionMethods</span><span class="w"></span>
+<span class="linenos">101</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">102</span><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos">103</span><span class="w">        </span><span class="c1">/// Returns true if parsed text in property &lt;see cref=&quot;ITextSymbolsParserState.TextToParse&quot;/&gt; in &lt;see cref=&quot;IParseExpressionItemContext.TextSymbolsParser&quot;/&gt;</span>
+<span class="linenos">104</span><span class="w">        </span><span class="c1">/// starts with symbol &lt;paramref name=&quot;symbolToMatch&quot;/&gt;.</span>
+<span class="linenos">105</span><span class="w">        </span><span class="c1">/// For example if parsed text is &quot;f(x) begin++x;end;&quot; and &lt;paramref name=&quot;symbolToMatch&quot;/&gt; is &quot;begin&quot; and property</span>
+<span class="linenos">106</span><span class="w">        </span><span class="c1">/// &lt;see cref=&quot;ITextSymbolsParserState.PositionInText&quot;/&gt; in &lt;see cref=&quot;IParseExpressionItemContext.TextSymbolsParser&quot;/&gt;</span>
+<span class="linenos">107</span><span class="w">        </span><span class="c1">/// is 5 (index of &quot;begin&quot;), then this method will return true. On the other hand if we change the parsed text is &quot;f(x) beginy+x;end;&quot;, with all the other</span>
+<span class="linenos">108</span><span class="w">        </span><span class="c1">/// values being the same, the returned value will be false.</span>
+<span class="linenos">109</span><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos">110</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;parseExpressionItemContext&quot;&gt;Pare expression context data.&lt;/param&gt;</span>
+<span class="linenos">111</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;symbolToMatch&quot;&gt;Symbol to match.&lt;/param&gt;</span>
+<span class="linenos">112</span><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">StartsWithSymbol</span><span class="p">([</span><span class="n">NotNull</span><span class="p">]</span><span class="w"> </span><span class="k">this</span><span class="w"> </span><span class="n">IParseExpressionItemContext</span><span class="w"> </span><span class="n">parseExpressionItemContext</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">symbolToMatch</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">113</span><span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">114</span><span class="w">            </span><span class="kt">var</span><span class="w"> </span><span class="n">textSymbolsParser</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">parseExpressionItemContext</span><span class="p">.</span><span class="n">TextSymbolsParser</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">115</span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Helpers</span><span class="p">.</span><span class="n">StartsWithSymbol</span><span class="p">(</span><span class="n">textSymbolsParser</span><span class="p">.</span><span class="n">TextToParse</span><span class="p">,</span><span class="w"> </span><span class="n">symbolToMatch</span><span class="p">,</span><span class="w"> </span><span class="n">textSymbolsParser</span><span class="p">.</span><span class="n">PositionInText</span><span class="p">,</span><span class="w"> </span><span class="n">textSymbolsParser</span><span class="p">.</span><span class="n">ParsedTextEnd</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">116</span><span class="w">                </span><span class="n">parseExpressionItemContext</span><span class="p">.</span><span class="n">ExpressionLanguageProviderWrapper</span><span class="p">.</span><span class="n">ExpressionLanguageProvider</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">117</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">118</span>
+<span class="linenos">119</span><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos">120</span><span class="w">        </span><span class="c1">/// Returns true if parsed text in property &lt;see cref=&quot;ITextSymbolsParserState.TextToParse&quot;/&gt; in &lt;see cref=&quot;IParseExpressionItemContext.TextSymbolsParser&quot;/&gt;</span>
+<span class="linenos">121</span><span class="w">        </span><span class="c1">/// starts with symbol &lt;paramref name=&quot;symbolToMatch&quot;/&gt;.</span>
+<span class="linenos">122</span><span class="w">        </span><span class="c1">/// For example if parsed text is &quot;f(x) begin++x;end;&quot; and &lt;paramref name=&quot;symbolToMatch&quot;/&gt; is &quot;begin&quot; and property</span>
+<span class="linenos">123</span><span class="w">        </span><span class="c1">/// &lt;see cref=&quot;ITextSymbolsParserState.PositionInText&quot;/&gt; in &lt;see cref=&quot;IParseExpressionItemContext.TextSymbolsParser&quot;/&gt;</span>
+<span class="linenos">124</span><span class="w">        </span><span class="c1">/// is 5 (index of &quot;begin&quot;), then this method will return true. On the other hand if we change the parsed text is &quot;f(x) beginy+x;end;&quot;, with all the other</span>
+<span class="linenos">125</span><span class="w">        </span><span class="c1">/// values being the same, the returned value will be false.</span>
+<span class="linenos">126</span><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos">127</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;parseExpressionItemContext&quot;&gt;Pare expression context data.&lt;/param&gt;</span>
+<span class="linenos">128</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;symbolToMatch&quot;&gt;Symbol to match.&lt;/param&gt;</span>
+<span class="linenos">129</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;matchedSymbol&quot;&gt;</span>
+<span class="linenos">130</span><span class="w">        </span><span class="c1">/// An output parameter for the matched symbol. If the returned value is true, the value is not null.</span>
+<span class="linenos">131</span><span class="w">        </span><span class="c1">/// Otherwise the value is null.&lt;br/&gt;</span>
+<span class="linenos">132</span><span class="w">        </span><span class="c1">/// If the value of &lt;see cref=&quot;IExpressionLanguageProvider.IsLanguageCaseSensitive&quot;/&gt; is true, the value is the same as</span>
+<span class="linenos">133</span><span class="w">        </span><span class="c1">/// &lt;paramref name=&quot;symbolToMatch&quot;/&gt;, otherwise, the value is equal to &lt;paramref name=&quot;matchedSymbol&quot;/&gt; when case is ignored.</span>
+<span class="linenos">134</span><span class="w">        </span><span class="c1">/// &lt;/param&gt;</span>
+<span class="linenos">135</span><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">StartsWithSymbol</span><span class="p">([</span><span class="n">NotNull</span><span class="p">]</span><span class="w"> </span><span class="k">this</span><span class="w"> </span><span class="n">IParseExpressionItemContext</span><span class="w"> </span><span class="n">parseExpressionItemContext</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">symbolToMatch</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">136</span><span class="w">            </span><span class="k">out</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">matchedSymbol</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">137</span><span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">138</span><span class="w">            </span><span class="kt">var</span><span class="w"> </span><span class="n">textSymbolsParser</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">parseExpressionItemContext</span><span class="p">.</span><span class="n">TextSymbolsParser</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">139</span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Helpers</span><span class="p">.</span><span class="n">StartsWithSymbol</span><span class="p">(</span><span class="n">textSymbolsParser</span><span class="p">.</span><span class="n">TextToParse</span><span class="p">,</span><span class="w"> </span><span class="n">symbolToMatch</span><span class="p">,</span><span class="w"> </span><span class="n">textSymbolsParser</span><span class="p">.</span><span class="n">PositionInText</span><span class="p">,</span><span class="w"> </span><span class="n">textSymbolsParser</span><span class="p">.</span><span class="n">ParsedTextEnd</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">140</span><span class="w">                </span><span class="n">parseExpressionItemContext</span><span class="p">.</span><span class="n">ExpressionLanguageProviderWrapper</span><span class="p">.</span><span class="n">ExpressionLanguageProvider</span><span class="p">,</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="n">matchedSymbol</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">141</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">142</span>
+<span class="linenos">143</span><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos">144</span><span class="w">        </span><span class="c1">/// Returns true if parsed text in property &lt;see cref=&quot;ITextSymbolsParserState.TextToParse&quot;/&gt; in &lt;see cref=&quot;IParseExpressionItemContext.TextSymbolsParser&quot;/&gt;</span>
+<span class="linenos">145</span><span class="w">        </span><span class="c1">/// starts with symbol &lt;paramref name=&quot;symbolToMatch&quot;/&gt;.</span>
+<span class="linenos">146</span><span class="w">        </span><span class="c1">/// For example if parsed text is &quot;f(x) begin++x;end;&quot; and &lt;paramref name=&quot;symbolToMatch&quot;/&gt; is &quot;begin&quot; and property</span>
+<span class="linenos">147</span><span class="w">        </span><span class="c1">/// &lt;see cref=&quot;ITextSymbolsParserState.PositionInText&quot;/&gt; in &lt;see cref=&quot;IParseExpressionItemContext.TextSymbolsParser&quot;/&gt;</span>
+<span class="linenos">148</span><span class="w">        </span><span class="c1">/// is 5 (index of &quot;begin&quot;), then this method will return true. On the other hand if we change the parsed text is &quot;f(x) beginy+x;end;&quot;, with all the other</span>
+<span class="linenos">149</span><span class="w">        </span><span class="c1">/// values being the same, the returned value will be false.</span>
+<span class="linenos">150</span><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos">151</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;parseExpressionItemContext&quot;&gt;Pare expression context data.&lt;/param&gt;</span>
+<span class="linenos">152</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;symbolToMatch&quot;&gt;Symbol to match.&lt;/param&gt;</span>
+<span class="linenos">153</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;isValidTextAfterTextToMatch&quot;&gt;A delegate that specifies if the text after the matched symbol is not part of the same symbol.</span>
+<span class="linenos">154</span><span class="w">        </span><span class="c1">/// For example if parsed text is &quot;var var1+&quot;, &lt;paramref name=&quot;symbolToMatch&quot;/&gt; is &quot;var1&quot;, and property</span>
+<span class="linenos">155</span><span class="w">        </span><span class="c1">/// &lt;see cref=&quot;ITextSymbolsParserState.PositionInText&quot;/&gt; in &lt;see cref=&quot;IParseExpressionItemContext.TextSymbolsParser&quot;/&gt; is 4 (i.e., index of &quot;var1&quot;),</span>
+<span class="linenos">156</span><span class="w">        </span><span class="c1">/// then if this delegate returns true for character &#39;+&#39;, then the method &lt;see cref=&quot;StartsWithSymbol(IParseExpressionItemContext, string, IsValidTextAfterMatchedTextDelegate)&quot;/&gt;</span>
+<span class="linenos">157</span><span class="w">        </span><span class="c1">/// will return true, otherwise, the method call will return false.</span>
+<span class="linenos">158</span><span class="w">        </span><span class="c1">/// &lt;/param&gt;</span>
+<span class="linenos">159</span><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">StartsWithSymbol</span><span class="p">([</span><span class="n">NotNull</span><span class="p">]</span><span class="w"> </span><span class="k">this</span><span class="w"> </span><span class="n">IParseExpressionItemContext</span><span class="w"> </span><span class="n">parseExpressionItemContext</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">symbolToMatch</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">160</span><span class="w">                                      </span><span class="n">IsValidTextAfterMatchedTextDelegate</span><span class="w"> </span><span class="n">isValidTextAfterTextToMatch</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">161</span><span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">162</span><span class="w">            </span><span class="kt">var</span><span class="w"> </span><span class="n">textSymbolsParser</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">parseExpressionItemContext</span><span class="p">.</span><span class="n">TextSymbolsParser</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">163</span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Helpers</span><span class="p">.</span><span class="n">StartsWithSymbol</span><span class="p">(</span><span class="n">textSymbolsParser</span><span class="p">.</span><span class="n">TextToParse</span><span class="p">,</span><span class="w"> </span><span class="n">symbolToMatch</span><span class="p">,</span><span class="w"> </span><span class="n">textSymbolsParser</span><span class="p">.</span><span class="n">PositionInText</span><span class="p">,</span><span class="w"> </span><span class="n">textSymbolsParser</span><span class="p">.</span><span class="n">ParsedTextEnd</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">164</span><span class="w">                                        </span><span class="n">parseExpressionItemContext</span><span class="p">.</span><span class="n">ExpressionLanguageProviderWrapper</span><span class="p">.</span><span class="n">ExpressionLanguageProvider</span><span class="p">,</span><span class="w"> </span><span class="n">isValidTextAfterTextToMatch</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">165</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">166</span>
+<span class="linenos">167</span><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos">168</span><span class="w">        </span><span class="c1">/// Returns true if parsed text in property &lt;see cref=&quot;ITextSymbolsParserState.TextToParse&quot;/&gt; in &lt;see cref=&quot;IParseExpressionItemContext.TextSymbolsParser&quot;/&gt;</span>
+<span class="linenos">169</span><span class="w">        </span><span class="c1">/// starts with symbol &lt;paramref name=&quot;symbolToMatch&quot;/&gt;.</span>
+<span class="linenos">170</span><span class="w">        </span><span class="c1">/// For example if parsed text is &quot;f(x) begin++x;end;&quot; and &lt;paramref name=&quot;symbolToMatch&quot;/&gt; is &quot;begin&quot; and property</span>
+<span class="linenos">171</span><span class="w">        </span><span class="c1">/// &lt;see cref=&quot;ITextSymbolsParserState.PositionInText&quot;/&gt; in &lt;see cref=&quot;IParseExpressionItemContext.TextSymbolsParser&quot;/&gt;</span>
+<span class="linenos">172</span><span class="w">        </span><span class="c1">/// is 5 (index of &quot;begin&quot;), then this method will return true. On the other hand if we change the parsed text is &quot;f(x) beginy+x;end;&quot;, with all the other</span>
+<span class="linenos">173</span><span class="w">        </span><span class="c1">/// values being the same, the returned value will be false.</span>
+<span class="linenos">174</span><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos">175</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;parseExpressionItemContext&quot;&gt;Pare expression context data.&lt;/param&gt;</span>
+<span class="linenos">176</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;symbolToMatch&quot;&gt;Symbol to match.&lt;/param&gt;</span>
+<span class="linenos">177</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;isValidTextAfterTextToMatch&quot;&gt;A delegate that specifies if the text after the matched symbol is not part of the same symbol.</span>
+<span class="linenos">178</span><span class="w">        </span><span class="c1">/// For example if parsed text is &quot;var var1+&quot;, &lt;paramref name=&quot;symbolToMatch&quot;/&gt; is &quot;var1&quot;, and property</span>
+<span class="linenos">179</span><span class="w">        </span><span class="c1">/// &lt;see cref=&quot;ITextSymbolsParserState.PositionInText&quot;/&gt; in &lt;see cref=&quot;IParseExpressionItemContext.TextSymbolsParser&quot;/&gt; is 4 (i.e., index of &quot;var1&quot;),</span>
+<span class="linenos">180</span><span class="w">        </span><span class="c1">/// then if this delegate returns true for character &#39;+&#39;, then the method &lt;see cref=&quot;StartsWithSymbol(IParseExpressionItemContext, string, IsValidTextAfterMatchedTextDelegate)&quot;/&gt;</span>
+<span class="linenos">181</span><span class="w">        </span><span class="c1">/// will return true, otherwise, the method call will return false.</span>
+<span class="linenos">182</span><span class="w">        </span><span class="c1">/// &lt;/param&gt;</span>
+<span class="linenos">183</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;matchedSymbol&quot;&gt;</span>
+<span class="linenos">184</span><span class="w">        </span><span class="c1">/// An output parameter for the matched symbol. If the returned value is true, the value is not null.</span>
+<span class="linenos">185</span><span class="w">        </span><span class="c1">/// Otherwise the value is null.&lt;br/&gt;</span>
+<span class="linenos">186</span><span class="w">        </span><span class="c1">/// If the value of &lt;see cref=&quot;IExpressionLanguageProvider.IsLanguageCaseSensitive&quot;/&gt; is true, the value is the same as</span>
+<span class="linenos">187</span><span class="w">        </span><span class="c1">/// &lt;paramref name=&quot;symbolToMatch&quot;/&gt;, otherwise, the value is equal to &lt;paramref name=&quot;matchedSymbol&quot;/&gt; when case is ignored.</span>
+<span class="linenos">188</span><span class="w">        </span><span class="c1">/// &lt;/param&gt;</span>
+<span class="linenos">189</span><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">StartsWithSymbol</span><span class="p">([</span><span class="n">NotNull</span><span class="p">]</span><span class="w"> </span><span class="k">this</span><span class="w"> </span><span class="n">IParseExpressionItemContext</span><span class="w"> </span><span class="n">parseExpressionItemContext</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">symbolToMatch</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">190</span><span class="w">                                      </span><span class="n">IsValidTextAfterMatchedTextDelegate</span><span class="w"> </span><span class="n">isValidTextAfterTextToMatch</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">matchedSymbol</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">191</span><span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">192</span><span class="w">            </span><span class="kt">var</span><span class="w"> </span><span class="n">textSymbolsParser</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">parseExpressionItemContext</span><span class="p">.</span><span class="n">TextSymbolsParser</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">193</span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Helpers</span><span class="p">.</span><span class="n">StartsWithSymbol</span><span class="p">(</span><span class="n">textSymbolsParser</span><span class="p">.</span><span class="n">TextToParse</span><span class="p">,</span><span class="w"> </span><span class="n">symbolToMatch</span><span class="p">,</span><span class="w"> </span><span class="n">textSymbolsParser</span><span class="p">.</span><span class="n">PositionInText</span><span class="p">,</span><span class="w"> </span><span class="n">textSymbolsParser</span><span class="p">.</span><span class="n">ParsedTextEnd</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">194</span><span class="w">                </span><span class="n">parseExpressionItemContext</span><span class="p">.</span><span class="n">ExpressionLanguageProviderWrapper</span><span class="p">.</span><span class="n">ExpressionLanguageProvider</span><span class="p">,</span><span class="w"> </span><span class="n">isValidTextAfterTextToMatch</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="n">matchedSymbol</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">195</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">196</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">197</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Custom Expression Item Parsers</a><ul>
+<li><a class="reference internal" href="#implementing-custom-expression-parsers">Implementing Custom Expression Parsers</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="postfixes.html"
+                          title="previous chapter">Postfixes</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="comments.html"
+                          title="next chapter">Comments</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/custom-expression-item-parsers.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="comments.html" title="Comments"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="postfixes.html" title="Postfixes"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">UniversalExpressionParser 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Custom Expression Item Parsers</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Artak Hakobyan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+  </body>
+</html>

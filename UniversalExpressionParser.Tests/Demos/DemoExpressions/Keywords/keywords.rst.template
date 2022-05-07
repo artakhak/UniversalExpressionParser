@@ -44,4 +44,4 @@ Examples of keywords
 
 .. raw:: html
 
-    <div style="background: lightslategrey"><a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Keywords/Keywords.parsed"><p style="color: white;font-weight: bold">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a></div>
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Keywords/Keywords.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>

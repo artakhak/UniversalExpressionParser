@@ -25,5 +25,6 @@ Examples of literals
 
      <IncludedFilePlaceHolder>Literals.expr</IncludedFilePlaceHolder>
 
+.. raw:: html
 
-`Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Literals/Literals.parsed/>`_
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Literals/Literals.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>

@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Prefixes &#8212; UniversalExpressionParser 1.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Postfixes" href="postfixes.html" />
+    <link rel="prev" title="Keywords" href="keywords.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="postfixes.html" title="Postfixes"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="keywords.html" title="Keywords"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">UniversalExpressionParser 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Prefixes</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="prefixes">
+<h1>Prefixes<a class="headerlink" href="#prefixes" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#nameless-brace-as-prefixes" id="id1">1) Nameless brace as prefixes</a></p></li>
+<li><p><a class="reference internal" href="#custom-expressions-as-prefixes" id="id2">2) Custom expressions as prefixes</a></p></li>
+</ul>
+</div>
+<p>Prefixes are one or more expression items that precede some other expression item, and are added to the list in property <strong>Prefixes</strong> in interface <strong>UniversalExpressionParser.ExpressionItems.IComplexExpressionItem</strong> for the expression item that follows the list of prefix expression items.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Prefixes are supported only if the value of property <strong>SupportsPrefixes</strong> in interface <strong>UniversalExpressionParser.IExpressionLanguageProvider</strong> is true.</p>
+</div>
+<p>Currently <strong>Universal Expression Parser</strong> supports two types of prefixes:</p>
+<section id="nameless-brace-as-prefixes">
+<h2><a class="toc-backref" href="#id1">1) Nameless brace as prefixes</a><a class="headerlink" href="#nameless-brace-as-prefixes" title="Permalink to this headline">¶</a></h2>
+<p>Square or round braces expressions items without names (i.e. expression items that are parsed to <strong>UniversalExpressionParser.ExpressionItems.IBracesExpressionItem</strong> with property <strong>NamedExpressionItem</strong> equal to <strong>null</strong>) that precede another expression item (e.g., another braces expression, a literal, a code block, text expression item, numeric value expression item, etc) are parsed as prefixes and are added to expression item they precede.</p>
+<ul class="simple">
+<li><p>In the example below the braces expression items parsed from “[NotNull, ItemNotNull]” and “(Attribute(“MarkedFunction”))” will be added as prefixes to expression item parsed from “F1(x, x2)”.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="p">[</span><span class="n">NotNull</span><span class="p">,</span> <span class="n">ItemNotNull</span><span class="p">](</span><span class="n">Attribute</span><span class="p">(</span><span class="s2">&quot;MarkedFunction&quot;</span><span class="p">))</span> <span class="n">F1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+<span class="linenos">2</span><span class="p">{</span>
+<span class="linenos">3</span>    <span class="o">//</span> <span class="n">This</span> <span class="n">code</span> <span class="n">block</span> <span class="n">will</span> <span class="n">be</span> <span class="n">added</span> <span class="n">to</span> <span class="n">expression</span> <span class="n">item</span> <span class="n">parsed</span> <span class="kn">from</span> <span class="nn">F1</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">T1</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="n">T2</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="n">T3</span><span class="p">)</span> <span class="k">as</span> <span class="n">a</span> <span class="n">postfix</span><span class="o">.</span>
+<span class="linenos">4</span>    <span class="n">retuens</span> <span class="p">[</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">];</span>
+<span class="linenos">5</span><span class="p">}</span>
+</pre></div>
+</div>
+<a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Prefixes/BracesPrefixesSimpleDemo.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a></section>
+<section id="custom-expressions-as-prefixes">
+<h2><a class="toc-backref" href="#id2">2) Custom expressions as prefixes</a><a class="headerlink" href="#custom-expressions-as-prefixes" title="Permalink to this headline">¶</a></h2>
+<p>If custom expression items of type <strong>UniversalExpressionParser.ExpressionItems.Custom.ICustomExpressionItem</strong> with property <strong>CustomExpressionItemCategory</strong> equal to <strong>UniversalExpressionParser.ExpressionItems.Custom.CustomExpressionItemCategory.Prefix</strong> are added as prefixes to expression item they precede.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>List of prefixes can include both nameless brace expression items as well as custom expression items, placed in any order.</p>
+</div>
+<ul class="simple">
+<li><p>In the example below, the expression items “::types[T1,T2]” and “::types[T3]” are parsed to custom expression items of type <strong>UniversalExpressionParser.DemoExpressionLanguageProviders.CustomExpressions.IGenericTypeDataExpressionItem</strong>, and are added as prefixes to braces expression item parsed from “F1(x:T1, y:T2, z: T3)”.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For more details on custom expression items see section <strong>Custom Expression Item Parsers</strong>.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="p">::</span><span class="n">types</span><span class="p">[</span><span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="p">]</span> <span class="p">::</span><span class="n">types</span><span class="p">[</span><span class="n">T3</span><span class="p">]</span> <span class="n">F1</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">T1</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="n">T2</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="n">T3</span><span class="p">)</span>
+<span class="linenos">2</span><span class="p">{</span>
+<span class="linenos">3</span>    <span class="o">//</span> <span class="n">This</span> <span class="n">code</span> <span class="n">block</span> <span class="n">will</span> <span class="n">be</span> <span class="n">added</span> <span class="n">to</span> <span class="n">expression</span> <span class="n">item</span> <span class="n">parsed</span> <span class="kn">from</span> <span class="nn">F1</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">T1</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="n">T2</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="n">T3</span><span class="p">)</span> <span class="k">as</span> <span class="n">a</span> <span class="n">postfix</span><span class="o">.</span>
+<span class="linenos">4</span><span class="p">}</span>
+</pre></div>
+</div>
+<a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Prefixes/CustomExpressionItemsAsPrefixesSimpleDemo.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The list of prefixes can include both types of prefixes at the same time (i.e., braces and custom expression items).</p>
+</div>
+<ul class="simple">
+<li><p>Here is an example of prefixes used to model c# like attributes for classes and methods:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span> <span class="p">[</span><span class="n">TestFixture</span><span class="p">]</span> <span class="ow">and</span> <span class="p">[</span><span class="n">Attribute</span><span class="p">(</span><span class="s2">&quot;IntegrationTest&quot;</span><span class="p">)]</span> <span class="n">are</span> <span class="n">added</span> <span class="k">as</span> <span class="n">prefixes</span> <span class="n">to</span> <span class="n">literal</span> <span class="n">MyTests</span><span class="o">.</span>
+<span class="linenos"> 2</span><span class="p">[</span><span class="n">TestFixture</span><span class="p">]</span>
+<span class="linenos"> 3</span><span class="p">[</span><span class="n">Attribute</span><span class="p">(</span><span class="s2">&quot;IntegrationTest&quot;</span><span class="p">)]</span>
+<span class="linenos"> 4</span><span class="o">//</span> <span class="n">public</span> <span class="ow">and</span> <span class="k">class</span> <span class="nc">are</span> <span class="n">added</span> <span class="k">as</span> <span class="n">keywords</span> <span class="n">to</span> <span class="n">MyTests</span>
+<span class="linenos"> 5</span><span class="n">public</span> <span class="k">class</span> <span class="nc">MyTests</span>
+<span class="linenos"> 6</span><span class="p">{</span>
+<span class="linenos"> 7</span>    <span class="o">//</span> <span class="n">Brace</span> <span class="n">expression</span> <span class="n">items</span> <span class="p">[</span><span class="n">SetupMyTests</span><span class="p">],</span> <span class="p">[</span><span class="n">Attribute</span><span class="p">(</span><span class="s2">&quot;This is a demo of multiple prefixes&quot;</span><span class="p">)]</span>
+<span class="linenos"> 8</span>    <span class="o">//</span> <span class="ow">and</span> <span class="n">custom</span> <span class="n">expression</span> <span class="n">item</span> <span class="n">starting</span> <span class="k">with</span> <span class="p">::</span><span class="n">metadata</span> <span class="ow">and</span> <span class="n">ending</span> <span class="k">with</span> <span class="p">}</span> <span class="n">are</span> <span class="n">added</span> <span class="k">as</span> <span class="n">prefixes</span> <span class="n">to</span>
+<span class="linenos"> 9</span>    <span class="o">//</span> <span class="n">expression</span> <span class="n">SetupMyTests</span><span class="p">()</span>
+<span class="linenos">10</span>    <span class="p">[</span><span class="n">TestSetup</span><span class="p">]</span>
+<span class="linenos">11</span>    <span class="p">[</span><span class="n">Attribute</span><span class="p">(</span><span class="s2">&quot;This is a demo of multiple prefixes&quot;</span><span class="p">)]</span>
+<span class="linenos">12</span>    <span class="p">::</span><span class="n">metadata</span> <span class="p">{</span>
+<span class="linenos">13</span>        <span class="n">Description</span><span class="p">:</span> <span class="s2">&quot;Demo of custom expression item parsed to</span>
+<span class="linenos">14</span>                        <span class="n">UniversalExpressionParser</span><span class="o">.</span><span class="n">DemoExpressionLanguageProviders</span><span class="o">.</span><span class="n">CustomExpressions</span><span class="o">.</span><span class="n">IMetadataCustomExpressionItem</span>
+<span class="linenos">15</span>                        <span class="n">used</span> <span class="ow">in</span> <span class="n">prefixes</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">expression</span> <span class="n">parsed</span> <span class="kn">from</span> <span class="s1">&#39;SetupMyTests()&#39;</span><span class="s2">&quot;;</span>
+<span class="linenos">16</span>        <span class="n">SomeMetadata</span><span class="p">:</span> <span class="mi">1</span>
+<span class="linenos">17</span>    <span class="p">}</span>
+<span class="linenos">18</span>    <span class="o">//</span> <span class="n">public</span> <span class="ow">and</span> <span class="n">static</span> <span class="n">are</span> <span class="n">added</span> <span class="k">as</span> <span class="n">keywords</span> <span class="n">to</span> <span class="n">expression</span> <span class="n">SetupMyTests</span><span class="p">()</span><span class="o">.</span>
+<span class="linenos">19</span>    <span class="n">public</span> <span class="n">static</span> <span class="n">SetupMyTests</span><span class="p">()</span> <span class="p">:</span> <span class="n">void</span>
+<span class="linenos">20</span>    <span class="p">{</span>
+<span class="linenos">21</span>        <span class="o">//</span> <span class="n">Do</span> <span class="n">some</span> <span class="n">test</span> <span class="n">setup</span> <span class="n">here</span>
+<span class="linenos">22</span>    <span class="p">}</span>
+<span class="linenos">23</span><span class="p">}</span>
+</pre></div>
+</div>
+<a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Prefixes/MoreComplexPrefixesDemo.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The list of prefixes can include both types of prefixes at the same time (i.e., braces and custom expression items).</p>
+</div>
+<ul class="simple">
+<li><p>Below is an example of using prefixes with different expression item types:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span> <span class="n">Prefixes</span> <span class="n">added</span> <span class="n">to</span> <span class="n">a</span> <span class="n">literal</span> <span class="s2">&quot;x&quot;</span><span class="o">.</span>
+<span class="linenos"> 2</span><span class="p">[</span><span class="n">NotNull</span><span class="p">]</span> <span class="p">[</span><span class="n">Attribute</span><span class="p">(</span><span class="s2">&quot;Marker&quot;</span><span class="p">)]</span> <span class="n">x</span><span class="p">;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="o">//</span> <span class="n">Prefixes</span> <span class="n">added</span> <span class="n">to</span> <span class="n">named</span> <span class="nb">round</span> <span class="n">braces</span><span class="o">.</span> <span class="p">[</span><span class="n">NotNull</span><span class="p">]</span> <span class="p">[</span><span class="n">Attribute</span><span class="p">(</span><span class="s2">&quot;Marker&quot;</span><span class="p">)]</span> <span class="n">will</span> <span class="n">be</span> <span class="n">added</span>
+<span class="linenos"> 5</span><span class="o">//</span> <span class="n">to</span> <span class="n">prefixes</span> <span class="ow">in</span> <span class="n">braces</span> <span class="n">expression</span> <span class="n">item</span> <span class="n">parsed</span> <span class="kn">from</span> <span class="s2">&quot;f1(x1)&quot;</span>
+<span class="linenos"> 6</span><span class="p">[</span><span class="n">NotNull</span><span class="p">]</span> <span class="p">[</span><span class="n">Attribute</span><span class="p">(</span><span class="s2">&quot;Marker&quot;</span><span class="p">)]</span> <span class="n">f1</span><span class="p">(</span><span class="n">x1</span><span class="p">);</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="o">//</span> <span class="n">Prefixes</span> <span class="n">added</span> <span class="n">to</span> <span class="n">unnamed</span> <span class="nb">round</span> <span class="n">braces</span><span class="o">.</span> <span class="p">[</span><span class="n">NotNull</span><span class="p">]</span> <span class="p">[</span><span class="n">Attribute</span><span class="p">(</span><span class="s2">&quot;Marker&quot;</span><span class="p">)]</span> <span class="n">will</span> <span class="n">be</span> <span class="n">added</span>
+<span class="linenos"> 9</span><span class="o">//</span> <span class="n">to</span> <span class="n">prefixes</span> <span class="ow">in</span> <span class="n">braces</span> <span class="n">expression</span> <span class="n">item</span> <span class="n">parsed</span> <span class="kn">from</span> <span class="s2">&quot;(x1)&quot;</span>
+<span class="linenos">10</span><span class="p">[</span><span class="n">NotNull</span><span class="p">]</span> <span class="p">[</span><span class="n">Attribute</span><span class="p">(</span><span class="s2">&quot;Marker&quot;</span><span class="p">)]</span> <span class="p">(</span><span class="n">x1</span><span class="p">);</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="o">//</span> <span class="n">Prefixes</span> <span class="n">added</span> <span class="n">to</span> <span class="n">named</span> <span class="n">square</span> <span class="n">braces</span><span class="o">.</span> <span class="p">[</span><span class="n">NotNull</span><span class="p">]</span> <span class="p">[</span><span class="n">Attribute</span><span class="p">(</span><span class="s2">&quot;Marker&quot;</span><span class="p">)]</span> <span class="n">will</span> <span class="n">be</span> <span class="n">added</span>
+<span class="linenos">13</span><span class="o">//</span> <span class="n">to</span> <span class="n">prefixes</span> <span class="ow">in</span> <span class="n">named</span> <span class="n">braces</span> <span class="n">expression</span> <span class="n">item</span> <span class="n">parsed</span> <span class="kn">from</span> <span class="s2">&quot;m1[x1]&quot;</span>
+<span class="linenos">14</span><span class="p">[</span><span class="n">NotNull</span><span class="p">]</span> <span class="p">[</span><span class="n">Attribute</span><span class="p">(</span><span class="s2">&quot;Marker&quot;</span><span class="p">)]</span> <span class="n">m1</span><span class="p">[</span><span class="n">x1</span><span class="p">];</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="o">//</span> <span class="n">Prefixes</span> <span class="n">added</span> <span class="n">to</span> <span class="n">unnamed</span> <span class="n">square</span> <span class="n">braces</span><span class="o">.</span> <span class="p">[</span><span class="n">NotNull</span><span class="p">]</span> <span class="p">[</span><span class="n">Attribute</span><span class="p">(</span><span class="s2">&quot;Marker&quot;</span><span class="p">)]</span> <span class="n">will</span> <span class="n">be</span> <span class="n">added</span>
+<span class="linenos">17</span><span class="o">//</span> <span class="n">to</span> <span class="n">prefixes</span> <span class="ow">in</span> <span class="n">braces</span> <span class="n">expression</span> <span class="n">item</span> <span class="n">parsed</span> <span class="kn">from</span> <span class="s2">&quot;[x1]&quot;</span><span class="o">.</span>
+<span class="linenos">18</span><span class="p">[</span><span class="n">NotNull</span><span class="p">]</span> <span class="p">[</span><span class="n">Attribute</span><span class="p">(</span><span class="s2">&quot;Marker&quot;</span><span class="p">)]</span> <span class="p">[</span><span class="n">x1</span><span class="p">];</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="o">//</span> <span class="n">Prefixes</span> <span class="n">added</span> <span class="n">to</span> <span class="n">code</span> <span class="n">block</span><span class="o">.</span>
+<span class="linenos">21</span><span class="o">//</span> <span class="n">Custom</span> <span class="n">prefix</span> <span class="n">expression</span> <span class="n">item</span> <span class="s2">&quot;::types[T1,T2]&quot;</span> <span class="n">will</span> <span class="n">be</span> <span class="n">added</span> <span class="n">to</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">prefixes</span> <span class="ow">in</span> <span class="n">code</span> <span class="n">block</span> <span class="n">expression</span> <span class="n">item</span>
+<span class="linenos">22</span><span class="o">//</span> <span class="n">parsed</span> <span class="kn">from</span> <span class="s2">&quot;{var i = 12;}&quot;</span><span class="o">.</span>
+<span class="linenos">23</span><span class="o">//</span> <span class="n">Note</span><span class="p">,</span> <span class="k">if</span> <span class="n">we</span> <span class="n">replace</span> <span class="s2">&quot;::types[T1,T2]&quot;</span> <span class="n">to</span> <span class="n">unnamed</span> <span class="n">braces</span><span class="p">,</span> <span class="n">then</span> <span class="n">the</span> <span class="n">unnamed</span> <span class="n">braces</span> <span class="n">will</span> <span class="n">be</span> <span class="n">used</span> <span class="k">as</span> <span class="n">a</span> <span class="n">postfix</span> <span class="k">for</span>
+<span class="linenos">24</span><span class="o">//</span> <span class="n">code</span> <span class="n">block</span><span class="o">.</span>
+<span class="linenos">25</span><span class="p">::</span><span class="n">types</span><span class="p">[</span><span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="p">]</span> <span class="p">{</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;};</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="o">//</span> <span class="n">Prefixes</span> <span class="n">added</span> <span class="n">to</span> <span class="n">custom</span> <span class="n">expression</span> <span class="n">item</span> <span class="n">parsed</span> <span class="kn">from</span> <span class="s2">&quot;::pragma x&quot;</span><span class="o">.</span>
+<span class="linenos">28</span><span class="o">//</span> <span class="p">[</span><span class="n">Attribute</span><span class="p">(</span><span class="s2">&quot;Marker&quot;</span><span class="p">)]</span> <span class="n">will</span> <span class="n">be</span> <span class="n">added</span> <span class="n">to</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">prefixes</span> <span class="ow">in</span> <span class="n">custom</span> <span class="n">expression</span> <span class="n">item</span>
+<span class="linenos">29</span><span class="o">//</span> <span class="n">parsed</span> <span class="kn">from</span> <span class="s2">&quot;::pragma x&quot;</span><span class="o">.</span>
+<span class="linenos">30</span><span class="p">[</span><span class="n">Attribute</span><span class="p">(</span><span class="s2">&quot;Marker&quot;</span><span class="p">)]</span> <span class="p">::</span><span class="n">pragma</span> <span class="n">x</span><span class="p">;</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="o">//</span> <span class="n">Prefixes</span> <span class="n">added</span> <span class="n">text</span> <span class="n">expression</span> <span class="n">item</span><span class="o">.</span>
+<span class="linenos">33</span><span class="o">//</span> <span class="p">[</span><span class="n">Attribute</span><span class="p">(</span><span class="s2">&quot;Marker&quot;</span><span class="p">)]</span> <span class="n">will</span> <span class="n">be</span> <span class="n">added</span> <span class="n">to</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">prefixes</span> <span class="ow">in</span> <span class="n">text</span> <span class="n">expression</span> <span class="n">item</span>
+<span class="linenos">34</span><span class="o">//</span> <span class="n">parsed</span> <span class="kn">from</span> <span class="s2">&quot;Some text&quot;</span><span class="o">.</span>
+<span class="linenos">35</span><span class="p">[</span><span class="n">Attribute</span><span class="p">(</span><span class="s2">&quot;Marker&quot;</span><span class="p">)]</span> <span class="s2">&quot;Some text&quot;</span><span class="p">;</span>
+<span class="linenos">36</span>
+<span class="linenos">37</span><span class="o">//</span> <span class="n">Prefixes</span> <span class="n">added</span> <span class="n">to</span> <span class="n">numeric</span> <span class="n">value</span> <span class="n">item</span><span class="o">.</span>
+<span class="linenos">38</span><span class="o">//</span> <span class="p">[</span><span class="n">Attribute</span><span class="p">(</span><span class="s2">&quot;Marker&quot;</span><span class="p">)]</span> <span class="n">will</span> <span class="n">be</span> <span class="n">added</span> <span class="n">to</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">prefixes</span> <span class="ow">in</span> <span class="n">numeric</span> <span class="n">value</span> <span class="n">expression</span> <span class="n">item</span>
+<span class="linenos">39</span><span class="o">//</span> <span class="n">parsed</span> <span class="kn">from</span> <span class="s2">&quot;0.5e-3.4&quot;</span><span class="o">.</span>
+<span class="linenos">40</span><span class="p">[</span><span class="n">Attribute</span><span class="p">(</span><span class="s2">&quot;Marker&quot;</span><span class="p">)]</span> <span class="mf">0.5e-3.4</span><span class="p">;</span>
+</pre></div>
+</div>
+<a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Prefixes/PrefixesUsedWithDifferentExpressionItems.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a></section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Prefixes</a><ul>
+<li><a class="reference internal" href="#nameless-brace-as-prefixes">1) Nameless brace as prefixes</a></li>
+<li><a class="reference internal" href="#custom-expressions-as-prefixes">2) Custom expressions as prefixes</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="keywords.html"
+                          title="previous chapter">Keywords</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="postfixes.html"
+                          title="next chapter">Postfixes</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/prefixes.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="postfixes.html" title="Postfixes"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="keywords.html" title="Keywords"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">UniversalExpressionParser 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Prefixes</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Artak Hakobyan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+  </body>
+</html>

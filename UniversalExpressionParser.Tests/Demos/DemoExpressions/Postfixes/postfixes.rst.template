@@ -1,0 +1,85 @@
+﻿=========
+Postfixes
+=========
+
+.. contents::
+   :local:
+   :depth: 2
+   
+Postfixes are one or more expression items that are placed after some other expression item, and are added to the list in property **Postfixes** in interface **UniversalExpressionParser.ExpressionItems.IComplexExpressionItem** for the expression item that the postfixes are placed after.
+
+Currently **Universal Expression Parser** supports two types of postfixes:
+
+1) Code block expression items
+==============================
+
+Code block expression items that are parsed to **UniversalExpressionParser.ExpressionItems.ICodeBlockExpressionItem** that succeed another expression item are added as postfixes to the expression item they succeed.
+
+.. note::
+    The following are expression types that can have postfixes: Literals, such a **x1** or **Dog**, braces expression items, such as **f(x1)**, **(y)**, **m1[x1]**, **[x2]**, or custom expression items for which property **CustomExpressionItemCategory** in interface **UniversalExpressionParser.ExpressionItems.Custom.ICustomExpressionItem** is equal to **UniversalExpressionParser.ExpressionItems.Custom.CustomExpressionItemCategory.Regular**. 
+  
+- In the example below the code block expression item of type **UniversalExpressionParser.ExpressionItems.ICodeBlockExpressionItem** parsed from expression that starts with '**{**' and ends with '**}**'" will be added to the list **Postfixes** in **UniversalExpressionParser.ExpressionItems.IComplexExpressionItem** for the literal expression item parsed from expression **Dog**.
+
+.. sourcecode::
+     :linenos:
+     
+     <IncludedFilePlaceHolder>SimpleCodeBlockPostfixAfterLiteral.expr</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Postfixes/SimpleCodeBlockPostfixAfterLiteral.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>
+
+2) Custom postfix expression items
+==================================
+
+Custom expression items of type **UniversalExpressionParser.ExpressionItems.Custom.ICustomExpressionItem** with property **CustomExpressionItemCategory** equal to **UniversalExpressionParser.ExpressionItems.Custom.CustomExpressionItemCategory.Postfix** that succeed another expression item are added as postfixes to the expression item they succeed.
+
+- In the example below the two custom expression items of type **UniversalExpressionParser.DemoExpressionLanguageProviders.CustomExpressions.IWhereCustomExpressionItem** parsed from expressions that start with "where" and end with "whereend"" as well as the code block will be added as postfixes to literal expression item parsed from "Dog".
+
+.. note::
+    For more details on custom expression items see section **Custom Expression Item Parsers**.
+
+.. sourcecode::
+     :linenos:
+     
+     <IncludedFilePlaceHolder>SimpleCustomExpressionItemAsPostfixAfterLiteral.expr</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Postfixes/SimpleCustomExpressionItemAsPostfixAfterLiteral.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>
+
+.. note::
+    The list of postfixes can include both types of postfixes at the same time (i.e., custom expression items as well as a code block postfix).
+
+- Example of a code block postfix used to model function body:
+ 
+.. sourcecode::
+     :linenos:
+     
+     <IncludedFilePlaceHolder>CodeBlockPostfixToModelFunctionBody.expr</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Postfixes/CodeBlockPostfixToModelFunctionBody.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>
+    
+- Example of code block postfix used to model class definition:
+
+.. sourcecode::
+     :linenos:
+     
+     <IncludedFilePlaceHolder>CodeBlockPostfixUsedToModelAClassDefinition.expr</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Postfixes/CodeBlockPostfixUsedToModelAClassDefinition.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>   
+
+- Below are some more examples of postfixes with different expression items:
+
+.. sourcecode::
+     :linenos:
+     
+     <IncludedFilePlaceHolder>CodeBlockPostfixForDifferentExpressionItems.expr</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Postfixes/CodeBlockPostfixForDifferentExpressionItems.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a> 

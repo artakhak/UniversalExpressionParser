@@ -1,3 +1,4 @@
+=======
 Summary
 =======
 
@@ -7,7 +8,7 @@ Summary
 
 **UniversalExpressionParser** is a library for parsing expressions like the one demonstrated below into expression items for functions, literals, operators, etc.
 
-.. sourcecode:: csharp
+.. sourcecode::
      :linenos:
 
      var z = x1*y1+x2*y2;
@@ -106,8 +107,10 @@ Summary
 - Some complex expression items are: **UniversalExpressionParser.ExpressionItems.IBracesExpressionItem** for functions like "f1 (x1, x2)", **UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem** for operators like the binary operator with operands "f1(x)" and "y" in "f1(x) + y".
 
 - All expressions are currently parsed to one of the following expression items (or intances of other sub-interfaces of these interfaces) in namespaces **UniversalExpressionParser.ExpressionItems** and **UniversalExpressionParser.ExpressionItems.Custom**: **ILiteralExpressionItem**, **ILiteralNameExpressionItem**, **IConstantTextExpressionItem**, **IConstantTextValueExpressionItem**, **INumericExpressionItem**, **INumericExpressionValueItem**, **IBracesExpressionItem**, **IOpeningBraceExpressionItem**, **IClosingBraceExpressionItem**, **ICommaExpressionItem**, **ICodeBlockExpressionItem**, **ICustomExpressionItem**, **IKeywordExpressionItem**, **ICodeBlockStartMarkerExpressionItem**, **ICodeBlockEndMarkerExpressionItem**, **ISeparatorCharacterExpressionItem**, **IOperatorExpressionItem**, **IOperatorInfoExpressionItem**, **IKeywordExpressionItem**, **UniversalExpressionParser.ExpressionItems.Custom.ICustomExpressionItem**, **IRootExpressionItem**, **IComplexExpressionItem**, **ITextExpressionItem**, **IExpressionItemBase**. The state of this expression items can be analyzed when evaluating the parsed expression.
- 
-`Click here to view visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/SummaryExpression.parsed/>`_
+
+.. raw:: html
+
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/SummaryExpression.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>
 
 - The format of valid expressions is defined by properties and methods in interface **UniversalExpressionParser.IExpressionLanguageProvider**. The expression language name **UniversalExpressionParser.IExpressionLanguageProvider.LanguageName** of some instance **UniversalExpressionParser.IExpressionLanguageProvider** is passed as a parameter to method **ParseExpression(...)** in **UniversalExpressionParser.IExpressionParser**, as demonstrated in example above. Most of the properties and methods of this interface are demonstrated in examples in sections below.
 

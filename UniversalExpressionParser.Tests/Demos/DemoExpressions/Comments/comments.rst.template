@@ -1,0 +1,33 @@
+﻿========
+Comments
+========
+
+.. contents::
+   :local:
+   :depth: 2
+   
+The interface **UniversalExpressionParser.IExpressionLanguageProvider** has properties **string LineCommentMarker { get; }**, **string MultilineCommentStartMarker { get; }**, and **string MultilineCommentEndMarker { get; }** for specifying comment markers.
+
+If the values of these properties are not null, line and code block comments can be used.
+
+The abstract implementation **UniversalExpressionParser.ExpressionLanguageProviderBase** of **UniversalExpressionParser.IExpressionLanguageProvider** overrides these properties to return "//", "/*", and "*/" (the values of these properties can be overridden in subclasses).
+
+The on commented out code data is stored in property **IReadOnlyList&lt;UniversalExpressionParser.ICommentedTextData&gt; SortedCommentedTextData { get; }** in **UniversalExpressionParser.IParsedExpressionResult**, an instance of which is returned by the call to method **UniversalExpressionParser.IExpressionParser.ParseExpression(...)**.
+
+- Below are some examples of line and code block comments:
+
+.. sourcecode::
+     :linenos:
+     
+     <IncludedFilePlaceHolder>Comments.expr</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Comments/Comments.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>
+
+- Below is the definition of interface **UniversalExpressionParser.ICommentedTextData** that stores data on comments.
+
+.. sourcecode::
+     :linenos:
+     
+     <IncludedFilePlaceHolder>..\..\..\..\UniversalExpressionParser\ICommentedTextData.cs</IncludedFilePlaceHolder>

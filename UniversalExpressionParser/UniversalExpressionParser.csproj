@@ -128,6 +128,7 @@ However, one solution to view the README.md file in its entirety would be to cop
     <Compile Include="ParseErrorAddedEventArgs.cs" />
     <Compile Include="ParseErrorData.cs" />
     <Compile Include="ParseExpressionItemContext.cs" />
+    <Compile Include="ParseExpressionResultExtensionMethods.cs" />
     <Compile Include="Parser\ErrorsHelper.cs" />
     <Compile Include="Parser\EvaluateExpressionType.cs" />
     <Compile Include="Parser\ExpressionParserMessages.cs" />

@@ -19,8 +19,10 @@ For example if the value of property **ExpressionSeparatorCharacter** is ';' the
      
      <IncludedFilePlaceHolder>SimpleExample.expr</IncludedFilePlaceHolder>
 
-`Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/CodeSeparatorsAndCodeBlocks/SimpleExample.parsed/>`_
+.. raw:: html
 
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/CodeSeparatorsAndCodeBlocks/SimpleExample.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>
+ 
 More complex examples of code blocks and code separators
 ========================================================
 
@@ -29,4 +31,6 @@ More complex examples of code blocks and code separators
      
      <IncludedFilePlaceHolder>MoreComplexExample.expr</IncludedFilePlaceHolder>
 
-`Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/CodeSeparatorsAndCodeBlocks/MoreComplexExample.parsed/>`_
+.. raw:: html
+
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/CodeSeparatorsAndCodeBlocks/MoreComplexExample.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>

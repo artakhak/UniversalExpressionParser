@@ -36,8 +36,10 @@ Example of defining operators in an implementation of **UniversalExpressionParse
      }
 
 - Operator expression (e.g., "a * b + c * d") is parsed to an expression item of type **UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem** (a subclass of **UniversalExpressionParser.ExpressionItems.IComplexExpressionItem**).
-  
-`Click here to see the definition of UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser/ExpressionItems/IOperatorExpressionItem.cs/>`_
+
+.. raw:: html
+
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser/ExpressionItems/IOperatorExpressionItem.cs"><p class="codeSnippetRefText">Click here to see the definition of UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem</p></a>
 
 For example the expression "a * b + c * d", will be parsed to an expression logically similar to "*(+(a, b), +(x,d))". This is so since the binary operator "+" has lower priority (the value of **IOperatorInfo.Priority** is larger), than the binary operator "*". 
 
@@ -51,7 +53,9 @@ Example of considering priorities when parsing operators
      
      <IncludedFilePlaceHolder>OperatorPriorities.expr</IncludedFilePlaceHolder>
 
-`Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Operators/OperatorPriorities.parsed/>`_
+.. raw:: html
+
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Operators/OperatorPriorities.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>
 
 Example of using braces to change order of application of operators
 ===================================================================
@@ -61,7 +65,9 @@ Example of using braces to change order of application of operators
      
      <IncludedFilePlaceHolder>BracesToChangeOperatorEvaluationOrder.expr</IncludedFilePlaceHolder>
 
-`Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Operators/BracesToChangeOperatorEvaluationOrder.parsed/>`_
+.. raw:: html
+
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Operators/BracesToChangeOperatorEvaluationOrder.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>
 
 Example of operators with multiple parts in operator names
 ==========================================================
@@ -71,7 +77,9 @@ Example of operators with multiple parts in operator names
      
      <IncludedFilePlaceHolder>MultipartOperators.expr</IncludedFilePlaceHolder>
 
-`Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Operators/MultipartOperators.parsed/>`_
+.. raw:: html
+
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Operators/MultipartOperators.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>
 
 Example of two operators (e.g., postfix operators, then a binary operator) used next to each other without spaces in between
 ============================================================================================================================
@@ -81,7 +89,9 @@ Example of two operators (e.g., postfix operators, then a binary operator) used 
      
      <IncludedFilePlaceHolder>NoSpacesBetweenOperators.expr</IncludedFilePlaceHolder>
 
-`Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Operators/NoSpacesBetweenOperators.parsed/>`_
+.. raw:: html
+
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Operators/NoSpacesBetweenOperators.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>
 
 Example of unary prefix operator used to implement "return" statement
 =====================================================================
@@ -91,4 +101,6 @@ Example of unary prefix operator used to implement "return" statement
      
      <IncludedFilePlaceHolder>UnaryPrefixOperatorUsedForReturnStatement.expr</IncludedFilePlaceHolder>
 
-`Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Operators/UnaryPrefixOperatorUsedForReturnStatement.parsed/>`_
+.. raw:: html
+
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Operators/UnaryPrefixOperatorUsedForReturnStatement.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>

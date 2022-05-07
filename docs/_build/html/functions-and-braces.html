@@ -9,7 +9,7 @@
     <title>Functions and Braces &#8212; UniversalExpressionParser 1.0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/classic.css" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
     
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -18,6 +18,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Operators" href="operators.html" />
     <link rel="prev" title="Literals" href="literals.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -26,6 +27,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="operators.html" title="Operators"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="literals.html" title="Literals"
              accesskey="P">previous</a> |</li>
@@ -43,8 +47,8 @@
 <h1>Functions and Braces<a class="headerlink" href="#functions-and-braces" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#examples-of-functions" id="id2">Examples of functions</a></p></li>
-<li><p><a class="reference internal" href="#examples-of-braces" id="id3">Examples of braces</a></p></li>
+<li><p><a class="reference internal" href="#examples-of-functions" id="id1">Examples of functions</a></p></li>
+<li><p><a class="reference internal" href="#examples-of-braces" id="id2">Examples of braces</a></p></li>
 </ul>
 </div>
 <ul class="simple">
@@ -52,7 +56,7 @@
 <li><p>Braces are a pair of round or square braces ((e.g., <strong>(x)</strong>, <strong>(x) {}</strong>, <strong>[i,j]</strong>, <strong>[i,j]{}</strong>)). Braces are parsed to expression items of type <strong>UniversalExpressionParser.ExpressionItems.IBracesExpressionItem</strong> with the value of property <strong>ILiteralExpressionItem NameLiteral { get; }</strong> equal to null.</p></li>
 </ul>
 <section id="examples-of-functions">
-<h2><a class="toc-backref" href="#id2">Examples of functions</a><a class="headerlink" href="#examples-of-functions" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">Examples of functions</a><a class="headerlink" href="#examples-of-functions" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span> <span class="n">The</span> <span class="n">statements</span> <span class="n">below</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">make</span> <span class="n">much</span> <span class="n">sense</span><span class="o">.</span>
 <span class="linenos"> 2</span><span class="o">//</span> <span class="n">They</span> <span class="n">just</span> <span class="n">demonstrate</span> <span class="n">different</span> <span class="n">ways</span> <span class="n">the</span> <span class="n">square</span> <span class="ow">and</span> <span class="nb">round</span> <span class="n">braces</span> <span class="n">can</span> <span class="n">be</span> <span class="n">used</span>
 <span class="linenos"> 3</span><span class="o">//</span> <span class="ow">in</span> <span class="n">expressions</span><span class="o">.</span>
@@ -68,10 +72,9 @@
 <span class="linenos">13</span><span class="p">}</span>
 </pre></div>
 </div>
-<p><a class="reference external" href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/FunctionsAndBraces/FunctionsWithRoundAndSquareBraces.parsed/">Click here to view visualized instance of UniversalExpressionParser.IParseExpressionResult</a></p>
-</section>
+<a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/FunctionsAndBraces/FunctionsWithRoundAndSquareBraces.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a></section>
 <section id="examples-of-braces">
-<h2><a class="toc-backref" href="#id3">Examples of braces</a><a class="headerlink" href="#examples-of-braces" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Examples of braces</a><a class="headerlink" href="#examples-of-braces" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="o">//</span> <span class="n">The</span> <span class="n">statements</span> <span class="n">below</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">make</span> <span class="n">much</span> <span class="n">sense</span><span class="o">.</span>
 <span class="linenos">2</span><span class="o">//</span> <span class="n">They</span> <span class="n">just</span> <span class="n">demonstrate</span> <span class="n">different</span> <span class="n">ways</span> <span class="n">the</span> <span class="n">square</span> <span class="ow">and</span> <span class="nb">round</span> <span class="n">braces</span> <span class="n">can</span> <span class="n">be</span> <span class="n">used</span>
 <span class="linenos">3</span><span class="o">//</span> <span class="ow">in</span> <span class="n">expressions</span><span class="o">.</span>
@@ -79,8 +82,7 @@
 <span class="linenos">5</span><span class="n">x</span> <span class="o">+=</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">x4</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="p">[</span><span class="n">x3</span><span class="p">,</span> <span class="n">x4</span><span class="p">];</span>
 </pre></div>
 </div>
-<p><a class="reference external" href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/FunctionsAndBraces/RoundAndSquareBraces.parsed/">Click here to view visualized instance of UniversalExpressionParser.IParseExpressionResult</a></p>
-</section>
+<a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/FunctionsAndBraces/RoundAndSquareBraces.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a></section>
 </section>
 
 
@@ -105,6 +107,11 @@
     <h4>Previous topic</h4>
     <p class="topless"><a href="literals.html"
                           title="previous chapter">Literals</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="operators.html"
+                          title="next chapter">Operators</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -133,6 +140,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="operators.html" title="Operators"
+             >next</a> |</li>
         <li class="right" >
           <a href="literals.html" title="Literals"
              >previous</a> |</li>

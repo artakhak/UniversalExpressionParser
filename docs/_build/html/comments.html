@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Comments &#8212; UniversalExpressionParser 1.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Error Reporting" href="error-reporting.html" />
+    <link rel="prev" title="Custom Expression Item Parsers" href="custom-expression-item-parsers.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="error-reporting.html" title="Error Reporting"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="custom-expression-item-parsers.html" title="Custom Expression Item Parsers"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">UniversalExpressionParser 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Comments</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="comments">
+<h1>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h1>
+<p>The interface <strong>UniversalExpressionParser.IExpressionLanguageProvider</strong> has properties <strong>string LineCommentMarker { get; }</strong>, <strong>string MultilineCommentStartMarker { get; }</strong>, and <strong>string MultilineCommentEndMarker { get; }</strong> for specifying comment markers.</p>
+<p>If the values of these properties are not null, line and code block comments can be used.</p>
+<p>The abstract implementation <strong>UniversalExpressionParser.ExpressionLanguageProviderBase</strong> of <strong>UniversalExpressionParser.IExpressionLanguageProvider</strong> overrides these properties to return “//”, “/<em>”, and “</em>/” (the values of these properties can be overridden in subclasses).</p>
+<p>The on commented out code data is stored in property <strong>IReadOnlyList&amp;lt;UniversalExpressionParser.ICommentedTextData&amp;gt; SortedCommentedTextData { get; }</strong> in <strong>UniversalExpressionParser.IParsedExpressionResult</strong>, an instance of which is returned by the call to method <strong>UniversalExpressionParser.IExpressionParser.ParseExpression(…)</strong>.</p>
+<ul class="simple">
+<li><p>Below are some examples of line and code block comments:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span> <span class="n">Line</span> <span class="n">comment</span>
+<span class="linenos"> 2</span><span class="n">var</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="o">*</span><span class="n">y</span><span class="p">;</span> <span class="o">//</span> <span class="n">another</span> <span class="n">line</span> <span class="n">comments</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">println</span><span class="p">(</span><span class="n">x</span> <span class="o">+/*</span><span class="n">Code</span> <span class="n">block</span>
+<span class="linenos"> 5</span><span class="n">comments</span>
+<span class="linenos"> 6</span><span class="n">can</span> <span class="n">span</span> <span class="n">multiple</span> <span class="n">lines</span> <span class="ow">and</span> <span class="n">can</span> <span class="n">be</span> <span class="n">placed</span> <span class="n">anywhere</span><span class="o">.</span>
+<span class="linenos"> 7</span><span class="o">*/</span><span class="n">y</span><span class="o">+</span><span class="mi">10</span><span class="o">*</span><span class="n">z</span><span class="p">);</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="o">/*</span>
+<span class="linenos">10</span><span class="n">Another</span> <span class="n">code</span> <span class="n">block</span> <span class="n">comments</span>
+<span class="linenos">11</span><span class="n">var</span> <span class="n">y</span><span class="o">=</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="p">;</span>
+<span class="linenos">12</span><span class="n">var</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">y</span><span class="p">;</span>
+<span class="linenos">13</span><span class="o">*/</span>
+</pre></div>
+</div>
+<a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Comments/Comments.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a><ul class="simple">
+<li><p>Below is the definition of interface <strong>UniversalExpressionParser.ICommentedTextData</strong> that stores data on comments.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span> <span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">UniversalExpressionParser</span> <span class="n">Project</span><span class="o">.</span> <span class="n">All</span> <span class="n">rights</span> <span class="n">reserved</span><span class="o">.</span>
+<span class="linenos"> 2</span><span class="o">//</span> <span class="n">Licensed</span> <span class="n">under</span> <span class="n">the</span> <span class="n">MIT</span> <span class="n">License</span><span class="o">.</span> <span class="n">See</span> <span class="n">LICENSE</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">solution</span> <span class="n">root</span> <span class="k">for</span> <span class="n">license</span> <span class="n">information</span><span class="o">.</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">using</span> <span class="n">UniversalExpressionParser</span><span class="o">.</span><span class="n">ExpressionItems</span><span class="p">;</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="n">namespace</span> <span class="n">UniversalExpressionParser</span>
+<span class="linenos"> 7</span><span class="p">{</span>
+<span class="linenos"> 8</span>    <span class="o">///</span> <span class="o">&lt;</span><span class="n">summary</span><span class="o">&gt;</span>
+<span class="linenos"> 9</span>    <span class="o">///</span> <span class="n">Info</span> <span class="n">on</span> <span class="n">commented</span> <span class="n">out</span> <span class="n">code</span> <span class="n">block</span><span class="o">.</span>
+<span class="linenos">10</span>    <span class="o">///</span> <span class="o">&lt;/</span><span class="n">summary</span><span class="o">&gt;</span>
+<span class="linenos">11</span>    <span class="n">public</span> <span class="n">interface</span> <span class="n">ICommentedTextData</span><span class="p">:</span> <span class="n">ITextItem</span>
+<span class="linenos">12</span>    <span class="p">{</span>
+<span class="linenos">13</span>        <span class="o">///</span> <span class="o">&lt;</span><span class="n">summary</span><span class="o">&gt;</span>
+<span class="linenos">14</span>        <span class="o">///</span> <span class="n">If</span> <span class="n">true</span><span class="p">,</span> <span class="n">the</span> <span class="n">comment</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">line</span> <span class="n">comment</span><span class="o">.</span> <span class="n">Otherwise</span><span class="p">,</span> <span class="n">it</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">block</span> <span class="n">comment</span><span class="o">.</span>
+<span class="linenos">15</span>        <span class="o">///</span> <span class="o">&lt;/</span><span class="n">summary</span><span class="o">&gt;</span>
+<span class="linenos">16</span>        <span class="nb">bool</span> <span class="n">IsLineComment</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="p">}</span>
+<span class="linenos">17</span>    <span class="p">}</span>
+<span class="linenos">18</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="custom-expression-item-parsers.html"
+                          title="previous chapter">Custom Expression Item Parsers</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="error-reporting.html"
+                          title="next chapter">Error Reporting</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/comments.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="error-reporting.html" title="Error Reporting"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="custom-expression-item-parsers.html" title="Custom Expression Item Parsers"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">UniversalExpressionParser 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Comments</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Artak Hakobyan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+  </body>
+</html>

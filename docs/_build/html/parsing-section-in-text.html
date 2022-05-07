@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Parsing Section in Text &#8212; UniversalExpressionParser 1.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Case Sensitivity and Non Standard Language Features" href="case-sensitivity-and-non-standard-language-features.html" />
+    <link rel="prev" title="Error Reporting" href="error-reporting.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="case-sensitivity-and-non-standard-language-features.html" title="Case Sensitivity and Non Standard Language Features"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="error-reporting.html" title="Error Reporting"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">UniversalExpressionParser 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Parsing Section in Text</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="parsing-section-in-text">
+<h1>Parsing Section in Text<a class="headerlink" href="#parsing-section-in-text" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#example-of-parsing-single-braces-expression" id="id1">Example of parsing single braces expression</a></p></li>
+<li><p><a class="reference internal" href="#example-of-parsing-single-code-block-expression" id="id2">Example of parsing single code block expression</a></p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>Sometimes we want to parse a single braces expression at specific location in text (i.e., an expression starting with “(” or “[” and ending in “)” or “]” correspondingly) or single code block expression (i.e., an expression starting with <strong>UniversalExpressionParser.IExpressionLanguageProvider.CodeBlockStartMarker</strong> and ending in <strong>UniversalExpressionParser.IExpressionLanguageProvider.CodeBlockEndMarker</strong>). In these scenarios, we want the parser to stop right after fully parsing the braces or code block expression.</p></li>
+<li><p>The interface <strong>UniversalExpressionParser.IExpressionParser</strong> has two methods for doing just that.</p></li>
+<li><p>The methods for parsing single braces or code block expression are <strong>UniversalExpressionParser.IParseExpressionResult ParseBracesExpression(string expressionLanguageProviderName, string expressionText, IParseExpressionOptions parseExpressionOptions)</strong> and <strong>UniversalExpressionParser.IParseExpressionResult ParseCodeBlockExpression(string expressionLanguageProviderName, string expressionText, IParseExpressionOptions parseExpressionOptions)</strong>, and are demonstrated in sub-sections below.</p></li>
+<li><p>The parsed expression of type <strong>UniversalExpressionParser.IParseExpressionResult</strong> returned by these methods has a property <strong>int PositionInTextOnCompletion { get; }</strong> that stores the position in text, after the parsing is complete (i.e., the position after closing brace or code block end marker).</p></li>
+</ul>
+<section id="example-of-parsing-single-braces-expression">
+<h2><a class="toc-backref" href="#id1">Example of parsing single braces expression</a><a class="headerlink" href="#example-of-parsing-single-braces-expression" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Below is an an SQLite table definition in which we want to parse only the braces expression <strong>(SALARY &gt; 0 AND SALARY &gt; MAX_SALARY/2 AND f1(SALARY) &lt; f2(MAX_SALARY))</strong>, and stop parsing right after the closing brace ‘)’.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">COMPANY</span><span class="p">(</span>
+<span class="linenos"> 2</span>   <span class="n">ID</span> <span class="n">INT</span> <span class="n">PRIMARY</span> <span class="n">KEY</span>     <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span>
+<span class="linenos"> 3</span>   <span class="n">MAX_SALARY</span>     <span class="n">REAL</span><span class="p">,</span>
+<span class="linenos"> 4</span>   <span class="o">/*</span> <span class="n">The</span> <span class="n">parser</span> <span class="n">will</span> <span class="n">only</span> <span class="n">parse</span> <span class="n">expression</span>
+<span class="linenos"> 5</span>   <span class="p">(</span><span class="n">SALARY</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">AND</span> <span class="n">SALARY</span> <span class="o">&gt;</span> <span class="n">MAX_SALARY</span><span class="o">/</span><span class="mi">2</span> <span class="n">AND</span> <span class="n">f1</span><span class="p">(</span><span class="n">SALARY</span><span class="p">)</span><span class="o">&lt;</span><span class="n">f2</span><span class="p">(</span><span class="n">MAX_SALARY</span><span class="p">))</span> <span class="ow">and</span> <span class="n">will</span> <span class="n">stop</span> <span class="n">right</span> <span class="n">after</span> <span class="n">the</span>
+<span class="linenos"> 6</span>   <span class="n">closing</span> <span class="nb">round</span> <span class="n">brace</span> <span class="s1">&#39;)&#39;</span> <span class="n">of</span> <span class="ow">in</span> <span class="n">this</span> <span class="n">expression</span><span class="o">.</span> <span class="o">*/</span>
+<span class="linenos"> 7</span>   <span class="n">AVG_SALARY</span>     <span class="n">REAL</span>
+<span class="linenos"> 8</span>                   <span class="n">CHECK</span><span class="p">(</span><span class="n">SALARY</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">AND</span>
+<span class="linenos"> 9</span>                             <span class="n">SALARY</span> <span class="o">&gt;</span> <span class="n">MAX_SALARY</span><span class="o">/</span><span class="mi">2</span> <span class="n">AND</span>
+<span class="linenos">10</span>                             <span class="n">f1</span><span class="p">(</span><span class="n">SALARY</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">f2</span><span class="p">(</span><span class="n">MAX_SALARY</span><span class="p">)),</span>
+<span class="linenos">11</span>   <span class="n">ADDRESS</span>        <span class="n">CHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="linenos">12</span><span class="p">);</span>
+</pre></div>
+</div>
+<a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/ParsingSectionInText/ParseSingleRoundBracesExpressionDemo.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a><ul class="simple">
+<li><p>The method <strong>ParseBracesAtCurrentPosition(string expression, int positionInText)</strong> in class <strong>UniversalExpressionParser.Tests.Demos.ParseSingleBracesExpressionAtPositionDemo</strong> (shown below) demonstrates how to parse the braces expression <strong>(SALARY &gt; 0 AND SALARY &gt; MAX_SALARY/2 AND f1(SALARY) &lt; f2(MAX_SALARY))</strong>, by passing the position of opening brace in parameter <strong>positionInText</strong>.</p></li>
+</ul>
+<a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/ParseSingleBracesExpressionAtPositionDemo.cs"><p class="codeSnippetRefText">Click here to see definition of class UniversalExpressionParser.Tests.Demos.ParseSingleBracesExpressionAtPositionDemo</p></a><ul class="simple">
+<li><p>Here is square braces expression <strong>[f1()+m1[], f2{++i;}]</strong> between texts ‘any text before braces’ and ‘any text after braces…’, which can also be parsed using the code in class <strong>UniversalExpressionParser.Tests.Demos.ParseSingleBracesExpressionAtPositionDemo</strong>.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nb">any</span> <span class="n">text</span> <span class="n">before</span> <span class="n">braces</span><span class="p">[</span><span class="n">f1</span><span class="p">()</span><span class="o">+</span><span class="n">m1</span><span class="p">[],</span> <span class="n">f2</span>
+<span class="linenos">2</span><span class="p">{</span>
+<span class="linenos">3</span>   <span class="o">++</span><span class="n">i</span><span class="p">;</span>
+<span class="linenos">4</span><span class="p">}]</span><span class="nb">any</span> <span class="n">text</span> <span class="n">after</span> <span class="n">braces</span> <span class="n">including</span> <span class="n">more</span> <span class="n">braces</span> <span class="n">expressions</span> <span class="n">that</span> <span class="n">will</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">parsed</span>
+</pre></div>
+</div>
+<a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/ParsingSectionInText/ParseSingleSquareBracesExpressionDemo.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a></section>
+<section id="example-of-parsing-single-code-block-expression">
+<h2><a class="toc-backref" href="#id2">Example of parsing single code block expression</a><a class="headerlink" href="#example-of-parsing-single-code-block-expression" title="Permalink to this headline">¶</a></h2>
+<p>Below is a text with code block expression <strong>{f1(f2()+m1[], f2{++i;})}</strong> between texts ‘any text before code block’ and ‘any text after code block…’ that we want to parse.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nb">any</span> <span class="n">text</span> <span class="n">before</span> <span class="n">braces</span><span class="p">[</span><span class="n">f1</span><span class="p">()</span><span class="o">+</span><span class="n">m1</span><span class="p">[],</span> <span class="n">f2</span>
+<span class="linenos">2</span><span class="p">{</span>
+<span class="linenos">3</span>   <span class="o">++</span><span class="n">i</span><span class="p">;</span>
+<span class="linenos">4</span><span class="p">}]</span><span class="nb">any</span> <span class="n">text</span> <span class="n">after</span> <span class="n">braces</span> <span class="n">including</span> <span class="n">more</span> <span class="n">braces</span> <span class="n">expressions</span> <span class="n">that</span> <span class="n">will</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">parsed</span>
+</pre></div>
+</div>
+<a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/ParsingSectionInText/ParseSingleCodeBlockExpressionDemo.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a><ul class="simple">
+<li><p>The method <strong>IParseExpressionResult ParseCodeBlockExpressionAtCurrentPosition(string expression, int positionInText)</strong> in class <strong>UniversalExpressionParser.Tests.Demos.ParseSingleCodeBlockExpressionAtPositionDemo</strong> demonstrates how to parse the single code block expression <strong>{f1(f2()+m1[], f2{++i;})}</strong>, by passing the position of code block start marker ‘{’ in parameter <strong>positionInText</strong>.</p></li>
+</ul>
+<a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/ParseSingleCodeBlockExpressionAtPositionDemo.cs"><p class="codeSnippetRefText">Click here to see definition of class UniversalExpressionParser.Tests.Demos.ParseSingleCodeBlockExpressionAtPositionDemo</p></a></section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Parsing Section in Text</a><ul>
+<li><a class="reference internal" href="#example-of-parsing-single-braces-expression">Example of parsing single braces expression</a></li>
+<li><a class="reference internal" href="#example-of-parsing-single-code-block-expression">Example of parsing single code block expression</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="error-reporting.html"
+                          title="previous chapter">Error Reporting</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="case-sensitivity-and-non-standard-language-features.html"
+                          title="next chapter">Case Sensitivity and Non Standard Language Features</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/parsing-section-in-text.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="case-sensitivity-and-non-standard-language-features.html" title="Case Sensitivity and Non Standard Language Features"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="error-reporting.html" title="Error Reporting"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">UniversalExpressionParser 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Parsing Section in Text</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Artak Hakobyan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+  </body>
+</html>

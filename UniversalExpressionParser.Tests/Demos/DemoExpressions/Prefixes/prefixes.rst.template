@@ -1,0 +1,81 @@
+﻿========
+Prefixes
+========
+
+.. contents::
+   :local:
+   :depth: 2
+   
+Prefixes are one or more expression items that precede some other expression item, and are added to the list in property **Prefixes** in interface **UniversalExpressionParser.ExpressionItems.IComplexExpressionItem** for the expression item that follows the list of prefix expression items.
+
+.. note::
+    Prefixes are supported only if the value of property **SupportsPrefixes** in interface **UniversalExpressionParser.IExpressionLanguageProvider** is true.
+
+Currently **Universal Expression Parser** supports two types of prefixes:
+
+1) Nameless brace as prefixes
+=============================
+
+Square or round braces expressions items without names (i.e. expression items that are parsed to **UniversalExpressionParser.ExpressionItems.IBracesExpressionItem** with property **NamedExpressionItem** equal to **null**) that precede another expression item (e.g., another braces expression, a literal, a code block, text expression item, numeric value expression item, etc) are parsed as prefixes and are added to expression item they precede.
+
+- In the example below the braces expression items parsed from "[NotNull, ItemNotNull]" and "(Attribute("MarkedFunction"))" will be added as prefixes to expression item parsed from "F1(x, x2)".
+
+.. sourcecode::
+     :linenos:
+     
+     <IncludedFilePlaceHolder>BracesPrefixesSimpleDemo.expr</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Prefixes/BracesPrefixesSimpleDemo.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>
+
+2) Custom expressions as prefixes
+=================================
+
+If custom expression items of type **UniversalExpressionParser.ExpressionItems.Custom.ICustomExpressionItem** with property **CustomExpressionItemCategory** equal to **UniversalExpressionParser.ExpressionItems.Custom.CustomExpressionItemCategory.Prefix** are added as prefixes to expression item they precede.
+
+.. note::
+    List of prefixes can include both nameless brace expression items as well as custom expression items, placed in any order.
+
+
+- In the example below, the expression items "::types[T1,T2]" and "::types[T3]" are parsed to custom expression items of type **UniversalExpressionParser.DemoExpressionLanguageProviders.CustomExpressions.IGenericTypeDataExpressionItem**, and are added as prefixes to braces expression item parsed from "F1(x:T1, y:T2, z: T3)".
+
+.. note::
+    For more details on custom expression items see section **Custom Expression Item Parsers**.
+
+.. sourcecode::
+     :linenos:
+     
+     <IncludedFilePlaceHolder>CustomExpressionItemsAsPrefixesSimpleDemo.expr</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Prefixes/CustomExpressionItemsAsPrefixesSimpleDemo.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>
+
+.. note::
+    The list of prefixes can include both types of prefixes at the same time (i.e., braces and custom expression items).
+
+- Here is an example of prefixes used to model c# like attributes for classes and methods:
+
+.. sourcecode::
+     :linenos:
+     
+     <IncludedFilePlaceHolder>MoreComplexPrefixesDemo.expr</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Prefixes/MoreComplexPrefixesDemo.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>
+
+.. note::
+    The list of prefixes can include both types of prefixes at the same time (i.e., braces and custom expression items).
+
+- Below is an example of using prefixes with different expression item types:
+
+.. sourcecode::
+     :linenos:
+     
+     <IncludedFilePlaceHolder>PrefixesUsedWithDifferentExpressionItems.expr</IncludedFilePlaceHolder>
+
+.. raw:: html
+
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Prefixes/PrefixesUsedWithDifferentExpressionItems.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a>

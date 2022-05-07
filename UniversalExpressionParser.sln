@@ -61,6 +61,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_static", "_static", "{4A6E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_templates", "_templates", "{060E3641-EB92-476F-87B9-98392FD68DDB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{6842C7A6-F9B5-4A12-BB0B-9F34A305035F}"
+	ProjectSection(SolutionItems) = preProject
+		docs\_static\css\custom.css = docs\_static\css\custom.css
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -423,6 +428,7 @@ Global
 		{D115F9F0-1E5E-4251-888F-18B1F40AC19F} = {D3294509-1340-4682-BFF4-03C75B6FBED9}
 		{4A6E57B4-12F8-4862-A6C2-7AB0A4431351} = {2F20B668-4A23-41BA-82B3-31832B8B4CBE}
 		{060E3641-EB92-476F-87B9-98392FD68DDB} = {2F20B668-4A23-41BA-82B3-31832B8B4CBE}
+		{6842C7A6-F9B5-4A12-BB0B-9F34A305035F} = {4A6E57B4-12F8-4862-A6C2-7AB0A4431351}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6F1C0A09-DE09-425B-A41B-339B1155FAE5}

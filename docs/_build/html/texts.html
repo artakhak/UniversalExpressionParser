@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Texts &#8212; UniversalExpressionParser 1.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Code Separators and Code Blocks" href="code-separators-and-code-blocks.html" />
+    <link rel="prev" title="Numeric Values" href="numeric-values.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="code-separators-and-code-blocks.html" title="Code Separators and Code Blocks"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="numeric-values.html" title="Numeric Values"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">UniversalExpressionParser 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Texts</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="texts">
+<h1>Texts<a class="headerlink" href="#texts" title="Permalink to this headline">¶</a></h1>
+<p>The interface <strong>UniversalExpressionParser.IExpressionLanguageProvider</strong> has a property <strong>IReadOnlyList&amp;lt;char&amp;gt; ConstantTextStartEndMarkerCharacters { get; }</strong> that are used by <strong>Universal Expression Parser</strong> to parse expression items that start or end with some character in <strong>ConstantTextStartEndMarkerCharacters</strong> to parse the expression item to <strong>UniversalExpressionParser.ExpressionItems.IConstantTextExpressionItem</strong>.</p>
+<ul class="simple">
+<li><p>The default implementation <strong>UniversalExpressionParser.ExpressionLanguageProviderBase</strong> of <strong>UniversalExpressionParser.IExpressionLanguageProvider</strong> has the following characters in property <strong>UniversalExpressionParser.IExpressionLanguageProvider.ConstantTextStartEndMarkerCharacters</strong> and the examples below will use these text marker characters.</p></li>
+<li><p>If an expression starts with some character listed in property <strong>UniversalExpressionParser.IExpressionLanguageProvider.ConstantTextStartEndMarkerCharacters</strong>, then the text expression should end with the same character. In other words, if text starts with character <strong>‘</strong> it should end with <strong>‘</strong>. Similarly, if text starts with character <strong>“</strong> it should end with <strong>“</strong>.</p></li>
+<li><p>The text in expression parsed to <strong>UniversalExpressionParser.ExpressionItems.IConstantTextExpressionItem</strong> can contain any of the text marker characters in <strong>UniversalExpressionParser.IExpressionLanguageProvider.ConstantTextStartEndMarkerCharacters</strong>. if the text contains a text marker character that marks the start of the text expression, it should be typed twice as displayed in examples below:</p></li>
+<li><p>Texts can span multiple lines (see the example below).</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>// Example of texts using text markers &#39;,&quot;, and ` in IExpressionLanguageProvider.ConstantTextStartEndMarkerCharacters property.
+<span class="linenos"> 2</span>// The text marker that starts the specific text expression can be used in text as well when it is
+<span class="linenos"> 3</span>// typed twice (e.g., &#39;&#39;, &quot;&quot;, ``, etc).
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span>// Example of using all text markers together in operators
+<span class="linenos"> 6</span>x = &quot;We can use this text expression marker &quot;&quot; if we type it twice. However, other text marker chars do not need to be typed twice such as &#39; and `.&quot;
+<span class="linenos"> 7</span>    +&#39;We can use this text expression marker &#39;&#39; if we type it twice. However, other text marker chars do not need to be typed twice such as &quot; and `.&#39;
+<span class="linenos"> 8</span>    +`We can use this text expression marker `` if we type it twice. However, other text marker chars do not need to be typed twice such as &quot; and &#39;.`;
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>println(&quot;This is a text that spans
+<span class="linenos">11</span> multiple
+<span class="linenos">12</span> lines.
+<span class="linenos">13</span>&quot; + x + &#39; Some other text.&#39;);
+</pre></div>
+</div>
+<a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Texts/Texts.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a></section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="numeric-values.html"
+                          title="previous chapter">Numeric Values</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="code-separators-and-code-blocks.html"
+                          title="next chapter">Code Separators and Code Blocks</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/texts.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="code-separators-and-code-blocks.html" title="Code Separators and Code Blocks"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="numeric-values.html" title="Numeric Values"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">UniversalExpressionParser 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Texts</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Artak Hakobyan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+  </body>
+</html>

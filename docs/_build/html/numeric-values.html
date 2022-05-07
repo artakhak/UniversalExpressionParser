@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Numeric Values &#8212; UniversalExpressionParser 1.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Texts" href="texts.html" />
+    <link rel="prev" title="Operators" href="operators.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="texts.html" title="Texts"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="operators.html" title="Operators"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">UniversalExpressionParser 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Numeric Values</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="numeric-values">
+<h1>Numeric Values<a class="headerlink" href="#numeric-values" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><strong>Universal Expression Parser</strong> parses expression items that have numeric format to expression items of type <strong>UniversalExpressionParser.ExpressionItems.INumericExpressionItem</strong>. The format of expression items that will be parsed to <strong>UniversalExpressionParser.ExpressionItems.INumericExpressionItem</strong> is determined by property <strong>IReadOnlyList&lt;NumericTypeDescriptor&gt; NumericTypeDescriptors { get; }</strong> in interface <strong>UniversalExpressionParser.IExpressionLanguageProvider</strong>, an instance of which is passed to the parser.</p></li>
+</ul>
+<a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser/NumericTypeDescriptor.cs"><p class="codeSnippetRefText">Click here to see the definition of UniversalExpressionParser.NumericTypeDescriptor</p></a><a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser/ExpressionItems/INumericExpressionItem.cs"><p class="codeSnippetRefText">Click here to see the definition of UniversalExpressionParser.ExpressionItems.INumericExpressionItem</p></a><ul class="simple">
+<li><p>The parser scans the regular expressions in list in property <strong>IReadOnlyList&lt;string&gt; RegularExpressions { get; }</strong> in type <strong>NumericTypeDescriptor</strong> for each provided instance of <strong>UniversalExpressionParser.NumericTypeDescriptor</strong> to try to parse the expression to numeric expression item of type <strong>UniversalExpressionParser.ExpressionItems.INumericExpressionItem</strong>.</p></li>
+<li><p>The abstract class <strong>UniversalExpressionParser.ExpressionLanguageProviderBase</strong> that can be used as a base class for implementations of <strong>UniversalExpressionParser.IExpressionLanguageProvider</strong> in most cases, implements the property <strong>NumericTypeDescriptors</strong> as a virtual property. The implementation of property <strong>NumericTypeDescriptors</strong> in <strong>UniversalExpressionParser.ExpressionLanguageProviderBase</strong> is demonstrated below, and it can be overridden to provide different format for numeric values:</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The regular expressions used in implementation of property <strong>NumericTypeDescriptors</strong> should always tart with ‘<strong>^</strong>’ and should never end with ‘<strong>$</strong>’.</p>
+</div>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">public</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="n">IReadOnlyList</span><span class="p">&lt;</span><span class="n">NumericTypeDescriptor</span><span class="p">&gt;</span><span class="w"> </span><span class="n">NumericTypeDescriptors</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">List</span><span class="p">&lt;</span><span class="n">NumericTypeDescriptor</span><span class="p">&gt;</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="nf">NumericTypeDescriptor</span><span class="p">(</span><span class="n">KnownNumericTypeDescriptorIds</span><span class="p">.</span><span class="n">ExponentFormatValueId</span><span class="p">,</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="k">new</span><span class="p">[]</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">@&quot;^(\d+\.\d+|\d+\.|\.\d+|\d+)(EXP|exp|E|e)[+|-]?(\d+\.\d+|\d+\.|\.\d+|\d+)&quot;</span><span class="p">}),</span><span class="w"></span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="nf">NumericTypeDescriptor</span><span class="p">(</span><span class="n">KnownNumericTypeDescriptorIds</span><span class="p">.</span><span class="n">FloatingPointValueId</span><span class="p">,</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="k">new</span><span class="p">[]</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">@&quot;^(\d+\.\d+|\d+\.|\.\d+)&quot;</span><span class="p">}),</span><span class="w"></span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="nf">NumericTypeDescriptor</span><span class="p">(</span><span class="n">KnownNumericTypeDescriptorIds</span><span class="p">.</span><span class="n">IntegerValueId</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="p">[]</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">@&quot;^\d+&quot;</span><span class="w"> </span><span class="p">})</span><span class="w"></span>
+<span class="linenos">10</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The first regular expression that matches the expression, is stored in properties <strong>SucceededNumericTypeDescriptor</strong> of type <strong>UniversalExpressionParser.NumericTypeDescriptor</strong> and <strong>IndexOfSucceededRegularExpression</strong> in parsed expression item of type <strong>UniversalExpressionParser.ExpressionItems.INumericExpressionItem</strong>.</p></li>
+<li><p>The numeric value is stored as text in property <strong>INameExpressionItem Value</strong> in text format. Therefore, there is no limit on numeric value digits.</p></li>
+<li><p>The expression evaluator that uses the <strong>Universal Expression Parser</strong> can convert the textual value in property <strong>Value</strong> of type <strong>INameExpressionItem</strong> in <strong>UniversalExpressionParser.ExpressionItems.INumericExpressionItem</strong> to a value of numeric type (int, long, double, etc.).</p></li>
+<li><p>Examples of numeric value expression items are demonstrated below:</p></li>
+</ul>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">// By default exponent notation can be used.</span>
+<span class="linenos">2</span><span class="n">println</span><span class="p">(-</span><span class="m">0.5e-3</span><span class="p">+.</span><span class="m">2</span><span class="n">exp3</span><span class="p">.</span><span class="m">4</span><span class="p">+</span><span class="m">3.</span><span class="n">E2</span><span class="p">.</span><span class="m">7</span><span class="p">+</span><span class="m">2.1</span><span class="n">EXP</span><span class="p">.</span><span class="m">3</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">3</span><span class="n">println</span><span class="p">(.</span><span class="m">5</span><span class="n">e15</span><span class="p">*</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">4</span>
+<span class="linenos">5</span><span class="c1">// Numeric values can have no limitations on the number of digits. The value is stored as text in</span>
+<span class="linenos">6</span><span class="c1">// UniversalExpressionParser.ExpressionItems.INumericExpressionItem.</span>
+<span class="linenos">7</span><span class="c1">// The text can be validated farther and converted to numeric values by the expression evaluator that</span>
+<span class="linenos">8</span><span class="c1">// uses the parser.</span>
+<span class="linenos">9</span><span class="kt">var</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="m">2.3</span><span class="p">*</span><span class="n">x</span><span class="p">+</span><span class="m">123456789123456789123456789123456789</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/NumericValues/NumericValues.parsed"><p class="codeSnippetRefText">Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult</p></a></section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="operators.html"
+                          title="previous chapter">Operators</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="texts.html"
+                          title="next chapter">Texts</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/numeric-values.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="texts.html" title="Texts"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="operators.html" title="Operators"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">UniversalExpressionParser 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Numeric Values</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Artak Hakobyan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+  </body>
+</html>

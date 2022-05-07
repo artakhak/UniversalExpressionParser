@@ -85,12 +85,16 @@
     <Compile Include="Utilities\ExpressionItemVisualizers\ValueVisualizerFactoryForTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Demos\DemoExpressions\CaseSensitivityAndNonStandardLanguageFeatures\case-sensitivity-and-non-standard-language-features.rst.template" />
     <Content Include="Demos\DemoExpressions\CaseSensitivityAndNonStandardLanguageFeatures\CaseSensitivityAndNonStandardLanguageFeatures.expr" />
     <Content Include="Demos\DemoExpressions\CaseSensitivityAndNonStandardLanguageFeatures\CaseSensitivityAndNonStandardLanguageFeatures.parsed" />
     <Content Include="Demos\DemoExpressions\CodeSeparatorsAndCodeBlocks\code-separators-and-code-blocks.rst.template" />
     <Content Include="Demos\DemoExpressions\Comments\Comments.expr" />
     <Content Include="Demos\DemoExpressions\Comments\Comments.parsed" />
+    <Content Include="Demos\DemoExpressions\Comments\comments.rst.template" />
     <Content Include="Demos\DemoExpressions\Comments\README.md" />
+    <Content Include="Demos\DemoExpressions\CustomExpressionItemParsers\custom-expression-item-parsers.rst.template" />
+    <Content Include="Demos\DemoExpressions\ErrorReporting\error-reporting.rst.template" />
     <Content Include="Demos\DemoExpressions\ErrorReporting\ExpressionWithErrors.expr" />
     <Content Include="Demos\DemoExpressions\ErrorReporting\ExpressionWithErrors.parsed" />
     <Content Include="Demos\DemoExpressions\ErrorReporting\ReportedErrorMessages.txt" />
@@ -98,7 +102,9 @@
     <Content Include="Demos\DemoExpressions\NumericValues\numeric-values.rst.template" />
     <Content Include="Demos\DemoExpressions\Operators\MultipartOperators.expr" />
     <Content Include="Demos\DemoExpressions\Operators\operators.rst.template" />
+    <Content Include="Demos\DemoExpressions\ParsingSectionInText\parsing-section-in-text.rst.template" />
     <Content Include="Demos\DemoExpressions\Postfixes\CodeBlockPostfixForDifferentExpressionItems.parsed" />
+    <Content Include="Demos\DemoExpressions\Postfixes\postfixes.rst.template" />
     <Content Include="Demos\DemoExpressions\Postfixes\SimpleCustomExpressionItemAsPostfixAfterLiteral.parsed" />
     <Content Include="Demos\DemoExpressions\Prefixes\CustomExpressionItemsAsPrefixesSimpleDemo.expr" />
     <Content Include="Demos\DemoExpressions\Prefixes\BracesPrefixesSimpleDemo.expr" />
@@ -106,9 +112,9 @@
     <Content Include="Demos\DemoExpressions\Prefixes\CustomExpressionItemsAsPrefixesSimpleDemo.parsed" />
     <Content Include="Demos\DemoExpressions\Prefixes\MoreComplexPrefixesDemo.expr" />
     <Content Include="Demos\DemoExpressions\Prefixes\MoreComplexPrefixesDemo.parsed" />
+    <Content Include="Demos\DemoExpressions\Prefixes\prefixes.rst.template" />
     <Content Include="Demos\DemoExpressions\Prefixes\PrefixesUsedWithDifferentExpressionItems.expr" />
     <Content Include="Demos\DemoExpressions\Prefixes\PrefixesUsedWithDifferentExpressionItems.parsed" />
-    <Content Include="Demos\DemoExpressions\Temp.html" />
     <Content Include="Demos\DemoExpressions\TemporaryDiagnostics\DiagnosticsExpression.expr" />
     <Content Include="Demos\DemoExpressions\TemporaryDiagnostics\DiagnosticsExpression.parsed" />
     <Content Include="Demos\DemoExpressions\Texts\Texts.expr" />
