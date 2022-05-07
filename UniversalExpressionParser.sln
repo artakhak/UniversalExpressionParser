@@ -35,12 +35,24 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassVisualizer", "..\Class
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversalExpressionParser.ClassVisualizers", "UniversalExpressionParser.ClassVisualizers\UniversalExpressionParser.ClassVisualizers.csproj", "{7283420A-D0D6-4F8B-9C6A-1638517D685A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{DBCFCA35-D69C-4A39-87CC-1B8AD53D011A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs-0", "docs-0", "{DBCFCA35-D69C-4A39-87CC-1B8AD53D011A}"
 	ProjectSection(SolutionItems) = preProject
-		docs\conf.py = docs\conf.py
+		docs-0\conf.py = docs-0\conf.py
+		docs-0\make.bat = docs-0\make.bat
+		docs-0\Makefile = docs-0\Makefile
+		docs-0\README.md = docs-0\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{2F20B668-4A23-41BA-82B3-31832B8B4CBE}"
+	ProjectSection(SolutionItems) = preProject
 		docs\make.bat = docs\make.bat
 		docs\Makefile = docs\Makefile
-		docs\README.md = docs\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source", "source", "{ABC39FC7-9A14-4BFD-9D3C-B12E8895B81B}"
+	ProjectSection(SolutionItems) = preProject
+		docs\source\conf.py = docs\source\conf.py
+		docs\source\index.rst = docs\source\index.rst
 	EndProjectSection
 EndProject
 Global
@@ -403,6 +415,7 @@ Global
 		{D642986D-19C4-4EC3-97A9-0C6B575E425F} = {D3294509-1340-4682-BFF4-03C75B6FBED9}
 		{4E0C22FB-F788-457B-A4E7-C258F73EDB4B} = {D3294509-1340-4682-BFF4-03C75B6FBED9}
 		{D115F9F0-1E5E-4251-888F-18B1F40AC19F} = {D3294509-1340-4682-BFF4-03C75B6FBED9}
+		{ABC39FC7-9A14-4BFD-9D3C-B12E8895B81B} = {2F20B668-4A23-41BA-82B3-31832B8B4CBE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6F1C0A09-DE09-425B-A41B-339B1155FAE5}
