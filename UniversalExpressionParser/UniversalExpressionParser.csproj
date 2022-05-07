@@ -1,29 +1,33 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<PackageVersion>1.0.2</PackageVersion>
-		<Version>1.0.2</Version>
+		<PackageVersion>1.0.3</PackageVersion>
+		<Version>1.0.3</Version>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<EnableDefaultItems>false</EnableDefaultItems>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<Authors>Artak Hakobyan</Authors>
 		<Company>OROptimizer</Company>
-		<Description>
-			UniversalExpressionParser is a library for parsing functional expressions.
+		<Description>UniversalExpressionParser is a library for parsing functional expressions.
+
 			The parsed language format is specified in implementation of UniversalExpressionParser.IExpressionLanguageProvider.
+
 			The library supports expressions of the following types among others: functions, literals (variables), numeric values (parsed by specifying regular expressions), texts keywords, prefixes, postfixes, code blocks and code separators, (e.g., {var x = y+z++;++x;}), line and block comments, operators with priorities specified in UniversalExpressionParser.IExpressionLanguageProvider, custom expression parsers to handle non-standard situations, etc.
+			
 			The parser returns a structure that stores the results of parsing which also includes the list of parse errors, if any.
+			
 			The parser was tested by simulated tests that randomly generate thousands of parsed expressions and parse those expressions.
+			
 			NOTE: The source code is available at https://github.com/artakhak/UniversalExpressionParser. The documentation with good demos of example expressions, code to parse the expressions and visualized parse results reference https://universalexpressionparser.readthedocs.io/en/latest/summary.html.
 		</Description>
 		<Copyright>Copyright 2022 (c) OROptimizer. All rights reserved.</Copyright>
-		<PackageProjectUrl>https://universalexpressionparser.readthedocs.io</PackageProjectUrl>
+		<PackageProjectUrl>https://universalexpressionparser.readthedocs.io/en/latest/summary.html</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/artakhak/UniversalExpressionParser</RepositoryUrl>
 		<PackageTags>Universal Expression Parser</PackageTags>
 		<PackageReleaseNotes>
-			Small fix to point to summary page in readthedoc documentation rather than the main page.
+			Changed the project website to point to summary page in readthedoc documentation rather than the main page.
 		</PackageReleaseNotes>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
