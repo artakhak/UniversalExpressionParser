@@ -92,7 +92,6 @@
     <Content Include="Demos\DemoExpressions\Comments\Comments.expr" />
     <Content Include="Demos\DemoExpressions\Comments\Comments.parsed" />
     <Content Include="Demos\DemoExpressions\Comments\comments.rst.template" />
-    <Content Include="Demos\DemoExpressions\Comments\README.md" />
     <Content Include="Demos\DemoExpressions\CustomExpressionItemParsers\custom-expression-item-parsers.rst.template" />
     <Content Include="Demos\DemoExpressions\ErrorReporting\error-reporting.rst.template" />
     <Content Include="Demos\DemoExpressions\ErrorReporting\ExpressionWithErrors.expr" />
@@ -126,18 +125,14 @@
     <Content Include="SpecialCases\TODO.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Demos\DemoExpressions\CaseSensitivityAndNonStandardLanguageFeatures\README.md" />
     <None Include="Demos\DemoExpressions\CodeSeparatorsAndCodeBlocks\MoreComplexExample.expr" />
     <None Include="Demos\DemoExpressions\CodeSeparatorsAndCodeBlocks\MoreComplexExample.parsed" />
-    <None Include="Demos\DemoExpressions\CodeSeparatorsAndCodeBlocks\README.md" />
     <None Include="Demos\DemoExpressions\CodeSeparatorsAndCodeBlocks\SimpleExample.expr" />
     <None Include="Demos\DemoExpressions\CodeSeparatorsAndCodeBlocks\SimpleExample.parsed" />
     <None Include="Demos\DemoExpressions\CustomExpressionItemParsers\MultipleAdjacentPrefixPostfixCustomExpressionItems.parsed" />
-    <None Include="Demos\DemoExpressions\CustomExpressionItemParsers\README.md" />
     <None Include="Demos\DemoExpressions\CustomExpressionItemParsers\MultipleAdjacentPrefixPostfixCustomExpressionItems.expr" />
     <None Include="Demos\DemoExpressions\CustomExpressionItemParsers\SimpleCustomExpressionItems.expr" />
     <None Include="Demos\DemoExpressions\CustomExpressionItemParsers\SimpleCustomExpressionItems.parsed" />
-    <None Include="Demos\DemoExpressions\ErrorReporting\README.md" />
     <None Include="Demos\DemoExpressions\FunctionsAndBraces\functions-and-braces.rst.template" />
     <None Include="Demos\DemoExpressions\index.rst.template" />
     <None Include="Demos\DemoExpressions\Literals\literals.rst.template" />
@@ -151,23 +146,17 @@
     <None Include="Demos\DemoExpressions\SummaryExpression.expr" />
     <None Include="Demos\DemoExpressions\FunctionsAndBraces\FunctionsWithRoundAndSquareBraces.expr" />
     <None Include="Demos\DemoExpressions\FunctionsAndBraces\FunctionsWithRoundAndSquareBraces.parsed" />
-    <None Include="Demos\DemoExpressions\FunctionsAndBraces\README.md" />
     <None Include="Demos\DemoExpressions\FunctionsAndBraces\RoundAndSquareBraces.expr" />
     <None Include="Demos\DemoExpressions\FunctionsAndBraces\RoundAndSquareBraces.parsed" />
     <None Include="Demos\DemoExpressions\Keywords\Keywords.parsed" />
-    <None Include="Demos\DemoExpressions\Keywords\README.md" />
     <None Include="Demos\DemoExpressions\Keywords\Keywords.expr" />
     <None Include="Demos\DemoExpressions\Literals\Literals.expr" />
     <None Include="Demos\DemoExpressions\Literals\Literals.parsed" />
-    <None Include="Demos\DemoExpressions\Literals\README.md" />
     <None Include="Demos\DemoExpressions\NumericValues\NumericValues.expr" />
     <None Include="Demos\DemoExpressions\NumericValues\NumericValues.parsed" />
-    <None Include="Demos\DemoExpressions\NumericValues\README.md" />
     <None Include="Demos\DemoExpressions\Operators\MultipartOperators.parsed" />
-    <None Include="Demos\DemoExpressions\Operators\README.md" />
     <None Include="Demos\DemoExpressions\Operators\UnaryPrefixOperatorUsedForReturnStatement.expr" />
     <None Include="Demos\DemoExpressions\Operators\UnaryPrefixOperatorUsedForReturnStatement.parsed" />
-    <None Include="Demos\DemoExpressions\ParsingSectionInText\README.md" />
     <None Include="Demos\DemoExpressions\Postfixes\CodeBlockPostfixToModelFunctionBody.expr" />
     <None Include="Demos\DemoExpressions\Postfixes\CodeBlockPostfixToModelFunctionBody.parsed" />
     <None Include="Demos\DemoExpressions\Operators\BracesToChangeOperatorEvaluationOrder.expr" />
@@ -178,15 +167,12 @@
     <None Include="Demos\DemoExpressions\Operators\OperatorPriorities.expr" />
     <None Include="Demos\DemoExpressions\Postfixes\CodeBlockPostfixUsedToModelAClassDefinition.expr" />
     <None Include="Demos\DemoExpressions\Postfixes\CodeBlockPostfixUsedToModelAClassDefinition.parsed" />
-    <None Include="Demos\DemoExpressions\Postfixes\README.md" />
     <None Include="Demos\DemoExpressions\Postfixes\SimpleCodeBlockPostfixAfterLiteral.expr" />
     <None Include="Demos\DemoExpressions\Postfixes\SimpleCodeBlockPostfixAfterLiteral.parsed" />
     <None Include="Demos\DemoExpressions\Postfixes\CodeBlockPostfixForDifferentExpressionItems.expr" />
     <None Include="Demos\DemoExpressions\Postfixes\SimpleCustomExpressionItemAsPostfixAfterLiteral.expr" />
-    <None Include="Demos\DemoExpressions\Prefixes\README.md" />
-    <None Include="Demos\DemoExpressions\README.md" />
+    <None Include="Demos\DemoExpressions\README-SUMMARY.md" />
     <None Include="Demos\DemoExpressions\SummaryExpression.parsed" />
-    <None Include="Demos\DemoExpressions\Texts\README.md" />
     <None Include="SpecialCases\SpecialNumbers\ExpWithFollowingSpace.parsed" />
     <None Include="SpecialCases\SpecialNumbers\ExpWithPointInOperators.expr" />
     <None Include="SpecialCases\SpecialNumbers\ExpWithPointInOperators.parsed" />

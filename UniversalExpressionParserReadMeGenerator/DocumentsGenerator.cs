@@ -26,22 +26,22 @@ internal class DocumentsGenerator
         (@"UniversalExpressionParser.Tests\Demos\DemoExpressions\CaseSensitivityAndNonStandardLanguageFeatures\case-sensitivity-and-non-standard-language-features.rst.template", @"docs\case-sensitivity-and-non-standard-language-features.rst")
     };
 
-    private readonly string _solutionFolderPath;
     private readonly ITemplateProcessor _templateProcessor = new TemplateProcessor();
     private readonly DocumentGenerator _documentGenerator;
 
     public DocumentsGenerator()
     {
+        string solutionFolderPath;
         var assemblyFilePath = typeof(Program).Assembly.Location;
 
         if (assemblyFilePath == null)
-            throw new Exception($"Could not initialioze the value of {nameof(_solutionFolderPath)}.");
+            throw new Exception($"Could not initialize the value of {nameof(solutionFolderPath)}.");
 
         var indexOfDocumentationGenerator = assemblyFilePath.IndexOf(@"\UniversalExpressionParserReadMeGenerator\");
 
-        _solutionFolderPath = assemblyFilePath.Substring(0, indexOfDocumentationGenerator);
+        solutionFolderPath = assemblyFilePath.Substring(0, indexOfDocumentationGenerator);
 
-        _documentGenerator = new DocumentGenerator(_templateProcessor, _solutionFolderPath);
+        _documentGenerator = new DocumentGenerator(_templateProcessor, solutionFolderPath);
     }
 
     public bool GenerateDocumentsFromTemplates()

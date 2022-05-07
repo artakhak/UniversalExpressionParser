@@ -110,16 +110,13 @@ method **DoParseCustomExpressionItem(IParseExpressionItemContext context,...)** 
                  IKeywordExpressionItem lastKeywordExpressionItem);
      }
 
-- Here is the code from demo custom expression item parser **UniversalExpressionParser.DemoExpressionLanguageProviders.CustomExpressions.PragmaCustomExpressionItemParser** 
+- Here is the code from demo custom expression item parser **PragmaCustomExpressionItemParser** 
 
 .. sourcecode:: csharp
      :linenos:
      
      <IncludedFilePlaceHolder>..\..\..\..\UniversalExpressionParser.DemoExpressionLanguageProviders\CustomExpressions\PragmaCustomExpressionItemParser.cs</IncludedFilePlaceHolder>
 
-- Below is the interface **IParseExpressionItemContext** that shows the helper methods and properties, as well as extension methods that can be used when parsing custom expressions.
+.. raw:: html
 
-.. sourcecode:: csharp
-     :linenos:
-     
-     <IncludedFilePlaceHolder>..\..\..\..\UniversalExpressionParser\IParseExpressionItemContext.cs</IncludedFilePlaceHolder>
+    <a href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser/IParseExpressionItemContext.cs"><p class="codeSnippetRefText">Click here to see the definition of interface UniversalExpressionParser.IParseExpressionItemContext</p></a>

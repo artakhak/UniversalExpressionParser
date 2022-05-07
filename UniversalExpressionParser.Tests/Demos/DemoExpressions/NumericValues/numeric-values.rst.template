@@ -21,7 +21,7 @@ Numeric Values
 - The abstract class **UniversalExpressionParser.ExpressionLanguageProviderBase** that can be used as a base class for implementations of **UniversalExpressionParser.IExpressionLanguageProvider** in most cases, implements the property **NumericTypeDescriptors** as a virtual property. The implementation of property **NumericTypeDescriptors** in **UniversalExpressionParser.ExpressionLanguageProviderBase** is demonstrated below, and it can be overridden to provide different format for numeric values:
  
 .. note::
-   The regular expressions used in implementation of property **NumericTypeDescriptors** should always tart with '**^**' and should never end with '**$**'.
+   The regular expressions used in implementation of property **NumericTypeDescriptors** should always start with '**^**' and should never end with '**$**'.
 
 .. sourcecode:: csharp
      :linenos:
