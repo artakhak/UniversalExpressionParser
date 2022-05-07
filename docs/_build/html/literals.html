@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Literals &#8212; UniversalExpressionParser 1.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Functions and Braces" href="functions-and-braces.html" />
+    <link rel="prev" title="UniversalExpressionParser" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="functions-and-braces.html" title="Functions and Braces"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="UniversalExpressionParser"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">UniversalExpressionParser 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Literals</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="literals">
+<h1>Literals<a class="headerlink" href="#literals" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#examples-of-literals" id="id1">Examples of literals</a></p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>Literals are names that can be used either alone (say in operators) or can be  part of more complex expressions. For example literals can precede opening square or round braces (e.g., <strong>f1</strong> in <strong>f1(x)</strong>, or <strong>m1</strong> in <strong>m1[1, 2]</strong>), or code blocks (e.g., <strong>Dog</strong> in expression <strong>public class Dog {}</strong>).</p></li>
+<li><p>Literals are parsed into expression items of type <strong>UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem</strong> objects.</p></li>
+<li><p>If literal precedes round or square braces, it will be stored in value of property <strong>ILiteralExpressionItem Name { get; }</strong> of <strong>UniversalExpressionParser.ExpressionItems.IBracesExpressionItem</strong>.</p></li>
+<li><p>If literal precedes a code block staring marker (e.g., <strong>Dog</strong> in expression <strong>public class Dog {}</strong>), then the code block is added to the list <strong>UniversalExpressionParser.ExpressionItems.IComplexExpressionItem.Postfixes</strong> in expression item for the literal (see section <strong>Postfixes</strong> for more details on postfixes).</p></li>
+<li><p>Literals are texts that cannot have space and can only contain characters validated by method <strong>UniversalExpressionParser.IExpressionLanguageProvider.IsValidLiteralCharacter(char character, int positionInLiteral, ITextSymbolsParserState textSymbolsParserState)</strong> in interface <strong>UniversalExpressionParser.IExpressionLanguageProvider</strong>. In other words, a literal can contain any character (including numeric or operator characters, a dot ‘.’, ‘_’, etc.), that is considered a valid literal character by method <strong>IExpressionLanguageProvider.IsValidLiteralCharacter(…)</strong>.</p></li>
+</ul>
+<section id="examples-of-literals">
+<h2><a class="toc-backref" href="#id1">Examples of literals</a><a class="headerlink" href="#examples-of-literals" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>// In example below _x, f$, x1, x2, m1, and x3, Dog, Color, string, println, and Dog.Color are literals.
+<span class="linenos"> 2</span>var _x = f$(x1, x2) + m1[1, x3];
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span>public class Dog
+<span class="linenos"> 5</span>{
+<span class="linenos"> 6</span>    public Color : string =&gt; &quot;brown&quot;;
+<span class="linenos"> 7</span>}
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>// println is a literal and it is part of &quot;println(Dog.Color)&quot; braces expression item. In this example,
+<span class="linenos">10</span>// println will be parsed to an expression item UniversalExpressionParser.ExpressionItems.INamedComplexExpressionItem
+<span class="linenos">11</span>// and will be the value of property NamedExpressionItem in UniversalExpressionParser.ExpressionItems.IBracesExpressionItem
+<span class="linenos">12</span>println(Dog.Color);
+</pre></div>
+</div>
+<p><a class="reference external" href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Literals/Literals.parsed/">Click here to view visualized instance of UniversalExpressionParser.IParseExpressionResult</a></p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Literals</a><ul>
+<li><a class="reference internal" href="#examples-of-literals">Examples of literals</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="index.html"
+                          title="previous chapter">UniversalExpressionParser</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="functions-and-braces.html"
+                          title="next chapter">Functions and Braces</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/literals.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="functions-and-braces.html" title="Functions and Braces"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="UniversalExpressionParser"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">UniversalExpressionParser 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Literals</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Artak Hakobyan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+  </body>
+</html>

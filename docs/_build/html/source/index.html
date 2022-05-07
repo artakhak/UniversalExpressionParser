@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>UniversalExpressionParser &#8212; UniversalExpressionParser 1.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">UniversalExpressionParser 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">UniversalExpressionParser</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="universalexpressionparser">
+<h1>UniversalExpressionParser<a class="headerlink" href="#universalexpressionparser" title="Permalink to this headline">¶</a></h1>
+<p><strong>UniversalExpressionParser</strong> is a library for parsing expressions like the one demonstrated below into expression items for functions, literals, operators, etc.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kt">var</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">x1</span><span class="p">*</span><span class="n">y1</span><span class="p">+</span><span class="n">x2</span><span class="p">*</span><span class="n">y2</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kt">var</span><span class="w"> </span><span class="n">matrixMultiplicationResult</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[[</span><span class="n">x1_1</span><span class="p">,</span><span class="w"> </span><span class="n">x1_2</span><span class="p">,</span><span class="w"> </span><span class="n">x1_3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="n">x2_1</span><span class="p">,</span><span class="w"> </span><span class="n">x2_2</span><span class="p">,</span><span class="w"> </span><span class="n">x2_3</span><span class="p">]]*[[</span><span class="n">y1_1</span><span class="p">,</span><span class="w"> </span><span class="n">x1_2</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="n">y2_1</span><span class="p">,</span><span class="w"> </span><span class="n">x2_2</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="n">y3_1</span><span class="p">,</span><span class="w"> </span><span class="n">x3_2</span><span class="p">]];</span><span class="w"></span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="n">println</span><span class="p">(</span><span class="n">matrixMultiplicationResult</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="na">[NotNull]</span><span class="w"> </span><span class="p">[</span><span class="n">PublicName</span><span class="p">(</span><span class="s">&quot;Calculate&quot;</span><span class="p">)]</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="k">public</span><span class="w"> </span><span class="nf">F1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="w">    </span><span class="cm">/*This demos multiline</span>
+<span class="linenos">12</span><span class="cm">    comments that can be placed anywhere*/</span><span class="w"></span>
+<span class="linenos">13</span><span class="w">    </span><span class="p">++</span><span class="n">y</span><span class="w"> </span><span class="cm">/*another multiline comment*/</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="m">1.3</span><span class="n">EXP</span><span class="p">-</span><span class="m">2.7</span><span class="p">+</span><span class="w"> </span><span class="p">++</span><span class="n">x</span><span class="p">+</span><span class="n">y</span><span class="p">*</span><span class="n">z</span><span class="p">;</span><span class="w"> </span><span class="c1">// Line comments.</span>
+<span class="linenos">15</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="k">public</span><span class="w"> </span><span class="k">abstract</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="p">::</span><span class="n">metadata</span><span class="p">{</span><span class="n">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Demo prefix&quot;</span><span class="p">}</span><span class="w"> </span><span class="p">::</span><span class="n">types</span><span class="p">[</span><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="n">T2</span><span class="p">,</span><span class="w"> </span><span class="n">T3</span><span class="p">]</span><span class="w"> </span><span class="n">Animal</span><span class="w"></span>
+<span class="linenos">18</span><span class="w">   </span><span class="k">where</span><span class="w"> </span><span class="n">T1</span><span class="p">:</span><span class="w"> </span><span class="n">IType1</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">T2</span><span class="p">:</span><span class="w"> </span><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="n">IType2</span><span class="w"> </span><span class="n">whereend</span><span class="w"></span>
+<span class="linenos">19</span><span class="w">   </span><span class="k">where</span><span class="w"> </span><span class="n">T3</span><span class="p">:</span><span class="w"> </span><span class="n">IType3</span><span class="w"> </span><span class="n">whereend</span><span class="w"></span>
+<span class="linenos">20</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">abstract</span><span class="w"> </span><span class="nf">Move</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">void</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">22</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Dog</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">Animal</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">25</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="nf">Move</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Jump&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">27</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Below is the demo code used to parse this expression:</p></li>
+</ul>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">using</span><span class="w"> </span><span class="nn">TextParser</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="k">using</span><span class="w"> </span><span class="nn">UniversalExpressionParser.DemoExpressionLanguageProviders</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="k">namespace</span><span class="w"> </span><span class="nn">UniversalExpressionParser.Tests.Demos</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">SummaryDemo</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">        </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="n">IExpressionParser</span><span class="w"> </span><span class="n">_expressionParser</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">        </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="n">IExpressionLanguageProvider</span><span class="w"> </span><span class="n">_nonVerboseLanguageProvider</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NonVerboseCaseSensitiveExpressionLanguageProvider</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">        </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="n">IExpressionLanguageProvider</span><span class="w"> </span><span class="n">_verboseLanguageProvider</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">VerboseCaseInsensitiveExpressionLanguageProvider</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">        </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="n">IParseExpressionOptions</span><span class="w"> </span><span class="n">_parseExpressionOptions</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ParseExpressionOptions</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="nf">SummaryDemo</span><span class="p">()</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">15</span><span class="w">            </span><span class="n">IExpressionLanguageProviderCache</span><span class="w"> </span><span class="n">expressionLanguageProviderCache</span><span class="w"> </span><span class="p">=</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="nf">ExpressionLanguageProviderCache</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">DefaultExpressionLanguageProviderValidator</span><span class="p">());</span><span class="w"></span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="w">            </span><span class="n">_expressionParser</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ExpressionParser</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">TextSymbolsParserFactory</span><span class="p">(),</span><span class="w"> </span><span class="n">expressionLanguageProviderCache</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="w">            </span><span class="n">expressionLanguageProviderCache</span><span class="p">.</span><span class="n">RegisterExpressionLanguageProvider</span><span class="p">(</span><span class="n">_nonVerboseLanguageProvider</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">            </span><span class="n">expressionLanguageProviderCache</span><span class="p">.</span><span class="n">RegisterExpressionLanguageProvider</span><span class="p">(</span><span class="n">_verboseLanguageProvider</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">22</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">IParseExpressionResult</span><span class="w"> </span><span class="nf">ParseNonVerboseExpression</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">expression</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">25</span><span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">            </span><span class="cm">/*</span>
+<span class="linenos">27</span><span class="cm">            The same instance _expressionParser of UniversalExpressionParser.IExpressionParser can be used</span>
+<span class="linenos">28</span><span class="cm">            to parse multiple expressions using different instances of UniversalExpressionParser.IExpressionLanguageProvider</span>
+<span class="linenos">29</span><span class="cm">            Example:</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="cm">            var parsedExpression1 = _expressionParser.ParseExpression(_nonVerboseLanguageProvider.LanguageName, &quot;var x=2*y; f1() {++x;} f1();&quot;);</span>
+<span class="linenos">32</span><span class="cm">            var parsedExpression2 = _expressionParser.ParseExpression(_verboseLanguageProvider.LanguageName, &quot;var x=2*y; f1() BEGIN ++x;END f1();&quot;);</span>
+<span class="linenos">33</span><span class="cm">            */</span><span class="w"></span>
+<span class="linenos">34</span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">_expressionParser</span><span class="p">.</span><span class="n">ParseExpression</span><span class="p">(</span><span class="n">_nonVerboseLanguageProvider</span><span class="p">.</span><span class="n">LanguageName</span><span class="p">,</span><span class="w"> </span><span class="n">expression</span><span class="p">,</span><span class="w"> </span><span class="n">_parseExpressionOptions</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">35</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">36</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">37</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<ul>
+<li><p>Expression is parsed to an instance of <strong>UniversalExpressionParser.IParseExpressionResult</strong> by calling the method  <strong>IParseExpressionResult ParseExpression(string expressionLanguageProviderName, string expressionText, IParseExpressionOptions parseExpressionOptions)</strong> in <strong>UniversalExpressionParser.IExpressionParser</strong>.</p></li>
+<li><p>The interface <strong>UniversalExpressionParser.IParseExpressionResult</strong> (i.e., result of parsing the expression) has a property <strong>UniversalExpressionParser.ExpressionItems.IRooxExpressionItem RootExpressionItem { get; }</strong> that stores the root expression item of a tree structure of parsed expression items.</p></li>
+<li><p>The code that evaluates the parsed expression can use the following properties in <strong>UniversalExpressionParser.ExpressionItems.IRootExpressionItem</strong> to iterate through all parsed expression items:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>IEnumerable&amp;lt;IExpressionItemBase&amp;gt; AllItems { get; }</strong></p></li>
+<li><p><strong>IReadOnlyList&amp;lt;IExpressionItemBase&amp;gt; Prefixes { get; }</strong></p></li>
+<li><p><strong>IReadOnlyList&amp;lt;IKeywordExpressionItem&amp;gt; AppliedKeywords { get; }</strong></p></li>
+<li><p><strong>IReadOnlyList&amp;lt;IExpressionItemBase&amp;gt; RegularItems { get; }</strong></p></li>
+<li><p><strong>IReadOnlyList&amp;lt;IExpressionItemBase&amp;gt; Children { get; }</strong></p></li>
+<li><p><strong>IReadOnlyList&amp;lt;IExpressionItemBase&amp;gt; Postfixes { get; }</strong></p></li>
+<li><p><strong>IReadOnlyList&amp;lt;IExpressionItemBase&amp;gt; Prefixes { get; }</strong></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>All expressions are parsed either to expressions items of type <strong>UniversalExpressionParser.ExpressionItems.IExpressionItemBase</strong> or one of its subclasses for simple expressions or to expressions items of type <strong>UniversalExpressionParser.ExpressionItems.IComplexExpressionItem</strong> (which is a sub-interface of UniversalExpressionParser.ExpressionItems.IExpressionItemBase) or one of its subclasses for expression items that consists of other expression items.</p></li>
+<li><p>Some examples simple expression items are: <strong>UniversalExpressionParser.ExpressionItems.ICommaExpressionItem</strong> for commas, <strong>UniversalExpressionParser.ExpressionItems.IOpeningBraceExpressionItem</strong> and <strong>UniversalExpressionParser.ExpressionItems.IClosingBraceExpressionItem</strong> for opening and closing braces “(” and “)”</p></li>
+<li><p>Some complex expression items are: <strong>UniversalExpressionParser.ExpressionItems.IBracesExpressionItem</strong> for functions like “f1 (x1, x2)”, <strong>UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem</strong> for operators like the binary operator with operands “f1(x)” and “y” in “f1(x) + y”.</p></li>
+<li><p>All expressions are currently parsed to one of the following expression items (or intances of other sub-interfaces of these interfaces) in namespaces <strong>UniversalExpressionParser.ExpressionItems</strong> and <strong>UniversalExpressionParser.ExpressionItems.Custom</strong>: <strong>ILiteralExpressionItem</strong>, <strong>ILiteralNameExpressionItem</strong>, <strong>IConstantTextExpressionItem</strong>, <strong>IConstantTextValueExpressionItem</strong>, <strong>INumericExpressionItem</strong>, <strong>INumericExpressionValueItem</strong>, <strong>IBracesExpressionItem</strong>, <strong>IOpeningBraceExpressionItem</strong>, <strong>IClosingBraceExpressionItem</strong>, <strong>ICommaExpressionItem</strong>, <strong>ICodeBlockExpressionItem</strong>, <strong>ICustomExpressionItem</strong>, <strong>IKeywordExpressionItem</strong>, <strong>ICodeBlockStartMarkerExpressionItem</strong>, <strong>ICodeBlockEndMarkerExpressionItem</strong>, <strong>ISeparatorCharacterExpressionItem</strong>, <strong>IOperatorExpressionItem</strong>, <strong>IOperatorInfoExpressionItem</strong>, <strong>IKeywordExpressionItem</strong>, <strong>UniversalExpressionParser.ExpressionItems.Custom.ICustomExpressionItem</strong>, <strong>IRootExpressionItem</strong>, <strong>IComplexExpressionItem</strong>, <strong>ITextExpressionItem</strong>, <strong>IExpressionItemBase</strong>. The state of this expression items can be analyzed when evaluating the parsed expression.</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/SummaryExpression.parsed/">Click here to view visualized instance of UniversalExpressionParser.IParseExpressionResult</a></p>
+<ul class="simple">
+<li><p>The format of valid expressions is defined by properties and methods in interface <strong>UniversalExpressionParser.IExpressionLanguageProvider</strong>. The expression language name <strong>UniversalExpressionParser.IExpressionLanguageProvider.LanguageName</strong> of some instance <strong>UniversalExpressionParser.IExpressionLanguageProvider</strong> is passed as a parameter to method <strong>ParseExpression(…)</strong> in <strong>UniversalExpressionParser.IExpressionParser</strong>, as demonstrated in example above. Most of the properties and methods of this interface are demonstrated in examples in sections below.</p></li>
+<li><p>The default abstract implementation of this interface in this package is <strong>UniversalExpressionParser.ExpressionLanguageProviderBase</strong>. In most cases, this abstract class can be extended and abstract methods and properties can be implemented, rather than providing a brand new implementation of <strong>UniversalExpressionParser.IExpressionLanguageProvider</strong>.</p></li>
+<li><p>The test project <strong>UniversalExpressionParser.Tests</strong> in git repository has a number of tests for testing successful parsing, as well as tests for testing expressions that result in errors (see section <strong>Error Reporting</strong> below). These tests generate random expressions as well as generate randomly configured instances of <strong>UniversalExpressionParser.IExpressionLanguageProvider</strong> to validate parsing of thousands of all possible languages and expressions (see the test classes <strong>UniversalExpressionParser.Tests.SuccessfulParseTests.ExpressionParserSuccessfulTests</strong> and <strong>UniversalExpressionParser.Tests.ExpressionParseErrorTests.ExpressionParseErrorTests</strong>).</p></li>
+<li><p>The demo expressions and tests used to parse the demo expressions in this documentation are in folder <strong>Demos</strong> in test project <strong>UniversalExpressionParser.Tests</strong>. This documentation uses implementations of <strong>UniversalExpressionParser.IExpressionLanguageProvider</strong> in project <strong>UniversalExpressionParser.DemoExpressionLanguageProviders</strong> in <strong>git</strong> repository.</p></li>
+<li><p>The parsed expressions in this documentation (i.e., instances of <strong>UniversalExpressionParser.ExpressionItems.IParseExpressionResult</strong>) are visualized into xml texts, that contain values of most properties of the parsed expression. However, to make the files shorter, the visualized xml files do not include all the property values.</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="literals.html">Literals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="literals.html#examples-of-literals">Examples of literals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions-and-braces.html">Functions and Braces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions-and-braces.html#examples-of-functions">Examples of functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions-and-braces.html#examples-of-braces">Examples of braces</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="../genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="../py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="../search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">UniversalExpressionParser</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/source/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">UniversalExpressionParser 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">UniversalExpressionParser</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Artak Hakobyan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+  </body>
+</html>

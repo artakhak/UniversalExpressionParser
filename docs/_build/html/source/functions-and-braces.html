@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Functions and Braces &#8212; UniversalExpressionParser 1.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">UniversalExpressionParser 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Functions and Braces</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="functions-and-braces">
+<h1>Functions and Braces<a class="headerlink" href="#functions-and-braces" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#examples-of-functions" id="id2">Examples of functions</a></p></li>
+<li><p><a class="reference internal" href="#examples-of-braces" id="id3">Examples of braces</a></p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>Functions are round or square braces preceded with a literal (e.g., <strong>F1(x)</strong>, <strong>F1(x) {}</strong>, <strong>m1[i,j]</strong>, <strong>m1[i,j]{}</strong>). Functions are  parsed to expression items of type <strong>UniversalExpressionParser.ExpressionItems.IBracesExpressionItem</strong> with the value of property <strong>ILiteralExpressionItem NameLiteral { get; }</strong> equal to a literal that precedes the braces.</p></li>
+<li><p>Braces are a pair of round or square braces ((e.g., <strong>(x)</strong>, <strong>(x) {}</strong>, <strong>[i,j]</strong>, <strong>[i,j]{}</strong>)). Braces are parsed to expression items of type <strong>UniversalExpressionParser.ExpressionItems.IBracesExpressionItem</strong> with the value of property <strong>ILiteralExpressionItem NameLiteral { get; }</strong> equal to null.</p></li>
+</ul>
+<section id="examples-of-functions">
+<h2><a class="toc-backref" href="#id2">Examples of functions</a><a class="headerlink" href="#examples-of-functions" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">//</span> <span class="n">The</span> <span class="n">statements</span> <span class="n">below</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">make</span> <span class="n">much</span> <span class="n">sense</span><span class="o">.</span>
+<span class="linenos"> 2</span><span class="o">//</span> <span class="n">They</span> <span class="n">just</span> <span class="n">demonstrate</span> <span class="n">different</span> <span class="n">ways</span> <span class="n">the</span> <span class="n">square</span> <span class="ow">and</span> <span class="nb">round</span> <span class="n">braces</span> <span class="n">can</span> <span class="n">be</span> <span class="n">used</span>
+<span class="linenos"> 3</span><span class="o">//</span> <span class="ow">in</span> <span class="n">expressions</span><span class="o">.</span>
+<span class="linenos"> 4</span><span class="n">var</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x1</span><span class="o">+</span><span class="n">f1</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="o">+</span><span class="n">x4</span><span class="o">*</span><span class="mi">5</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span>
+<span class="linenos"> 5</span>         <span class="n">matrix1</span><span class="p">[[</span><span class="n">y1</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="n">f1</span><span class="p">(</span><span class="n">x4</span><span class="p">)],</span> <span class="n">x3</span><span class="p">,</span> <span class="n">f2</span><span class="p">(</span><span class="n">x3</span><span class="p">,</span> <span class="n">m2</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">5</span><span class="p">])];</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="n">f1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="n">f2</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span>
+<span class="linenos">10</span><span class="p">{</span>
+<span class="linenos">11</span>   <span class="o">//</span> <span class="n">Normally</span> <span class="n">matrixes</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">have</span> <span class="n">bodies</span> <span class="n">like</span> <span class="n">functions</span> <span class="n">doo</span><span class="o">.</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">just</span> <span class="n">to</span> <span class="n">demo</span> <span class="n">that</span>
+<span class="linenos">12</span>   <span class="o">//</span> <span class="n">the</span> <span class="n">parser</span> <span class="n">allows</span> <span class="n">this</span><span class="o">.</span>
+<span class="linenos">13</span><span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/FunctionsAndBraces/FunctionsWithRoundAndSquareBraces.parsed/">Click here to view visualized instance of UniversalExpressionParser.IParseExpressionResult</a></p>
+</section>
+<section id="examples-of-braces">
+<h2><a class="toc-backref" href="#id3">Examples of braces</a><a class="headerlink" href="#examples-of-braces" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="o">//</span> <span class="n">The</span> <span class="n">statements</span> <span class="n">below</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">make</span> <span class="n">much</span> <span class="n">sense</span><span class="o">.</span>
+<span class="linenos">2</span><span class="o">//</span> <span class="n">They</span> <span class="n">just</span> <span class="n">demonstrate</span> <span class="n">different</span> <span class="n">ways</span> <span class="n">the</span> <span class="n">square</span> <span class="ow">and</span> <span class="nb">round</span> <span class="n">braces</span> <span class="n">can</span> <span class="n">be</span> <span class="n">used</span>
+<span class="linenos">3</span><span class="o">//</span> <span class="ow">in</span> <span class="n">expressions</span><span class="o">.</span>
+<span class="linenos">4</span><span class="n">var</span> <span class="n">x</span> <span class="o">=</span> <span class="p">((</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">),</span> <span class="p">[</span><span class="n">x4</span><span class="p">,</span> <span class="n">x5</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">x6</span><span class="p">],</span> <span class="n">y</span><span class="p">);</span>
+<span class="linenos">5</span><span class="n">x</span> <span class="o">+=</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">x4</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="p">[</span><span class="n">x3</span><span class="p">,</span> <span class="n">x4</span><span class="p">];</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/FunctionsAndBraces/RoundAndSquareBraces.parsed/">Click here to view visualized instance of UniversalExpressionParser.IParseExpressionResult</a></p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Functions and Braces</a><ul>
+<li><a class="reference internal" href="#examples-of-functions">Examples of functions</a></li>
+<li><a class="reference internal" href="#examples-of-braces">Examples of braces</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/source/functions-and-braces.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">UniversalExpressionParser 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Functions and Braces</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Artak Hakobyan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+  </body>
+</html>
