@@ -135,6 +135,7 @@
     <None Include="Demos\DemoExpressions\ParsingSectionInText\ParseSingleSquareBracesExpressionDemo.expr" />
     <None Include="Demos\DemoExpressions\ParsingSectionInText\ParseSingleRoundBracesExpressionDemo.expr" />
     <None Include="Demos\DemoExpressions\ParsingSectionInText\ParseSingleSquareBracesExpressionDemo.parsed" />
+    <None Include="Demos\DemoExpressions\summary.rst.template" />
     <None Include="Demos\DemoExpressions\SummaryExpression.expr" />
     <None Include="Demos\DemoExpressions\FunctionsAndBraces\FunctionsWithRoundAndSquareBraces.expr" />
     <None Include="Demos\DemoExpressions\FunctionsAndBraces\FunctionsWithRoundAndSquareBraces.parsed" />

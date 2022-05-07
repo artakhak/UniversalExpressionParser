@@ -9,6 +9,7 @@ internal class DocumentsGenerator
     {
         ("README.md.template", "README.md"),
         (@"UniversalExpressionParser.Tests\Demos\DemoExpressions\index.rst.template", @"docs\index.rst"),
+        (@"UniversalExpressionParser.Tests\Demos\DemoExpressions\summary.rst.template", @"docs\summary.rst"),
         (@"UniversalExpressionParser.Tests\Demos\DemoExpressions\Literals\literals.rst.template", @"docs\literals.rst"),
         (@"UniversalExpressionParser.Tests\Demos\DemoExpressions\FunctionsAndBraces\functions-and-braces.rst.template", @"docs\functions-and-braces.rst")
     };

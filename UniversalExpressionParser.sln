@@ -47,6 +47,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{2F20B668-4
 		docs\literals.rst = docs\literals.rst
 		docs\literals.rst.generationdata = docs\literals.rst.generationdata
 		docs\README.md = docs\README.md
+		docs\summary.rst = docs\summary.rst
+		docs\summary.rst.generationdata = docs\summary.rst.generationdata
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_static", "_static", "{4A6E57B4-12F8-4862-A6C2-7AB0A4431351}"
