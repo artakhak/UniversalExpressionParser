@@ -37,4 +37,4 @@ Examples of literals
      println(Dog.Color);
 
 
-`Click here to view visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Literals/Literals.parsed/>`_
+`Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Literals/Literals.parsed/>`_

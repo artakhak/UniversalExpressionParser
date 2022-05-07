@@ -11,7 +11,13 @@ internal class DocumentsGenerator
         (@"UniversalExpressionParser.Tests\Demos\DemoExpressions\index.rst.template", @"docs\index.rst"),
         (@"UniversalExpressionParser.Tests\Demos\DemoExpressions\summary.rst.template", @"docs\summary.rst"),
         (@"UniversalExpressionParser.Tests\Demos\DemoExpressions\Literals\literals.rst.template", @"docs\literals.rst"),
-        (@"UniversalExpressionParser.Tests\Demos\DemoExpressions\FunctionsAndBraces\functions-and-braces.rst.template", @"docs\functions-and-braces.rst")
+        (@"UniversalExpressionParser.Tests\Demos\DemoExpressions\FunctionsAndBraces\functions-and-braces.rst.template", @"docs\functions-and-braces.rst"),
+        (@"UniversalExpressionParser.Tests\Demos\DemoExpressions\Operators\operators.rst.template", @"docs\operators.rst"),
+        (@"UniversalExpressionParser.Tests\Demos\DemoExpressions\NumericValues\numeric-values.rst.template", @"docs\numeric-values.rst"),
+        (@"UniversalExpressionParser.Tests\Demos\DemoExpressions\Texts\texts.rst.template", @"docs\texts.rst"),
+        (@"UniversalExpressionParser.Tests\Demos\DemoExpressions\CodeSeparatorsAndCodeBlocks\code-separators-and-code-blocks.rst.template", @"docs\code-separators-and-code-blocks.rst"),
+        (@"UniversalExpressionParser.Tests\Demos\DemoExpressions\Keywords\keywords.rst.template", @"docs\keywords.rst")
+        
     };
 
 

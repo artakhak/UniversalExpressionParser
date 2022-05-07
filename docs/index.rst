@@ -9,7 +9,11 @@ UniversalExpressionParser
    summary.rst
    literals.rst
    functions-and-braces.rst
-
+   operators.rst
+   numeric-values.rst
+   texts.rst
+   code-separators-and-code-blocks.rst
+   keywords.rst
 
 Indices and tables
 ==================

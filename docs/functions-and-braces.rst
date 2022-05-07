@@ -29,7 +29,7 @@ Examples of functions
         // the parser allows this.
      }
 
-`Click here to view visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/FunctionsAndBraces/FunctionsWithRoundAndSquareBraces.parsed/>`_
+`Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/FunctionsAndBraces/FunctionsWithRoundAndSquareBraces.parsed/>`_
 
 
 Examples of braces
@@ -44,4 +44,4 @@ Examples of braces
      var x = ((x1, x2, x3), [x4, x5+1, x6], y);
      x += (x2, x4) + 2*[x3, x4];
 
-`Click here to view visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/FunctionsAndBraces/RoundAndSquareBraces.parsed/>`_
+`Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/FunctionsAndBraces/RoundAndSquareBraces.parsed/>`_

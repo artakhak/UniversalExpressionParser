@@ -87,13 +87,17 @@
   <ItemGroup>
     <Content Include="Demos\DemoExpressions\CaseSensitivityAndNonStandardLanguageFeatures\CaseSensitivityAndNonStandardLanguageFeatures.expr" />
     <Content Include="Demos\DemoExpressions\CaseSensitivityAndNonStandardLanguageFeatures\CaseSensitivityAndNonStandardLanguageFeatures.parsed" />
+    <Content Include="Demos\DemoExpressions\CodeSeparatorsAndCodeBlocks\code-separators-and-code-blocks.rst.template" />
     <Content Include="Demos\DemoExpressions\Comments\Comments.expr" />
     <Content Include="Demos\DemoExpressions\Comments\Comments.parsed" />
     <Content Include="Demos\DemoExpressions\Comments\README.md" />
     <Content Include="Demos\DemoExpressions\ErrorReporting\ExpressionWithErrors.expr" />
     <Content Include="Demos\DemoExpressions\ErrorReporting\ExpressionWithErrors.parsed" />
     <Content Include="Demos\DemoExpressions\ErrorReporting\ReportedErrorMessages.txt" />
+    <Content Include="Demos\DemoExpressions\Keywords\keywords.rst.template" />
+    <Content Include="Demos\DemoExpressions\NumericValues\numeric-values.rst.template" />
     <Content Include="Demos\DemoExpressions\Operators\MultipartOperators.expr" />
+    <Content Include="Demos\DemoExpressions\Operators\operators.rst.template" />
     <Content Include="Demos\DemoExpressions\Postfixes\CodeBlockPostfixForDifferentExpressionItems.parsed" />
     <Content Include="Demos\DemoExpressions\Postfixes\SimpleCustomExpressionItemAsPostfixAfterLiteral.parsed" />
     <Content Include="Demos\DemoExpressions\Prefixes\CustomExpressionItemsAsPrefixesSimpleDemo.expr" />
@@ -104,10 +108,12 @@
     <Content Include="Demos\DemoExpressions\Prefixes\MoreComplexPrefixesDemo.parsed" />
     <Content Include="Demos\DemoExpressions\Prefixes\PrefixesUsedWithDifferentExpressionItems.expr" />
     <Content Include="Demos\DemoExpressions\Prefixes\PrefixesUsedWithDifferentExpressionItems.parsed" />
+    <Content Include="Demos\DemoExpressions\Temp.html" />
     <Content Include="Demos\DemoExpressions\TemporaryDiagnostics\DiagnosticsExpression.expr" />
     <Content Include="Demos\DemoExpressions\TemporaryDiagnostics\DiagnosticsExpression.parsed" />
     <Content Include="Demos\DemoExpressions\Texts\Texts.expr" />
     <Content Include="Demos\DemoExpressions\Texts\Texts.parsed" />
+    <Content Include="Demos\DemoExpressions\Texts\texts.rst.template" />
     <Content Include="SpecialCases\SpecialNumbers\ExpWithFollowingSpace.expr" />
     <Content Include="SpecialCases\SpecialNumbers\ExpWithPointInRightSide.expr" />
     <Content Include="SpecialCases\SpecialNumbers\ExpWithPointInRightSide.parsed" />

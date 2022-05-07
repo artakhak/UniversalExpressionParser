@@ -1,0 +1,36 @@
+=====
+Texts
+=====
+
+.. contents::
+   :local:
+   :depth: 2
+   
+The interface **UniversalExpressionParser.IExpressionLanguageProvider** has a property **IReadOnlyList&lt;char&gt; ConstantTextStartEndMarkerCharacters { get; }** that are used by **Universal Expression Parser** to parse expression items that start or end with some character in **ConstantTextStartEndMarkerCharacters** to parse the expression item to **UniversalExpressionParser.ExpressionItems.IConstantTextExpressionItem**.
+
+- The default implementation **UniversalExpressionParser.ExpressionLanguageProviderBase** of **UniversalExpressionParser.IExpressionLanguageProvider** has the following characters in property **UniversalExpressionParser.IExpressionLanguageProvider.ConstantTextStartEndMarkerCharacters** and the examples below will use these text marker characters.
+
+- If an expression starts with some character listed in property **UniversalExpressionParser.IExpressionLanguageProvider.ConstantTextStartEndMarkerCharacters**, then the text expression should end with the same character. In other words, if text starts with character **'** it should end with **'**. Similarly, if text starts with character **"** it should end with **"**.
+
+- The text in expression parsed to **UniversalExpressionParser.ExpressionItems.IConstantTextExpressionItem** can contain any of the text marker characters in **UniversalExpressionParser.IExpressionLanguageProvider.ConstantTextStartEndMarkerCharacters**. if the text contains a text marker character that marks the start of the text expression, it should be typed twice as displayed in examples below:
+
+- Texts can span multiple lines (see the example below).
+
+.. sourcecode::
+     :linenos:
+     
+     // Example of texts using text markers ',", and ` in IExpressionLanguageProvider.ConstantTextStartEndMarkerCharacters property.
+     // The text marker that starts the specific text expression can be used in text as well when it is 
+     // typed twice (e.g., '', "", ``, etc).
+
+     // Example of using all text markers together in operators
+     x = "We can use this text expression marker "" if we type it twice. However, other text marker chars do not need to be typed twice such as ' and `."  
+         +'We can use this text expression marker '' if we type it twice. However, other text marker chars do not need to be typed twice such as " and `.'
+         +`We can use this text expression marker `` if we type it twice. However, other text marker chars do not need to be typed twice such as " and '.`;
+
+     println("This is a text that spans
+      multiple 
+      lines.   
+     " + x + ' Some other text.');
+     
+`Click here to see the visualized instance of UniversalExpressionParser.IParseExpressionResult <https://github.com/artakhak/UniversalExpressionParser/blob/main/UniversalExpressionParser.Tests/Demos/DemoExpressions/Texts/texts.parsed/>`_
