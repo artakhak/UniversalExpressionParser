@@ -1,7 +1,7 @@
 ﻿using FileInclude;
 using OROptimizer.Diagnostics.Log;
 
-namespace DocumentationGenerator;
+namespace UniversalExpressionParser.DocumentationGenerator;
 
 internal class DocumentsGenerator
 {
@@ -37,7 +37,7 @@ internal class DocumentsGenerator
         if (assemblyFilePath == null)
             throw new Exception($"Could not initialize the value of {nameof(solutionFolderPath)}.");
 
-        var indexOfDocumentationGenerator = assemblyFilePath.IndexOf(@"\UniversalExpressionParserReadMeGenerator\");
+        var indexOfDocumentationGenerator = assemblyFilePath.IndexOf(@"\UniversalExpressionParser.DocumentationGenerator\");
 
         solutionFolderPath = assemblyFilePath.Substring(0, indexOfDocumentationGenerator);
 

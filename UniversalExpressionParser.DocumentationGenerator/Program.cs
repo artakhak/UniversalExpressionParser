@@ -1,4 +1,4 @@
-﻿using DocumentationGenerator;
+﻿using UniversalExpressionParser.DocumentationGenerator;
 using OROptimizer.Diagnostics.Log;
 
 // See https://aka.ms/new-console-template for more information

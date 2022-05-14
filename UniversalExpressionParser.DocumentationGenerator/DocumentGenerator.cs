@@ -3,7 +3,7 @@ using OROptimizer.Diagnostics.Log;
 using OROptimizer.Utilities;
 using System.Text;
 
-namespace DocumentationGenerator;
+namespace UniversalExpressionParser.DocumentationGenerator;
 
 internal class DocumentGenerator
 {

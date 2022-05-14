@@ -191,9 +191,9 @@
     <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
     <PackageReference Include="Moq" Version="4.15.2" />
     <PackageReference Include="OROptimizer.Shared" Version="2.1.1" />
-    <PackageReference Include="TestsSharedLibrary" Version="1.0.1" />
     <PackageReference Include="TestsSharedLibraryForCodeParsers" Version="1.0.0" />
-    <PackageReference Include="UniversalExpressionParser" Version="1.0.0" />
+    <PackageReference Include="TestsSharedLibrary" Version="1.0.1" />
+    <PackageReference Include="UniversalExpressionParser" Version="1.0.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UniversalExpressionParser.ClassVisualizers\UniversalExpressionParser.ClassVisualizers.csproj" />
