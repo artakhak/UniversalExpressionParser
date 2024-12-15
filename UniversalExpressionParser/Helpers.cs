@@ -86,6 +86,8 @@ namespace UniversalExpressionParser
             _specialNonOperatorCharactersSet.Add(',');
             _specialNonOperatorCharactersSet.Add(';');
             _specialNonOperatorCharactersSet.Add('\\');
+            // Uncomment after testing
+            //_specialOperatorCharactersSet.Add('.');
 
             _specialCharactersSet = new HashSet<char>(_specialOperatorCharactersSet);
 
@@ -328,7 +330,7 @@ namespace UniversalExpressionParser
                                         bool returnFoundText)
         {
 
-            if (textEnd >= text.Length)
+            if (textEnd > text.Length)
                 textEnd = text.Length;
 
             int endPosition = positionInText + symbolToMatch.Length;

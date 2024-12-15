@@ -16,7 +16,7 @@ namespace UniversalExpressionParser
         /// </summary>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        internal static IReadOnlyList<NumericTypeDescriptor> GetDefaultNumericTypeDescriptors()
+        public static IReadOnlyList<NumericTypeDescriptor> GetDefaultNumericTypeDescriptors()
         {
             return new List<NumericTypeDescriptor>
             {

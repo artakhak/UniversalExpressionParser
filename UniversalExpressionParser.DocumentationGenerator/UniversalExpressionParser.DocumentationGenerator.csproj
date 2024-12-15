@@ -11,7 +11,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="OROptimizer.Shared" Version="2.1.1" />
+    <PackageReference Include="OROptimizer.Shared" Version="2.1.2" />
     <PackageReference Include="FileInclude" Version="1.0.4" />
   </ItemGroup>
 </Project>

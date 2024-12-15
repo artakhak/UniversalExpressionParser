@@ -1,211 +1,219 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <IsPackable>false</IsPackable>
-    <EnableDefaultItems>false</EnableDefaultItems>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>TRACE;TRACE_PARSING_OFF</DefineConstants>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="CodeGenerator.cs" />
-    <Compile Include="Delegates.cs" />
-    <Compile Include="Demos\ParseExpressionDemos.cs" />
-    <Compile Include="Demos\ParseSingleCodeBlockExpressionAtPositionDemo.cs" />
-    <Compile Include="Demos\ParseSingleBracesExpressionAtPositionDemo.cs" />
-    <Compile Include="Demos\SummaryDemo.cs" />
-    <Compile Include="ExpressionItemBaseExtensions.cs" />
-    <Compile Include="ExpressionItemType.cs" />
-    <Compile Include="ExpressionLanguageProviders.cs" />
-    <Compile Include="ExpressionLanguageProviderValidatorForSimulations.cs" />
-    <Compile Include="ExpressionParseErrorTests\ExpressionParseErrorTests.cs" />
-    <Compile Include="ExpressionParseErrorTests\TestLanguageProviderForExpressionParseErrorTests.cs" />
-    <Compile Include="GlobalsCoreTest.cs" />
-    <Compile Include="LanguageNames.cs" />
-    <Compile Include="LanguageProviderValidatorTests\LanguageProviderValidatorTests.cs" />
-    <Compile Include="LanguageProviderValidatorTests\TestLanguageProviderForLanguageProviderValidationTests.cs" />
-    <Compile Include="OperatorPriorities.cs" />
-    <Compile Include="OperatorPriority.cs" />
-    <Compile Include="OperatorTemplates\BinaryOperatorTemplate.cs" />
-    <Compile Include="OperatorTemplates\OperatorTemplateBase.cs" />
-    <Compile Include="OperatorTemplates\OperatorTemplateHelpers.cs" />
-    <Compile Include="OperatorTemplates\OperatorTemplatesCollection.cs" />
-    <Compile Include="OperatorTemplates\PostfixOperatorTemplate.cs" />
-    <Compile Include="OperatorTemplates\PrefixOperatorTemplate.cs" />
-    <Compile Include="OperatorTemplates\UnaryOperatorTemplateBase.cs" />
-    <Compile Include="ParseExpressionFromFileBase.cs" />
-    <Compile Include="SpecialCases\SpecialCasesTests.cs" />
-    <Compile Include="StatisticGroupNames.cs" />
-    <Compile Include="StringExtensions.cs" />
-    <Compile Include="SuccessfulParseTests\ExpressionParserSuccessfulTests.cs" />
-    <Compile Include="SuccessfulParseTests\TestLanguageProviderForSimulatedSuccessfulParseTests.cs" />
-    <Compile Include="TestHelpers.cs" />
-    <Compile Include="TestLanguage\CustomExpressionItemMock.cs" />
-    <Compile Include="TestLanguage\CustomExpressionItemParserMock.cs" />
-    <Compile Include="TestLanguage\IOperatorInfoForTesting.cs" />
-    <Compile Include="TestLanguage\KeywordInfoForTests.cs" />
-    <Compile Include="TestLanguage\OperatorInfoForTest.cs" />
-    <Compile Include="TestLanguage\OperatorInfoForTesting.cs" />
-    <Compile Include="TestLanguage\SpecialOperatorNameType.cs" />
-    <Compile Include="TestLanguage\TestLanguageProviderForFailureValidations.cs" />
-    <Compile Include="TestSetup.cs" />
-    <Compile Include="TestStatistics\BracesExpressionItemStatistic.cs" />
-    <Compile Include="TestStatistics\CodeCommentStatistic.cs" />
-    <Compile Include="TestStatistics\ExclusiveTextItemStatisticGroup.cs" />
-    <Compile Include="TestStatistics\ExpressionItemStatistic.cs" />
-    <Compile Include="TestStatistics\ExpressionItemWithChildrenCountDecoratorStatistic.cs" />
-    <Compile Include="TestStatistics\IBracesExpressionItemStatistic.cs" />
-    <Compile Include="TestStatistics\IDecoratorStatistic.cs" />
-    <Compile Include="TestStatistics\IExpressionItemStatistic.cs" />
-    <Compile Include="TestStatistics\IExpressionItemWithChildrenCountDecoratorStatistic.cs" />
-    <Compile Include="TestStatistics\INonPartExpressionItemAtDepthStatistic.cs" />
-    <Compile Include="TestStatistics\IPrefixRegularPostfixExpressionItemStatistic.cs" />
-    <Compile Include="TestStatistics\ITextItemStatistic.cs" />
-    <Compile Include="TestStatistics\ITextItemStatisticGroup.cs" />
-    <Compile Include="TestStatistics\ITextItemStatistics.cs" />
-    <Compile Include="TestStatistics\NonExclusiveTextItemStatisticGroup.cs" />
-    <Compile Include="TestStatistics\NonPartExpressionItemAtDepthDecoratorStatistic.cs" />
-    <Compile Include="TestStatistics\NonPartExpressionItemAtDepthStatistic.cs" />
-    <Compile Include="TestStatistics\NonPartExpressionItemStatisticBase.cs" />
-    <Compile Include="TestStatistics\OperatorNameTypeStatistics.cs" />
-    <Compile Include="TestStatistics\ParsedCodeCounterStatistics.cs" />
-    <Compile Include="TestStatistics\PrefixRegularPostfixExpressionItemDecoratorStatistic.cs" />
-    <Compile Include="TestStatistics\PrefixRegularPostfixExpressionItemStatistic.cs" />
-    <Compile Include="TestStatistics\SpecialExpressionItemType.cs" />
-    <Compile Include="TestStatistics\TextItemStatistic.cs" />
-    <Compile Include="TestStatistics\TextItemStatistics.cs" />
-    <Compile Include="TestStatistics\TextItemStatisticsExtensions.cs" />
-    <Compile Include="Utilities\ExpressionItemVisualizersForDemos\OperatorExpressionItemVisualizerForDemos.cs" />
-    <Compile Include="Utilities\ExpressionItemVisualizersForDemos\ValueVisualizerFactoryForDemos.cs" />
-    <Compile Include="Utilities\ExpressionItemVisualizers\OperatorExpressionItemVisualizerForTests.cs" />
-    <Compile Include="Utilities\ExpressionItemVisualizers\TextItemStatisticsVisualizer.cs" />
-    <Compile Include="Utilities\ExpressionItemVisualizers\ValueVisualizerFactoryForTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Demos\DemoExpressions\CaseSensitivityAndNonStandardLanguageFeatures\case-sensitivity-and-non-standard-language-features.rst.template" />
-    <Content Include="Demos\DemoExpressions\CaseSensitivityAndNonStandardLanguageFeatures\CaseSensitivityAndNonStandardLanguageFeatures.expr" />
-    <Content Include="Demos\DemoExpressions\CaseSensitivityAndNonStandardLanguageFeatures\CaseSensitivityAndNonStandardLanguageFeatures.parsed" />
-    <Content Include="Demos\DemoExpressions\CodeSeparatorsAndCodeBlocks\code-separators-and-code-blocks.rst.template" />
-    <Content Include="Demos\DemoExpressions\Comments\Comments.expr" />
-    <Content Include="Demos\DemoExpressions\Comments\Comments.parsed" />
-    <Content Include="Demos\DemoExpressions\Comments\comments.rst.template" />
-    <Content Include="Demos\DemoExpressions\CustomExpressionItemParsers\custom-expression-item-parsers.rst.template" />
-    <Content Include="Demos\DemoExpressions\ErrorReporting\error-reporting.rst.template" />
-    <Content Include="Demos\DemoExpressions\ErrorReporting\ExpressionWithErrors.expr" />
-    <Content Include="Demos\DemoExpressions\ErrorReporting\ExpressionWithErrors.parsed" />
-    <Content Include="Demos\DemoExpressions\ErrorReporting\ReportedErrorMessages.txt" />
-    <Content Include="Demos\DemoExpressions\Keywords\keywords.rst.template" />
-    <Content Include="Demos\DemoExpressions\NumericValues\numeric-values.rst.template" />
-    <Content Include="Demos\DemoExpressions\Operators\MultipartOperators.expr" />
-    <Content Include="Demos\DemoExpressions\Operators\operators.rst.template" />
-    <Content Include="Demos\DemoExpressions\ParsingSectionInText\parsing-section-in-text.rst.template" />
-    <Content Include="Demos\DemoExpressions\Postfixes\CodeBlockPostfixForDifferentExpressionItems.parsed" />
-    <Content Include="Demos\DemoExpressions\Postfixes\postfixes.rst.template" />
-    <Content Include="Demos\DemoExpressions\Postfixes\SimpleCustomExpressionItemAsPostfixAfterLiteral.parsed" />
-    <Content Include="Demos\DemoExpressions\Prefixes\CustomExpressionItemsAsPrefixesSimpleDemo.expr" />
-    <Content Include="Demos\DemoExpressions\Prefixes\BracesPrefixesSimpleDemo.expr" />
-    <Content Include="Demos\DemoExpressions\Prefixes\BracesPrefixesSimpleDemo.parsed" />
-    <Content Include="Demos\DemoExpressions\Prefixes\CustomExpressionItemsAsPrefixesSimpleDemo.parsed" />
-    <Content Include="Demos\DemoExpressions\Prefixes\MoreComplexPrefixesDemo.expr" />
-    <Content Include="Demos\DemoExpressions\Prefixes\MoreComplexPrefixesDemo.parsed" />
-    <Content Include="Demos\DemoExpressions\Prefixes\prefixes.rst.template" />
-    <Content Include="Demos\DemoExpressions\Prefixes\PrefixesUsedWithDifferentExpressionItems.expr" />
-    <Content Include="Demos\DemoExpressions\Prefixes\PrefixesUsedWithDifferentExpressionItems.parsed" />
-    <Content Include="Demos\DemoExpressions\TemporaryDiagnostics\DiagnosticsExpression.expr" />
-    <Content Include="Demos\DemoExpressions\TemporaryDiagnostics\DiagnosticsExpression.parsed" />
-    <Content Include="Demos\DemoExpressions\Texts\Texts.expr" />
-    <Content Include="Demos\DemoExpressions\Texts\Texts.parsed" />
-    <Content Include="Demos\DemoExpressions\Texts\texts.rst.template" />
-    <Content Include="SpecialCases\SpecialNumbers\ExpWithFollowingSpace.expr" />
-    <Content Include="SpecialCases\SpecialNumbers\ExpWithPointInRightSide.expr" />
-    <Content Include="SpecialCases\SpecialNumbers\ExpWithPointInRightSide.parsed" />
-    <Content Include="SpecialCases\TODO.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Demos\DemoExpressions\CodeSeparatorsAndCodeBlocks\MoreComplexExample.expr" />
-    <None Include="Demos\DemoExpressions\CodeSeparatorsAndCodeBlocks\MoreComplexExample.parsed" />
-    <None Include="Demos\DemoExpressions\CodeSeparatorsAndCodeBlocks\SimpleExample.expr" />
-    <None Include="Demos\DemoExpressions\CodeSeparatorsAndCodeBlocks\SimpleExample.parsed" />
-    <None Include="Demos\DemoExpressions\CustomExpressionItemParsers\MultipleAdjacentPrefixPostfixCustomExpressionItems.parsed" />
-    <None Include="Demos\DemoExpressions\CustomExpressionItemParsers\MultipleAdjacentPrefixPostfixCustomExpressionItems.expr" />
-    <None Include="Demos\DemoExpressions\CustomExpressionItemParsers\SimpleCustomExpressionItems.expr" />
-    <None Include="Demos\DemoExpressions\CustomExpressionItemParsers\SimpleCustomExpressionItems.parsed" />
-    <None Include="Demos\DemoExpressions\FunctionsAndBraces\functions-and-braces.rst.template" />
-    <None Include="Demos\DemoExpressions\index.rst.template" />
-    <None Include="Demos\DemoExpressions\Literals\literals.rst.template" />
-    <None Include="Demos\DemoExpressions\ParsingSectionInText\ParseSingleCodeBlockExpressionDemo.expr" />
-    <None Include="Demos\DemoExpressions\ParsingSectionInText\ParseSingleCodeBlockExpressionDemo.parsed" />
-    <None Include="Demos\DemoExpressions\ParsingSectionInText\ParseSingleRoundBracesExpressionDemo.parsed" />
-    <None Include="Demos\DemoExpressions\ParsingSectionInText\ParseSingleSquareBracesExpressionDemo.expr" />
-    <None Include="Demos\DemoExpressions\ParsingSectionInText\ParseSingleRoundBracesExpressionDemo.expr" />
-    <None Include="Demos\DemoExpressions\ParsingSectionInText\ParseSingleSquareBracesExpressionDemo.parsed" />
-    <None Include="Demos\DemoExpressions\summary.rst.template" />
-    <None Include="Demos\DemoExpressions\SummaryExpression.expr" />
-    <None Include="Demos\DemoExpressions\FunctionsAndBraces\FunctionsWithRoundAndSquareBraces.expr" />
-    <None Include="Demos\DemoExpressions\FunctionsAndBraces\FunctionsWithRoundAndSquareBraces.parsed" />
-    <None Include="Demos\DemoExpressions\FunctionsAndBraces\RoundAndSquareBraces.expr" />
-    <None Include="Demos\DemoExpressions\FunctionsAndBraces\RoundAndSquareBraces.parsed" />
-    <None Include="Demos\DemoExpressions\Keywords\Keywords.parsed" />
-    <None Include="Demos\DemoExpressions\Keywords\Keywords.expr" />
-    <None Include="Demos\DemoExpressions\Literals\Literals.expr" />
-    <None Include="Demos\DemoExpressions\Literals\Literals.parsed" />
-    <None Include="Demos\DemoExpressions\NumericValues\NumericValues.expr" />
-    <None Include="Demos\DemoExpressions\NumericValues\NumericValues.parsed" />
-    <None Include="Demos\DemoExpressions\Operators\MultipartOperators.parsed" />
-    <None Include="Demos\DemoExpressions\Operators\UnaryPrefixOperatorUsedForReturnStatement.expr" />
-    <None Include="Demos\DemoExpressions\Operators\UnaryPrefixOperatorUsedForReturnStatement.parsed" />
-    <None Include="Demos\DemoExpressions\Postfixes\CodeBlockPostfixToModelFunctionBody.expr" />
-    <None Include="Demos\DemoExpressions\Postfixes\CodeBlockPostfixToModelFunctionBody.parsed" />
-    <None Include="Demos\DemoExpressions\Operators\BracesToChangeOperatorEvaluationOrder.expr" />
-    <None Include="Demos\DemoExpressions\Operators\BracesToChangeOperatorEvaluationOrder.parsed" />
-    <None Include="Demos\DemoExpressions\Operators\NoSpacesBetweenOperators.expr" />
-    <None Include="Demos\DemoExpressions\Operators\NoSpacesBetweenOperators.parsed" />
-    <None Include="Demos\DemoExpressions\Operators\OperatorPriorities.parsed" />
-    <None Include="Demos\DemoExpressions\Operators\OperatorPriorities.expr" />
-    <None Include="Demos\DemoExpressions\Postfixes\CodeBlockPostfixUsedToModelAClassDefinition.expr" />
-    <None Include="Demos\DemoExpressions\Postfixes\CodeBlockPostfixUsedToModelAClassDefinition.parsed" />
-    <None Include="Demos\DemoExpressions\Postfixes\SimpleCodeBlockPostfixAfterLiteral.expr" />
-    <None Include="Demos\DemoExpressions\Postfixes\SimpleCodeBlockPostfixAfterLiteral.parsed" />
-    <None Include="Demos\DemoExpressions\Postfixes\CodeBlockPostfixForDifferentExpressionItems.expr" />
-    <None Include="Demos\DemoExpressions\Postfixes\SimpleCustomExpressionItemAsPostfixAfterLiteral.expr" />
-    <None Include="Demos\DemoExpressions\README-SUMMARY.md" />
-    <None Include="Demos\DemoExpressions\SummaryExpression.parsed" />
-    <None Include="SpecialCases\SpecialNumbers\ExpWithFollowingSpace.parsed" />
-    <None Include="SpecialCases\SpecialNumbers\ExpWithPointInOperators.expr" />
-    <None Include="SpecialCases\SpecialNumbers\ExpWithPointInOperators.parsed" />
-    <None Include="SpecialCases\SpecialTexts\ParseTexts1.parsed" />
-    <None Include="SpecialCases\SpecialTexts\ParseTexts2.expr" />
-    <None Include="SpecialCases\SpecialTexts\ParseTexts1.expr" />
-    <None Include="SpecialCases\SpecialTexts\ParseTexts2.parsed" />
-    <None Include="SpecialCases\TempDiagnostics.expr" />
-    <None Include="SpecialCases\TempDiagnostics.parsed" />
-    <None Include="UniversalExpressionParser.Tests.log4net.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" Version="2021.2.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
-    <PackageReference Include="NUnit" Version="3.12.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
-    <PackageReference Include="Moq" Version="4.15.2" />
-    <PackageReference Include="OROptimizer.Shared" Version="2.1.1" />
-    <PackageReference Include="TestsSharedLibraryForCodeParsers" Version="1.0.0" />
-    <PackageReference Include="TestsSharedLibrary" Version="1.0.1" />
-    <PackageReference Include="UniversalExpressionParser" Version="1.0.3" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\UniversalExpressionParser.ClassVisualizers\UniversalExpressionParser.ClassVisualizers.csproj" />
-    <ProjectReference Include="..\UniversalExpressionParser.DemoExpressionLanguageProviders\UniversalExpressionParser.DemoExpressionLanguageProviders.csproj" />
-    <!--<ProjectReference Include="..\UniversalExpressionParser\UniversalExpressionParser.csproj" />-->
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="UniversalExpressionParser.Tests.log4net.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Demos\DemoExpressions\Comments\" />
-  </ItemGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<IsPackable>false</IsPackable>
+		<EnableDefaultItems>false</EnableDefaultItems>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DefineConstants>TRACE;TRACE_PARSING_OFF</DefineConstants>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Include="AssemblyInfo.cs" />
+		<Compile Include="CodeGenerator.cs" />
+		<Compile Include="Delegates.cs" />
+		<Compile Include="Demos\ParseExpressionDemos.cs" />
+		<Compile Include="Demos\ParseSingleCodeBlockExpressionAtPositionDemo.cs" />
+		<Compile Include="Demos\ParseSingleBracesExpressionAtPositionDemo.cs" />
+		<Compile Include="Demos\SummaryDemo.cs" />
+		<Compile Include="ExpressionItemBaseExtensions.cs" />
+		<Compile Include="ExpressionItemType.cs" />
+		<Compile Include="ExpressionLanguageProviders.cs" />
+		<Compile Include="ExpressionLanguageProviderValidatorForSimulations.cs" />
+		<Compile Include="ExpressionParseErrorTests\ExpressionParseErrorTests.cs" />
+		<Compile Include="ExpressionParseErrorTests\TestLanguageProviderForExpressionParseErrorTests.cs" />
+		<Compile Include="GlobalsCoreTest.cs" />
+		<Compile Include="LanguageNames.cs" />
+		<Compile Include="LanguageProviderValidatorTests\LanguageProviderValidatorTests.cs" />
+		<Compile Include="LanguageProviderValidatorTests\TestLanguageProviderForLanguageProviderValidationTests.cs" />
+		<Compile Include="OperatorPriorities.cs" />
+		<Compile Include="OperatorPriority.cs" />
+		<Compile Include="OperatorTemplates\BinaryOperatorTemplate.cs" />
+		<Compile Include="OperatorTemplates\OperatorTemplateBase.cs" />
+		<Compile Include="OperatorTemplates\OperatorTemplateHelpers.cs" />
+		<Compile Include="OperatorTemplates\OperatorTemplatesCollection.cs" />
+		<Compile Include="OperatorTemplates\PostfixOperatorTemplate.cs" />
+		<Compile Include="OperatorTemplates\PrefixOperatorTemplate.cs" />
+		<Compile Include="OperatorTemplates\UnaryOperatorTemplateBase.cs" />
+		<Compile Include="ParseExpressionFromFileBase.cs" />
+		<Compile Include="SpecialCases\SpecialCasesTests.cs" />
+		<Compile Include="StatisticGroupNames.cs" />
+		<Compile Include="StringExtensions.cs" />
+		<Compile Include="SuccessfulParseTests\ExpressionParserSuccessfulTests.cs" />
+		<Compile Include="SuccessfulParseTests\TestLanguageProviderForSimulatedSuccessfulParseTests.cs" />
+		<Compile Include="TestHelpers.cs" />
+		<Compile Include="TestLanguage\CustomExpressionItemMock.cs" />
+		<Compile Include="TestLanguage\CustomExpressionItemParserMock.cs" />
+		<Compile Include="TestLanguage\IOperatorInfoForTesting.cs" />
+		<Compile Include="TestLanguage\KeywordInfoForTests.cs" />
+		<Compile Include="TestLanguage\OperatorInfoForTest.cs" />
+		<Compile Include="TestLanguage\OperatorInfoForTesting.cs" />
+		<Compile Include="TestLanguage\SpecialOperatorNameType.cs" />
+		<Compile Include="TestLanguage\TestLanguageProviderForFailureValidations.cs" />
+		<Compile Include="TestSetup.cs" />
+		<Compile Include="TestStatistics\BracesExpressionItemStatistic.cs" />
+		<Compile Include="TestStatistics\CodeCommentStatistic.cs" />
+		<Compile Include="TestStatistics\ExclusiveTextItemStatisticGroup.cs" />
+		<Compile Include="TestStatistics\ExpressionItemStatistic.cs" />
+		<Compile Include="TestStatistics\ExpressionItemWithChildrenCountDecoratorStatistic.cs" />
+		<Compile Include="TestStatistics\IBracesExpressionItemStatistic.cs" />
+		<Compile Include="TestStatistics\IDecoratorStatistic.cs" />
+		<Compile Include="TestStatistics\IExpressionItemStatistic.cs" />
+		<Compile Include="TestStatistics\IExpressionItemWithChildrenCountDecoratorStatistic.cs" />
+		<Compile Include="TestStatistics\INonPartExpressionItemAtDepthStatistic.cs" />
+		<Compile Include="TestStatistics\IPrefixRegularPostfixExpressionItemStatistic.cs" />
+		<Compile Include="TestStatistics\ITextItemStatistic.cs" />
+		<Compile Include="TestStatistics\ITextItemStatisticGroup.cs" />
+		<Compile Include="TestStatistics\ITextItemStatistics.cs" />
+		<Compile Include="TestStatistics\NonExclusiveTextItemStatisticGroup.cs" />
+		<Compile Include="TestStatistics\NonPartExpressionItemAtDepthDecoratorStatistic.cs" />
+		<Compile Include="TestStatistics\NonPartExpressionItemAtDepthStatistic.cs" />
+		<Compile Include="TestStatistics\NonPartExpressionItemStatisticBase.cs" />
+		<Compile Include="TestStatistics\OperatorNameTypeStatistics.cs" />
+		<Compile Include="TestStatistics\ParsedCodeCounterStatistics.cs" />
+		<Compile Include="TestStatistics\PrefixRegularPostfixExpressionItemDecoratorStatistic.cs" />
+		<Compile Include="TestStatistics\PrefixRegularPostfixExpressionItemStatistic.cs" />
+		<Compile Include="TestStatistics\SpecialExpressionItemType.cs" />
+		<Compile Include="TestStatistics\TextItemStatistic.cs" />
+		<Compile Include="TestStatistics\TextItemStatistics.cs" />
+		<Compile Include="TestStatistics\TextItemStatisticsExtensions.cs" />
+		<Compile Include="Utilities\ExpressionItemVisualizersForDemos\OperatorExpressionItemVisualizerForDemos.cs" />
+		<Compile Include="Utilities\ExpressionItemVisualizersForDemos\ValueVisualizerFactoryForDemos.cs" />
+		<Compile Include="Utilities\ExpressionItemVisualizers\OperatorExpressionItemVisualizerForTests.cs" />
+		<Compile Include="Utilities\ExpressionItemVisualizers\TextItemStatisticsVisualizer.cs" />
+		<Compile Include="Utilities\ExpressionItemVisualizers\ValueVisualizerFactoryForTests.cs" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="Demos\DemoExpressions\CaseSensitivityAndNonStandardLanguageFeatures\case-sensitivity-and-non-standard-language-features.rst.template" />
+		<Content Include="Demos\DemoExpressions\CaseSensitivityAndNonStandardLanguageFeatures\CaseSensitivityAndNonStandardLanguageFeatures.expr" />
+		<Content Include="Demos\DemoExpressions\CaseSensitivityAndNonStandardLanguageFeatures\CaseSensitivityAndNonStandardLanguageFeatures.parsed" />
+		<Content Include="Demos\DemoExpressions\CodeSeparatorsAndCodeBlocks\code-separators-and-code-blocks.rst.template" />
+		<Content Include="Demos\DemoExpressions\Comments\Comments.expr" />
+		<Content Include="Demos\DemoExpressions\Comments\Comments.parsed" />
+		<Content Include="Demos\DemoExpressions\Comments\comments.rst.template" />
+		<Content Include="Demos\DemoExpressions\CustomExpressionItemParsers\custom-expression-item-parsers.rst.template" />
+		<Content Include="Demos\DemoExpressions\ErrorReporting\error-reporting.rst.template" />
+		<Content Include="Demos\DemoExpressions\ErrorReporting\ExpressionWithErrors.expr" />
+		<Content Include="Demos\DemoExpressions\ErrorReporting\ExpressionWithErrors.parsed" />
+		<Content Include="Demos\DemoExpressions\ErrorReporting\ReportedErrorMessages.txt" />
+		<Content Include="Demos\DemoExpressions\Keywords\keywords.rst.template" />
+		<Content Include="Demos\DemoExpressions\NumericValues\numeric-values.rst.template" />
+		<Content Include="Demos\DemoExpressions\Operators\MultipartOperators.expr" />
+		<Content Include="Demos\DemoExpressions\Operators\operators.rst.template" />
+		<Content Include="Demos\DemoExpressions\ParsingSectionInText\parsing-section-in-text.rst.template" />
+		<Content Include="Demos\DemoExpressions\Postfixes\CodeBlockPostfixForDifferentExpressionItems.parsed" />
+		<Content Include="Demos\DemoExpressions\Postfixes\postfixes.rst.template" />
+		<Content Include="Demos\DemoExpressions\Postfixes\SimpleCustomExpressionItemAsPostfixAfterLiteral.parsed" />
+		<Content Include="Demos\DemoExpressions\Prefixes\CustomExpressionItemsAsPrefixesSimpleDemo.expr" />
+		<Content Include="Demos\DemoExpressions\Prefixes\BracesPrefixesSimpleDemo.expr" />
+		<Content Include="Demos\DemoExpressions\Prefixes\BracesPrefixesSimpleDemo.parsed" />
+		<Content Include="Demos\DemoExpressions\Prefixes\CustomExpressionItemsAsPrefixesSimpleDemo.parsed" />
+		<Content Include="Demos\DemoExpressions\Prefixes\MoreComplexPrefixesDemo.expr" />
+		<Content Include="Demos\DemoExpressions\Prefixes\MoreComplexPrefixesDemo.parsed" />
+		<Content Include="Demos\DemoExpressions\Prefixes\prefixes.rst.template" />
+		<Content Include="Demos\DemoExpressions\Prefixes\PrefixesUsedWithDifferentExpressionItems.expr" />
+		<Content Include="Demos\DemoExpressions\Prefixes\PrefixesUsedWithDifferentExpressionItems.parsed" />
+		<Content Include="Demos\DemoExpressions\TemporaryDiagnostics\DiagnosticsExpression.expr" />
+		<Content Include="Demos\DemoExpressions\TemporaryDiagnostics\DiagnosticsExpression.parsed" />
+		<Content Include="Demos\DemoExpressions\Texts\Texts.expr" />
+		<Content Include="Demos\DemoExpressions\Texts\Texts.parsed" />
+		<Content Include="Demos\DemoExpressions\Texts\texts.rst.template" />
+		<Content Include="SpecialCases\SpecialNumbers\ExpWithFollowingSpace.expr" />
+		<Content Include="SpecialCases\SpecialNumbers\ExpWithPointInRightSide.expr" />
+		<Content Include="SpecialCases\SpecialNumbers\ExpWithPointInRightSide.parsed" />
+		<Content Include="SpecialCases\TODO.txt" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Demos\DemoExpressions\CodeSeparatorsAndCodeBlocks\MoreComplexExample.expr" />
+		<None Include="Demos\DemoExpressions\CodeSeparatorsAndCodeBlocks\MoreComplexExample.parsed" />
+		<None Include="Demos\DemoExpressions\CodeSeparatorsAndCodeBlocks\SimpleExample.expr" />
+		<None Include="Demos\DemoExpressions\CodeSeparatorsAndCodeBlocks\SimpleExample.parsed" />
+		<None Include="Demos\DemoExpressions\CustomExpressionItemParsers\MultipleAdjacentPrefixPostfixCustomExpressionItems.parsed" />
+		<None Include="Demos\DemoExpressions\CustomExpressionItemParsers\MultipleAdjacentPrefixPostfixCustomExpressionItems.expr" />
+		<None Include="Demos\DemoExpressions\CustomExpressionItemParsers\SimpleCustomExpressionItems.expr" />
+		<None Include="Demos\DemoExpressions\CustomExpressionItemParsers\SimpleCustomExpressionItems.parsed" />
+		<None Include="Demos\DemoExpressions\FunctionsAndBraces\functions-and-braces.rst.template" />
+		<None Include="Demos\DemoExpressions\index.rst.template" />
+		<None Include="Demos\DemoExpressions\Literals\literals.rst.template" />
+		<None Include="Demos\DemoExpressions\ParsingSectionInText\ParseSingleCodeBlockExpressionDemo.expr" />
+		<None Include="Demos\DemoExpressions\ParsingSectionInText\ParseSingleCodeBlockExpressionDemo.parsed" />
+		<None Include="Demos\DemoExpressions\ParsingSectionInText\ParseSingleRoundBracesExpressionDemo.parsed" />
+		<None Include="Demos\DemoExpressions\ParsingSectionInText\ParseSingleSquareBracesExpressionDemo.expr" />
+		<None Include="Demos\DemoExpressions\ParsingSectionInText\ParseSingleRoundBracesExpressionDemo.expr" />
+		<None Include="Demos\DemoExpressions\ParsingSectionInText\ParseSingleSquareBracesExpressionDemo.parsed" />
+		<None Include="Demos\DemoExpressions\summary.rst.template" />
+		<None Include="Demos\DemoExpressions\SummaryExpression.expr" />
+		<None Include="Demos\DemoExpressions\FunctionsAndBraces\FunctionsWithRoundAndSquareBraces.expr" />
+		<None Include="Demos\DemoExpressions\FunctionsAndBraces\FunctionsWithRoundAndSquareBraces.parsed" />
+		<None Include="Demos\DemoExpressions\FunctionsAndBraces\RoundAndSquareBraces.expr" />
+		<None Include="Demos\DemoExpressions\FunctionsAndBraces\RoundAndSquareBraces.parsed" />
+		<None Include="Demos\DemoExpressions\Keywords\Keywords.parsed" />
+		<None Include="Demos\DemoExpressions\Keywords\Keywords.expr" />
+		<None Include="Demos\DemoExpressions\Literals\Literals.expr" />
+		<None Include="Demos\DemoExpressions\Literals\Literals.parsed" />
+		<None Include="Demos\DemoExpressions\NumericValues\NumericValues.expr" />
+		<None Include="Demos\DemoExpressions\NumericValues\NumericValues.parsed" />
+		<None Include="Demos\DemoExpressions\Operators\MultipartOperators.parsed" />
+		<None Include="Demos\DemoExpressions\Operators\UnaryPrefixOperatorUsedForReturnStatement.expr" />
+		<None Include="Demos\DemoExpressions\Operators\UnaryPrefixOperatorUsedForReturnStatement.parsed" />
+		<None Include="Demos\DemoExpressions\Postfixes\CodeBlockPostfixToModelFunctionBody.expr" />
+		<None Include="Demos\DemoExpressions\Postfixes\CodeBlockPostfixToModelFunctionBody.parsed" />
+		<None Include="Demos\DemoExpressions\Operators\BracesToChangeOperatorEvaluationOrder.expr" />
+		<None Include="Demos\DemoExpressions\Operators\BracesToChangeOperatorEvaluationOrder.parsed" />
+		<None Include="Demos\DemoExpressions\Operators\NoSpacesBetweenOperators.expr" />
+		<None Include="Demos\DemoExpressions\Operators\NoSpacesBetweenOperators.parsed" />
+		<None Include="Demos\DemoExpressions\Operators\OperatorPriorities.parsed" />
+		<None Include="Demos\DemoExpressions\Operators\OperatorPriorities.expr" />
+		<None Include="Demos\DemoExpressions\Postfixes\CodeBlockPostfixUsedToModelAClassDefinition.expr" />
+		<None Include="Demos\DemoExpressions\Postfixes\CodeBlockPostfixUsedToModelAClassDefinition.parsed" />
+		<None Include="Demos\DemoExpressions\Postfixes\SimpleCodeBlockPostfixAfterLiteral.expr" />
+		<None Include="Demos\DemoExpressions\Postfixes\SimpleCodeBlockPostfixAfterLiteral.parsed" />
+		<None Include="Demos\DemoExpressions\Postfixes\CodeBlockPostfixForDifferentExpressionItems.expr" />
+		<None Include="Demos\DemoExpressions\Postfixes\SimpleCustomExpressionItemAsPostfixAfterLiteral.expr" />
+		<None Include="Demos\DemoExpressions\README-SUMMARY.md" />
+		<None Include="Demos\DemoExpressions\SummaryExpression.parsed" />
+		<None Include="SpecialCases\SpecialNumbers\ExpWithFollowingSpace.parsed" />
+		<None Include="SpecialCases\SpecialNumbers\ExpWithPointInOperators.expr" />
+		<None Include="SpecialCases\SpecialNumbers\ExpWithPointInOperators.parsed" />
+		<None Include="SpecialCases\SpecialTexts\ParseTexts1.parsed" />
+		<None Include="SpecialCases\SpecialTexts\ParseTexts2.expr" />
+		<None Include="SpecialCases\SpecialTexts\ParseTexts1.expr" />
+		<None Include="SpecialCases\SpecialTexts\ParseTexts2.parsed" />
+		<None Include="SpecialCases\TempDiagnostics.expr" />
+		<None Include="SpecialCases\TempDiagnostics.parsed" />
+		<None Include="UniversalExpressionParser.Tests.log4net.config" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="JetBrains.Annotations" Version="2021.2.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+		<PackageReference Include="NUnit" Version="3.12.0" />
+		<PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
+		<PackageReference Include="Moq" Version="4.15.2" />
+		
+		<PackageReference Include="TestsSharedLibraryForCodeParsers" Version="1.0.2" />
+		<PackageReference Include="TestsSharedLibrary" Version="1.0.2" />
+
+		<!--Uncomment before pushing-->
+		<PackageReference Include="OROptimizer.Shared" Version="2.1.2" />
+		<PackageReference Include="UniversalExpressionParser" Version="1.0.4" />
+	</ItemGroup>
+	<ItemGroup>
+		<!--Comment out before pushing-->
+		<!--<ProjectReference Include="..\..\OROptimizer.Shared\OROptimizer.Shared\OROptimizer.Shared.csproj" />-->
+		<!--Comment out before pushing-->
+		<!--<ProjectReference Include="..\UniversalExpressionParser\UniversalExpressionParser.csproj" />-->
+		<ProjectReference Include="..\UniversalExpressionParser.ClassVisualizers\UniversalExpressionParser.ClassVisualizers.csproj" />
+		<ProjectReference Include="..\UniversalExpressionParser.DemoExpressionLanguageProviders\UniversalExpressionParser.DemoExpressionLanguageProviders.csproj" />
+		
+		<!--<ProjectReference Include="..\UniversalExpressionParser\UniversalExpressionParser.csproj" />-->
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="UniversalExpressionParser.Tests.log4net.config">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Demos\DemoExpressions\Comments\" />
+	</ItemGroup>
 </Project>
