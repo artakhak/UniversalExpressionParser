@@ -86,8 +86,8 @@ namespace UniversalExpressionParser
             _specialNonOperatorCharactersSet.Add(',');
             _specialNonOperatorCharactersSet.Add(';');
             _specialNonOperatorCharactersSet.Add('\\');
-            // Uncomment after testing
-            //_specialOperatorCharactersSet.Add('.');
+            // TODO: Make sure special characters are configurable, and '.' is added by users of the library
+            _specialOperatorCharactersSet.Add('.');
 
             _specialCharactersSet = new HashSet<char>(_specialOperatorCharactersSet);
 
@@ -647,6 +647,13 @@ namespace UniversalExpressionParser
         }
 
         /// <summary>
+        /// Gets the name of operator for multi-part operators.
+        /// For example operator ["is", "not", "null"] will result in a name "is not null".
+        /// </summary>
+        /// <param name="operatorNameParts">Operator name parts, such as ["is", "not", "null"]</param>
+        public static string GetOperatorName(IReadOnlyList<string> operatorNameParts) => string.Join(" ", operatorNameParts);
+
+        /// <summary>
         /// Returns true if identifiers specified in parameters <paramref name="identifier1"/> and <paramref name="identifier2"/> conflict.
         /// Used when validating <see cref="IExpressionLanguageProvider"/>.
         /// </summary>
@@ -934,8 +941,8 @@ namespace UniversalExpressionParser
             errorMessage = null;
             return true;
         }
-        internal static string GetPropertyName([NotNull] object objectWithProperty, [NotNull] string propertyName) =>
-            GetPropertyName(objectWithProperty.GetType(), propertyName);
+        //internal static string GetPropertyName([NotNull] object objectWithProperty, [NotNull] string propertyName) =>
+        //    GetPropertyName(objectWithProperty.GetType(), propertyName);
 
         internal static string GetPropertyName([NotNull] Type type, [NotNull] string propertyName) => $"[{type.FullName}.{propertyName}]";
 

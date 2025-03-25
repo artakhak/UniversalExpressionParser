@@ -36,7 +36,7 @@ namespace UniversalExpressionParser.Parser
 
             foreach (var customExpressionItemParser in expressionLanguageProvider.CustomExpressionItemParsers)
             {
-                textSymbolsParser.MoveToToPosition(currentPositionInText);
+                textSymbolsParser.MoveToPosition(currentPositionInText);
 
                 ICustomExpressionItem customExpressionItem;
 

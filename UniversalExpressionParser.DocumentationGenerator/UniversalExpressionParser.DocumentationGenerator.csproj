@@ -6,12 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\FileInclude\FileInclude\FileInclude.csproj" />
+    <ProjectReference Include="..\..\OROptimizer.Shared\OROptimizer.Shared\OROptimizer.Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <None Update="UniversalExpressionParserReadMeGenerator.log4net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="OROptimizer.Shared" Version="2.1.2" />
-    <PackageReference Include="FileInclude" Version="1.0.4" />
   </ItemGroup>
 </Project>

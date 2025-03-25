@@ -495,7 +495,7 @@ namespace UniversalExpressionParser
                     }
 
                     if (currentPositionInText != textSymbolsParser.PositionInText)
-                        textSymbolsParser.MoveToToPosition(currentPositionInText);
+                        textSymbolsParser.MoveToPosition(currentPositionInText);
                     #endregion
 
                     if (!expressionLanguageProvider.SupportsKeywords && keywordExpressionItems.Count > 0)
@@ -517,8 +517,10 @@ namespace UniversalExpressionParser
                                 {
                                     parseExpressionItemData.OperatorsCannotBeEvaluated = true;
 
+                                    var currentChar = textSymbolsParser.CurrentChar;
+
                                     context.AddParseErrorItem(new ParseErrorItem(
-                                        textSymbolsParser.PositionInText, () => $"Invalid comma '{textSymbolsParser.CurrentChar}'. Commas can only be used to separate items within braces. Valid examples are \"F1(x,y+x)\" or \"[1, y+z*i]\". Invalid example is \"x+y,i\".",
+                                        textSymbolsParser.PositionInText, () => $"Invalid comma '{currentChar}'. Commas can only be used to separate items within braces. Valid examples are \"F1(x,y+x)\" or \"[1, y+z*i]\". Invalid example is \"x+y,i\".",
                                         ParseErrorItemCode.CommaWithoutParentBraces));
 
                                     SkipInvalidSymbol(1);
@@ -563,8 +565,9 @@ namespace UniversalExpressionParser
 
                                 if (!(parseExpressionItemData.ParentExpressionItem is BracesExpressionItem bracesExpressionItem))
                                 {
+                                    var currentChar = textSymbolsParser.CurrentChar;
                                     context.AddParseErrorItem(new ParseErrorItem(
-                                        textSymbolsParser.PositionInText, () => $"Invalid closing brace '{textSymbolsParser.CurrentChar}'. No corresponding opening brace for this closing brace.",
+                                        textSymbolsParser.PositionInText, () => $"Invalid closing brace '{currentChar}'. No corresponding opening brace for this closing brace.",
                                         ParseErrorItemCode.ClosingBraceWithoutOpeningBrace));
 
                                     SkipInvalidSymbol(1);
@@ -575,8 +578,9 @@ namespace UniversalExpressionParser
                                     parsedExpressionItemsStack.Count == 1 &&
                                     evaluateExpressionType == EvaluateExpressionType.ExpressionItemSeries)
                                 {
+                                    var currentChar = textSymbolsParser.CurrentChar;
                                     context.AddParseErrorItem(new ParseErrorItem(
-                                        textSymbolsParser.PositionInText, () => $"Invalid closing brace '{textSymbolsParser.CurrentChar}'.",
+                                        textSymbolsParser.PositionInText, () => $"Invalid closing brace '{currentChar}'.",
                                         ParseErrorItemCode.ParserImplementationError));
                                     return;
                                 }
@@ -626,8 +630,9 @@ namespace UniversalExpressionParser
 
                         if (!(parseExpressionItemData.ParentExpressionItem is ICanAddSeparatorCharacterExpressionItem canAddSeparatorCharacterExpressionItem))
                         {
+                            var currentChar = textSymbolsParser.CurrentChar;
                             context.AddParseErrorItem(new ParseErrorItem(
-                                textSymbolsParser.PositionInText, () => $"Invalid usage of code separator character '{textSymbolsParser.CurrentChar}'.",
+                                textSymbolsParser.PositionInText, () => $"Invalid usage of code separator character '{currentChar}'.",
                                 ParseErrorItemCode.ExpressionSeparatorWithoutParentCodeBlock));
 
                             SkipInvalidSymbol(1);

@@ -25,8 +25,8 @@
     <PackageReference Include="JetBrains.Annotations" Version="2021.2.0" PrivateAssets="all" ExcludeAssets="runtime">
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="ClassVisualizer" Version="1.0.2" />
-    <PackageReference Include="UniversalExpressionParser" Version="1.0.4" />
+    <!--<PackageReference Include="ClassVisualizer" Version="1.0.2" />-->
+    <!--<PackageReference Include="UniversalExpressionParser" Version="1.0.4" />-->
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExpressionItemBaseExtensions.cs" />
@@ -43,7 +43,8 @@
     <Compile Include="ValueVisualizerFactory.cs" />
     <Compile Include="VisualizerConstants.cs" />
   </ItemGroup>
-  <!--<ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ClassVisualizer\ClassVisualizer\ClassVisualizer.csproj" />
     <ProjectReference Include="..\UniversalExpressionParser\UniversalExpressionParser.csproj" />
-  </ItemGroup>-->
+  </ItemGroup>
 </Project>

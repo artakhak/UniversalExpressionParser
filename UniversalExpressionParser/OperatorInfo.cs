@@ -48,7 +48,7 @@ namespace UniversalExpressionParser
             }
 
             NameParts = nameParts;
-            Name = string.Join(" ", nameParts);
+            Name = Helpers.GetOperatorName(nameParts);
             Initialize(id, operatorType, priority);
         }
 

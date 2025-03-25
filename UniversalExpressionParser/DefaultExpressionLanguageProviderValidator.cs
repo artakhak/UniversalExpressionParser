@@ -255,7 +255,7 @@ namespace UniversalExpressionParser
                     languageKeywordInfo.Keyword, operatorInfo.NameParts[0]))
             {
                 throw new ExpressionLanguageProviderException(expressionLanguageProvider,
-                    $"Keyword '{languageKeywordInfo.Keyword}' cannot be contained in operator '{string.Join(" ", operatorInfo.NameParts)}' at zero position. Operator Id={operatorInfo.Id}, keyword Id={languageKeywordInfo.Id}.");
+                    $"Keyword '{languageKeywordInfo.Keyword}' cannot be contained in operator '{Helpers.GetOperatorName(operatorInfo.NameParts)}' at zero position. Operator Id={operatorInfo.Id}, keyword Id={languageKeywordInfo.Id}.");
             }
         }
 
