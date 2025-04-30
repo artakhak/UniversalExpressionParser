@@ -1,12 +1,12 @@
 ﻿// Copyright (c) UniversalExpressionParser Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
 
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using JetBrains.Annotations;
 using UniversalExpressionParser.ExpressionItems;
 
 namespace UniversalExpressionParser
@@ -909,11 +909,11 @@ namespace UniversalExpressionParser
                     errorMessageStringBuilder.AppendLine("'.");
 
                     errorMessageStringBuilder.AppendLine($"The value of \"{textToMatchName}\" can be contained in \"{textToSearchName}\" only if the length of \"{textToMatchName}\" is smaller then the length of \"{textToSearchName}\" and one of the following is true:");
-                    errorMessageStringBuilder.AppendLine($"-The occurrence of \"{textToMatchName}\" in \"{textToSearchName}\" is not at position 0 and is not preceded by any of the special characters [{string.Join(",", Helpers.SpecialCharacters)}].");
+                    errorMessageStringBuilder.AppendLine($"-The occurrence of \"{textToMatchName}\" in \"{textToSearchName}\" is not at position 0 and is not preceded by any of the special characters [{string.Join(",", SpecialCharacters)}].");
                     errorMessageStringBuilder.AppendLine($"\tValid example is: \"{textToMatchName}\"=\"bcd\", and \"{textToSearchName}\"=\"abcde\".");
                     errorMessageStringBuilder.AppendLine($"\tExample which will fail the validation is: \"{textToMatchName}\"=\"bcd\", and \"{textToSearchName}\"=\"a$bcd\".");
 
-                    errorMessageStringBuilder.AppendLine($"-The occurrence of \"{textToMatchName}\" in \"{textToSearchName}\" is at position 0 and \"{textToMatchName}\" is not succeeded by any of the special characters [{string.Join(",", Helpers.SpecialCharacters)}] in \"{textToSearchName}\".");
+                    errorMessageStringBuilder.AppendLine($"-The occurrence of \"{textToMatchName}\" in \"{textToSearchName}\" is at position 0 and \"{textToMatchName}\" is not succeeded by any of the special characters [{string.Join(",", SpecialCharacters)}] in \"{textToSearchName}\".");
                     errorMessageStringBuilder.AppendLine($"\tValid example is: \"{textToMatchName}\"=\"bcd\", and \"{textToSearchName}\"=\"bcde#\".");
                     errorMessageStringBuilder.AppendLine($"\tExample which will fail the validation is: \"{textToMatchName}\"=\"bcd\", and \"{textToSearchName}\"=\"bcd$e\".");
                     errorMessage = errorMessageStringBuilder.ToString();
@@ -932,7 +932,7 @@ namespace UniversalExpressionParser
         internal static bool ValidateTextValueIsNotNulOrEmptyAndHasNoSpaces([CanBeNull] string validatedValue, [NotNull] string validatedValueName, out string errorMessage)
         {
             // ReSharper disable once ReplaceWithStringIsNullOrEmpty
-            if (Helpers.IsNullOrEmptyOrHasSpaceCharacters(validatedValue))
+            if (IsNullOrEmptyOrHasSpaceCharacters(validatedValue))
             {
                 errorMessage = $"The value of {validatedValueName} cannot be null or empty text, and cannot contain space characters (i.e., space, tab, line break). The invalid value is '{validatedValue}'.";
                 return false;

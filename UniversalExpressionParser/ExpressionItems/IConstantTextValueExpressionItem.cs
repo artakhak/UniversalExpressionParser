@@ -1,6 +1,7 @@
 ﻿// Copyright (c) UniversalExpressionParser Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
 
+using System;
 using JetBrains.Annotations;
 
 namespace UniversalExpressionParser.ExpressionItems
@@ -62,10 +63,10 @@ namespace UniversalExpressionParser.ExpressionItems
         /// <exception cref="System.ArgumentException">Throws this exception if <paramref name="text"/> is empty or tarts with space..</exception>
         public ConstantTextValueExpressionItem([NotNull] string text, [NotNull] string cSharpText, int indexInText)
         {
-            if (text.Length == 0) throw new System.ArgumentException($"The value of '{nameof(text)}' cannot be empty.", nameof(text));
+            if (text.Length == 0) throw new ArgumentException($"The value of '{nameof(text)}' cannot be empty.", nameof(text));
 
             if (char.IsWhiteSpace(text[0]))
-                throw new System.ArgumentException($"The value of '{nameof(text)}' cannot start with white space character.", nameof(text));
+                throw new ArgumentException($"The value of '{nameof(text)}' cannot start with white space character.", nameof(text));
 
             Text = text;
             IndexInText = indexInText;

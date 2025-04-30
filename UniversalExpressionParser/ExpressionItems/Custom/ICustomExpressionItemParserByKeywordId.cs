@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 namespace UniversalExpressionParser.ExpressionItems.Custom
 {
     /// <summary>
-    /// Custom expression item parser that parses text to a custom expression item of type <see cref="ICustomExpressionItem"/>, if the last item in list of currently parsed keywords passed to custom parser in method <see cref="ICustomExpressionItemParserByKeywordId.TryParseCustomExpressionItem(IParseExpressionItemContext, IReadOnlyList{IExpressionItemBase}, IReadOnlyList{IKeywordExpressionItem}, IKeywordExpressionItem)"/> is a keyword with <see cref="IKeywordExpressionItem.LanguageKeywordInfo"/>.Id equal to <see cref="ICustomExpressionItemParserByKeywordId.ParsedKeywordId"/>.
+    /// Custom expression item parser that parses text to a custom expression item of type <see cref="ICustomExpressionItem"/>, if the last item in list of currently parsed keywords passed to custom parser in method <see cref="ICustomExpressionItemParserByKeywordId.TryParseCustomExpressionItem(IParseExpressionItemContext, System.Collections.Generic.IReadOnlyList{UniversalExpressionParser.ExpressionItems.IExpressionItemBase}, IReadOnlyList{IKeywordExpressionItem}, IKeywordExpressionItem)"/> is a keyword with <see cref="IKeywordExpressionItem.LanguageKeywordInfo"/>.Id equal to <see cref="ICustomExpressionItemParserByKeywordId.ParsedKeywordId"/>.
     /// Instances of this type of custom expression item parsers can be passed to a constructor of <see cref="AggregateCustomExpressionItemParser"/>, that is the default implementation of <see cref="ICustomExpressionItemParser"/>.
     /// </summary>
     public interface ICustomExpressionItemParserByKeywordId

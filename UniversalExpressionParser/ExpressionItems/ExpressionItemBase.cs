@@ -2,13 +2,15 @@
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
 
 using System;
+using System.Diagnostics;
+using OROptimizer;
 
 namespace UniversalExpressionParser.ExpressionItems
 {
     /// <summary>
     /// Base class for classes that implement <see cref="IExpressionItemBase"/>
     /// </summary>
-    [System.Diagnostics.DebuggerDisplay("{ToString()}")]
+    [DebuggerDisplay("{ToString()}")]
     public abstract class ExpressionItemBase: IExpressionItemBase
     {
         private IComplexExpressionItem _parent;
@@ -18,7 +20,7 @@ namespace UniversalExpressionParser.ExpressionItems
         /// </summary>
         protected ExpressionItemBase()
         {
-            Id = OROptimizer.GlobalsCoreAmbientContext.Context.GenerateUniqueId();
+            Id = GlobalsCoreAmbientContext.Context.GenerateUniqueId();
         }
 
         /// <inheritdoc />

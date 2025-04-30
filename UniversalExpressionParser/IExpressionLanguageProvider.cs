@@ -1,8 +1,8 @@
 ﻿// Copyright (c) UniversalExpressionParser Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
 
-using JetBrains.Annotations;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using TextParser;
 using UniversalExpressionParser.ExpressionItems;
 using UniversalExpressionParser.ExpressionItems.Custom;

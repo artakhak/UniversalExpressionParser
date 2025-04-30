@@ -2,8 +2,8 @@
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
 
 using System;
-using JetBrains.Annotations;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UniversalExpressionParser.ExpressionItems.Custom;
 
 namespace UniversalExpressionParser.ExpressionItems
