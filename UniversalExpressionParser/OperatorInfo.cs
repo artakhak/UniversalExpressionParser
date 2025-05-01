@@ -13,7 +13,7 @@ namespace UniversalExpressionParser
     {
         /// <summary>
         /// Constructor for cases when operator can have one or many parts specified in <paramref name="nameParts"/>, such as {"IS", "NOT", "NULL"} or {"+"}.
-        /// For simple cases when the operator has only part, the other constructor with parameter "name" of <see cref="String"/> type can e used.
+        /// For simple cases when the operator has only part, the other constructor with parameter "name" of <see cref="string"/> type can e used.
         /// </summary>
         /// <param name="id">Unique value identifying the operator.</param>
         /// <param name="nameParts">
@@ -48,7 +48,7 @@ namespace UniversalExpressionParser
             }
 
             NameParts = nameParts;
-            Name = string.Join(" ", nameParts);
+            Name = Helpers.GetOperatorName(nameParts);
             Initialize(id, operatorType, priority);
         }
 

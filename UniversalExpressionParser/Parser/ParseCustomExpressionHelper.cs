@@ -1,10 +1,10 @@
 ﻿// Copyright (c) UniversalExpressionParser Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
 
-using JetBrains.Annotations;
-using OROptimizer.Diagnostics.Log;
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
+using OROptimizer.Diagnostics.Log;
 using UniversalExpressionParser.ExpressionItems;
 using UniversalExpressionParser.ExpressionItems.Custom;
 
@@ -36,7 +36,7 @@ namespace UniversalExpressionParser.Parser
 
             foreach (var customExpressionItemParser in expressionLanguageProvider.CustomExpressionItemParsers)
             {
-                textSymbolsParser.MoveToToPosition(currentPositionInText);
+                textSymbolsParser.MoveToPosition(currentPositionInText);
 
                 ICustomExpressionItem customExpressionItem;
 
@@ -53,7 +53,7 @@ namespace UniversalExpressionParser.Parser
 
                     context.AddParseErrorItem(new ParseErrorItem(
                         currentPositionInText,
-                        () => $"{errorMessage}{System.Environment.NewLine}See the logs for exception details. If no logs are available, use ${typeof(LogHelper).FullName}.{nameof(LogHelper.RegisterContext)}({typeof(ILogHelperContext).FullName}) method call to register a logger.",
+                        () => $"{errorMessage}{Environment.NewLine}See the logs for exception details. If no logs are available, use ${typeof(LogHelper).FullName}.{nameof(LogHelper.RegisterContext)}({typeof(ILogHelperContext).FullName}) method call to register a logger.",
                         ParseErrorItemCode.CustomExpressionParserThrewAnException, true));
 
                     return null;

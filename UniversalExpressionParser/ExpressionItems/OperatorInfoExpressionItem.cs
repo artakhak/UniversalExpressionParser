@@ -1,6 +1,7 @@
 ﻿// Copyright (c) UniversalExpressionParser Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
 
+using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
@@ -21,7 +22,7 @@ namespace UniversalExpressionParser.ExpressionItems
             OperatorInfo = operatorInfo;
 
             if (operatorNameParts.Count == 0)
-                throw new System.ArgumentException($"Collection '{nameof(operatorNameParts)}' cannot be empty.", nameof(operatorNameParts));
+                throw new ArgumentException($"Collection '{nameof(operatorNameParts)}' cannot be empty.", nameof(operatorNameParts));
 
             OperatorNameParts = operatorNameParts;
         }

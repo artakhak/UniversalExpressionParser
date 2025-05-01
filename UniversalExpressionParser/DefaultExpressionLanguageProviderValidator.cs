@@ -1,10 +1,10 @@
 ﻿// Copyright (c) UniversalExpressionParser Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
 
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 
 namespace UniversalExpressionParser
 {
@@ -255,7 +255,7 @@ namespace UniversalExpressionParser
                     languageKeywordInfo.Keyword, operatorInfo.NameParts[0]))
             {
                 throw new ExpressionLanguageProviderException(expressionLanguageProvider,
-                    $"Keyword '{languageKeywordInfo.Keyword}' cannot be contained in operator '{string.Join(" ", operatorInfo.NameParts)}' at zero position. Operator Id={operatorInfo.Id}, keyword Id={languageKeywordInfo.Id}.");
+                    $"Keyword '{languageKeywordInfo.Keyword}' cannot be contained in operator '{Helpers.GetOperatorName(operatorInfo.NameParts)}' at zero position. Operator Id={operatorInfo.Id}, keyword Id={languageKeywordInfo.Id}.");
             }
         }
 

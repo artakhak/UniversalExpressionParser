@@ -1,10 +1,10 @@
 ﻿// Copyright (c) UniversalExpressionParser Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
 
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using UniversalExpressionParser.ExpressionItems;
 
 namespace UniversalExpressionParser.Parser
@@ -440,11 +440,11 @@ namespace UniversalExpressionParser.Parser
                         if (startsWithNamePartsSimilarToLastMatchedOperator && lastOperatorInfoExpressionItem != null && lastMatchedOperatorInfo.NameParts.Count > 1)
                         {
                             namePartsIndex = lastMatchedOperatorInfo.NameParts.Count - 1;
-                            textSymbolsParser.MoveToToPosition(lastOperatorInfoExpressionItem.OperatorNameParts[namePartsIndex].IndexInText);
+                            textSymbolsParser.MoveToPosition(lastOperatorInfoExpressionItem.OperatorNameParts[namePartsIndex].IndexInText);
                         }
                         else
                         {
-                            textSymbolsParser.MoveToToPosition(startingIndexInText);
+                            textSymbolsParser.MoveToPosition(startingIndexInText);
                         }
 
                         List<IOperatorNamePartExpressionItem> operatorNamePartExpressionItems = null;
@@ -491,7 +491,7 @@ namespace UniversalExpressionParser.Parser
 
                         if (operatorNamePartExpressionItems == null || operatorNamePartExpressionItems.Count < operatorInfo.NameParts.Count)
                         {
-                            textSymbolsParser.MoveToToPosition(startingIndexInText);
+                            textSymbolsParser.MoveToPosition(startingIndexInText);
                             continue;
                         }
 
@@ -570,7 +570,7 @@ namespace UniversalExpressionParser.Parser
 
                 var lastOperatorNamePartExpressionItem = lastOperatorInfoExpressionItem.OperatorNameParts[lastOperatorInfoExpressionItem.OperatorNameParts.Count - 1];
 
-                textSymbolsParser.MoveToToPosition(lastOperatorNamePartExpressionItem.IndexInText + lastOperatorNamePartExpressionItem.ItemLength);
+                textSymbolsParser.MoveToPosition(lastOperatorNamePartExpressionItem.IndexInText + lastOperatorNamePartExpressionItem.ItemLength);
 
                 if (hasOperand1)
                 {
