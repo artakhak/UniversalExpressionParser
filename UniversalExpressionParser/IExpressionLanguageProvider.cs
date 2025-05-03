@@ -123,12 +123,12 @@ namespace UniversalExpressionParser
         /// Returns true, if a literal name (variable, function, constant, and other names, such as
         /// SQL column name, or "AND", "IS", "IS NOT" operators) can contain character <paramref name="character"/> at
         /// position <paramref name="positionInLiteral"/>. 
-        /// Most languages (C#, Java, SQL, etc) allow alpha-numeric characters, underscore and dot '.' character in literals, and literals cannot start with
-        /// number of '.'.
+        /// Most languages (C#, Java, SQL, etc) allow alphanumeric characters, underscore, and dot '.' character in literals, and literals cannot start with
+        /// the number of '.'.
         /// See the default implementation of this method in <see cref="ExpressionLanguageProviderBase"/>.
-        /// This method should either follow the same rules, or can allow other non standard characters in literals (for example literals that can start with '$').
+        /// This method should either follow the same rules or can allow other non-standard characters in literals (for example literals that can start with '$').
         /// <see cref="IExpressionParser"/> calls this method to determine if character is part of literal name, if the expression at current position was not already parsed
-        /// to some other expression item tyupe, such as <see cref="IOpeningBraceExpressionItem"/>, <see cref="IClosingBraceExpressionItem"/>,
+        /// to some other expression item type, such as <see cref="IOpeningBraceExpressionItem"/>, <see cref="IClosingBraceExpressionItem"/>,
         /// <see cref="IOperatorNamePartExpressionItem"/>, <see cref="ICommaExpressionItem"/>, etc.
         /// </summary>
         /// <param name="character">Character to check.</param>
@@ -151,7 +151,7 @@ namespace UniversalExpressionParser
         bool IsValidLiteralCharacter(char character, int positionInLiteral, [CanBeNull] ITextSymbolsParserState textSymbolsParserState);
 
         /// <summary>
-        /// If true, language is case sensitive. Otherwise, the language is not case sensitive. For example if the value is false, and <see cref="Operators"/>
+        /// If true, language is case-sensitive. Otherwise, the language is not case-sensitive. For example, if the value is false, and <see cref="Operators"/>
         /// contains an operator data for "IS NULL", then the expression "x is null" will be parsed to a literal "x" and operator "IS NULL", otherwise, if the value
         /// is true, the parser will fail to parse "is null" to operator <see cref="IOperatorInfoExpressionItem"/>.
         /// </summary>
@@ -159,7 +159,7 @@ namespace UniversalExpressionParser
 
         /// <summary>
         /// List of custom expression item parsers. The parsers should be sorted by priority.
-        /// The first parser that returns non-null value will be used to parse custom expression item.
+        /// The first parser that returns a non-null value will be used to parse a custom expression item.
         /// </summary>
         [NotNull, ItemNotNull]
         IEnumerable<ICustomExpressionItemParser> CustomExpressionItemParsers { get; }
@@ -201,29 +201,50 @@ namespace UniversalExpressionParser
         /// separation between expression "(MustUseReturnValue)" and "F(x, y)".<br/>
         /// Note, in this case, the custom prefix expression "custom_prefix CustomPrefix1" will be added as a prefix to "(MustUseReturnValue)", even though the value of <see cref="SupportsPrefixes"/>
         /// is false, since the property applies only to non-custom unnamed brace expressions.<br/>
-        /// The implementation can return false for this property for simple languages that do not need a support for prefixes (say simple arithmetic operators parsing, etc),
-        /// and the returned value can be true for more complex languages. For example C# like language might want to support method attributes.<br/>
-        /// Normally, more complex languages can do additional processing of parsed expressions to do more fine tuned error checking and additional language specific processing and
+        /// The implementation can return false for this property for simple languages that do not need support for prefixes (say simple arithmetic operators parsing, etc),
+        /// and the returned value can be true for more complex languages. For example, C# like language might want to support method attributes.<br/>
+        /// Normally, more complex languages can do additional processing of parsed expressions to do more fine-tuned error checking and additional language specific processing and
         /// transformations of expressions.
         /// </summary>
         bool SupportsPrefixes { get; }
 
         /// <summary>
         /// If true is returned, expressions that are parsed to <see cref="IKeywordExpressionItem"/> using keywords defined in <see cref="Keywords"/> will be added
-        /// to <see cref="IComplexExpressionItem.AppliedKeywords"/> of an expression item that is parsed from a symbol that that immediately follows the list of keywords.
+        /// to <see cref="IComplexExpressionItem.AppliedKeywords"/> of an expression item that is parsed from a symbol that immediately follows the list of keywords.
         /// Otherwise, if none of custom parsers defined in <see cref="IExpressionLanguageProvider.CustomExpressionItemParsers"/> parses the keywords (and possibly some expressions that follows
         /// the keywords) to some custom expression of type <see cref="ICustomExpressionItem"/>, an error will be reported that keywords are used incorrectly.
-        /// Lets consider the following example "public static class A; var x=4;", and lets suppose that keywords "public", "static", "class", and "var" are in <see cref="Keywords"/>.
+        /// Let's consider the following example "public static class A; var x=4;", and let's suppose that keywords "public", "static", "class", and "var" are in <see cref="Keywords"/>.
         /// Also, lets suppose that the list <see cref="IExpressionLanguageProvider.CustomExpressionItemParsers"/> is empty.
         /// If the value of <see cref="SupportsKeywords"/> is true, then "A" will be parsed to expression of type <see cref="ILiteralExpressionItem"/>, and the keywords
         /// "public", "static", and "class" will be parsed to expressions of type <see cref="IKeywordExpressionItem"/> and will be added to <see cref="IComplexExpressionItem.AppliedKeywords"/>
         /// in <see cref="ILiteralExpressionItem"/> parsed from "A".
         /// Otherwise, if <see cref="SupportsKeywords"/> is false, an error of type <see cref="ParseErrorItemCode.InvalidUseOfKeywords"/> will be reported.
-        /// Now lets suppose that <see cref="CustomExpressionItemParsers"/> contains a custom expression parser that parses any expression that is preceded with keyword
+        /// Now let's suppose that <see cref="CustomExpressionItemParsers"/> contains a custom expression parser that parses any expression that is preceded with keyword
         /// "class" to a custom expression item of type <see cref="ICustomExpressionItem"/>. In this case the expression "public static class A" will be parsed to a custom expression, and
         /// no error will be reported, regardless of the value of <see cref="SupportsKeywords"/>
         /// </summary>
         bool SupportsKeywords { get; }
+
+        /// <summary>
+        /// List of special operator character such as '+', '-', ':', '*', '~', '!', etc. used as separator character when tokenizing text.<br/>
+        /// If operators in <see cref="Operators"/> start or end with these characters, they do not have to be separated by a space from previous tokens.<br/>
+        /// The default values in <see cref="DefaultSpecialCharacters.SpecialOperatorCharacters"/> can be used when implementing this<br/>
+        /// method. However, in some cases a custom implementation might be used.<br/>
+        /// For example the special character '.' is not in <see cref="SpecialOperatorCharacters"/><br/>
+        /// '.' can be parsed as part of valid literal. For example, the text "customer.FirstName" might be parsed into a single literal,<br/>
+        /// by UniversalExpressionParser. In this case, the code that uses this library might do further parsing of this type of literals<br/>
+        /// if necessary, to tokenize literals with '.'.<br/>
+        /// The custom implementation of <see cref="SpecialOperatorCharacters"/> mihght include '.' in a list of special characters, and<br/>
+        /// also the implementation of <see cref="IExpressionLanguageProvider"/> can define a binary operator '.' in <see cref="Operators"/>.<br/>
+        /// This will ensure that "customer.FirstName" is parsed to an operator expression with operands "customer" and "FirstName" and operator ".".
+        /// </summary>
+        IEnumerable<char> SpecialOperatorCharacters { get; }
+
+        /// <summary>
+        /// List of special non-operator character such '`', '\', '/', '(', ')', '[', ']', ';', ',', etc.<br/>
+        /// These characters are used to tokenize the text, along with some other language constructs.<br/> 
+        /// </summary>
+        IEnumerable<char> SpecialNonOperatorCharacters { get; }
     }
 
     /// <summary>
@@ -234,7 +255,6 @@ namespace UniversalExpressionParser
         private static void ThrowValidationException([NotNull] this IExpressionLanguageProvider expressionLanguageProvider,
                                                      string validationErrorMessage) =>
             throw new ExpressionLanguageProviderException(expressionLanguageProvider, validationErrorMessage);
-
 
         /// <summary>
         /// Returns true, if code separators in <see cref="IExpressionLanguageProvider.ExpressionSeparatorCharacter"/> can be used to use multiple expressions.

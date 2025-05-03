@@ -58,7 +58,7 @@ namespace UniversalExpressionParser.Tests.Demos
             IExpressionLanguageProviderCache expressionLanguageProviderCache = 
                 new ExpressionLanguageProviderCache(new DefaultExpressionLanguageProviderValidator());
             
-            _expressionParser = new ExpressionParser(new TextSymbolsParserFactory(), expressionLanguageProviderCache);
+            _expressionParser = new ExpressionParser(new TextSymbolsParserFactory(), expressionLanguageProviderCache, new LogToConsole());
 
             expressionLanguageProviderCache.RegisterExpressionLanguageProvider(_nonVerboseLanguageProvider);
             expressionLanguageProviderCache.RegisterExpressionLanguageProvider(_verboseLanguageProvider);

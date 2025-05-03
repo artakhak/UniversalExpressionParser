@@ -135,9 +135,9 @@ namespace UniversalExpressionParser
                     throw new ExpressionLanguageProviderException(expressionLanguageProvider, errorMessage);
 
                 if (!(expressionLanguageProvider.ExpressionSeparatorCharacter == ';' ||
-                      Helpers.IsSpecialOperatorCharacter(expressionLanguageProvider.ExpressionSeparatorCharacter)))
+                      SpecialCharactersCacheThreadStaticContext.Context.IsSpecialOperatorCharacter(expressionLanguageProvider.ExpressionSeparatorCharacter)))
                     throw new ExpressionLanguageProviderException(expressionLanguageProvider,
-                        $"The value of \"{nameof(IExpressionLanguageProvider.ExpressionSeparatorCharacter)}\" can be either ';' or one of operator characters [{string.Join(",", Helpers.SpecialOperatorCharacters)}].");
+                        $"The value of \"{nameof(IExpressionLanguageProvider.ExpressionSeparatorCharacter)}\" can be either ';' or one of operator characters [{string.Join(",", SpecialCharactersCacheThreadStaticContext.Context.SpecialOperatorCharacters)}].");
 
                 ValidateWordDoesNotHaveConflictsWithComments(expressionLanguageProvider, nameof(IExpressionLanguageProvider.ExpressionSeparatorCharacter), expressionSeparatorCharacterToString);
             }
@@ -190,9 +190,9 @@ namespace UniversalExpressionParser
             [NotNull] string validatedObjectCapitalizedName, [NotNull] string validatedObject, params char[] allowedNonOperatorSpecialCharacters)
         {
             if (validatedObject.Any(x => (allowedNonOperatorSpecialCharacters == null || !allowedNonOperatorSpecialCharacters.Contains(x)) &&
-                                         Helpers.IsSpecialNonOperatorCharacter(x)))
+                                         SpecialCharactersCacheThreadStaticContext.Context.IsSpecialNonOperatorCharacter(x)))
                 throw new ExpressionLanguageProviderException(expressionLanguageProvider,
-                    $"{validatedObjectCapitalizedName} \"{validatedObject}\" contains one of the special characters [{string.Join(",", Helpers.SpecialNonOperatorCharacters.Select(x => $"'{x}'"))}].");
+                    $"{validatedObjectCapitalizedName} \"{validatedObject}\" contains one of the special characters [{string.Join(",", SpecialCharactersCacheThreadStaticContext.Context.SpecialNonOperatorCharacters.Select(x => $"'{x}'"))}].");
         }
 
         private StringComparison GetStringComparison([NotNull] IExpressionLanguageProvider expressionLanguageProvider)
@@ -327,7 +327,7 @@ namespace UniversalExpressionParser
                         $"Method call \"{expressionLanguageProvider.GetType().FullName}.{nameof(IExpressionLanguageProvider.IsValidLiteralCharacter)}()\" cannot return true for '{numericCharacter}' when parameter 'positionInLiteral' is 0. Literals cannot start with numeric values.");
             }
 
-            foreach (var specialOperatorChar in Helpers.SpecialOperatorCharacters)
+            foreach (var specialOperatorChar in SpecialCharactersCacheThreadStaticContext.Context.SpecialOperatorCharacters)
             {
                 var commentMarkers = new List<string>();
                 specialOperatorCharacterToCommentMarkers[specialOperatorChar] = commentMarkers;
@@ -374,7 +374,7 @@ namespace UniversalExpressionParser
 
             for (var positionInLiteral = 0; positionInLiteral < 100; ++positionInLiteral)
             {
-                foreach (var specialNonOperatorCharacter in Helpers.SpecialNonOperatorCharacters)
+                foreach (var specialNonOperatorCharacter in SpecialCharactersCacheThreadStaticContext.Context.SpecialNonOperatorCharacters)
                 {
                     if (expressionLanguageProvider.IsValidLiteralCharacter(specialNonOperatorCharacter,
                         positionInLiteral, null))
@@ -382,7 +382,7 @@ namespace UniversalExpressionParser
                             $"Method call \"{expressionLanguageProvider.GetType().FullName}.{nameof(IExpressionLanguageProvider.IsValidLiteralCharacter)}()\" cannot return true for a special character '{specialNonOperatorCharacter}'.");
                 }
 
-                foreach (var specialOperatorCharacter in Helpers.SpecialOperatorCharacters)
+                foreach (var specialOperatorCharacter in SpecialCharactersCacheThreadStaticContext.Context.SpecialOperatorCharacters)
                 {
                     if (!expressionLanguageProvider.IsValidLiteralCharacter(specialOperatorCharacter, positionInLiteral, null))
                         continue;

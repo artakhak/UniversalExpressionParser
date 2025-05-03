@@ -49,7 +49,7 @@ namespace UniversalExpressionParser.Parser
                 {
                     var errorMessage = $"Custom expression parser '{customExpressionItemParser.GetType().FullName}' threw an exception.";
 
-                    LogHelper.Context.Log.Error(errorMessage, e);
+                    LoggerThreadStaticContext.Context.Error(errorMessage, e);
 
                     context.AddParseErrorItem(new ParseErrorItem(
                         currentPositionInText,

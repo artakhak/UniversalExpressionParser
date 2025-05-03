@@ -1,6 +1,6 @@
-﻿using TextParser;
+﻿using OROptimizer.Diagnostics.Log;
+using TextParser;
 using UniversalExpressionParser.DemoExpressionLanguageProviders;
-using UniversalExpressionParser.ExpressionItems;
 
 namespace UniversalExpressionParser.Tests.Demos
 {
@@ -14,7 +14,7 @@ namespace UniversalExpressionParser.Tests.Demos
             IExpressionLanguageProviderCache expressionLanguageProviderCache = 
                 new ExpressionLanguageProviderCache(new DefaultExpressionLanguageProviderValidator());
             
-            _expressionParser = new ExpressionParser(new TextSymbolsParserFactory(), expressionLanguageProviderCache);
+            _expressionParser = new ExpressionParser(new TextSymbolsParserFactory(), expressionLanguageProviderCache, LogHelper.Context.Log);
             expressionLanguageProviderCache.RegisterExpressionLanguageProvider(_expressionLanguageProvider);
         }
 

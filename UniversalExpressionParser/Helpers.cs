@@ -1,12 +1,12 @@
 ﻿// Copyright (c) UniversalExpressionParser Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the solution root for license information.
 
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using JetBrains.Annotations;
 using UniversalExpressionParser.ExpressionItems;
 
 namespace UniversalExpressionParser
@@ -36,114 +36,22 @@ namespace UniversalExpressionParser
         /// </summary>
         public const int CapitalZCode = 'Z';
 
-        [NotNull]
-        // ReSharper disable once InconsistentNaming
-        private static readonly HashSet<char> _specialOperatorCharactersSet = new HashSet<char>();
-
-        [NotNull]
-        // ReSharper disable once InconsistentNaming
-        private static readonly HashSet<char> _specialNonOperatorCharactersSet = new HashSet<char>();
-
-        [NotNull]
-        // ReSharper disable once InconsistentNaming
-        private static readonly HashSet<char> _specialCharactersSet;
-
-        static Helpers()
-        {
-            _specialOperatorCharactersSet.Add('~');
-            _specialOperatorCharactersSet.Add('!');
-
-            _specialOperatorCharactersSet.Add('@');
-            _specialOperatorCharactersSet.Add('#');
-            _specialOperatorCharactersSet.Add('$');
-            _specialOperatorCharactersSet.Add('%');
-            _specialOperatorCharactersSet.Add('^');
-            _specialOperatorCharactersSet.Add('&');
-            _specialOperatorCharactersSet.Add('|');
-
-            _specialOperatorCharactersSet.Add('-');
-            _specialOperatorCharactersSet.Add('+');
-
-            _specialOperatorCharactersSet.Add('*');
-            _specialOperatorCharactersSet.Add('/');
-
-            _specialOperatorCharactersSet.Add('<');
-            _specialOperatorCharactersSet.Add('>');
-            _specialOperatorCharactersSet.Add('?');
-            _specialOperatorCharactersSet.Add(':');
-
-            _specialOperatorCharactersSet.Add('=');
-
-            _specialNonOperatorCharactersSet.Add('`');
-            _specialNonOperatorCharactersSet.Add('\'');
-            _specialNonOperatorCharactersSet.Add('"');
-            _specialNonOperatorCharactersSet.Add('(');
-            _specialNonOperatorCharactersSet.Add(')');
-            _specialNonOperatorCharactersSet.Add('[');
-            _specialNonOperatorCharactersSet.Add(']');
-            _specialNonOperatorCharactersSet.Add('{');
-            _specialNonOperatorCharactersSet.Add('}');
-            _specialNonOperatorCharactersSet.Add(',');
-            _specialNonOperatorCharactersSet.Add(';');
-            _specialNonOperatorCharactersSet.Add('\\');
-            // Uncomment after testing
-            //_specialOperatorCharactersSet.Add('.');
-
-            _specialCharactersSet = new HashSet<char>(_specialOperatorCharactersSet);
-
-            foreach (var character in _specialNonOperatorCharactersSet)
-                _specialCharactersSet.Add(character);
-        }
-
-        /// <summary>
-        /// Special operator characters such as '+', '-', ':', '*', '~', '!', etc.
-        /// </summary>
-        public static IEnumerable<char> SpecialOperatorCharacters => _specialOperatorCharactersSet;
-
-        /// <summary>
-        /// Special non-operator characters such as '`', '\', '/', '(', ')', '[', ']', ';', ',', etc.
-        /// </summary>
-        public static IEnumerable<char> SpecialNonOperatorCharacters => _specialNonOperatorCharactersSet;
-
-        /// <summary>
-        /// Returns true, if <paramref name="character"/> is a special operator character such as '+', '-', ':', '*', '~', '!', etc.
-        /// </summary>
-        /// <param name="character">Character to check.</param>
-        public static bool IsSpecialOperatorCharacter(char character) => _specialOperatorCharactersSet.Contains(character);
-
-        /// <summary>
-        /// Returns true, if <paramref name="character"/> is a special non-operator character such '`', '\', '/', '(', ')', '[', ']', ';', ',', etc.
-        /// </summary>
-        /// <param name="character">Character to check.</param>
-        public static bool IsSpecialNonOperatorCharacter(char character) => _specialNonOperatorCharactersSet.Contains(character);
-
-        /// <summary>
-        /// List of all special characters that include both operator characters such as '+', '-', ':', '*', '~', '!', etc, as well as
-        /// special non-operator character such '`', '\', '/', '(', ')', '[', ']', ';', ',', etc.
-        /// </summary>
-        public static IEnumerable<char> SpecialCharacters => _specialCharactersSet;
-
-        /// <summary>
-        /// Returns true, if <paramref name="character"/> is either a special operator character such as '+', '-', ':', '*', '~', '!', etc,
-        /// or is a special non-operator character such '`', '\', '/', '(', ')', '[', ']', ';', ',', etc.
-        /// </summary>
-        /// <param name="character">Character to check.</param>
-        public static bool IsSpecialCharacter(char character) => _specialCharactersSet.Contains(character);
-
         internal static bool IsValidTextAfterTextToMatchDefault(char characterAfterMatchedText, int positionInText)
         {
-            return _specialCharactersSet.Contains(characterAfterMatchedText);
+            return SpecialCharactersCacheThreadStaticContext.Context.IsSpecialCharacter(characterAfterMatchedText);
         }
 
         /// <summary>
         /// Returns true, if text in <paramref name="text"/> starts with symbol <paramref name="symbolToMatch"/> at position <paramref name="positionInText"/>,
-        /// and either <paramref name="symbolToMatch"/> ends with some special character in <see cref="SpecialOperatorCharacters"/> or
+        /// and either <paramref name="symbolToMatch"/> ends with some special character in <see cref="IExpressionLanguageProvider.SpecialNonOperatorCharacters"/> or
+        /// <see cref="IExpressionLanguageProvider.SpecialOperatorCharacters"/>> or
         /// text <paramref name="isValidTextAfterTextToMatch"/> is either followed by a
         /// whitespace character (space, tab, line break, etc), or is followed by other special text (say is followed by comment start
         /// marker <see cref="IExpressionLanguageProvider.LineCommentMarker"/> or <see cref="IExpressionLanguageProvider.MultilineCommentStartMarker"/>), or
         /// is followed by some character for which the check <see cref="IsValidTextAfterMatchedTextDelegate"/> is true, when <paramref name="isValidTextAfterTextToMatch"/> is not null.<br/>
         /// If the value of <paramref name="isValidTextAfterTextToMatch"/> is null, the value is defaulted to a check <see cref="DefaultExpressionLanguageProviderValidator"/> which
-        /// will check if <paramref name="symbolToMatch"/> is followed by some special character in <see cref="SpecialCharacters"/>.<br/>
+        /// will check if <paramref name="symbolToMatch"/> is followed by some special character in <see cref="IExpressionLanguageProvider.SpecialNonOperatorCharacters"/> or
+        /// <see cref="IExpressionLanguageProvider.SpecialOperatorCharacters"/>.<br/>
         /// For example if <paramref name="text"/> is "f1(x)begin/*some comment*/++x;end" and <paramref name="positionInText"/> is 4 (index of "begin"),
         /// and <paramref name="symbolToMatch"/> is equal to "begin", and <see cref="IExpressionLanguageProvider.MultilineCommentStartMarker"/> is "/*",
         /// then the method will detect that text "begin" is followed by a comment, and will return true.<br/>
@@ -169,8 +77,8 @@ namespace UniversalExpressionParser
         /// Also, the value of <see cref="IExpressionLanguageProvider.IsLanguageCaseSensitive"/> is used to determine if case sensitive search should be executed.
         /// </param>
         /// <param name="isValidTextAfterTextToMatch">A delegate that does additional check for the text that follows <paramref name="symbolToMatch"/>.
-        /// The value is defaulted to <see cref="DefaultExpressionLanguageProviderValidator"/> which checks if <paramref name="symbolToMatch"/> is followed with some special character in
-        /// <see cref="SpecialCharacters"/>.
+        /// The value is defaulted to <see cref="DefaultExpressionLanguageProviderValidator"/> which checks if <paramref name="symbolToMatch"/> is followed with some special
+        /// character in <see cref="IExpressionLanguageProvider.SpecialNonOperatorCharacters"/> or <see cref="IExpressionLanguageProvider.SpecialOperatorCharacters"/>.
         /// For example if <paramref name="text"/> is "begin++x end", <paramref name="symbolToMatch"/> is "begin", and <paramref name="positionInText"/> is 0, and
         /// <paramref name="expressionLanguageProvider"/> is <see cref="DefaultExpressionLanguageProviderValidator"/>, then the method will return true, since text "begin" is followed
         /// by a special character '+'. On the other hand, if <paramref name="isValidTextAfterTextToMatch"/> is a non null value that returns true for '/', and false for '+',
@@ -184,24 +92,24 @@ namespace UniversalExpressionParser
 
 
         /// <summary>
-        /// Returns true, if text in <paramref name="text"/> starts with symbol <paramref name="symbolToMatch"/> at position <paramref name="positionInText"/>,
-        /// and either <paramref name="symbolToMatch"/> ends with some special character in <see cref="SpecialOperatorCharacters"/> or
-        /// text <paramref name="isValidTextAfterTextToMatch"/> is either followed by a
-        /// whitespace character (space, tab, line break, etc), or is followed by other special text (say is followed by comment start
-        /// marker <see cref="IExpressionLanguageProvider.LineCommentMarker"/> or <see cref="IExpressionLanguageProvider.MultilineCommentStartMarker"/>), or
+        /// Returns true, if text in <paramref name="text"/> starts with symbol <paramref name="symbolToMatch"/> at position <paramref name="positionInText"/>,<br/>
+        /// and either <paramref name="symbolToMatch"/> ends with some special character in <see cref="IExpressionLanguageProvider"/> or<br/>
+        /// text <paramref name="isValidTextAfterTextToMatch"/> is either followed by a<br/>
+        /// whitespace character (space, tab, line break, etc), or is followed by other special text (say is followed by comment start<br/>
+        /// marker <see cref="IExpressionLanguageProvider.LineCommentMarker"/> or <see cref="IExpressionLanguageProvider.MultilineCommentStartMarker"/>), or<br/>
         /// is followed by some character for which the check <see cref="IsValidTextAfterMatchedTextDelegate"/> is true, when <paramref name="isValidTextAfterTextToMatch"/> is not null.<br/>
-        /// If the value of <paramref name="isValidTextAfterTextToMatch"/> is null, the value is defaulted to a check <see cref="DefaultExpressionLanguageProviderValidator"/> which
-        /// will check if <paramref name="symbolToMatch"/> is followed by some special character in <see cref="SpecialCharacters"/>.<br/>
-        /// For example if <paramref name="text"/> is "f1(x)begin/*some comment*/++x;end" and <paramref name="positionInText"/> is 4 (index of "begin"),
-        /// and <paramref name="symbolToMatch"/> is equal to "begin", and <see cref="IExpressionLanguageProvider.MultilineCommentStartMarker"/> is "/*",
+        /// If the value of <paramref name="isValidTextAfterTextToMatch"/> is null, the value is defaulted to a check <see cref="DefaultExpressionLanguageProviderValidator"/> which<br/>
+        /// will check if <paramref name="symbolToMatch"/> is followed by some special character in <see cref="IExpressionLanguageProvider.SpecialNonOperatorCharacters"/> or <see cref="IExpressionLanguageProvider.SpecialOperatorCharacters"/>.<br/>
+        /// For example, if <paramref name="text"/> is "f1(x)begin/*some comment*/++x;end" and <paramref name="positionInText"/> is 4 (index of "begin"),<br/>
+        /// and <paramref name="symbolToMatch"/> is equal to "begin", and <see cref="IExpressionLanguageProvider.MultilineCommentStartMarker"/> is "/*",<br/>
         /// then the method will detect that text "begin" is followed by a comment, and will return true.<br/>
-        /// On the other hand, if <paramref name="text"/> is "beginx++ end", <paramref name="positionInText"/> is 0 (i.e., index of "begin" in <paramref name="text"/>),
-        /// then the call to this method will return false, since "begin" is not followed by a whitespace, a special character, comment, ect.
+        /// On the other hand, if <paramref name="text"/> is "beginx++ end", <paramref name="positionInText"/> is 0 (i.e., index of "begin" in <paramref name="text"/>),<br/>
+        /// then the call to this method will return false, since "begin" is not followed by a whitespace, a special character, comment, ect.<br/>
         /// </summary>
         /// <param name="text">Text to search.</param>
         /// <param name="symbolToMatch">Symbol to match.</param>
         /// <param name="positionInText">
-        /// Position in text to co check for text match. For example if <paramref name="text"/> is "f1(x)begin++x;end",
+        /// Position in text to co check for text match. For example, if <paramref name="text"/> is "f1(x)begin++x;end",
         /// <paramref name="positionInText"/> is 4 (index of "begin"), and <paramref name="symbolToMatch"/> equal to
         /// "begin", then the call to <see cref="StartsWithSymbol(string,string,int,int,bool,UniversalExpressionParser.ExpressionItems.IsValidTextAfterMatchedTextDelegate)"/> with <paramref name="symbolToMatch"/> will return true. 
         /// </param>
@@ -214,19 +122,19 @@ namespace UniversalExpressionParser
         /// For example if <paramref name="text"/> is "f1(x)begin/*some comment*/++x;end" and <paramref name="positionInText"/> is 4 (index of "begin"),
         /// and <paramref name="symbolToMatch"/> is equal to "begin", and <see cref="IExpressionLanguageProvider.MultilineCommentStartMarker"/> is "/*",
         /// then the method will detect that text "begin" is followed by a comment, and will return true.<br/>
-        /// Also, the value of <see cref="IExpressionLanguageProvider.IsLanguageCaseSensitive"/> is used to determine if case sensitive search should be executed.
+        /// Also, the value of <see cref="IExpressionLanguageProvider.IsLanguageCaseSensitive"/> is used to determine if case-sensitive search should be executed.
         /// </param>
         /// <param name="isValidTextAfterTextToMatch">A delegate that does additional check for the text that follows <paramref name="symbolToMatch"/>.
         /// The value is defaulted to <see cref="DefaultExpressionLanguageProviderValidator"/> which checks if <paramref name="symbolToMatch"/> is followed with some special character in
-        /// <see cref="SpecialCharacters"/>.
+        /// <see cref="IExpressionLanguageProvider.SpecialNonOperatorCharacters"/> or <see cref="IExpressionLanguageProvider.SpecialOperatorCharacters"/>.
         /// For example if <paramref name="text"/> is "begin++x end", <paramref name="symbolToMatch"/> is "begin", and <paramref name="positionInText"/> is 0, and
         /// <paramref name="expressionLanguageProvider"/> is <see cref="DefaultExpressionLanguageProviderValidator"/>, then the method will return true, since text "begin" is followed
-        /// by a special character '+'. On the other hand, if <paramref name="isValidTextAfterTextToMatch"/> is a non null value that returns true for '/', and false for '+',
+        /// by a special character '+'. On the other hand, if <paramref name="isValidTextAfterTextToMatch"/> is a non-null value that returns true for '/', and false for '+',
         /// then the call to this method will return false. 
         /// </param>
         /// <param name="matchedSymbol">
         /// An output parameter for the matched symbol. If the returned value is true, the value is not null.
-        /// Otherwise the value is null.<br/>
+        /// Otherwise, the value is null.<br/>
         /// If the value of <see cref="IExpressionLanguageProvider.IsLanguageCaseSensitive"/> is true, the value is the same as
         /// <paramref name="symbolToMatch"/>, otherwise, the value is equal to <paramref name="matchedSymbol"/> when case is ignored. 
         /// </param>
@@ -244,12 +152,14 @@ namespace UniversalExpressionParser
 
         /// <summary>
         /// Returns true, if text in <paramref name="text"/> starts with symbol <paramref name="symbolToMatch"/> at position <paramref name="positionInText"/>,
-        /// and either <paramref name="symbolToMatch"/> ends with some special character in <see cref="SpecialOperatorCharacters"/> or
+        /// and either <paramref name="symbolToMatch"/> ends with some special character in <see cref="IExpressionLanguageProvider.SpecialNonOperatorCharacters"/> or
+        /// <see cref="IExpressionLanguageProvider.SpecialOperatorCharacters"/> or
         /// text <paramref name="isValidTextAfterTextToMatch"/> is either followed by a
         /// whitespace character (space, tab, line break, etc), or
         /// is followed by some character for which the check <see cref="IsValidTextAfterMatchedTextDelegate"/> is true, when <paramref name="isValidTextAfterTextToMatch"/> is not null.<br/>
         /// If the value of <paramref name="isValidTextAfterTextToMatch"/> is null, the value is defaulted to a check <see cref="DefaultExpressionLanguageProviderValidator"/> which
-        /// will check if <paramref name="symbolToMatch"/> is followed by some special character in <see cref="SpecialCharacters"/>.<br/>
+        /// will check if <paramref name="symbolToMatch"/> is followed by some special character in <see cref="IExpressionLanguageProvider.SpecialNonOperatorCharacters"/> or
+        /// <see cref="IExpressionLanguageProvider.SpecialOperatorCharacters"/>.<br/>
         /// For example if <paramref name="text"/> is "f1(x)begin++x;end" and <paramref name="positionInText"/> is 4 (index of "begin"),
         /// and <paramref name="symbolToMatch"/> is equal to "begin",
         /// then the method will return true, since "begin" is followed by a special character '+' that will be approved by <paramref name="isValidTextAfterTextToMatch"/>.<br/>
@@ -269,7 +179,7 @@ namespace UniversalExpressionParser
         /// <param name="isCaseSensitiveSearch">Determines is search should be case sensitive or not.</param>
         /// <param name="isValidTextAfterTextToMatch">A delegate that does additional check for the text that follows <paramref name="symbolToMatch"/>.
         /// The value is defaulted to <see cref="DefaultExpressionLanguageProviderValidator"/> which checks if <paramref name="symbolToMatch"/> is followed with some special character in
-        /// <see cref="SpecialCharacters"/>.
+        /// <see cref="IExpressionLanguageProvider.SpecialNonOperatorCharacters"/> or <see cref="IExpressionLanguageProvider.SpecialOperatorCharacters"/>.
         /// </param>
         public static bool StartsWithSymbol([NotNull] string text, [NotNull] string symbolToMatch,
                                       int positionInText, int textEnd,
@@ -280,16 +190,18 @@ namespace UniversalExpressionParser
 
         /// <summary>
         /// Returns true, if text in <paramref name="text"/> starts with symbol <paramref name="symbolToMatch"/> at position <paramref name="positionInText"/>,
-        /// and either <paramref name="symbolToMatch"/> ends with some special character in <see cref="SpecialOperatorCharacters"/> or
+        /// and either <paramref name="symbolToMatch"/> ends with some special character in <see cref="IExpressionLanguageProvider.SpecialNonOperatorCharacters"/> or
+        /// <see cref="IExpressionLanguageProvider.SpecialOperatorCharacters"/> or
         /// text <paramref name="isValidTextAfterTextToMatch"/> is either followed by a
         /// whitespace character (space, tab, line break, etc), or
         /// is followed by some character for which the check <see cref="IsValidTextAfterMatchedTextDelegate"/> is true, when <paramref name="isValidTextAfterTextToMatch"/> is not null.<br/>
-        /// If the value of <paramref name="isValidTextAfterTextToMatch"/> is null, the value is defaulted to a check <see cref="DefaultExpressionLanguageProviderValidator"/> which
-        /// will check if <paramref name="symbolToMatch"/> is followed by some special character in <see cref="SpecialCharacters"/>.<br/>
-        /// For example if <paramref name="text"/> is "f1(x)begin++x;end" and <paramref name="positionInText"/> is 4 (index of "begin"),
-        /// and <paramref name="symbolToMatch"/> is equal to "begin",
+        /// If the value of <paramref name="isValidTextAfterTextToMatch"/> is null, the value is defaulted to a check <see cref="DefaultExpressionLanguageProviderValidator"/> which<br/>
+        /// will check if <paramref name="symbolToMatch"/> is followed by some special character in <see cref="IExpressionLanguageProvider.SpecialNonOperatorCharacters"/> or<br/>
+        /// <see cref="IExpressionLanguageProvider.SpecialOperatorCharacters"/>.<br/>
+        /// For example if <paramref name="text"/> is "f1(x)begin++x;end" and <paramref name="positionInText"/> is 4 (index of "begin"),<br/>
+        /// and <paramref name="symbolToMatch"/> is equal to "begin",<br/>
         /// then the method will return true, since "begin" is followed by a special character '+' that will be approved by <paramref name="isValidTextAfterTextToMatch"/>.<br/>
-        /// On the other hand, if <paramref name="text"/> is "beginx++ end", <paramref name="positionInText"/> is 0 (i.e., index of "begin" in <paramref name="text"/>),
+        /// On the other hand, if <paramref name="text"/> is "beginx++ end", <paramref name="positionInText"/> is 0 (i.e., index of "begin" in <paramref name="text"/>),<br/>
         /// then the call to this method will return false, since "begin" is not followed by a whitespace, a special character, ect.
         /// </summary>
         /// <param name="text">Text to search.</param>
@@ -299,17 +211,17 @@ namespace UniversalExpressionParser
         /// <paramref name="positionInText"/> is 4 (index of "begin"), and <paramref name="symbolToMatch"/> equal to
         /// "begin", then the call to <see cref="StartsWithSymbol(string,string,int,int,bool,UniversalExpressionParser.ExpressionItems.IsValidTextAfterMatchedTextDelegate)"/> with <paramref name="symbolToMatch"/> will return true. 
         /// </param>
-        /// <param name="textEnd">Position of text end, where matching evaluation should stop. Normally this will be the length of <paramref name="text"/>, however
+        /// <param name="textEnd">Position of the text end, where matching evaluation should stop. Normally this will be the length of <paramref name="text"/>, however
         /// smaller value can be used as well.
         /// </param>
-        /// <param name="isCaseSensitiveSearch">Determines is search should be case sensitive or not.</param>
+        /// <param name="isCaseSensitiveSearch">Determines is search should be case-sensitive or not.</param>
         /// <param name="isValidTextAfterTextToMatch">A delegate that does additional check for the text that follows <paramref name="symbolToMatch"/>.
-        /// The value is defaulted to <see cref="DefaultExpressionLanguageProviderValidator"/> which checks if <paramref name="symbolToMatch"/> is followed with some special character in
-        /// <see cref="SpecialCharacters"/>.
+        /// The value is defaulted to <see cref="DefaultExpressionLanguageProviderValidator"/> which checks if <paramref name="symbolToMatch"/> is followed<br/>
+        /// with some special character in <see cref="IExpressionLanguageProvider.SpecialNonOperatorCharacters"/> or <see cref="IExpressionLanguageProvider.SpecialOperatorCharacters"/>.
         /// </param>
         /// <param name="matchedSymbol">
         /// An output parameter for the matched symbol. If the returned value is true, the value is not null.
-        /// Otherwise the value is null.<br/>
+        /// Otherwise, the value is null.<br/>
         /// If the value of <paramref name="isCaseSensitiveSearch"/> is true, the value is the same as
         /// <paramref name="symbolToMatch"/>, otherwise, the value is equal to <paramref name="matchedSymbol"/> when case is ignored. 
         /// </param>
@@ -355,7 +267,7 @@ namespace UniversalExpressionParser
                 }
             }
 
-            if (endPosition == textEnd || IsSpecialCharacter(symbolToMatch[symbolToMatch.Length - 1]))
+            if (endPosition == textEnd || SpecialCharactersCacheThreadStaticContext.Context.IsSpecialCharacter(symbolToMatch[symbolToMatch.Length - 1]))
                 return (true, returnFoundText ? (isCaseSensitiveSearch ? symbolToMatch : text.Substring(positionInText, symbolToMatch.Length)) : null);
 
             var characterAfterMatchedText = text[endPosition];
@@ -647,6 +559,13 @@ namespace UniversalExpressionParser
         }
 
         /// <summary>
+        /// Gets the name of an operator for multipart operators.
+        /// For example, the operator ["is", "not", "null"] will result in a name "is not null".
+        /// </summary>
+        /// <param name="operatorNameParts">Operator name parts, such as ["is", "not", "null"]</param>
+        public static string GetOperatorName(IReadOnlyList<string> operatorNameParts) => string.Join(" ", operatorNameParts);
+
+        /// <summary>
         /// Returns true if identifiers specified in parameters <paramref name="identifier1"/> and <paramref name="identifier2"/> conflict.
         /// Used when validating <see cref="IExpressionLanguageProvider"/>.
         /// </summary>
@@ -793,10 +712,10 @@ namespace UniversalExpressionParser
 
             //var textToMatchHasSpecialOperatorCharacters = textToMatch.Any(IsSpecialCharacter);
 
-            var matchedTextStartsWithSpecialCharacter = IsSpecialCharacter(textToMatch[0]);
+            var matchedTextStartsWithSpecialCharacter = SpecialCharactersCacheThreadStaticContext.Context.IsSpecialCharacter(textToMatch[0]);
 
             var matchedTextEndsWithSpecialCharacter = textToMatch.Length == 1 ?
-                matchedTextStartsWithSpecialCharacter : IsSpecialCharacter(textToMatch[textToMatch.Length - 1]);
+                matchedTextStartsWithSpecialCharacter : SpecialCharactersCacheThreadStaticContext.Context.IsSpecialCharacter(textToMatch[textToMatch.Length - 1]);
 
             var startIndex = 0;
             while (startIndex + textToMatch.Length <= textToSearch.Length)
@@ -824,7 +743,7 @@ namespace UniversalExpressionParser
                     if (conflictCheckType == ConflictCheckType.Identifier1IsContainedInIdentifier2AtZeroPosition)
                         return false;
 
-                    if (!(matchedTextStartsWithSpecialCharacter || IsSpecialCharacter(textToSearch[matchedIndexCurrent - 1])))
+                    if (!(matchedTextStartsWithSpecialCharacter || SpecialCharactersCacheThreadStaticContext.Context.IsSpecialCharacter(textToSearch[matchedIndexCurrent - 1])))
                         matchShouldBeIgnored = true;
                 }
 
@@ -832,7 +751,7 @@ namespace UniversalExpressionParser
                 // a special character after the matched text.
                 if (matchedIndexCurrent + textToMatch.Length < textToSearch.Length)
                 {
-                    if (!(matchedTextEndsWithSpecialCharacter || IsSpecialCharacter(textToSearch[matchedIndexCurrent + textToMatch.Length])))
+                    if (!(matchedTextEndsWithSpecialCharacter || SpecialCharactersCacheThreadStaticContext.Context.IsSpecialCharacter(textToSearch[matchedIndexCurrent + textToMatch.Length])))
                         matchShouldBeIgnored = true;
                 }
 
@@ -902,11 +821,11 @@ namespace UniversalExpressionParser
                     errorMessageStringBuilder.AppendLine("'.");
 
                     errorMessageStringBuilder.AppendLine($"The value of \"{textToMatchName}\" can be contained in \"{textToSearchName}\" only if the length of \"{textToMatchName}\" is smaller then the length of \"{textToSearchName}\" and one of the following is true:");
-                    errorMessageStringBuilder.AppendLine($"-The occurrence of \"{textToMatchName}\" in \"{textToSearchName}\" is not at position 0 and is not preceded by any of the special characters [{string.Join(",", Helpers.SpecialCharacters)}].");
+                    errorMessageStringBuilder.AppendLine($"-The occurrence of \"{textToMatchName}\" in \"{textToSearchName}\" is not at position 0 and is not preceded by any of the special characters [{string.Join(",", SpecialCharactersCacheThreadStaticContext.Context.SpecialCharacters)}].");
                     errorMessageStringBuilder.AppendLine($"\tValid example is: \"{textToMatchName}\"=\"bcd\", and \"{textToSearchName}\"=\"abcde\".");
                     errorMessageStringBuilder.AppendLine($"\tExample which will fail the validation is: \"{textToMatchName}\"=\"bcd\", and \"{textToSearchName}\"=\"a$bcd\".");
 
-                    errorMessageStringBuilder.AppendLine($"-The occurrence of \"{textToMatchName}\" in \"{textToSearchName}\" is at position 0 and \"{textToMatchName}\" is not succeeded by any of the special characters [{string.Join(",", Helpers.SpecialCharacters)}] in \"{textToSearchName}\".");
+                    errorMessageStringBuilder.AppendLine($"-The occurrence of \"{textToMatchName}\" in \"{textToSearchName}\" is at position 0 and \"{textToMatchName}\" is not succeeded by any of the special characters [{string.Join(",", SpecialCharactersCacheThreadStaticContext.Context.SpecialCharacters)}] in \"{textToSearchName}\".");
                     errorMessageStringBuilder.AppendLine($"\tValid example is: \"{textToMatchName}\"=\"bcd\", and \"{textToSearchName}\"=\"bcde#\".");
                     errorMessageStringBuilder.AppendLine($"\tExample which will fail the validation is: \"{textToMatchName}\"=\"bcd\", and \"{textToSearchName}\"=\"bcd$e\".");
                     errorMessage = errorMessageStringBuilder.ToString();
@@ -925,7 +844,7 @@ namespace UniversalExpressionParser
         internal static bool ValidateTextValueIsNotNulOrEmptyAndHasNoSpaces([CanBeNull] string validatedValue, [NotNull] string validatedValueName, out string errorMessage)
         {
             // ReSharper disable once ReplaceWithStringIsNullOrEmpty
-            if (Helpers.IsNullOrEmptyOrHasSpaceCharacters(validatedValue))
+            if (IsNullOrEmptyOrHasSpaceCharacters(validatedValue))
             {
                 errorMessage = $"The value of {validatedValueName} cannot be null or empty text, and cannot contain space characters (i.e., space, tab, line break). The invalid value is '{validatedValue}'.";
                 return false;
@@ -934,9 +853,7 @@ namespace UniversalExpressionParser
             errorMessage = null;
             return true;
         }
-        internal static string GetPropertyName([NotNull] object objectWithProperty, [NotNull] string propertyName) =>
-            GetPropertyName(objectWithProperty.GetType(), propertyName);
-
+        
         internal static string GetPropertyName([NotNull] Type type, [NotNull] string propertyName) => $"[{type.FullName}.{propertyName}]";
 
         internal static void AddItemSorted<TTextItem>([NotNull] List<TTextItem> items, [NotNull] TTextItem textItem) where TTextItem : ITextItem

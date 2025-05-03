@@ -27,7 +27,7 @@ namespace UniversalExpressionParser
 
         private static void LogContextData([NotNull] ParseExpressionItemContext context)
         {
-            LogHelper.Context.Log.InfoFormat("Counter={0}. PositionInText={1}.", Counter, context.TextSymbolsParser.PositionInText);
+            LoggerThreadStaticContext.Context.InfoFormat("Counter={0}. PositionInText={1}.", Counter, context.TextSymbolsParser.PositionInText);
         }
 #pragma warning restore 414
 #endif
@@ -69,9 +69,15 @@ namespace UniversalExpressionParser
         /// A cache that maps the language name to an instance of <see cref="IExpressionLanguageProviderWrapper"/>.
         /// The recommended default implementation to use is <see cref="ExpressionLanguageProviderCache"/>.
         /// </param>
+        /// <param name="logger">Logger. Examples of <see cref="ILog"/> implementations are <see cref="LogToConsole"/> which logs to console,
+        /// as well as <b>OROptimizer.Log4Net.Log4NetHelperContext</b> in <b>OROptimizer.Shared.Log4Net</b> Nuget package.
+        /// </param>
         public ExpressionParser([NotNull] ITextSymbolsParserFactory textSymbolsParserFactory,
-                                [NotNull] IExpressionLanguageProviderCache expressionLanguageProviderCache)
+                                [NotNull] IExpressionLanguageProviderCache expressionLanguageProviderCache,
+                                ILog logger)
         {
+            LoggerThreadStaticContext.Context = logger;
+
             _textSymbolsParserFactory = textSymbolsParserFactory;
             _expressionLanguageProviderCache = expressionLanguageProviderCache;
 
@@ -80,11 +86,7 @@ namespace UniversalExpressionParser
             _parseConstantNumericValueHelper = new ParseConstantNumericValueHelper(_parserHelper);
             _parseConstantTextHelper = new ParseConstantTextHelper(_parserHelper);
             _parseCustomExpressionHelper = new ParseCustomExpressionHelper(_parserHelper, _errorsHelper);
-
-            if (!LogHelper.IsContextInitialized)
-                LogHelper.RegisterContext(new NullLogHelperContext());
         }
-
 
         private delegate TParseExpressionResult CreateParseExpressionResult<out TParseExpressionResult>([NotNull] ITextSymbolsParser textSymbolsParser,
                                                                                        [NotNull] IExpressionLanguageProviderWrapper expressionLanguageProviderWrapper,
@@ -101,6 +103,10 @@ namespace UniversalExpressionParser
                 ExpressionItemSettingsAmbientContext.Context = new ExpressionItemSettings(false);
 
                 var expressionLanguageProviderWrapper = _expressionLanguageProviderCache.GetExpressionLanguageProviderWrapperOrThrow(expressionLanguageProviderName);
+                SpecialCharactersCacheThreadStaticContext.Context = 
+                    new SpecialCharactersCache(
+                        expressionLanguageProviderWrapper.ExpressionLanguageProvider.SpecialOperatorCharacters,
+                        expressionLanguageProviderWrapper.ExpressionLanguageProvider.SpecialNonOperatorCharacters);
 
                 var parseErrorData = new ParseErrorData();
 

@@ -2501,7 +2501,8 @@ namespace UniversalExpressionParser.Tests.ExpressionParseErrorTests
             expressionLanguageProviderCache.RegisterExpressionLanguageProvider(
                 testLanguageProviderForExpressionParseErrorTests);
 
-            return new ExpressionParserWrapper(testLanguageProviderForExpressionParseErrorTests.LanguageName, new ExpressionParser(new TextSymbolsParserFactory(), expressionLanguageProviderCache));
+            return new ExpressionParserWrapper(testLanguageProviderForExpressionParseErrorTests.LanguageName, 
+                new ExpressionParser(new TextSymbolsParserFactory(), expressionLanguageProviderCache, LogHelper.Context.Log));
         }
 
         /// <summary>
@@ -2729,7 +2730,7 @@ namespace UniversalExpressionParser.Tests.ExpressionParseErrorTests
                             {
                                 var previousSplitExpressionPart = splitExpression[splitExpressionPartInd];
 
-                                if (!(Char.IsWhiteSpace(previousSplitExpressionPart[^1]) || Helpers.IsSpecialCharacter(previousSplitExpressionPart[^1])))
+                                if (!(Char.IsWhiteSpace(previousSplitExpressionPart[^1]) || SpecialCharactersCacheThreadStaticContext.Context.IsSpecialCharacter(previousSplitExpressionPart[^1])))
                                 {
                                     if ((expressionLanguageProvider.LineCommentMarker?.Equals("rem", stringComparison) ?? false) &&
                                         commentAndSpaces.StartsWith(expressionLanguageProvider.LineCommentMarker, stringComparison) ||
@@ -2747,7 +2748,7 @@ namespace UniversalExpressionParser.Tests.ExpressionParseErrorTests
 
                                 expressionWithSpaces.Append(commentAndSpaces);
 
-                                if (!(Char.IsWhiteSpace(nextSplitExpressionPart[0]) || Helpers.IsSpecialCharacter(nextSplitExpressionPart[0])))
+                                if (!(Char.IsWhiteSpace(nextSplitExpressionPart[0]) || SpecialCharactersCacheThreadStaticContext.Context.IsSpecialCharacter(nextSplitExpressionPart[0])))
                                 {
                                     // If line comment rem wa added to commentAndSpaces, it would have been followed by a new line
                                     if ((expressionLanguageProvider.MultilineCommentEndMarker?.Equals("*rem", stringComparison) ?? false) &&

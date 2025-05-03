@@ -1527,9 +1527,9 @@ namespace UniversalExpressionParser.Tests
             {
                 var lastChar = GetLastCharacter();
 
-                if (!(Helpers.IsSpecialCharacter(lastChar) &&
+                if (!(SpecialCharactersCacheThreadStaticContext.Context.IsSpecialCharacter(lastChar) &&
                       !TestSetup.SpecialOperatorCharactersUsedInLiterals.Contains(lastChar)
-                      || Helpers.IsSpecialCharacter(addedExpressionItemText[0])))
+                      || SpecialCharactersCacheThreadStaticContext.Context.IsSpecialCharacter(addedExpressionItemText[0])))
                 {
                     AddWhitespacesAndComments(true, whitespaceCommentFlags);
                     return;
@@ -1567,7 +1567,7 @@ namespace UniversalExpressionParser.Tests
         {
             return word.Any(x =>
                 (allowedNonOperatorSpecialCharacters == null || !allowedNonOperatorSpecialCharacters.Contains(x)) &&
-                Helpers.IsSpecialNonOperatorCharacter(x));
+                SpecialCharactersCacheThreadStaticContext.Context.IsSpecialNonOperatorCharacter(x));
         }
 
         public static bool ConflictsWithReservedWords([NotNull] IExpressionLanguageProvider expressionLanguageProvider,

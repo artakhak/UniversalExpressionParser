@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using ClassVisualizer;
+using OROptimizer.Log4Net;
 using TestsSharedLibrary.TestSimulation.Statistics;
 using TestsSharedLibraryForCodeParsers.CodeGeneration;
 using UniversalExpressionParser.ExpressionItems;
@@ -22,7 +23,7 @@ namespace UniversalExpressionParser.Tests
         static TestHelpers()
         {
 
-            TestFilesFolderPath = Path.Combine(Path.GetDirectoryName(typeof(Helpers).Assembly.Location), "TestFiles");
+            TestFilesFolderPath = Path.Combine(Path.GetDirectoryName(typeof(Helpers).Assembly.Location)!, "TestFiles");
             FailedTestDataFolderPath = Path.Combine(TestFilesFolderPath, "FailedTestData");
 
             EnsureDirectoryExists(TestFilesFolderPath);
@@ -216,7 +217,7 @@ namespace UniversalExpressionParser.Tests
                         if (previousExpressionItem != null)
                             Assert.IsTrue(currentExpressionItem.IndexInText >= previousExpressionItem.IndexInText + previousExpressionItem.ItemLength);
 
-                        IExpressionItemBase expressionItemInSpecificList = null;
+                        IExpressionItemBase expressionItemInSpecificList;
 
                         if (indexInAllItems < complexExpressionItem.Prefixes.Count)
                             expressionItemInSpecificList = complexExpressionItem.Prefixes[indexInAllItems];

@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using OROptimizer.Diagnostics.Log;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -111,7 +112,7 @@ namespace UniversalExpressionParser.Tests
             {
                 int numberOfSpecialOperatorCharacters = SimulationRandomNumberGenerator.Next(100) <= 50 ? 0 : 3;
 
-                var specialOperatorCharacters = Helpers.SpecialOperatorCharacters.Where(x =>
+                var specialOperatorCharacters = SpecialCharactersCacheThreadStaticContext.Context.SpecialOperatorCharacters.Where(x =>
                     !(CurrentCommentMarkersData != null && (CurrentCommentMarkersData.LineCommentMarker.Contains(x) ||
                     CurrentCommentMarkersData.MultilineCommentStartMarker.Contains(x) ||
                     CurrentCommentMarkersData.MultilineCommentEndMarker.Contains(x))) &&
@@ -138,7 +139,7 @@ namespace UniversalExpressionParser.Tests
 
             var textSymbolsParserFactory = new TextSymbolsParserFactory();
 
-            ExpressionParser = new ExpressionParser(textSymbolsParserFactory, ExpressionLanguageProviderCache);
+            ExpressionParser = new ExpressionParser(textSymbolsParserFactory, ExpressionLanguageProviderCache, LogHelper.Context.Log);
 
 #if TRACE_PARSING_ON
             ExpressionParser.TraceParsing = (context, evaluationType) =>

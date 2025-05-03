@@ -23,8 +23,8 @@ namespace UniversalExpressionParser
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="expressionLanguageProviderValidator">An validator for <see cref="IExpressionLanguageProvider"/> objects.
-        /// A instance of <see cref="DefaultExpressionLanguageProviderValidator"/> can be used in most cases.
+        /// <param name="expressionLanguageProviderValidator">A validator for <see cref="IExpressionLanguageProvider"/> objects.
+        /// An instance of <see cref="DefaultExpressionLanguageProviderValidator"/> can be used in most cases.
         /// </param>
         public ExpressionLanguageProviderCache([NotNull] IExpressionLanguageProviderValidator expressionLanguageProviderValidator)
         {

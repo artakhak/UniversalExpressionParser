@@ -4,33 +4,33 @@
 		<AllParseErrorItems ObjectId='2' Count='0' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.IParseErrorItem]'/>
 	</ParseErrorData>
 	<SortedCommentedTextData ObjectId='3' Count='0' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.ICommentedTextData]'/>
-	<RootExpressionItem Id='638698061349453695' IndexInText='313' ItemLength='86' Interface='UniversalExpressionParser.ExpressionItems.IRootExpressionItem'>
+	<RootExpressionItem Id='638818197314584182' IndexInText='313' ItemLength='86' Interface='UniversalExpressionParser.ExpressionItems.IRootExpressionItem'>
 		<RegularItems>
-			<IBracesExpressionItem Id='638698061349453727' IndexInText='313' ItemLength='86' Interface='UniversalExpressionParser.ExpressionItems.IBracesExpressionItem'>
+			<IBracesExpressionItem Id='638818197314584212' IndexInText='313' ItemLength='86' Interface='UniversalExpressionParser.ExpressionItems.IBracesExpressionItem'>
 				<RegularItems>
-					<IOpeningBraceExpressionItem Text='(' Id='638698061349453735' IndexInText='313' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOpeningBraceExpressionItem'/>
-					<IOperatorExpressionItem.Binary Name='AND' Priority='80' Id='638698061349616369' IndexInText='314' ItemLength='84' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
-						<Operand1.IOperatorExpressionItem.Binary Name='AND' Priority='80' Id='638698061349616345' IndexInText='314' ItemLength='44' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
-							<Operand1.IOperatorExpressionItem.Binary Name='&gt;' Priority='50' Id='638698061349616315' IndexInText='314' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
-								<Operand1.ILiteralExpressionItem LiteralName.Text='SALARY' Id='638698061349455176' IndexInText='314' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
+					<IOpeningBraceExpressionItem Text='(' Id='638818197314584223' IndexInText='313' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOpeningBraceExpressionItem'/>
+					<IOperatorExpressionItem.Binary Name='AND' Priority='80' Id='638818197314760505' IndexInText='314' ItemLength='84' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
+						<Operand1.IOperatorExpressionItem.Binary Name='AND' Priority='80' Id='638818197314760487' IndexInText='314' ItemLength='44' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
+							<Operand1.IOperatorExpressionItem.Binary Name='&gt;' Priority='50' Id='638818197314760457' IndexInText='314' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
+								<Operand1.ILiteralExpressionItem LiteralName.Text='SALARY' Id='638818197314585235' IndexInText='314' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
 									<RegularItems>
-										<ILiteralNameExpressionItem Text='SALARY' Id='638698061349455162' IndexInText='314' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+										<ILiteralNameExpressionItem Text='SALARY' Id='638818197314585223' IndexInText='314' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
 									</RegularItems>
 									<OtherProperties>
-										<LiteralName Text='SALARY' Id='638698061349455162' IndexInText='314' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+										<LiteralName Text='SALARY' Id='638818197314585223' IndexInText='314' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
 									</OtherProperties>
 								</Operand1.ILiteralExpressionItem>
-								<IOperatorInfoExpressionItem OperatorType='BinaryOperator' Name='&gt;' Priority='50' Id='638698061349455251' IndexInText='321' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
+								<IOperatorInfoExpressionItem OperatorType='BinaryOperator' Name='&gt;' Priority='50' Id='638818197314585297' IndexInText='321' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
 									<OperatorNameParts>
-										<IOperatorNamePartExpressionItem Text='&gt;' Id='638698061349455242' IndexInText='321' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
+										<IOperatorNamePartExpressionItem Text='&gt;' Id='638818197314585286' IndexInText='321' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
 									</OperatorNameParts>
 								</IOperatorInfoExpressionItem>
-								<Operand2.INumericExpressionItem Value.NumericValue='0' Id='638698061349535793' IndexInText='323' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionItem'>
+								<Operand2.INumericExpressionItem Value.NumericValue='0' Id='638818197314663999' IndexInText='323' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionItem'>
 									<RegularItems>
-										<INumericExpressionValueItem NumericValue='0' Id='638698061349535750' IndexInText='323' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionValueItem'/>
+										<INumericExpressionValueItem NumericValue='0' Id='638818197314663977' IndexInText='323' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionValueItem'/>
 									</RegularItems>
 									<OtherProperties>
-										<Value NumericValue='0' Id='638698061349535750' IndexInText='323' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionValueItem'/>
+										<Value NumericValue='0' Id='638818197314663977' IndexInText='323' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionValueItem'/>
 										<SucceededNumericTypeDescriptor ObjectId='16' NumberTypeId='1581134183960' Interface='UniversalExpressionParser.NumericTypeDescriptor'>
 											<RegularExpressions ObjectId='17' Count='1' Interface='System.Collections.Generic.IReadOnlyList`1[System.String]'>
 												<System.String value='^\d+' />
@@ -39,147 +39,147 @@
 									</OtherProperties>
 								</Operand2.INumericExpressionItem>
 							</Operand1.IOperatorExpressionItem.Binary>
-							<IOperatorInfoExpressionItem OperatorType='BinaryOperator' Name='AND' Priority='80' Id='638698061349536021' IndexInText='325' ItemLength='3' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
+							<IOperatorInfoExpressionItem OperatorType='BinaryOperator' Name='AND' Priority='80' Id='638818197314664133' IndexInText='325' ItemLength='3' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
 								<OperatorNameParts>
-									<IOperatorNamePartExpressionItem Text='AND' Id='638698061349536008' IndexInText='325' ItemLength='3' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
+									<IOperatorNamePartExpressionItem Text='AND' Id='638818197314664122' IndexInText='325' ItemLength='3' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
 								</OperatorNameParts>
 							</IOperatorInfoExpressionItem>
-							<Operand2.IOperatorExpressionItem.Binary Name='&gt;' Priority='50' Id='638698061349616353' IndexInText='337' ItemLength='21' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
-								<Operand1.ILiteralExpressionItem LiteralName.Text='SALARY' Id='638698061349536163' IndexInText='337' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
+							<Operand2.IOperatorExpressionItem.Binary Name='&gt;' Priority='50' Id='638818197314760496' IndexInText='337' ItemLength='21' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
+								<Operand1.ILiteralExpressionItem LiteralName.Text='SALARY' Id='638818197314664226' IndexInText='337' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
 									<RegularItems>
-										<ILiteralNameExpressionItem Text='SALARY' Id='638698061349536158' IndexInText='337' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+										<ILiteralNameExpressionItem Text='SALARY' Id='638818197314664222' IndexInText='337' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
 									</RegularItems>
 									<OtherProperties>
-										<LiteralName Text='SALARY' Id='638698061349536158' IndexInText='337' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+										<LiteralName Text='SALARY' Id='638818197314664222' IndexInText='337' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
 									</OtherProperties>
 								</Operand1.ILiteralExpressionItem>
-								<IOperatorInfoExpressionItem OperatorType='BinaryOperator' Name='&gt;' Priority='50' Id='638698061349536238' IndexInText='344' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
+								<IOperatorInfoExpressionItem OperatorType='BinaryOperator' Name='&gt;' Priority='50' Id='638818197314664271' IndexInText='344' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
 									<OperatorNameParts>
-										<IOperatorNamePartExpressionItem Text='&gt;' Id='638698061349536233' IndexInText='344' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
+										<IOperatorNamePartExpressionItem Text='&gt;' Id='638818197314664267' IndexInText='344' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
 									</OperatorNameParts>
 								</IOperatorInfoExpressionItem>
-								<Operand2.IOperatorExpressionItem.Binary Name='/' Priority='20' Id='638698061349616359' IndexInText='346' ItemLength='12' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
-									<Operand1.ILiteralExpressionItem LiteralName.Text='MAX_SALARY' Id='638698061349536359' IndexInText='346' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
+								<Operand2.IOperatorExpressionItem.Binary Name='/' Priority='20' Id='638818197314760501' IndexInText='346' ItemLength='12' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
+									<Operand1.ILiteralExpressionItem LiteralName.Text='MAX_SALARY' Id='638818197314664349' IndexInText='346' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
 										<RegularItems>
-											<ILiteralNameExpressionItem Text='MAX_SALARY' Id='638698061349536355' IndexInText='346' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+											<ILiteralNameExpressionItem Text='MAX_SALARY' Id='638818197314664346' IndexInText='346' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
 										</RegularItems>
 										<OtherProperties>
-											<LiteralName Text='MAX_SALARY' Id='638698061349536355' IndexInText='346' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+											<LiteralName Text='MAX_SALARY' Id='638818197314664346' IndexInText='346' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
 										</OtherProperties>
 									</Operand1.ILiteralExpressionItem>
-									<IOperatorInfoExpressionItem OperatorType='BinaryOperator' Name='/' Priority='20' Id='638698061349536411' IndexInText='356' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
+									<IOperatorInfoExpressionItem OperatorType='BinaryOperator' Name='/' Priority='20' Id='638818197314664387' IndexInText='356' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
 										<OperatorNameParts>
-											<IOperatorNamePartExpressionItem Text='/' Id='638698061349536406' IndexInText='356' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
+											<IOperatorNamePartExpressionItem Text='/' Id='638818197314664383' IndexInText='356' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
 										</OperatorNameParts>
 									</IOperatorInfoExpressionItem>
-									<Operand2.INumericExpressionItem Value.NumericValue='2' Id='638698061349615413' IndexInText='357' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionItem'>
+									<Operand2.INumericExpressionItem Value.NumericValue='2' Id='638818197314759782' IndexInText='357' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionItem'>
 										<RegularItems>
-											<INumericExpressionValueItem NumericValue='2' Id='638698061349615372' IndexInText='357' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionValueItem'/>
+											<INumericExpressionValueItem NumericValue='2' Id='638818197314759728' IndexInText='357' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionValueItem'/>
 										</RegularItems>
 										<OtherProperties>
-											<Value NumericValue='2' Id='638698061349615372' IndexInText='357' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionValueItem'/>
+											<Value NumericValue='2' Id='638818197314759728' IndexInText='357' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.INumericExpressionValueItem'/>
 											<SucceededNumericTypeDescriptor ObjectId='16' NumberTypeId='1581134183960' Interface='UniversalExpressionParser.NumericTypeDescriptor'/>
 										</OtherProperties>
 									</Operand2.INumericExpressionItem>
 								</Operand2.IOperatorExpressionItem.Binary>
 							</Operand2.IOperatorExpressionItem.Binary>
 						</Operand1.IOperatorExpressionItem.Binary>
-						<IOperatorInfoExpressionItem OperatorType='BinaryOperator' Name='AND' Priority='80' Id='638698061349615642' IndexInText='359' ItemLength='3' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
+						<IOperatorInfoExpressionItem OperatorType='BinaryOperator' Name='AND' Priority='80' Id='638818197314760000' IndexInText='359' ItemLength='3' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
 							<OperatorNameParts>
-								<IOperatorNamePartExpressionItem Text='AND' Id='638698061349615631' IndexInText='359' ItemLength='3' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
+								<IOperatorNamePartExpressionItem Text='AND' Id='638818197314759988' IndexInText='359' ItemLength='3' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
 							</OperatorNameParts>
 						</IOperatorInfoExpressionItem>
-						<Operand2.IOperatorExpressionItem.Binary Name='&lt;' Priority='50' Id='638698061349616376' IndexInText='371' ItemLength='27' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
-							<Operand1.IBracesExpressionItem NameLiteral.LiteralName.Text='f1' Id='638698061349615815' IndexInText='371' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.IBracesExpressionItem'>
+						<Operand2.IOperatorExpressionItem.Binary Name='&lt;' Priority='50' Id='638818197314760509' IndexInText='371' ItemLength='27' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'>
+							<Operand1.IBracesExpressionItem NameLiteral.LiteralName.Text='f1' Id='638818197314760126' IndexInText='371' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.IBracesExpressionItem'>
 								<RegularItems>
-									<ILiteralExpressionItem LiteralName.Text='f1' Id='638698061349615782' IndexInText='371' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
+									<ILiteralExpressionItem LiteralName.Text='f1' Id='638818197314760105' IndexInText='371' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
 										<RegularItems>
-											<ILiteralNameExpressionItem Text='f1' Id='638698061349615777' IndexInText='371' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+											<ILiteralNameExpressionItem Text='f1' Id='638818197314760101' IndexInText='371' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
 										</RegularItems>
 										<OtherProperties>
-											<LiteralName Text='f1' Id='638698061349615777' IndexInText='371' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+											<LiteralName Text='f1' Id='638818197314760101' IndexInText='371' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
 										</OtherProperties>
 									</ILiteralExpressionItem>
-									<IOpeningBraceExpressionItem Text='(' Id='638698061349615819' IndexInText='373' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOpeningBraceExpressionItem'/>
-									<ILiteralExpressionItem LiteralName.Text='SALARY' Id='638698061349615910' IndexInText='374' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
+									<IOpeningBraceExpressionItem Text='(' Id='638818197314760130' IndexInText='373' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOpeningBraceExpressionItem'/>
+									<ILiteralExpressionItem LiteralName.Text='SALARY' Id='638818197314760192' IndexInText='374' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
 										<RegularItems>
-											<ILiteralNameExpressionItem Text='SALARY' Id='638698061349615905' IndexInText='374' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+											<ILiteralNameExpressionItem Text='SALARY' Id='638818197314760189' IndexInText='374' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
 										</RegularItems>
 										<OtherProperties>
-											<LiteralName Text='SALARY' Id='638698061349615905' IndexInText='374' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+											<LiteralName Text='SALARY' Id='638818197314760189' IndexInText='374' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
 										</OtherProperties>
 									</ILiteralExpressionItem>
-									<IClosingBraceExpressionItem Text=')' Id='638698061349615951' IndexInText='380' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IClosingBraceExpressionItem'/>
+									<IClosingBraceExpressionItem Text=')' Id='638818197314760220' IndexInText='380' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IClosingBraceExpressionItem'/>
 								</RegularItems>
 								<Children>
-									<ILiteralExpressionItem LiteralName.Text='SALARY' Id='638698061349615910' IndexInText='374' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'/>
+									<ILiteralExpressionItem LiteralName.Text='SALARY' Id='638818197314760192' IndexInText='374' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'/>
 								</Children>
 								<OtherProperties>
-									<NameLiteral LiteralName.Text='f1' Id='638698061349615782' IndexInText='371' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'/>
-									<OpeningBrace Text='(' Id='638698061349615819' IndexInText='373' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOpeningBraceExpressionItem'/>
-									<ClosingBrace Text=')' Id='638698061349615951' IndexInText='380' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IClosingBraceExpressionItem'/>
+									<NameLiteral LiteralName.Text='f1' Id='638818197314760105' IndexInText='371' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'/>
+									<OpeningBrace Text='(' Id='638818197314760130' IndexInText='373' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOpeningBraceExpressionItem'/>
+									<ClosingBrace Text=')' Id='638818197314760220' IndexInText='380' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IClosingBraceExpressionItem'/>
 									<Parameters ObjectId='42' Count='1' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.ExpressionItems.IExpressionItemBase]'>
-										<UniversalExpressionParser.ExpressionItems.IExpressionItemBase LiteralName.Text='SALARY' Id='638698061349615910' IndexInText='374' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'/>
+										<UniversalExpressionParser.ExpressionItems.IExpressionItemBase LiteralName.Text='SALARY' Id='638818197314760192' IndexInText='374' ItemLength='6' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'/>
 									</Parameters>
 								</OtherProperties>
 							</Operand1.IBracesExpressionItem>
-							<IOperatorInfoExpressionItem OperatorType='BinaryOperator' Name='&lt;' Priority='50' Id='638698061349616012' IndexInText='382' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
+							<IOperatorInfoExpressionItem OperatorType='BinaryOperator' Name='&lt;' Priority='50' Id='638818197314760265' IndexInText='382' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorInfoExpressionItem'>
 								<OperatorNameParts>
-									<IOperatorNamePartExpressionItem Text='&lt;' Id='638698061349616006' IndexInText='382' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
+									<IOperatorNamePartExpressionItem Text='&lt;' Id='638818197314760261' IndexInText='382' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOperatorNamePartExpressionItem'/>
 								</OperatorNameParts>
 							</IOperatorInfoExpressionItem>
-							<Operand2.IBracesExpressionItem NameLiteral.LiteralName.Text='f2' Id='638698061349616168' IndexInText='384' ItemLength='14' Interface='UniversalExpressionParser.ExpressionItems.IBracesExpressionItem'>
+							<Operand2.IBracesExpressionItem NameLiteral.LiteralName.Text='f2' Id='638818197314760365' IndexInText='384' ItemLength='14' Interface='UniversalExpressionParser.ExpressionItems.IBracesExpressionItem'>
 								<RegularItems>
-									<ILiteralExpressionItem LiteralName.Text='f2' Id='638698061349616138' IndexInText='384' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
+									<ILiteralExpressionItem LiteralName.Text='f2' Id='638818197314760344' IndexInText='384' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
 										<RegularItems>
-											<ILiteralNameExpressionItem Text='f2' Id='638698061349616129' IndexInText='384' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+											<ILiteralNameExpressionItem Text='f2' Id='638818197314760340' IndexInText='384' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
 										</RegularItems>
 										<OtherProperties>
-											<LiteralName Text='f2' Id='638698061349616129' IndexInText='384' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+											<LiteralName Text='f2' Id='638818197314760340' IndexInText='384' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
 										</OtherProperties>
 									</ILiteralExpressionItem>
-									<IOpeningBraceExpressionItem Text='(' Id='638698061349616171' IndexInText='386' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOpeningBraceExpressionItem'/>
-									<ILiteralExpressionItem LiteralName.Text='MAX_SALARY' Id='638698061349616251' IndexInText='387' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
+									<IOpeningBraceExpressionItem Text='(' Id='638818197314760368' IndexInText='386' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOpeningBraceExpressionItem'/>
+									<ILiteralExpressionItem LiteralName.Text='MAX_SALARY' Id='638818197314760421' IndexInText='387' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'>
 										<RegularItems>
-											<ILiteralNameExpressionItem Text='MAX_SALARY' Id='638698061349616247' IndexInText='387' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+											<ILiteralNameExpressionItem Text='MAX_SALARY' Id='638818197314760418' IndexInText='387' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
 										</RegularItems>
 										<OtherProperties>
-											<LiteralName Text='MAX_SALARY' Id='638698061349616247' IndexInText='387' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
+											<LiteralName Text='MAX_SALARY' Id='638818197314760418' IndexInText='387' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.ILiteralNameExpressionItem'/>
 										</OtherProperties>
 									</ILiteralExpressionItem>
-									<IClosingBraceExpressionItem Text=')' Id='638698061349616278' IndexInText='397' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IClosingBraceExpressionItem'/>
+									<IClosingBraceExpressionItem Text=')' Id='638818197314760437' IndexInText='397' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IClosingBraceExpressionItem'/>
 								</RegularItems>
 								<Children>
-									<ILiteralExpressionItem LiteralName.Text='MAX_SALARY' Id='638698061349616251' IndexInText='387' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'/>
+									<ILiteralExpressionItem LiteralName.Text='MAX_SALARY' Id='638818197314760421' IndexInText='387' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'/>
 								</Children>
 								<OtherProperties>
-									<NameLiteral LiteralName.Text='f2' Id='638698061349616138' IndexInText='384' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'/>
-									<OpeningBrace Text='(' Id='638698061349616171' IndexInText='386' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOpeningBraceExpressionItem'/>
-									<ClosingBrace Text=')' Id='638698061349616278' IndexInText='397' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IClosingBraceExpressionItem'/>
+									<NameLiteral LiteralName.Text='f2' Id='638818197314760344' IndexInText='384' ItemLength='2' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'/>
+									<OpeningBrace Text='(' Id='638818197314760368' IndexInText='386' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOpeningBraceExpressionItem'/>
+									<ClosingBrace Text=')' Id='638818197314760437' IndexInText='397' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IClosingBraceExpressionItem'/>
 									<Parameters ObjectId='52' Count='1' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.ExpressionItems.IExpressionItemBase]'>
-										<UniversalExpressionParser.ExpressionItems.IExpressionItemBase LiteralName.Text='MAX_SALARY' Id='638698061349616251' IndexInText='387' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'/>
+										<UniversalExpressionParser.ExpressionItems.IExpressionItemBase LiteralName.Text='MAX_SALARY' Id='638818197314760421' IndexInText='387' ItemLength='10' Interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem'/>
 									</Parameters>
 								</OtherProperties>
 							</Operand2.IBracesExpressionItem>
 						</Operand2.IOperatorExpressionItem.Binary>
 					</IOperatorExpressionItem.Binary>
-					<IClosingBraceExpressionItem Text=')' Id='638698061349616437' IndexInText='398' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IClosingBraceExpressionItem'/>
+					<IClosingBraceExpressionItem Text=')' Id='638818197314760572' IndexInText='398' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IClosingBraceExpressionItem'/>
 				</RegularItems>
 				<Children>
-					<IOperatorExpressionItem.Binary Name='AND' Priority='80' Id='638698061349616369' IndexInText='314' ItemLength='84' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'/>
+					<IOperatorExpressionItem.Binary Name='AND' Priority='80' Id='638818197314760505' IndexInText='314' ItemLength='84' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'/>
 				</Children>
 				<OtherProperties>
-					<OpeningBrace Text='(' Id='638698061349453735' IndexInText='313' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOpeningBraceExpressionItem'/>
-					<ClosingBrace Text=')' Id='638698061349616437' IndexInText='398' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IClosingBraceExpressionItem'/>
+					<OpeningBrace Text='(' Id='638818197314584223' IndexInText='313' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IOpeningBraceExpressionItem'/>
+					<ClosingBrace Text=')' Id='638818197314760572' IndexInText='398' ItemLength='1' Interface='UniversalExpressionParser.ExpressionItems.IClosingBraceExpressionItem'/>
 					<NameLiteral value='null' interface='UniversalExpressionParser.ExpressionItems.ILiteralExpressionItem' />
 					<Parameters ObjectId='54' Count='1' Interface='System.Collections.Generic.IReadOnlyList`1[UniversalExpressionParser.ExpressionItems.IExpressionItemBase]'>
-						<UniversalExpressionParser.ExpressionItems.IExpressionItemBase Name='AND' Priority='80' Id='638698061349616369' IndexInText='314' ItemLength='84' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'/>
+						<UniversalExpressionParser.ExpressionItems.IExpressionItemBase Name='AND' Priority='80' Id='638818197314760505' IndexInText='314' ItemLength='84' Interface='UniversalExpressionParser.ExpressionItems.IOperatorExpressionItem'/>
 					</Parameters>
 				</OtherProperties>
 			</IBracesExpressionItem>
 		</RegularItems>
 		<Children>
-			<IBracesExpressionItem Id='638698061349453727' IndexInText='313' ItemLength='86' Interface='UniversalExpressionParser.ExpressionItems.IBracesExpressionItem'/>
+			<IBracesExpressionItem Id='638818197314584212' IndexInText='313' ItemLength='86' Interface='UniversalExpressionParser.ExpressionItems.IBracesExpressionItem'/>
 		</Children>
 	</RootExpressionItem>
 </UniversalExpressionParser.IParseExpressionResult>

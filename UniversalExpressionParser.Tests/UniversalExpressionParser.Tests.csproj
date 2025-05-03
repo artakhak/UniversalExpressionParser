@@ -186,27 +186,31 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="JetBrains.Annotations" Version="2021.2.0" />
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
 		<PackageReference Include="NUnit" Version="3.12.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
 		<PackageReference Include="Moq" Version="4.15.2" />
+
+		<!--Uncomment before pushing-->
+		<!--		
+		<PackageReference Include="OROptimizer.Shared" Version="2.2.0" />
+		<PackageReference Include="OROptimizer.Shared.Log4Net" Version="1.0.0" />
 		
 		<PackageReference Include="TestsSharedLibraryForCodeParsers" Version="1.0.2" />
 		<PackageReference Include="TestsSharedLibrary" Version="1.0.2" />
-
-		<!--Uncomment before pushing-->
-		<PackageReference Include="OROptimizer.Shared" Version="2.1.2" />
-		<PackageReference Include="UniversalExpressionParser" Version="1.0.4" />
+		-->
 	</ItemGroup>
 	<ItemGroup>
-		<!--Comment out before pushing-->
-		<!--<ProjectReference Include="..\..\OROptimizer.Shared\OROptimizer.Shared\OROptimizer.Shared.csproj" />-->
-		<!--Comment out before pushing-->
-		<!--<ProjectReference Include="..\UniversalExpressionParser\UniversalExpressionParser.csproj" />-->
 		<ProjectReference Include="..\UniversalExpressionParser.ClassVisualizers\UniversalExpressionParser.ClassVisualizers.csproj" />
 		<ProjectReference Include="..\UniversalExpressionParser.DemoExpressionLanguageProviders\UniversalExpressionParser.DemoExpressionLanguageProviders.csproj" />
+		<ProjectReference Include="..\UniversalExpressionParser\UniversalExpressionParser.csproj" />
+		<!--Comment out before pushing-->
+		<ProjectReference Include="..\..\ClassVisualizer\ClassVisualizer\ClassVisualizer.csproj" />
+		<ProjectReference Include="..\..\OROptimizer.Shared.Log4Net\OROptimizer.Shared.Log4Net\OROptimizer.Shared.Log4Net.csproj" />
+		<ProjectReference Include="..\..\OROptimizer.Shared\OROptimizer.Shared\OROptimizer.Shared.csproj" />
+		<ProjectReference Include="..\..\TestsSharedLibraryForCodeParsers\TestsSharedLibraryForCodeParsers.csproj" />
+		<ProjectReference Include="..\..\TestsSharedLibrary\TestsSharedLibrary.csproj" />
 		
-		<!--<ProjectReference Include="..\UniversalExpressionParser\UniversalExpressionParser.csproj" />-->
 	</ItemGroup>
 	<ItemGroup>
 		<None Update="UniversalExpressionParser.Tests.log4net.config">

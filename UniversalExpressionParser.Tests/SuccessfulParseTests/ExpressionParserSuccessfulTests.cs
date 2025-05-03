@@ -555,7 +555,7 @@ namespace UniversalExpressionParser.Tests.SuccessfulParseTests
         [Test, Order(3)]
         public Task TestSimulation_ParseCodeBlockExpressionAsync()
         {
-            var specialOperatorCharacters = new List<char>(Helpers.SpecialOperatorCharacters);
+            var specialOperatorCharacters = new List<char>(SpecialCharactersCacheThreadStaticContext.Context.SpecialOperatorCharacters);
 
             TestSetup.MustSupportCodeBlocks = true;
 
@@ -578,7 +578,7 @@ namespace UniversalExpressionParser.Tests.SuccessfulParseTests
 
                 if (TestSetup.SimulationRandomNumberGenerator.Next(100) <= 50)
                 {
-                    if (!Helpers.IsSpecialCharacter(generatedCodeStrBldr[generatedCodeStrBldr.Length - 1]))
+                    if (!SpecialCharactersCacheThreadStaticContext.Context.IsSpecialCharacter(generatedCodeStrBldr[generatedCodeStrBldr.Length - 1]))
                     {
                         if (TestSetup.SimulationRandomNumberGenerator.Next(100) <= 50)
                             TestSetup.CodeGenerationHelper.GenerateWhitespacesAndComments(generatedCodeStrBldr, true);

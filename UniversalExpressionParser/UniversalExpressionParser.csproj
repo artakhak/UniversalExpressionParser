@@ -32,8 +32,10 @@
       -BREAKING CHANGE: Referencing the latest version of OROptimizer.Shared (2.2.0). 
           The log4net classes in OROptimizer.Shared, 2.2.0 were moved to a new library OROptimizer.Shared.Log4Net,
       therefore projects that used these classes in OROptimizer.Shared will need reference the package OROptimizer.Shared.Log4Net and use similar classes in namespace OROptimizer.Log4Net in that package.
-      -BREAKING CHANGE: -Added ILog parameter to constructor of UniversalExpressionParser.ExpressionParser to use instead requiring the users of UniversalExpressionParser.IExpressionParser
-      to set the value of ambient context value OROptimizer.Diagnostics.Log.Context before using the class.      
+      -BREAKING CHANGE: Added ILog parameter to constructor of UniversalExpressionParser.ExpressionParser to use instead requiring the users of UniversalExpressionParser.IExpressionParser
+      to set the value of ambient context value OROptimizer.Diagnostics.Log.Context before using the class.
+      -BREAKING CHANGE: Added properties SpecialOperatorCharacters and SpecialNonOperatorCharacters that were static filds in a different 
+      class to allow customozation to these lists.
       -Typo fix in method calls TextParser.ITextSymbolsParser.MoveToToPosition after the method was renamed in TextParser package.      
       -Added a helper method UniversalExpressionParser.Helpers.GetOperatorName
       -Small fix in error reporting. In some situations invalid character was showing in error message instead of a brace.
@@ -49,8 +51,11 @@
     <DefineConstants>$(DefineConstants)TRACE;</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DefaultSpecialCharacters.cs" />
     <Compile Include="Delegates.cs" />
     <Compile Include="ExpressionItems\Delegates.cs" />
+    <Compile Include="ISpecialCharactersCache.cs" />
+    <Compile Include="LoggerThreadStaticContext.cs" />
     <Compile Include="OperatorType.cs" />
     <Compile Include="ParseErrorItem.cs" />
     <Compile Include="ParseErrorItemCode.cs" />
@@ -151,6 +156,7 @@
     <Compile Include="Parser\ParserHelper.cs" />
     <Compile Include="Parser\WhitespaceOrCommentData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpecialCharactersCacheThreadStaticContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="UniversalExpressionParser.licenseheader" />

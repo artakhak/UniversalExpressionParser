@@ -104,9 +104,7 @@ namespace UniversalExpressionParser.DemoExpressionLanguageProviders
                 new OperatorInfoWithAutoId("&=", OperatorType.BinaryOperator, 2000),
                 new OperatorInfoWithAutoId("|=", OperatorType.BinaryOperator, 2000),
                 new OperatorInfoWithAutoId("&&=", OperatorType.BinaryOperator, 2000),
-                new OperatorInfoWithAutoId("||=", OperatorType.BinaryOperator, 2000),
-
-               
+                new OperatorInfoWithAutoId("||=", OperatorType.BinaryOperator, 2000)
             });
         }
 

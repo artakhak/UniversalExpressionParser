@@ -182,6 +182,8 @@ namespace UniversalExpressionParser.Tests.TestLanguage
         public List<NumericTypeDescriptor> NumericTypeDescriptors { get; set; } = new(ExpressionLanguageProviderHelpers.GetDefaultNumericTypeDescriptors());
         public bool SupportsPrefixes { get; set; } = true;
         public bool SupportsKeywords { get; set; } = true;
+        public IEnumerable<char> SpecialOperatorCharacters => DefaultSpecialCharacters.SpecialOperatorCharacters;
+        public IEnumerable<char> SpecialNonOperatorCharacters => DefaultSpecialCharacters.SpecialNonOperatorCharacters;
 
         bool IExpressionLanguageProvider.SupportsPrefixes => SupportsPrefixes;
         bool IExpressionLanguageProvider.SupportsKeywords => SupportsKeywords;

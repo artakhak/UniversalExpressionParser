@@ -152,7 +152,7 @@ namespace UniversalExpressionParser.Tests.LanguageProviderValidatorTests
         [Test]
         public void ValidateCommentMarkers_NoSpecialNonOperatorCharacters()
         {
-            foreach (var specialCharacter in Helpers.SpecialNonOperatorCharacters)
+            foreach (var specialCharacter in SpecialCharactersCacheThreadStaticContext.Context.SpecialNonOperatorCharacters)
             {
                 VerifyExpressionLanguageValidation(
                     (expressionLanguageProvider) =>
@@ -288,7 +288,7 @@ namespace UniversalExpressionParser.Tests.LanguageProviderValidatorTests
         [Test]
         public void CodeSeparatorMarkers_SpecialNonOperatorCharacters()
         {
-            foreach (var specialCharacter in Helpers.SpecialNonOperatorCharacters)
+            foreach (var specialCharacter in SpecialCharactersCacheThreadStaticContext.Context.SpecialNonOperatorCharacters)
             {
                 if (specialCharacter != ';')
                     VerifyExpressionLanguageValidation(
@@ -681,7 +681,7 @@ namespace UniversalExpressionParser.Tests.LanguageProviderValidatorTests
 
         private List<char> GetValidCodeSeparatorCharacters()
         {
-            return new List<char>(Helpers.SpecialOperatorCharacters) { ';' };
+            return new List<char>(SpecialCharactersCacheThreadStaticContext.Context.SpecialOperatorCharacters) { ';' };
         }
 
         [Test]
@@ -730,7 +730,7 @@ namespace UniversalExpressionParser.Tests.LanguageProviderValidatorTests
         {
             TestLanguageProviderForLanguageProviderValidationTests.TurnOffOperatorsAndKeywords();
 
-            var codeSeparatorCharacters = new List<char>(Helpers.SpecialOperatorCharacters) { ';' };
+            var codeSeparatorCharacters = new List<char>(SpecialCharactersCacheThreadStaticContext.Context.SpecialOperatorCharacters) { ';' };
 
             foreach (var separatorChar in codeSeparatorCharacters)
             {
@@ -885,7 +885,7 @@ namespace UniversalExpressionParser.Tests.LanguageProviderValidatorTests
         {
             TestLanguageProviderForLanguageProviderValidationTests.TurnOffOperatorsAndKeywords();
 
-            foreach (var specialOperatorCharacter in Helpers.SpecialOperatorCharacters)
+            foreach (var specialOperatorCharacter in SpecialCharactersCacheThreadStaticContext.Context.SpecialOperatorCharacters)
             {
                 VerifyExpressionLanguageValidation(null,
                     (expressionLanguageProvider) =>
@@ -897,7 +897,7 @@ namespace UniversalExpressionParser.Tests.LanguageProviderValidatorTests
                     });
             }
 
-            foreach (var specialNonOperatorCharacter in Helpers.SpecialNonOperatorCharacters)
+            foreach (var specialNonOperatorCharacter in SpecialCharactersCacheThreadStaticContext.Context.SpecialNonOperatorCharacters)
             {
                 VerifyExpressionLanguageValidation(
                     (expressionLanguageProvider) =>
@@ -1224,7 +1224,7 @@ namespace UniversalExpressionParser.Tests.LanguageProviderValidatorTests
         [Test]
         public void Operators_SpecialNonOperatorCharacters()
         {
-            foreach (var specialOperatorCharacter in Helpers.SpecialOperatorCharacters)
+            foreach (var specialOperatorCharacter in SpecialCharactersCacheThreadStaticContext.Context.SpecialOperatorCharacters)
             {
                 VerifyExpressionLanguageValidation(null,
                     (expressionLanguageProvider) =>
@@ -1238,7 +1238,7 @@ namespace UniversalExpressionParser.Tests.LanguageProviderValidatorTests
                     });
             }
 
-            foreach (var specialNonOperatorCharacter in Helpers.SpecialNonOperatorCharacters)
+            foreach (var specialNonOperatorCharacter in SpecialCharactersCacheThreadStaticContext.Context.SpecialNonOperatorCharacters)
             {
                 VerifyExpressionLanguageValidation(
                     (expressionLanguageProvider) =>
@@ -1688,7 +1688,7 @@ namespace UniversalExpressionParser.Tests.LanguageProviderValidatorTests
                 if (explicitlyProhibitedCharacters != null && explicitlyProhibitedCharacters.Contains(character))
                     return false;
 
-                if (character == '_' || Helpers.IsSpecialOperatorCharacter(character))
+                if (character == '_' || SpecialCharactersCacheThreadStaticContext.Context.IsSpecialOperatorCharacter(character))
                     return true;
 
                 if (Char.IsNumber(character))
@@ -1729,7 +1729,7 @@ namespace UniversalExpressionParser.Tests.LanguageProviderValidatorTests
         {
             TestLanguageProviderForLanguageProviderValidationTests.TurnOffOperatorsAndKeywords();
 
-            foreach (var separatorChar in Helpers.SpecialNonOperatorCharacters)
+            foreach (var separatorChar in SpecialCharactersCacheThreadStaticContext.Context.SpecialNonOperatorCharacters)
             {
                 VerifyExpressionLanguageValidation(
                     (testLanguageProvider) =>
@@ -1746,7 +1746,7 @@ namespace UniversalExpressionParser.Tests.LanguageProviderValidatorTests
             TestLanguageProviderForLanguageProviderValidationTests.TurnOffOperatorsAndKeywords();
 
             // No conflicts with special chars used in code separator markers
-            foreach (var separatorChar in Helpers.SpecialOperatorCharacters)
+            foreach (var separatorChar in SpecialCharactersCacheThreadStaticContext.Context.SpecialOperatorCharacters)
             {
                 // LineCommentMarker
                 VerifyExpressionLanguageValidation((testLanguageProvider) =>
@@ -1845,7 +1845,7 @@ namespace UniversalExpressionParser.Tests.LanguageProviderValidatorTests
             TestLanguageProviderForLanguageProviderValidationTests.TurnOffOperatorsAndKeywords();
 
             // No conflicts with special chars used in code separator markers
-            foreach (var separatorChar in Helpers.SpecialOperatorCharacters)
+            foreach (var separatorChar in SpecialCharactersCacheThreadStaticContext.Context.SpecialOperatorCharacters)
             {
                 VerifyExpressionLanguageValidation((testLanguageProvider) =>
                 {
@@ -1920,7 +1920,7 @@ namespace UniversalExpressionParser.Tests.LanguageProviderValidatorTests
             TestLanguageProviderForLanguageProviderValidationTests.TurnOffOperatorsAndKeywords();
 
             // No conflicts with special chars used in code separator markers
-            foreach (var separatorChar in Helpers.SpecialOperatorCharacters)
+            foreach (var separatorChar in SpecialCharactersCacheThreadStaticContext.Context.SpecialOperatorCharacters)
             {
                 VerifyExpressionLanguageValidation((testLanguageProvider) =>
                 {
@@ -1958,7 +1958,7 @@ namespace UniversalExpressionParser.Tests.LanguageProviderValidatorTests
             TestLanguageProviderForLanguageProviderValidationTests.TurnOffOperatorsAndKeywords();
 
             // No conflicts with special chars used in code separator markers
-            foreach (var separatorChar in Helpers.SpecialOperatorCharacters)
+            foreach (var separatorChar in SpecialCharactersCacheThreadStaticContext.Context.SpecialOperatorCharacters)
             {
                 VerifyExpressionLanguageValidation((testLanguageProvider) =>
                 {
@@ -2178,11 +2178,11 @@ namespace UniversalExpressionParser.Tests.LanguageProviderValidatorTests
 
         private IReadOnlyList<ConflictingIdentifierInfo> GetConflictingIdentifiers(char[] specialCharactersInIdentifier1 = null, char[] specialCharactersInIdentifier2 = null)
         {
-            var specialCharactersInIdentifier1ToUse = new List<char>(Helpers.SpecialOperatorCharacters);
+            var specialCharactersInIdentifier1ToUse = new List<char>(SpecialCharactersCacheThreadStaticContext.Context.SpecialOperatorCharacters);
             if (specialCharactersInIdentifier1 != null && specialCharactersInIdentifier1.Length > 0)
                 specialCharactersInIdentifier1ToUse.AddRange(specialCharactersInIdentifier1);
 
-            var specialCharactersInIdentifier2ToUse = new List<char>(Helpers.SpecialOperatorCharacters);
+            var specialCharactersInIdentifier2ToUse = new List<char>(SpecialCharactersCacheThreadStaticContext.Context.SpecialOperatorCharacters);
             if (specialCharactersInIdentifier2 != null && specialCharactersInIdentifier2.Length > 0)
                 specialCharactersInIdentifier2ToUse.AddRange(specialCharactersInIdentifier2);
 
@@ -2203,7 +2203,7 @@ namespace UniversalExpressionParser.Tests.LanguageProviderValidatorTests
             #region identifier1 has special character and is contained in identifier2
             foreach (var specialCharacter in specialCharactersInIdentifier1ToUse)
             {
-                if (Helpers.IsSpecialNonOperatorCharacter(specialCharacter) &&
+                if (SpecialCharactersCacheThreadStaticContext.Context.IsSpecialNonOperatorCharacter(specialCharacter) &&
                     (specialCharactersInIdentifier2 == null || !specialCharactersInIdentifier2.Any(x => x == specialCharacter)))
                     continue;
 

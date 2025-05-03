@@ -72,6 +72,12 @@ namespace UniversalExpressionParser
         public virtual bool SupportsKeywords => false;
 
         /// <inheritdoc />
+        public virtual IEnumerable<char> SpecialOperatorCharacters => DefaultSpecialCharacters.SpecialOperatorCharacters;
+
+        /// <inheritdoc />
+        public virtual IEnumerable<char> SpecialNonOperatorCharacters => DefaultSpecialCharacters.SpecialNonOperatorCharacters;
+
+        /// <inheritdoc />
         public override string ToString()
         {
             return $"{nameof(LanguageName)}={this.LanguageName}, {this.GetType()}";

@@ -73,7 +73,7 @@ namespace UniversalExpressionParser.Tests
             expressionLanguageProviderCache.RegisterExpressionLanguageProvider(expressionLanguageProvider);
 
             var textSymbolsParserFactory = new TextSymbolsParserFactory();
-            var expressionParser = new ExpressionParser(textSymbolsParserFactory, expressionLanguageProviderCache);
+            var expressionParser = new ExpressionParser(textSymbolsParserFactory, expressionLanguageProviderCache, LogHelper.Context.Log);
 
             var parsedExpression = expressionParser.ParseExpression(expressionLanguageProvider.LanguageName, parsedCode,
                 new ParseExpressionOptions());

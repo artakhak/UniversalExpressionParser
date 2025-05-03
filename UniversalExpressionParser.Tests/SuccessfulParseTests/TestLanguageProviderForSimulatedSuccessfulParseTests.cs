@@ -30,11 +30,13 @@ namespace UniversalExpressionParser.Tests.SuccessfulParseTests
             AddTextStartEndMarkerCharacters();
             AddCodeCommentMarkers();
 
-            var specialOperatorCharactersUsedInNonLiterals = Helpers.SpecialOperatorCharacters.Where(x => !_setOfSpecialOperatorCharactersUsedInLiterals.Contains(x) &&
-                                                                                                          (TestSetup.CurrentCommentMarkersData == null ||
-                                                                                                           !TestSetup.CurrentCommentMarkersData.LineCommentMarker.Contains(x) &&
-                                                                                                           !TestSetup.CurrentCommentMarkersData.MultilineCommentStartMarker.Contains(x) &&
-                                                                                                           !TestSetup.CurrentCommentMarkersData.MultilineCommentEndMarker.Contains(x))).ToList();
+            var specialOperatorCharactersUsedInNonLiterals = SpecialCharactersCacheThreadStaticContext.Context.SpecialOperatorCharacters.Where(
+                x => !_setOfSpecialOperatorCharactersUsedInLiterals.Contains(x) &&
+                   (TestSetup.CurrentCommentMarkersData == null ||
+                    !TestSetup.CurrentCommentMarkersData.LineCommentMarker.Contains(x) &&
+                    !TestSetup.CurrentCommentMarkersData.MultilineCommentStartMarker.Contains(x) &&
+                    !TestSetup.CurrentCommentMarkersData.MultilineCommentEndMarker.Contains(x))).ToList();
+
             var specialOperatorCharactersForUsedInSeparators = new List<char>();
             var specialOperatorCharactersUsedInKeywords = new List<char>();
             var specialOperatorCharactersUsedInOperators = new List<char>();
@@ -280,7 +282,7 @@ namespace UniversalExpressionParser.Tests.SuccessfulParseTests
                         specialOperatorCharactersUsedInKeywords,
                         KeywordHasConflictsWithOtherIdentifiers);
 
-                if (!keyword.Any(x => !Helpers.IsSpecialOperatorCharacter(x)))
+                if (keyword.All(x => SpecialCharactersCacheThreadStaticContext.Context.IsSpecialOperatorCharacter(x)))
                     keyword = string.Format("{0}{1}", keyword,
                         TestSetup.CodeGenerationHelper.GenerateCharacter(
                         new CharacterTypeProbabilityData(GeneratedCharacterType.Letter, 34),
