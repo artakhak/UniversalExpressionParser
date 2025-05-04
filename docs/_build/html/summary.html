@@ -78,43 +78,45 @@
 <ul class="simple">
 <li><p>Below is the demo code used to parse this expression:</p></li>
 </ul>
-<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">using</span><span class="w"> </span><span class="nn">TextParser</span><span class="p">;</span><span class="w"></span>
-<span class="linenos"> 2</span><span class="k">using</span><span class="w"> </span><span class="nn">UniversalExpressionParser.DemoExpressionLanguageProviders</span><span class="p">;</span><span class="w"></span>
-<span class="linenos"> 3</span>
-<span class="linenos"> 4</span><span class="k">namespace</span><span class="w"> </span><span class="nn">UniversalExpressionParser.Tests.Demos</span><span class="w"></span>
-<span class="linenos"> 5</span><span class="p">{</span><span class="w"></span>
-<span class="linenos"> 6</span><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">SummaryDemo</span><span class="w"></span>
-<span class="linenos"> 7</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="linenos"> 8</span><span class="w">        </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="n">IExpressionParser</span><span class="w"> </span><span class="n">_expressionParser</span><span class="p">;</span><span class="w"></span>
-<span class="linenos"> 9</span><span class="w">        </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="n">IExpressionLanguageProvider</span><span class="w"> </span><span class="n">_nonVerboseLanguageProvider</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NonVerboseCaseSensitiveExpressionLanguageProvider</span><span class="p">();</span><span class="w"></span>
-<span class="linenos">10</span><span class="w">        </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="n">IExpressionLanguageProvider</span><span class="w"> </span><span class="n">_verboseLanguageProvider</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">VerboseCaseInsensitiveExpressionLanguageProvider</span><span class="p">();</span><span class="w"></span>
-<span class="linenos">11</span><span class="w">        </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="n">IParseExpressionOptions</span><span class="w"> </span><span class="n">_parseExpressionOptions</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ParseExpressionOptions</span><span class="p">();</span><span class="w"></span>
-<span class="linenos">12</span>
-<span class="linenos">13</span><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="nf">SummaryDemo</span><span class="p">()</span><span class="w"></span>
-<span class="linenos">14</span><span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="linenos">15</span><span class="w">            </span><span class="n">IExpressionLanguageProviderCache</span><span class="w"> </span><span class="n">expressionLanguageProviderCache</span><span class="w"> </span><span class="p">=</span><span class="w"></span>
-<span class="linenos">16</span><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="nf">ExpressionLanguageProviderCache</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">DefaultExpressionLanguageProviderValidator</span><span class="p">());</span><span class="w"></span>
-<span class="linenos">17</span>
-<span class="linenos">18</span><span class="w">            </span><span class="n">_expressionParser</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ExpressionParser</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">TextSymbolsParserFactory</span><span class="p">(),</span><span class="w"> </span><span class="n">expressionLanguageProviderCache</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">19</span>
-<span class="linenos">20</span><span class="w">            </span><span class="n">expressionLanguageProviderCache</span><span class="p">.</span><span class="n">RegisterExpressionLanguageProvider</span><span class="p">(</span><span class="n">_nonVerboseLanguageProvider</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">21</span><span class="w">            </span><span class="n">expressionLanguageProviderCache</span><span class="p">.</span><span class="n">RegisterExpressionLanguageProvider</span><span class="p">(</span><span class="n">_verboseLanguageProvider</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">22</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">23</span>
-<span class="linenos">24</span><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">IParseExpressionResult</span><span class="w"> </span><span class="nf">ParseNonVerboseExpression</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">expression</span><span class="p">)</span><span class="w"></span>
-<span class="linenos">25</span><span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="linenos">26</span><span class="w">            </span><span class="cm">/*</span>
-<span class="linenos">27</span><span class="cm">            The same instance _expressionParser of UniversalExpressionParser.IExpressionParser can be used</span>
-<span class="linenos">28</span><span class="cm">            to parse multiple expressions using different instances of UniversalExpressionParser.IExpressionLanguageProvider</span>
-<span class="linenos">29</span><span class="cm">            Example:</span>
-<span class="linenos">30</span>
-<span class="linenos">31</span><span class="cm">            var parsedExpression1 = _expressionParser.ParseExpression(_nonVerboseLanguageProvider.LanguageName, &quot;var x=2*y; f1() {++x;} f1();&quot;);</span>
-<span class="linenos">32</span><span class="cm">            var parsedExpression2 = _expressionParser.ParseExpression(_verboseLanguageProvider.LanguageName, &quot;var x=2*y; f1() BEGIN ++x;END f1();&quot;);</span>
-<span class="linenos">33</span><span class="cm">            */</span><span class="w"></span>
-<span class="linenos">34</span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">_expressionParser</span><span class="p">.</span><span class="n">ParseExpression</span><span class="p">(</span><span class="n">_nonVerboseLanguageProvider</span><span class="p">.</span><span class="n">LanguageName</span><span class="p">,</span><span class="w"> </span><span class="n">expression</span><span class="p">,</span><span class="w"> </span><span class="n">_parseExpressionOptions</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">35</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">36</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">37</span><span class="p">}</span><span class="w"></span>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">using</span><span class="w"> </span><span class="nn">OROptimizer.Diagnostics.Log</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="k">using</span><span class="w"> </span><span class="nn">TextParser</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="k">using</span><span class="w"> </span><span class="nn">UniversalExpressionParser.DemoExpressionLanguageProviders</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">namespace</span><span class="w"> </span><span class="nn">UniversalExpressionParser.Tests.Demos</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">SummaryDemo</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">        </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="n">IExpressionParser</span><span class="w"> </span><span class="n">_expressionParser</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">        </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="n">IExpressionLanguageProvider</span><span class="w"> </span><span class="n">_nonVerboseLanguageProvider</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NonVerboseCaseSensitiveExpressionLanguageProvider</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">        </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="n">IExpressionLanguageProvider</span><span class="w"> </span><span class="n">_verboseLanguageProvider</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">VerboseCaseInsensitiveExpressionLanguageProvider</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">12</span><span class="w">        </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="n">IParseExpressionOptions</span><span class="w"> </span><span class="n">_parseExpressionOptions</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ParseExpressionOptions</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="nf">SummaryDemo</span><span class="p">()</span><span class="w"></span>
+<span class="linenos">15</span><span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">            </span><span class="n">IExpressionLanguageProviderCache</span><span class="w"> </span><span class="n">expressionLanguageProviderCache</span><span class="w"> </span><span class="p">=</span><span class="w"></span>
+<span class="linenos">17</span><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="nf">ExpressionLanguageProviderCache</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">DefaultExpressionLanguageProviderValidator</span><span class="p">());</span><span class="w"></span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="w">            </span><span class="n">_expressionParser</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ExpressionParser</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">TextSymbolsParserFactory</span><span class="p">(),</span><span class="w"> </span><span class="n">expressionLanguageProviderCache</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">20</span><span class="w">                </span><span class="n">LogHelper</span><span class="p">.</span><span class="n">Context</span><span class="p">.</span><span class="n">Log</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="w">            </span><span class="n">expressionLanguageProviderCache</span><span class="p">.</span><span class="n">RegisterExpressionLanguageProvider</span><span class="p">(</span><span class="n">_nonVerboseLanguageProvider</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">23</span><span class="w">            </span><span class="n">expressionLanguageProviderCache</span><span class="p">.</span><span class="n">RegisterExpressionLanguageProvider</span><span class="p">(</span><span class="n">_verboseLanguageProvider</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">24</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">25</span>
+<span class="linenos">26</span><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">IParseExpressionResult</span><span class="w"> </span><span class="nf">ParseNonVerboseExpression</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">expression</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">28</span><span class="w">            </span><span class="cm">/*</span>
+<span class="linenos">29</span><span class="cm">            The same instance _expressionParser of UniversalExpressionParser.IExpressionParser can be used</span>
+<span class="linenos">30</span><span class="cm">            to parse multiple expressions using different instances of UniversalExpressionParser.IExpressionLanguageProvider</span>
+<span class="linenos">31</span><span class="cm">            Example:</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span><span class="cm">            var parsedExpression1 = _expressionParser.ParseExpression(_nonVerboseLanguageProvider.LanguageName, &quot;var x=2*y; f1() {++x;} f1();&quot;);</span>
+<span class="linenos">34</span><span class="cm">            var parsedExpression2 = _expressionParser.ParseExpression(_verboseLanguageProvider.LanguageName, &quot;var x=2*y; f1() BEGIN ++x;END f1();&quot;);</span>
+<span class="linenos">35</span><span class="cm">            */</span><span class="w"></span>
+<span class="linenos">36</span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">_expressionParser</span><span class="p">.</span><span class="n">ParseExpression</span><span class="p">(</span><span class="n">_nonVerboseLanguageProvider</span><span class="p">.</span><span class="n">LanguageName</span><span class="p">,</span><span class="w"> </span><span class="n">expression</span><span class="p">,</span><span class="w"> </span><span class="n">_parseExpressionOptions</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">37</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">38</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">39</span><span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <ul>
