@@ -24,6 +24,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsSharedLibraryForCodePa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{71DAD493-B3DE-4AEE-A778-D46F891F38A8}"
 	ProjectSection(SolutionItems) = preProject
+		.readthedocs.yaml = .readthedocs.yaml
 		..\ClassVisualizer\LICENSE.txt = ..\ClassVisualizer\LICENSE.txt
 		README.md = README.md
 		README.md.template = README.md.template
