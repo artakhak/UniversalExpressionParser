@@ -190,27 +190,14 @@
 		<PackageReference Include="NUnit" Version="3.12.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
 		<PackageReference Include="Moq" Version="4.15.2" />
-
-		<!--Uncomment before pushing-->
-		<!--		
-		<PackageReference Include="OROptimizer.Shared" Version="2.2.0" />
 		<PackageReference Include="OROptimizer.Shared.Log4Net" Version="1.0.0" />
-		
-		<PackageReference Include="TestsSharedLibraryForCodeParsers" Version="1.0.2" />
-		<PackageReference Include="TestsSharedLibrary" Version="1.0.2" />
-		-->
+		<PackageReference Include="TestsSharedLibrary" Version="1.0.3" />
+		<PackageReference Include="TestsSharedLibraryForCodeParsers" Version="1.0.3" />
+		<PackageReference Include="UniversalExpressionParser" Version="1.1.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\UniversalExpressionParser.ClassVisualizers\UniversalExpressionParser.ClassVisualizers.csproj" />
 		<ProjectReference Include="..\UniversalExpressionParser.DemoExpressionLanguageProviders\UniversalExpressionParser.DemoExpressionLanguageProviders.csproj" />
-		<ProjectReference Include="..\UniversalExpressionParser\UniversalExpressionParser.csproj" />
-		<!--Comment out before pushing-->
-		<ProjectReference Include="..\..\ClassVisualizer\ClassVisualizer\ClassVisualizer.csproj" />
-		<ProjectReference Include="..\..\OROptimizer.Shared.Log4Net\OROptimizer.Shared.Log4Net\OROptimizer.Shared.Log4Net.csproj" />
-		<ProjectReference Include="..\..\OROptimizer.Shared\OROptimizer.Shared\OROptimizer.Shared.csproj" />
-		<ProjectReference Include="..\..\TestsSharedLibraryForCodeParsers\TestsSharedLibraryForCodeParsers.csproj" />
-		<ProjectReference Include="..\..\TestsSharedLibrary\TestsSharedLibrary.csproj" />
-		
 	</ItemGroup>
 	<ItemGroup>
 		<None Update="UniversalExpressionParser.Tests.log4net.config">

@@ -8,6 +8,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversalExpressionParser.Tests", "UniversalExpressionParser.Tests\UniversalExpressionParser.Tests.csproj", "{76CCE35C-D797-41AF-A7BA-1D14DB1E5CC2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{D3294509-1340-4682-BFF4-03C75B6FBED9}"
+	ProjectSection(SolutionItems) = preProject
+		DEPENDENCIES.README.txt = DEPENDENCIES.README.txt
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextParser", "..\TextParser\TextParser\TextParser.csproj", "{1C38DABB-A2D5-44E9-A9C7-925FFC035827}"
 EndProject
@@ -66,7 +69,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{6842C7A6-F9B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversalExpressionParser.DocumentationGenerator", "UniversalExpressionParser.DocumentationGenerator\UniversalExpressionParser.DocumentationGenerator.csproj", "{37502E04-4567-456C-A228-3A522E10D554}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OROptimizer.Shared.Log4Net", "..\OROptimizer.Shared.Log4Net\OROptimizer.Shared.Log4Net\OROptimizer.Shared.Log4Net.csproj", "{708A37A8-BF1D-4012-AC2E-8E7E5B016504}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OROptimizer.Shared.Log4Net", "..\OROptimizer.Shared.Log4Net\OROptimizer.Shared.Log4Net\OROptimizer.Shared.Log4Net.csproj", "{708A37A8-BF1D-4012-AC2E-8E7E5B016504}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

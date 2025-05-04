@@ -67,6 +67,15 @@ namespace UniversalExpressionParser
         {
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="specialOperatorCharacters">
+        /// List of special operator character such as '+', '-', ':', '*', '~', '!', etc.
+        /// </param>
+        /// <param name="specialNonOperatorCharacters">
+        /// List of special all operator and non-operator character such '+', '-', ':', '*', '~', '!', '`', '\', '/', '(', ')', '[', ']', ';', ',', etc.
+        /// </param>
         public SpecialCharactersCache(IEnumerable<char> specialOperatorCharacters, IEnumerable<char> specialNonOperatorCharacters)
         {
             foreach (var specialOperatorCharacter in specialOperatorCharacters)
@@ -88,6 +97,7 @@ namespace UniversalExpressionParser
         /// <inheritdoc />
         public IEnumerable<char> SpecialNonOperatorCharacters => _specialNonOperatorCharactersSet;
 
+        /// <inheritdoc />
         public IEnumerable<char> SpecialCharacters => _specialCharactersSet;
 
         /// <inheritdoc />
