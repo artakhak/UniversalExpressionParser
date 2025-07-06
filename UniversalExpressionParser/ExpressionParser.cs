@@ -38,6 +38,8 @@ namespace UniversalExpressionParser
         [NotNull]
         private readonly IExpressionLanguageProviderCache _expressionLanguageProviderCache;
 
+        private readonly ILog _logger;
+
         [NotNull] 
         private readonly ParserHelper _parserHelper = new ParserHelper();
 
@@ -76,10 +78,11 @@ namespace UniversalExpressionParser
                                 [NotNull] IExpressionLanguageProviderCache expressionLanguageProviderCache,
                                 ILog logger)
         {
-            LoggerThreadStaticContext.Context = logger;
+           
 
             _textSymbolsParserFactory = textSymbolsParserFactory;
             _expressionLanguageProviderCache = expressionLanguageProviderCache;
+            _logger = logger;
 
             _parseOperatorsHelper = new ParseOperatorsHelper(_parseKeywordsHelper);
             _generateExpressionItemHelper = new GenerateExpressionItemHelper(_parseOperatorsHelper);
@@ -96,6 +99,7 @@ namespace UniversalExpressionParser
                                                                     [NotNull] CreateParseExpressionResult<TParseExpressionResult> createParseExpressionResult,
                                                                     [NotNull] Action<TParseExpressionResult, ParseExpressionItemContext> doParseExpression) where TParseExpressionResult : IParseExpressionResult
         {
+            LoggerThreadStaticContext.Context = _logger;
             var expressionItemSettingCurrent = ExpressionItemSettingsAmbientContext.Context;
 
             try
