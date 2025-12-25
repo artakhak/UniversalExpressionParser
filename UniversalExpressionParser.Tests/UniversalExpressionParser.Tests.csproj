@@ -193,11 +193,12 @@
 		<PackageReference Include="OROptimizer.Shared.Log4Net" Version="1.0.0" />
 		<PackageReference Include="TestsSharedLibrary" Version="1.0.3" />
 		<PackageReference Include="TestsSharedLibraryForCodeParsers" Version="1.0.3" />
-		<PackageReference Include="UniversalExpressionParser" Version="1.1.0" />
+		<!--<PackageReference Include="UniversalExpressionParser" Version="1.2.0" />-->
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\UniversalExpressionParser.ClassVisualizers\UniversalExpressionParser.ClassVisualizers.csproj" />
 		<ProjectReference Include="..\UniversalExpressionParser.DemoExpressionLanguageProviders\UniversalExpressionParser.DemoExpressionLanguageProviders.csproj" />
+		<ProjectReference Include="..\UniversalExpressionParser\UniversalExpressionParser.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Update="UniversalExpressionParser.Tests.log4net.config">

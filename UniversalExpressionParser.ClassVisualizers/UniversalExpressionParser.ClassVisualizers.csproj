@@ -27,11 +27,11 @@
 			<IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="ClassVisualizer" Version="1.0.3" />
-		<PackageReference Include="UniversalExpressionParser" Version="1.1.0" />
+		<!--<PackageReference Include="UniversalExpressionParser" Version="1.1.0" />-->
 	</ItemGroup>
 	<ItemGroup>
-		<!--<ProjectReference Include="..\..\ClassVisualizer\ClassVisualizer\ClassVisualizer.csproj" />
-		<ProjectReference Include="..\UniversalExpressionParser\UniversalExpressionParser.csproj" />-->
+		<!--<ProjectReference Include="..\..\ClassVisualizer\ClassVisualizer\ClassVisualizer.csproj" />-->
+		<ProjectReference Include="..\UniversalExpressionParser\UniversalExpressionParser.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Include="ExpressionItemBaseExtensions.cs" />

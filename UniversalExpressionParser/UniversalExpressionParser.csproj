@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<PackageVersion>1.2.0</PackageVersion>
-		<Version>1.2.0</Version>
+		<PackageVersion>1.3.0</PackageVersion>
+		<Version>1.3.0</Version>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<EnableDefaultItems>false</EnableDefaultItems>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -28,7 +28,7 @@
 		<RepositoryUrl>https://github.com/artakhak/UniversalExpressionParser</RepositoryUrl>
 		<PackageTags>Universal Expression Parser</PackageTags>
 		<PackageReleaseNotes>
-			-Small logging change.
+			-Referencing latest version (2.6.0) of OROptimizer.Shared 
 		</PackageReleaseNotes>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -164,8 +164,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="OROptimizer.Shared" Version="2.2.0" />
+		<PackageReference Include="OROptimizer.Shared" Version="2.6.0" />
 		<!--<ProjectReference Include="..\..\OROptimizer.Shared\OROptimizer.Shared\OROptimizer.Shared.csproj" />-->
+		
 		<PackageReference Include="TextParser" Version="1.1.0" />
+		<!--<ProjectReference Include="..\..\TextParser\TextParser\TextParser.csproj" />-->
 	</ItemGroup>
 </Project>
