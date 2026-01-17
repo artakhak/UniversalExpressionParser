@@ -5,9 +5,15 @@
 	<ItemGroup>
 		<PackageReference Include="JetBrains.Annotations" Version="2021.2.0" PrivateAssets="all" ExcludeAssets="runtime">
 			<IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
+		</PackageReference>		
+	</ItemGroup>
 
-		<!--<PackageReference Include="UniversalExpressionParser" Version="1.1.0" />-->
+	<!--UniversalExpressionParser-->
+	<ItemGroup Condition="'$(Configuration)'=='Release' Or !$(DefineConstants.Contains('REFERENCE_UniversalExpressionParser_PROJECT'))">
+		<PackageReference Include="UniversalExpressionParser" Version="1.3.1"/>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)'=='Debug' And $(DefineConstants.Contains('REFERENCE_UniversalExpressionParser_PROJECT'))">
 		<ProjectReference Include="..\UniversalExpressionParser\UniversalExpressionParser.csproj" />
 	</ItemGroup>
 </Project>
