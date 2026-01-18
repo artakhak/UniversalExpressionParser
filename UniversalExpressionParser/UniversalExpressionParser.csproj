@@ -28,7 +28,7 @@
         <RepositoryUrl>https://github.com/artakhak/UniversalExpressionParser</RepositoryUrl>
         <PackageTags>Universal Expression Parser</PackageTags>
         <PackageReleaseNotes>
-            -Referencing latest version of OROptimizer.Shared package
+            -Referencing latest version of some libraries
         </PackageReleaseNotes>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>

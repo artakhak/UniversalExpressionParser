@@ -203,7 +203,7 @@
 
     <!--UniversalExpressionParser-->
     <ItemGroup Condition="'$(Configuration)'=='Release' Or !$(DefineConstants.Contains('REFERENCE_UniversalExpressionParser_PROJECT'))">
-        <PackageReference Include="UniversalExpressionParser" Version="1.3.1"/>
+        <PackageReference Include="UniversalExpressionParser" Version="1.3.2"/>
     </ItemGroup>
 
     <ItemGroup Condition="'$(Configuration)'=='Debug' And $(DefineConstants.Contains('REFERENCE_UniversalExpressionParser_PROJECT'))">
